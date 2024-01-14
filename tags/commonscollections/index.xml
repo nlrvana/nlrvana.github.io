@@ -3,11 +3,12 @@
     <title>CommonsCollections - Tag - N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/tags/commonscollections/</link>
     <description>CommonsCollections - Tag | N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Jan 2024 23:37:48 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/tags/commonscollections/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>beichenghua@gmail.com (N1Rvana)</managingEditor>
+      <webMaster>beichenghua@gmail.com (N1Rvana)</webMaster><lastBuildDate>Sun, 14 Jan 2024 23:37:48 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/tags/commonscollections/" rel="self" type="application/rss+xml" /><item>
   <title>CommonsCollections1链详解</title>
   <link>https://nlrvana.github.io/posts/ca4c9c3/</link>
   <pubDate>Sun, 14 Jan 2024 23:37:48 &#43;0800</pubDate>
-  <author>Author</author>
+  <author>N1Rvana</author>
   <guid>https://nlrvana.github.io/posts/ca4c9c3/</guid>
   <description><![CDATA[CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
 很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的

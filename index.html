@@ -8,16 +8,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>N1Rvana&#39;s Blog</title><meta name="author" content="">
-<meta name="author-link" content="">
-<meta name="description" content="" /><meta itemprop="name" content="N1Rvana&#39;s Blog">
-<meta itemprop="description" content=""><meta property="og:title" content="N1Rvana&#39;s Blog" />
-<meta property="og:description" content="" />
+    <title>N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="author-link" content="https://nlrvana.github.io">
+<meta name="description" content="N1Rvana&#39;s Blog" /><meta name="keywords" content='Hugo, FixIt' /><meta itemprop="name" content="N1Rvana&#39;s Blog">
+<meta itemprop="description" content="N1Rvana&#39;s Blog"><meta property="og:title" content="N1Rvana&#39;s Blog" />
+<meta property="og:description" content="N1Rvana&#39;s Blog" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://nlrvana.github.io/" />
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="N1Rvana&#39;s Blog"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="N1Rvana&#39;s Blog"/>
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -28,7 +28,10 @@
   {
     "@context": "http://schema.org",
     "@type": "WebSite",
-    "url": "https:\/\/nlrvana.github.io\/","inLanguage": "en","name": "N1Rvana's Blog"
+    "url": "https:\/\/nlrvana.github.io\/","inLanguage": "en","author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": "N1Rvana's Blog","name": "N1Rvana's Blog"
   }
   </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
@@ -95,9 +98,26 @@
       </ul>
     </nav>
   </div>
-</header><main class="container"><div class="page home posts"><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/posts/ca4c9c3/">CommonsCollections1链详解</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      N1Rvana</span></span>&nbsp;<span class="post-publish" title='2024-01-14 23:37:48'>published on <time datetime="2024-01-14">2024-01-14</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="content">CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
+</header><main class="container"><div class="page home posts"><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/posts/80e2887/">ThinkPHP3.2.3漏洞学习</a>
+  </h2><div class="post-meta"><span class="post-author"><a href="https://nlrvana.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    N1Rvana</a></span>&nbsp;<span class="post-publish" title='2024-01-15 00:17:31'>published on <time datetime="2024-01-15">2024-01-15</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/php/" class="post-category" title="Category - PHP"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> PHP</a></span></div><div class="content">环境搭建ThinkPHP3
+composer create-project topthink/thinkphp=版本号 文件名
+ThinkPHP5(完整版)
+composer create-project topthink/think=版本号 文件名
+阿里云 Compose 全量镜像资源库
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+https://www.runoob.com/w3cnote/composer-install-and-usage.html
+https://packagist.org/
+框架了解审计之前，我们需要了解框架的信息
+ThinkPHP3.2.3完全开发手册
+composer create-project topthink/thinkphp=3.2.3 thinkphp3.2.3
+1 2 3 4 index.php 入口文件 Application 应用目录 Public 资源文件目录 ThinkPHP 框架目录 其中框架目录ThinkPHP的结构如下
+1 2 3 4 5 6 7 8 9 10 11 12 Common 核心公共函数目录 Conf 核心配置目录 Lang 核心语言包目录 Library 核心类库目录 Think 核心Think类库目录 Behavior 行为类库目录 Org Org类库目录 Vendor 第三方类库目录 ... 更多类库目录 Mode 框架应用模式目录 Tpl 系统模板目录 ThinkPHP.</div><div class="post-footer">
+    <a href="/posts/80e2887/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/thinkphp/' class="post-tag">ThinkPHP</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/posts/ca4c9c3/">CommonsCollections1链详解</a>
+  </h2><div class="post-meta"><span class="post-author"><a href="https://nlrvana.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    N1Rvana</a></span>&nbsp;<span class="post-publish" title='2024-01-14 23:37:48'>published on <time datetime="2024-01-14">2024-01-14</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="content">CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
 很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的
 构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); ``
 找一个任意类调用transforms()方法的方法，这里选择org.apache.commons.collections.map.TransformedMap类的checkSetValue()方法
@@ -110,13 +130,20 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
 1 2 3 4 5 6 7 8 9 10 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.</div><div class="post-footer">
     <a href="/posts/ca4c9c3/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/commonscollections/' class="post-tag">CommonsCollections</a></div></div>
 </article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/posts/fdfad53/">URLDNS链详解</a>
+  </h2><div class="post-meta"><span class="post-author"><a href="https://nlrvana.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    N1Rvana</a></span>&nbsp;<span class="post-publish" title='2024-01-14 00:12:12'>published on <time datetime="2024-01-14">2024-01-14</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="content">&lt; !&ndash;more&ndash;&gt;
+先来看一下如何序列化/反序列化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 package org.example; import java.io.*; public class App { public static void main( String[] args ) throws Exception { user user = new user(); user.</div><div class="post-footer">
+    <a href="/posts/fdfad53/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/urldns/' class="post-tag">URLDNS</a></div></div>
+</article>
 </div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
-              <a href="/"></a></span></div></div>
+              <a href="https://nlrvana.github.io"target="_blank" rel="external nofollow noopener noreferrer">N1Rvana</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
-        </div></div><div id="mask"></div><noscript>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
     <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
   </noscript>
 </div><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">

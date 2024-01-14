@@ -177,6 +177,6 @@ public class CommonsCollection1 {
 
 ---
 
-> Author: N1Rvana  
+> Author: [N1Rvana](https://nlrvana.github.io)  
 > URL: https://nlrvana.github.io/posts/ca4c9c3/  
 

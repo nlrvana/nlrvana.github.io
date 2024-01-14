@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>CommonsCollections1链详解 - N1Rvana&#39;s Blog</title><meta name="author" content="">
-<meta name="author-link" content="">
+    <title>CommonsCollections1链详解 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="author-link" content="https://nlrvana.github.io">
 <meta name="description" content="CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
 很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的
 构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); ``
@@ -63,7 +63,7 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/posts/ca4c9c3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/posts/ca4c9c3/" /><link rel="prev" href="https://nlrvana.github.io/posts/fdfad53/" /><link rel="next" href="https://nlrvana.github.io/posts/80e2887/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -152,8 +152,8 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>CommonsCollections1链详解</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="post-meta-line"><span title="published on 2024-01-14 23:37:48"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span title="353 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span class="post-author"><a href="https://nlrvana.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    N1Rvana</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="post-meta-line"><span title="published on 2024-01-14 23:37:48"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span title="353 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -425,7 +425,8 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
     </section>
   </div>
 
-  <div class="post-nav"></div>
+  <div class="post-nav"><a href="/posts/fdfad53/" class="post-nav-item" rel="prev" title="URLDNS链详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>URLDNS链详解</a>
+      <a href="/posts/80e2887/" class="post-nav-item" rel="next" title="ThinkPHP3.2.3漏洞学习">ThinkPHP3.2.3漏洞学习<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article>
 
@@ -434,9 +435,9 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
-              <a href="/"></a></span></div></div>
+              <a href="https://nlrvana.github.io"target="_blank" rel="external nofollow noopener noreferrer">N1Rvana</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
-        </div></div><div id="mask"></div><noscript>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
     <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
   </noscript>
 </div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"}};</script><script src="/js/theme.min.js" defer></script></body>
