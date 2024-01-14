@@ -1,11 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/</link>
-    <description>N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Jan 2024 23:37:48 &#43;0800</lastBuildDate>
-      <atom:link href="https://nlrvana.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
+    <title>Java - Category - N1Rvana&#39;s Blog</title>
+    <link>https://nlrvana.github.io/categories/java/</link>
+    <description>Java - Category | N1Rvana&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Jan 2024 23:37:48 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/java/" rel="self" type="application/rss+xml" /><item>
   <title>CommonsCollections1链详解</title>
   <link>https://nlrvana.github.io/posts/ca4c9c3/</link>
   <pubDate>Sun, 14 Jan 2024 23:37:48 &#43;0800</pubDate>
