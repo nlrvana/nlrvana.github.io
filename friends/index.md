@@ -10,8 +10,9 @@
 ## Base info
 
 ```yaml
-- nickname: N1Rvana
-  avatar: logo
+- nickname: N1rvana
+  avatar: https://nlrvana.github.io/avatar.png
+  url: https://nlrvana.github.io/
 ```
 交换友链，请按上述格式发送至`beichenghua@gmail.com`
 

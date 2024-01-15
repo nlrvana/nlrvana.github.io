@@ -263,7 +263,7 @@ composer create-project topthink/thinkphp=3.2.3 thinkphp3.2.3
           </ul>
         </li>
         <li><a href="#漏洞分析和原理">漏洞分析和原理</a></li>
-        <li><a href="#0x02-thinkphplibrarythinkmodelclassphp_parseoptions未过滤options导致-sql-注入">0x02 ThinkPHP/Library/Think/Model.class.php::_parseOptions未过滤$options导致 sql 注入</a>
+        <li><a href="#0x02-_parseoptions未过滤options导致-sql-注入">0x02 _parseOptions未过滤$options导致 sql 注入</a>
           <ul>
             <li><a href="#利用条件-1">利用条件</a></li>
             <li><a href="#漏洞原理和分析">漏洞原理和分析</a></li>
@@ -437,8 +437,8 @@ composer create-project topthink/thinkphp=3.2.3 thinkphp3.2.3
 <p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131942656.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131942656.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131942656.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131942656.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131942656.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131942656.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最后得到了执行</p>
 <p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131943511.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131943511.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131943511.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131943511.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131943511.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131943511.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h3 id="0x02-thinkphplibrarythinkmodelclassphp_parseoptions未过滤options导致-sql-注入" class="heading-element">
-  <a href="#0x02-thinkphplibrarythinkmodelclassphp_parseoptions%e6%9c%aa%e8%bf%87%e6%bb%a4options%e5%af%bc%e8%87%b4-sql-%e6%b3%a8%e5%85%a5" class="heading-mark"></a>0x02 ThinkPHP/Library/Think/Model.class.php::_parseOptions未过滤$options导致 sql 注入</h3><h4 id="利用条件-1" class="heading-element">
+<h3 id="0x02-_parseoptions未过滤options导致-sql-注入" class="heading-element">
+  <a href="#0x02-_parseoptions%e6%9c%aa%e8%bf%87%e6%bb%a4options%e5%af%bc%e8%87%b4-sql-%e6%b3%a8%e5%85%a5" class="heading-mark"></a>0x02 _parseOptions未过滤$options导致 sql 注入</h3><h4 id="利用条件-1" class="heading-element">
   <a href="#%e5%88%a9%e7%94%a8%e6%9d%a1%e4%bb%b6-1" class="heading-mark"></a>利用条件</h4><p>ThinkPHP &lt;= 3.2.3</p>
 <h4 id="漏洞原理和分析" class="heading-element">
   <a href="#%e6%bc%8f%e6%b4%9e%e5%8e%9f%e7%90%86%e5%92%8c%e5%88%86%e6%9e%90" class="heading-mark"></a>漏洞原理和分析</h4><p><code>$options</code>查询条件可以不经过数据处理直接进入<code>_parseOptions</code>，再进入<code>Driver.class.php</code>的sql操作函数，和上面一样通过<code>buildSelectsql</code>方法或直接调用<code>delete</code>方法进行拼接 sql 语句，然后再进行执行
