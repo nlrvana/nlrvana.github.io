@@ -6,7 +6,7 @@ SU Team of member
 
 某不知名三本院校大一在读
 
-## CVE-List
+## My CVEs
 | CVE-ID | Porject |
 | ---- | ---- |
 | CVE-2022-2886| Laravel |
