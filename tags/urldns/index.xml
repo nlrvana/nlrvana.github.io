@@ -9,9 +9,7 @@
   <pubDate>Sun, 14 Jan 2024 00:12:12 &#43;0800</pubDate>
   <author>Author</author>
   <guid>https://nlrvana.github.io/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
-  <description><![CDATA[&lt; !&ndash;more&ndash;&gt;
-先来看一下如何序列化/反序列化
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 package org.example; import java.io.*; public class App { public static void main( String[] args ) throws Exception { user user = new user(); user.]]></description>
+  <description><![CDATA[<p>世界上最简单的 java 链</p>]]></description>
 </item>
 </channel>
 </rss>

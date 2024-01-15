@@ -1,6 +1,8 @@
 # ThinkPHP3.2.3漏洞学习
 
 
+ThinkPHP 漏洞学习
+&lt;!--more--&gt;
 # 环境搭建
 `ThinkPHP3`
 
