@@ -17,6 +17,6 @@ SU Team of member
 
 ---
 
-> Author: [N1Rvana](https://nlrvana.github.io)  
+> Author:   
 > URL: https://nlrvana.github.io/about/  
 

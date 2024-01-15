@@ -18,6 +18,6 @@
 
 ---
 
-> Author: [N1Rvana](https://nlrvana.github.io)  
+> Author:   
 > URL: https://nlrvana.github.io/friends/  
 

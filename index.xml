@@ -2,16 +2,15 @@
   <channel>
     <title>N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/</link>
-    <description>N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>beichenghua@gmail.com (N1Rvana)</managingEditor>
-      <webMaster>beichenghua@gmail.com (N1Rvana)</webMaster><lastBuildDate>Mon, 15 Jan 2024 00:17:31 &#43;0800</lastBuildDate>
+    <description>Web Security</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 15 Jan 2024 00:17:31 &#43;0800</lastBuildDate>
       <atom:link href="https://nlrvana.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
   <title>ThinkPHP3.2.3漏洞学习</title>
-  <link>https://nlrvana.github.io/posts/80e2887/</link>
+  <link>https://nlrvana.github.io/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</link>
   <pubDate>Mon, 15 Jan 2024 00:17:31 &#43;0800</pubDate>
-  <author>N1Rvana</author>
-  <guid>https://nlrvana.github.io/posts/80e2887/</guid>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</guid>
   <description><![CDATA[环境搭建ThinkPHP3
 composer create-project topthink/thinkphp=版本号 文件名
 ThinkPHP5(完整版)
@@ -28,10 +27,10 @@ composer create-project topthink/thinkphp=3.2.3 thinkphp3.2.3
 </item>
 <item>
   <title>CommonsCollections1链详解</title>
-  <link>https://nlrvana.github.io/posts/ca4c9c3/</link>
+  <link>https://nlrvana.github.io/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
   <pubDate>Sun, 14 Jan 2024 23:37:48 &#43;0800</pubDate>
-  <author>N1Rvana</author>
-  <guid>https://nlrvana.github.io/posts/ca4c9c3/</guid>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
   <description><![CDATA[CommonsCollections1链详解jdk8源码下载 https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4 漏洞触发点在org.apache.commons.collections.functors.InvokerTransformer 其中的transform()方法
 很明显的一个反射调用，其中iMethodName、iParamTypes、iArgs都是可控的变量，便可以调用任意方法和任意参数 看一下构造器是如何赋值的
 构造一个简单的 payload 试试 new InvokerTransformer(&quot;exec&quot;,new Class[]{String.class},new Object[]{&quot;/System/Applications/Calculator.app/Contents/MacOS/Calculator&quot;}).transform(Runtime.getRuntime()); ``
@@ -46,10 +45,10 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
 </item>
 <item>
   <title>URLDNS链详解</title>
-  <link>https://nlrvana.github.io/posts/fdfad53/</link>
+  <link>https://nlrvana.github.io/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
   <pubDate>Sun, 14 Jan 2024 00:12:12 &#43;0800</pubDate>
-  <author>N1Rvana</author>
-  <guid>https://nlrvana.github.io/posts/fdfad53/</guid>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
   <description><![CDATA[&lt; !&ndash;more&ndash;&gt;
 先来看一下如何序列化/反序列化
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 package org.example; import java.io.*; public class App { public static void main( String[] args ) throws Exception { user user = new user(); user.]]></description>

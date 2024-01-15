@@ -3,13 +3,12 @@
     <title>PHP - Category - N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/categories/php/</link>
     <description>PHP - Category | N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>beichenghua@gmail.com (N1Rvana)</managingEditor>
-      <webMaster>beichenghua@gmail.com (N1Rvana)</webMaster><lastBuildDate>Mon, 15 Jan 2024 00:17:31 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/php/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 15 Jan 2024 00:17:31 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/php/" rel="self" type="application/rss+xml" /><item>
   <title>ThinkPHP3.2.3漏洞学习</title>
-  <link>https://nlrvana.github.io/posts/80e2887/</link>
+  <link>https://nlrvana.github.io/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</link>
   <pubDate>Mon, 15 Jan 2024 00:17:31 &#43;0800</pubDate>
-  <author>N1Rvana</author>
-  <guid>https://nlrvana.github.io/posts/80e2887/</guid>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</guid>
   <description><![CDATA[环境搭建ThinkPHP3
 composer create-project topthink/thinkphp=版本号 文件名
 ThinkPHP5(完整版)
