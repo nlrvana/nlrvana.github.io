@@ -141,7 +141,7 @@ poc
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401131943511.png)
 
 
-### ThinkPHP/Library/Think/Model.class.php::\_parseOptions未过滤$options导致 sql 注入
+### 0x02 ThinkPHP/Library/Think/Model.class.php::\_parseOptions未过滤$options导致 sql 注入
 #### 利用条件
 ThinkPHP &lt;= 3.2.3
 #### 漏洞原理和分析

