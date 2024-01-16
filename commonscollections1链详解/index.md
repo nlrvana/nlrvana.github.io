@@ -149,7 +149,7 @@ public class CommonsCollection1 {
 在上面选择任意类执行`transform`方法的时候，选择了`TransformedMap`  
 这次选择另一个类`LazyMap`中的`get()`方法  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151446822.png)
-再看一下哪里调用了`get()`方法，恰好在`AnnotationInocationHandler`类中的`inoke()`方法中调用了`get()`方法  
+再看一下哪里调用了`get()`方法，恰好在`AnnotationInocationHandler`类中的`invoke()`方法中调用了`get()`方法  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151448743.png)
 而恰好`memberValues`也是可控的，那如何调用到`invoke()`方法呢？  
 这里需要一个新的知识点，动态代理，将`AnnoationInvocationHandler`动态代理，执行任意方法，即可调用到`invoke`方法，但是根据 invoke 中的`if`条件，执行的任意方法必须是无参的，恰好在`AnnotationInvocationHandler`类中的`readObject()`方法中，有这样的方法存在  
