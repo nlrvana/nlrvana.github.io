@@ -6,12 +6,12 @@
 ## CommonsCollections3详解  
 通过类动态加载可以得知`defineClass`可以执行任意代码  
 全局搜索一下哪里调用了`defineClass`,  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161728002.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161728002.png)
 `TemplatesImpl`类里调用了，再全局搜索一下哪里调用了这里的`defineClass`类  
 在`defineTransletClasses`方法这里进行了调用  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161732725.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161732725.png) 
 再搜索一下哪里调用了`defineTransletClasses`  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161733135.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161733135.png)
 在`getTransletInstance()`方法调用了`defineTransletClasses()`方法并且，还执行了`newInstance()`进行了初始化操作，可以将注入的类执行  
 编写这部分的`poc`  
 ```java  
@@ -153,12 +153,12 @@ public class CommonsCollections3 {
     }    
 }  
 ```  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161825369.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161825369.png)
 ## 另一条  
 上面的例子可以得知是`InvokerTransformer`类的`transformer`调用了`TemplateImpl`类的`newTransformer()`方法才得以执行的，这里再找一个其他类调用`newTransformer()`方法  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161850661.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161850661.png)
 在`TrxAXFilter`类的构造器中调用了`newTransformer()`方法，但是`TrxAXFilter`类无法被序列化，所以找一个可以被序列化的类来调用`TrxAXFilter`类的构造器，这里选择了`InstantiateTransformer`类中的`transformer()`方法，来调用上面的构造器从而调用到`newTransformer()`方法  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161854717.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161854717.png)
 构造`poc`  
 ```java  
 package org.example.CommonsCollections;    
@@ -245,7 +245,7 @@ public class CommonsCollections3 {
 ```  
   
   
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161937418.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401161937418.png)
   
 
 ---
