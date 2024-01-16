@@ -3,20 +3,20 @@
     <title>Categories - Category - N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/categories/</link>
     <description>Categories - Category | N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 15 Jan 2024 20:22:59 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 16 Jan 2024 16:40:46 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+  <title>Java</title>
+  <link>https://nlrvana.github.io/categories/java/</link>
+  <pubDate>Tue, 16 Jan 2024 16:40:46 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/categories/java/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>PHP</title>
   <link>https://nlrvana.github.io/categories/php/</link>
   <pubDate>Mon, 15 Jan 2024 20:22:59 &#43;0800</pubDate>
   <author>Author</author>
   <guid>https://nlrvana.github.io/categories/php/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Java</title>
-  <link>https://nlrvana.github.io/categories/java/</link>
-  <pubDate>Mon, 15 Jan 2024 15:29:23 &#43;0800</pubDate>
-  <author>Author</author>
-  <guid>https://nlrvana.github.io/categories/java/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
