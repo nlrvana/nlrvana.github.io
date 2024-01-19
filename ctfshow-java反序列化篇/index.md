@@ -4,7 +4,7 @@
   
 &lt;!--more--&gt;  
 ## Web846  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181015366.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181015366.png)
 打开首页，告诉我们是`dns`查询，所以直接用`URLDNS`这条链子  
 ```java  
 package org.example;    
@@ -36,7 +36,7 @@ public class URLDNS {
     }    
 }  
 ```  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181050438.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181050438.png)
 ## Web847  
 https://x.hacking8.com/java-runtime.html  
 `Java7 commons-collections 3.1`  
@@ -88,7 +88,7 @@ public class CommonsCollections1 {
     
     }  
 ```  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181104182.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181104182.png)
 ## Web848  
 `Java7 commons-collections 3.1`  
 禁用了`TransformedMap`类  
@@ -142,7 +142,7 @@ public class CommonsCollections1 {
     }    
 }  
 ```  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181118097.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181118097.png)
 ## Web849  
 `Java8 commons-collections4.0`  
 用`CC2`链  
@@ -250,7 +250,7 @@ public class Test extends AbstractTranslet {
     }    
 }  
 ```  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181129267.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181129267.png)
 ## Web850  
 `Java7 commons-collections3.1`  
 用`CC3`链打  
@@ -385,7 +385,7 @@ public class CommonsCollections6 {
 }  
 ```  
 需要做修改的是，在4.0版本`decorate`被`lazymap`代替了  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181530285.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181530285.png)
   
 ## Web852  
 `JDK8 commons-collections4.0`  
@@ -446,7 +446,7 @@ public class CommonsCollections7 {
     
 }  
 ```  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181555285.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181555285.png)
 ## Web854  
 `JDK8 commons-collections4.0`  
 过滤了一些东西  
@@ -519,16 +519,16 @@ public class CommonsCollections7 {
     
 }  
 ```  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181827940.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181827940.png)
 ### Web854链子分析  
 可以看到上面的`poc`，仍然是调用到了`InvokerTransformer`类中的`transform`方法  
 来看一下调用栈  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181843112.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181843112.png)
 可以看到是调用了`DefaultedMap`类中的`get`方法，存在`transform`方法  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181844607.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181844607.png)
 也就是说将之前的`LazyMap`类中的`get`方法，换成了`DefaultedMap`类中的`get`方法  
 引用`Evo1ution`师傅总结的一张照片  
-![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181808130.png)  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401181808130.png)
   
   
 
