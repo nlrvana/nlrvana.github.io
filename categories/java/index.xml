@@ -3,12 +3,20 @@
     <title>Java - Category - N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/categories/java/</link>
     <description>Java - Category | N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 19 Jan 2024 16:27:48 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/java/" rel="self" type="application/rss+xml" /><item>
-  <title>CTFShow Java反序列化篇</title>
-  <link>https://nlrvana.github.io/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%87/</link>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Jan 2024 18:41:39 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/java/" rel="self" type="application/rss+xml" /><item>
+  <title>CTFShow-Java反序列化篇(2)</title>
+  <link>https://nlrvana.github.io/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%872/</link>
+  <pubDate>Mon, 22 Jan 2024 18:41:39 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%872/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>CTFShow-Java反序列化篇(1)</title>
+  <link>https://nlrvana.github.io/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%871/</link>
   <pubDate>Fri, 19 Jan 2024 16:27:48 &#43;0800</pubDate>
   <author>Author</author>
-  <guid>https://nlrvana.github.io/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%87/</guid>
+  <guid>https://nlrvana.github.io/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%871/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
