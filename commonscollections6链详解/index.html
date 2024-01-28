@@ -192,7 +192,8 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>CommonsCollections6链详解</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="post-meta-line"><span title="published on 2024-01-15 15:29:23"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-15">2024-01-15</time></span>&nbsp;<span title="216 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="CommonsCollections6链详解">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="post-meta-line"><span title="published on 2024-01-15 15:29:23"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-15">2024-01-15</time></span>&nbsp;<span title="216 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="CommonsCollections6链详解">
             <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -208,11 +209,15 @@
       </div><div class="content" id="content"><p>世界上最好用的 CC 链</p>
 <h2 id="commonscollections6-详解" class="heading-element">
   <a href="#commonscollections6-%e8%af%a6%e8%a7%a3" class="heading-mark"></a>CommonsCollections6 详解</h2><p>CommonsCollections1 的链子调用了<code>LazyMap</code>类中的<code>transform()</code>方法，于是找一个任意类调用<code>get()</code>方法的地方，这里换到了<code>TideMapEntry</code>类<br>
-<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516691.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516691.png"/><br>
-<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516403.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516403.png"/><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516691.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516691.png"/>
+<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516403.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151516403.png"/>
+<br>
 这里的<code>hashCode()</code>方法里调用了<code>getValue()</code>方法里面调用了<code>get()</code>方法，并且<code>map</code>可控，这里的<code>hashCode()</code>很熟悉，因为在<code>URLDNS</code>链中<code>HashMap</code>类里的<code>readObject()</code>方法调用到了<code>hashCode()</code>方法<br>
-<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518932.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518932.png"/><br>
-<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518990.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518990.png"/><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518932.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518932.png"/>
+<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518990.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151518990.png"/>
+<br>
 于是构造<code>poc</code></p>
 <div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -335,7 +340,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">    
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">  </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151528159.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151528159.png"/></p></div><div class="post-footer" id="post-footer">
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151528159.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202401151528159.png"/>
+</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
