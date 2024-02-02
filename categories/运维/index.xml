@@ -3,7 +3,15 @@
     <title>运维 - Category - N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/categories/%E8%BF%90%E7%BB%B4/</link>
     <description>运维 - Category | N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 30 Jan 2024 23:12:28 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/%E8%BF%90%E7%BB%B4/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 02 Feb 2024 14:46:50 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/%E8%BF%90%E7%BB%B4/" rel="self" type="application/rss+xml" /><item>
+  <title>Docker进阶</title>
+  <link>https://nlrvana.github.io/docker%E8%BF%9B%E9%98%B6/</link>
+  <pubDate>Fri, 02 Feb 2024 14:46:50 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/docker%E8%BF%9B%E9%98%B6/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Docker基础命令及原理</title>
   <link>https://nlrvana.github.io/docker%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%8E%9F%E7%90%86/</link>
   <pubDate>Tue, 30 Jan 2024 23:12:28 &#43;0800</pubDate>
