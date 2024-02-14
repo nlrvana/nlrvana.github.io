@@ -3,7 +3,15 @@
     <title>Tags - Tag - N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/tags/</link>
     <description>Tags - Tag | N1Rvana&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 06 Feb 2024 14:03:07 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 14 Feb 2024 18:29:00 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Web</title>
+  <link>https://nlrvana.github.io/tags/ctf-web/</link>
+  <pubDate>Wed, 14 Feb 2024 18:29:00 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/tags/ctf-web/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>NodeJS</title>
   <link>https://nlrvana.github.io/tags/nodejs/</link>
   <pubDate>Tue, 06 Feb 2024 14:03:07 &#43;0800</pubDate>
@@ -73,14 +81,6 @@
   <pubDate>Wed, 17 Jan 2024 00:25:41 &#43;0800</pubDate>
   <author>Author</author>
   <guid>https://nlrvana.github.io/tags/thinkphp/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>URLDNS</title>
-  <link>https://nlrvana.github.io/tags/urldns/</link>
-  <pubDate>Sun, 14 Jan 2024 00:12:12 &#43;0800</pubDate>
-  <author>Author</author>
-  <guid>https://nlrvana.github.io/tags/urldns/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>

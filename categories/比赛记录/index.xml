@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>比赛记录 - Category - N1Rvana&#39;s Blog</title>
+    <link>https://nlrvana.github.io/categories/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/</link>
+    <description>比赛记录 - Category | N1Rvana&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 14 Feb 2024 18:29:00 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/categories/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/" rel="self" type="application/rss+xml" /><item>
+  <title>NSSCTF Round 18 Basic</title>
+  <link>https://nlrvana.github.io/nssctf-round-18-basic/</link>
+  <pubDate>Wed, 14 Feb 2024 18:29:00 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/nssctf-round-18-basic/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
