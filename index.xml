@@ -3,10 +3,18 @@
     <title>N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/</link>
     <description>Web Security</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Apr 2024 00:21:35 &#43;0800</lastBuildDate>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Apr 2024 00:22:56 &#43;0800</lastBuildDate>
       <atom:link href="https://nlrvana.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-  <title>HackTheBox Love</title>
+  <title>HackTheBox-ScriptKiddie</title>
+  <link>https://nlrvana.github.io/hackthebox-scriptkiddie/</link>
+  <pubDate>Sun, 14 Apr 2024 00:22:56 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/hackthebox-scriptkiddie/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>HackTheBox-Love</title>
   <link>https://nlrvana.github.io/hackthebox-love/</link>
   <pubDate>Sun, 14 Apr 2024 00:21:35 &#43;0800</pubDate>
   <author>Author</author>
@@ -14,7 +22,7 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
-  <title>HackTheBox Knife</title>
+  <title>HackTheBox-Knife</title>
   <link>https://nlrvana.github.io/hackthebox-knife/</link>
   <pubDate>Sun, 14 Apr 2024 00:20:02 &#43;0800</pubDate>
   <author>Author</author>
@@ -75,14 +83,6 @@
   <pubDate>Fri, 15 Mar 2024 23:41:09 &#43;0800</pubDate>
   <author>Author</author>
   <guid>https://nlrvana.github.io/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>VNCTF 2024 Web</title>
-  <link>https://nlrvana.github.io/vnctf-2024-web/</link>
-  <pubDate>Fri, 15 Mar 2024 11:40:54 &#43;0800</pubDate>
-  <author>Author</author>
-  <guid>https://nlrvana.github.io/vnctf-2024-web/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
