@@ -1,4 +1,4 @@
-# HackTheBox Spectra
+# HackTheBox-Spectra
 
   
   
