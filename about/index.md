@@ -4,8 +4,6 @@
 ## About Me
 SU Team of member
 
-某不知名三本院校大一在读
-
 ## My CVEs
 | CVE-ID | Porject |
 | ---- | ---- |
