@@ -1,7 +1,7 @@
 # FastJson-前置基础
 
   
-  
+Fastjson
 &lt;!--more--&gt;  
 ## 0x01Fastjson简介  
 Fastjson是Alibaba开发的Java语言编写的高性能JSON库，用于将数据在JSON和Java Object之间相互转换。  
