@@ -7,11 +7,11 @@
     <meta name="robots" content="noodp" />
     <title>京津冀 长城杯 CandyShop - N1Rvana&#39;s Blog</title><meta name="author" content="">
 <meta name="author-link" content="">
-<meta name="description" content="Web Security" /><meta name="keywords" content='SSTI' /><meta itemprop="name" content="京津冀 长城杯 CandyShop">
+<meta name="description" content="Web Security" /><meta name="keywords" content='CTF Python SSTI' /><meta itemprop="name" content="京津冀 长城杯 CandyShop">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-09-12T16:07:37+08:00" />
 <meta itemprop="dateModified" content="2024-09-12T16:07:37+08:00" />
 <meta itemprop="wordCount" content="846"><meta itemprop="image" content="https://nlrvana.github.io/avatar.png" />
-<meta itemprop="keywords" content="SSTI," /><meta property="og:title" content="京津冀 长城杯 CandyShop" />
+<meta itemprop="keywords" content="CTF Python SSTI," /><meta property="og:title" content="京津冀 长城杯 CandyShop" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nlrvana.github.io/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/" /><meta property="og:image" content="https://nlrvana.github.io/avatar.png" /><meta property="article:section" content="posts" />
@@ -25,7 +25,7 @@
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/" /><link rel="prev" href="https://nlrvana.github.io/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/" /><link rel="prev" href="https://nlrvana.github.io/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" /><link rel="next" href="https://nlrvana.github.io/c3p0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -36,7 +36,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/nlrvana.github.io\/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop\/"
-    },"genre": "posts","keywords": "SSTI","wordcount":  846 ,
+    },"genre": "posts","keywords": "CTF Python SSTI","wordcount":  846 ,
     "url": "https:\/\/nlrvana.github.io\/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop\/","datePublished": "2024-09-12T16:07:37+08:00","dateModified": "2024-09-12T16:07:37+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -192,7 +192,7 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>京津冀 长城杯 CandyShop</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" data-title="N1Rvana" data-alt="N1Rvana" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/python-ctf/" class="post-category" title="Category - Python CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Python CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-09-12 16:07:37"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-09-12">2024-09-12</time></span>&nbsp;<span title="846 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="京津冀 长城杯 CandyShop">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" data-title="N1Rvana" data-alt="N1Rvana" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/ssti/" class="post-category" title="Category - SSTI"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> SSTI</a></span></div><div class="post-meta-line"><span title="published on 2024-09-12 16:07:37"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-09-12">2024-09-12</time></span>&nbsp;<span title="846 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="京津冀 长城杯 CandyShop">
             <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -712,13 +712,14 @@
       </div></div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ssti/" class="post-tag" title="Tags - SSTI">SSTI</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf-python-ssti/" class="post-tag" title="Tags - CTF Python SSTI">CTF Python SSTI</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" class="post-nav-item" rel="prev" title="Log4j2漏洞分析"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Log4j2漏洞分析</a></div>
+  <div class="post-nav"><a href="/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" class="post-nav-item" rel="prev" title="Log4j2漏洞分析"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Log4j2漏洞分析</a>
+      <a href="/c3p0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="next" title="C3P0反序列化漏洞">C3P0反序列化漏洞<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article>
 
