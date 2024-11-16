@@ -2,13 +2,17 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>https://nlrvana.github.io/categories/</loc><lastmod>2024-11-15T13:51:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/categories/</loc><lastmod>2024-11-17T01:52:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/categories/java/</loc><lastmod>2024-11-17T01:52:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/java-vaadin1/</loc><lastmod>2024-11-17T01:52:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/</loc><lastmod>2024-11-17T01:52:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/posts/</loc><lastmod>2024-11-17T01:52:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/tags/</loc><lastmod>2024-11-17T01:52:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/tags/vaadin1/</loc><lastmod>2024-11-17T01:52:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/java-rome/</loc><lastmod>2024-11-17T01:50:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://nlrvana.github.io/tags/rome/</loc><lastmod>2024-11-17T01:50:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://nlrvana.github.io/tags/el-spel/</loc><lastmod>2024-11-15T13:51:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://nlrvana.github.io/el%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/</loc><lastmod>2024-11-15T13:51:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://nlrvana.github.io/categories/java/</loc><lastmod>2024-11-15T13:51:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://nlrvana.github.io/</loc><lastmod>2024-11-15T13:51:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://nlrvana.github.io/posts/</loc><lastmod>2024-11-15T13:51:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://nlrvana.github.io/tags/</loc><lastmod>2024-11-15T13:51:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://nlrvana.github.io/tags/snakeyaml/</loc><lastmod>2024-11-15T13:49:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://nlrvana.github.io/snakeyaml%E9%93%BE/</loc><lastmod>2024-11-15T13:49:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://nlrvana.github.io/javastruts2-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc><lastmod>2024-11-15T13:47:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
