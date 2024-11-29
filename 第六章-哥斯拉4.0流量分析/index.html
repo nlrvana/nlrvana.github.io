@@ -7,11 +7,11 @@
     <meta name="robots" content="noodp" />
     <title>第六章-哥斯拉4.0流量分析 - N1Rvana&#39;s Blog</title><meta name="author" content="">
 <meta name="author-link" content="">
-<meta name="description" content="Web Security" /><meta name="keywords" content='draft' /><meta itemprop="name" content="第六章-哥斯拉4.0流量分析">
+<meta name="description" content="Web Security" /><meta name="keywords" content='哥斯拉 流量解密' /><meta itemprop="name" content="第六章-哥斯拉4.0流量分析">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-11-29T23:46:20+08:00" />
 <meta itemprop="dateModified" content="2024-11-29T23:46:20+08:00" />
 <meta itemprop="wordCount" content="539"><meta itemprop="image" content="https://nlrvana.github.io/avatar.png" />
-<meta itemprop="keywords" content="draft," /><meta property="og:title" content="第六章-哥斯拉4.0流量分析" />
+<meta itemprop="keywords" content="哥斯拉 流量解密," /><meta property="og:title" content="第六章-哥斯拉4.0流量分析" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nlrvana.github.io/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" /><meta property="og:image" content="https://nlrvana.github.io/avatar.png" /><meta property="article:section" content="posts" />
@@ -25,7 +25,7 @@
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" /><link rel="prev" href="https://nlrvana.github.io/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://nlrvana.github.io/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" /><link rel="prev" href="https://nlrvana.github.io/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" /><link rel="next" href="https://nlrvana.github.io/java-ctf1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -36,7 +36,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/nlrvana.github.io\/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90\/"
-    },"genre": "posts","keywords": "draft","wordcount":  539 ,
+    },"genre": "posts","keywords": "哥斯拉 流量解密","wordcount":  539 ,
     "url": "https:\/\/nlrvana.github.io\/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90\/","datePublished": "2024-11-29T23:46:20+08:00","dateModified": "2024-11-29T23:46:20+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -192,7 +192,7 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>第六章-哥斯拉4.0流量分析</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" data-title="N1Rvana" data-alt="N1Rvana" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/draft/" class="post-category" title="Category - draft"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> draft</a></span></div><div class="post-meta-line"><span title="published on 2024-11-29 23:46:20"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-29">2024-11-29</time></span>&nbsp;<span title="539 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="第六章-哥斯拉4.0流量分析">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" data-title="N1Rvana" data-alt="N1Rvana" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const i of ['style', 'data-title','data-alt','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-category" title="Category - 应急响应"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 应急响应</a></span></div><div class="post-meta-line"><span title="published on 2024-11-29 23:46:20"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-29">2024-11-29</time></span>&nbsp;<span title="539 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="第六章-哥斯拉4.0流量分析">
             <i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -543,13 +543,14 @@
       </div></div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/draft/" class="post-tag" title="Tags - draft">draft</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E5%93%A5%E6%96%AF%E6%8B%89-%E6%B5%81%E9%87%8F%E8%A7%A3%E5%AF%86/" class="post-tag" title="Tags - 哥斯拉 流量解密">哥斯拉 流量解密</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-nav-item" rel="prev" title="实战-行业攻防应急响应"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>实战-行业攻防应急响应</a></div>
+  <div class="post-nav"><a href="/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-nav-item" rel="prev" title="实战-行业攻防应急响应"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>实战-行业攻防应急响应</a>
+      <a href="/java-ctf1/" class="post-nav-item" rel="next" title="Java-CTF(1)">Java-CTF(1)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article>
 
