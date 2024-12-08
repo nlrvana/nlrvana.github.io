@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Python Server - Tag - N1Rvana&#39;s Blog</title>
+    <link>https://nlrvana.github.io/tags/python-server/</link>
+    <description>Python Server - Tag | N1Rvana&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 Dec 2024 13:50:09 &#43;0800</lastBuildDate><atom:link href="https://nlrvana.github.io/tags/python-server/" rel="self" type="application/rss+xml" /><item>
+  <title>Python-Wsgiref通过Server回显命令</title>
+  <link>https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</link>
+  <pubDate>Sun, 08 Dec 2024 13:50:09 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
