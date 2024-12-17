@@ -3,9 +3,17 @@
     <title>N1Rvana&#39;s Blog</title>
     <link>https://nlrvana.github.io/</link>
     <description>Web Security</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 Dec 2024 13:50:09 &#43;0800</lastBuildDate>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 17 Dec 2024 17:42:40 &#43;0800</lastBuildDate>
       <atom:link href="https://nlrvana.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Solonv2.5.11-RCE</title>
+  <link>https://nlrvana.github.io/solonv2.5.11-rce/</link>
+  <pubDate>Tue, 17 Dec 2024 17:42:40 &#43;0800</pubDate>
+  <author>Author</author>
+  <guid>https://nlrvana.github.io/solonv2.5.11-rce/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Python-Wsgiref通过Server回显命令</title>
   <link>https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</link>
   <pubDate>Sun, 08 Dec 2024 13:50:09 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
   <pubDate>Sun, 17 Nov 2024 01:52:30 &#43;0800</pubDate>
   <author>Author</author>
   <guid>https://nlrvana.github.io/java-vaadin1/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Java-ROME</title>
-  <link>https://nlrvana.github.io/java-rome/</link>
-  <pubDate>Sun, 17 Nov 2024 01:50:28 &#43;0800</pubDate>
-  <author>Author</author>
-  <guid>https://nlrvana.github.io/java-rome/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
