@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CTF-Web - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/ctf-web/</link>
+    <link>https://nlrvana.github.io/tags/ctf-web/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Tue, 25 Jun 2024 21:19:22 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ctf-web/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/ctf-web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CTF-BabyCodeIgniter-Web出题记(1)</title>
-      <link>http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</link>
+      <link>https://nlrvana.github.io/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</link>
       <pubDate>Sat, 30 Mar 2024 21:27:00 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>CTF-BabyCodeIgniter-Web出题记(1)</description>
     </item>
     <item>
       <title>NSSCTF Round 18 Basic</title>
-      <link>http://localhost:1313/nssctf-round-18-basic/</link>
+      <link>https://nlrvana.github.io/nssctf-round-18-basic/</link>
       <pubDate>Wed, 14 Feb 2024 18:29:00 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/nssctf-round-18-basic/</guid>
-      <category domain="http://localhost:1313/categories/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/">比赛记录</category>
+      <guid>https://nlrvana.github.io/nssctf-round-18-basic/</guid>
+      <category domain="https://nlrvana.github.io/categories/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/">比赛记录</category>
       <description>NSSCTF Round 18 Basic</description>
     </item>
   </channel>

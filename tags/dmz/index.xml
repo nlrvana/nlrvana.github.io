@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DMZ - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/dmz/</link>
+    <link>https://nlrvana.github.io/tags/dmz/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Tue, 11 Jun 2024 22:52:26 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/dmz/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/dmz/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>第九章-NOPTeamDmz-A-C</title>
-      <link>http://localhost:1313/%E7%AC%AC%E4%B9%9D%E7%AB%A0-nopteam-dmz-a-c/</link>
+      <link>https://nlrvana.github.io/%E7%AC%AC%E4%B9%9D%E7%AB%A0-nopteam-dmz-a-c/</link>
       <pubDate>Tue, 11 Jun 2024 22:52:26 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/%E7%AC%AC%E4%B9%9D%E7%AB%A0-nopteam-dmz-a-c/</guid>
-      <category domain="http://localhost:1313/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
+      <guid>https://nlrvana.github.io/%E7%AC%AC%E4%B9%9D%E7%AB%A0-nopteam-dmz-a-c/</guid>
+      <category domain="https://nlrvana.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
       <description>第九章-NOPTeamDmz-A-C</description>
     </item>
   </channel>

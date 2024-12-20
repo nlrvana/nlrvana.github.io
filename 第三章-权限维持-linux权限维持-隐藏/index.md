@@ -47,5 +47,5 @@ ssh root@env.xj.edisec.net -p xjqxwcyc
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81-linux%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81-%E9%9A%90%E8%97%8F/  
+> URL: https://nlrvana.github.io/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81-linux%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81-%E9%9A%90%E8%97%8F/  
 

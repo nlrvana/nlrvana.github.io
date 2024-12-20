@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NodeJS - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/nodejs/</link>
+    <link>https://nlrvana.github.io/tags/nodejs/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Tue, 06 Feb 2024 14:03:07 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NodeJs学习</title>
-      <link>http://localhost:1313/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
+      <link>https://nlrvana.github.io/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 06 Feb 2024 14:03:07 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
-      <category domain="http://localhost:1313/categories/%E5%BC%80%E5%8F%91/">开发</category>
+      <guid>https://nlrvana.github.io/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
+      <category domain="https://nlrvana.github.io/categories/%E5%BC%80%E5%8F%91/">开发</category>
       <description>NodeJs学习</description>
     </item>
   </channel>

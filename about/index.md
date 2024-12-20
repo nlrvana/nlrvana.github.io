@@ -16,5 +16,5 @@ SU Team of member
 ---
 
 > Author:   
-> URL: http://localhost:1313/about/  
+> URL: https://nlrvana.github.io/about/  
 

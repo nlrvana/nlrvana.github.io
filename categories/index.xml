@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on </title>
+    <link>//localhost:1313/categories/</link>
+    <description>Recent content in Categories on </description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Dec 2024 21:13:55 +0800</lastBuildDate>
+    <atom:link href="//localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java</title>
+      <link>//localhost:1313/categories/java/</link>
+      <pubDate>Thu, 19 Dec 2024 21:13:55 +0800</pubDate>
+      <guid>//localhost:1313/categories/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CTF</title>
+      <link>//localhost:1313/categories/ctf/</link>
+      <pubDate>Sun, 08 Dec 2024 13:50:09 +0800</pubDate>
+      <guid>//localhost:1313/categories/ctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>应急响应</title>
+      <link>//localhost:1313/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
+      <pubDate>Fri, 29 Nov 2024 23:46:20 +0800</pubDate>
+      <guid>//localhost:1313/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SSTI</title>
+      <link>//localhost:1313/categories/ssti/</link>
+      <pubDate>Thu, 12 Sep 2024 16:07:37 +0800</pubDate>
+      <guid>//localhost:1313/categories/ssti/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PHP</title>
+      <link>//localhost:1313/categories/php/</link>
+      <pubDate>Wed, 17 Jul 2024 12:43:46 +0800</pubDate>
+      <guid>//localhost:1313/categories/php/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>HackTheBox</title>
+      <link>//localhost:1313/categories/hackthebox/</link>
+      <pubDate>Tue, 16 Apr 2024 23:37:51 +0800</pubDate>
+      <guid>//localhost:1313/categories/hackthebox/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>代码审计</title>
+      <link>//localhost:1313/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</link>
+      <pubDate>Sat, 02 Mar 2024 17:57:53 +0800</pubDate>
+      <guid>//localhost:1313/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>比赛记录</title>
+      <link>//localhost:1313/categories/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Wed, 14 Feb 2024 18:29:00 +0800</pubDate>
+      <guid>//localhost:1313/categories/%E6%AF%94%E8%B5%9B%E8%AE%B0%E5%BD%95/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>开发</title>
+      <link>//localhost:1313/categories/%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Tue, 06 Feb 2024 14:03:07 +0800</pubDate>
+      <guid>//localhost:1313/categories/%E5%BC%80%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>运维</title>
+      <link>//localhost:1313/categories/%E8%BF%90%E7%BB%B4/</link>
+      <pubDate>Sat, 03 Feb 2024 14:40:34 +0800</pubDate>
+      <guid>//localhost:1313/categories/%E8%BF%90%E7%BB%B4/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

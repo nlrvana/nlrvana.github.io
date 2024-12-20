@@ -44,5 +44,5 @@ with open(&#34;kill.exe&#34;,&#34;wb&#34;) as f:
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%B8%B8%E8%A7%81%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90--%E9%92%93%E9%B1%BC%E9%82%AE%E4%BB%B6/  
+> URL: https://nlrvana.github.io/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%B8%B8%E8%A7%81%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90--%E9%92%93%E9%B1%BC%E9%82%AE%E4%BB%B6/  
 

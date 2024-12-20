@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python Server - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/python-server/</link>
+    <link>https://nlrvana.github.io/tags/python-server/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Sun, 08 Dec 2024 13:50:09 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/python-server/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/python-server/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python-Wsgiref通过Server回显命令</title>
-      <link>http://localhost:1313/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</link>
+      <link>https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Sun, 08 Dec 2024 13:50:09 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>Python-Wsgiref通过Server回显命令</description>
     </item>
   </channel>
