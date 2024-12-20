@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>哥斯拉 流量解密 - Tag - N1Rvana&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%E5%93%A5%E6%96%AF%E6%8B%89-%E6%B5%81%E9%87%8F%E8%A7%A3%E5%AF%86/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Fri, 29 Nov 2024 23:46:20 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E5%93%A5%E6%96%AF%E6%8B%89-%E6%B5%81%E9%87%8F%E8%A7%A3%E5%AF%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>第六章-哥斯拉4.0流量分析</title>
+      <link>http://localhost:1313/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/</link>
+      <pubDate>Fri, 29 Nov 2024 23:46:20 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/</guid>
+      <category domain="http://localhost:1313/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
+      <description>第六章-哥斯拉4.0流量分析</description>
+    </item>
+  </channel>
+</rss>

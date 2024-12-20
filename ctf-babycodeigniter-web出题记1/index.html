@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>CTF-BabyCodeIgniter-Web出题记(1) - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='CTF-Web'>
+  <meta itemprop="name" content="CTF-BabyCodeIgniter-Web出题记(1)">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2024-03-30T21:27:00+08:00">
+  <meta itemprop="dateModified" content="2024-03-30T21:27:00+08:00">
+  <meta itemprop="wordCount" content="1576">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="CTF-Web"><meta property="og:url" content="http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="CTF-BabyCodeIgniter-Web出题记(1)">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-03-30T21:27:00+08:00">
+    <meta property="article:modified_time" content="2024-03-30T21:27:00+08:00">
+    <meta property="article:tag" content="CTF-Web">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="CTF-BabyCodeIgniter-Web出题记(1)">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/" title="CTF-BabyCodeIgniter-Web出题记(1) - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/nkctf-2024-web/" title="NKCTF-2024-Web" /><link rel="next" type="text/html" href="http://localhost:1313/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/" title="红明谷-2024-Web" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/index.md" title="CTF-BabyCodeIgniter-Web出题记(1) - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "CTF-BabyCodeIgniter-Web出题记(1)",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01\/"
+    },"genre": "posts","keywords": "CTF-Web","wordcount":  1576 ,
+    "url": "http:\/\/localhost:1313\/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01\/","datePublished": "2024-03-30T21:27:00+08:00","dateModified": "2024-03-30T21:27:00+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">CTF-BabyCodeIgniter-Web出题记(1)</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>CTF-BabyCodeIgniter-Web出题记(1)</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-03-30 21:27:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-03-30">2024-03-30</time></span>&nbsp;<span title="1576 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="true">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#codeigniter">CodeIgniter</a>
+      <ul>
+        <li><a href="#writeup">WriteUp</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="codeigniter" class="heading-element"><span>CodeIgniter</span>
+  <a href="#codeigniter" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>poc</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$sessid</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$sessid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="nv">$sessid</span> <span class="o">.=</span> <span class="nx">mt_rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">mt_getrandmax</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$encryption_key</span><span class="o">=</span><span class="s2">&#34;ksd92&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;huahua&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;huahua&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;is_logged_in&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;session_id&#39;</span>	<span class="o">=&gt;</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">uniqid</span><span class="p">(</span><span class="nv">$sessid</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">)),</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;ip_address&#39;</span>	<span class="o">=&gt;</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;user_agent&#39;</span>	<span class="o">=&gt;</span> <span class="s1">&#39;huahua&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;last_activity&#39;</span>	<span class="o">=&gt;</span> <span class="nx">time</span><span class="p">(),</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;superadmin&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>  
+</span></span><span class="line"><span class="cl"><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="nv">$cookie_data</span> <span class="o">=</span> <span class="nx">serialize</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$cookie_data</span> <span class="o">.=</span> <span class="nx">hash_hmac</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">,</span><span class="nv">$cookie_data</span><span class="p">,</span><span class="nv">$encryption_key</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">urlencode</span><span class="p">(</span><span class="nv">$cookie_data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="writeup" class="heading-element"><span>WriteUp</span>
+  <a href="#writeup" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><a href="http://www.mehmetince.net/codeigniter-object-injection-vulnerability-via-encryption-key/"target="_blank" rel="external nofollow noopener noreferrer">http://www.mehmetince.net/codeigniter-object-injection-vulnerability-via-encryption-key/</a><br>
+根据此篇文章改编<br>
+利用弱口令admin/123456登录之后，发现并没有上传权限，探究一下源码中的登录逻辑</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">	<span class="k">function</span> <span class="nf">validateuser</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$username</span><span class="o">=</span><span class="nx">addslashes</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$password</span><span class="o">=</span><span class="nx">addslashes</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$query</span><span class="o">=</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&#34;SELECT * from user WHERE username=&#39;</span><span class="si">$username</span><span class="s2">&#39; and password=&#39;</span><span class="si">$password</span><span class="s2">&#39; limit 1&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		  
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">num_rows</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>			  
+</span></span><span class="line"><span class="cl">			<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">				<span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="nv">$username</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">				<span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="nv">$password</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">				<span class="s1">&#39;is_logged_in&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">				<span class="s1">&#39;superadmin&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">);</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">set_userdata</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">			  
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>					  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>		  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>登录成功之后，利用设置了<code>$this-&gt;session-&gt;set_userdata($data);</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">	<span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="nv">$username</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="nv">$password</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="s1">&#39;is_logged_in&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="s1">&#39;superadmin&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>  
+</span></span><span class="line"><span class="cl"><span class="p">);</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再来看上传文件的源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">	<span class="k">public</span> <span class="k">function</span> <span class="nf">upload</span><span class="p">(){</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$super</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">(</span><span class="s1">&#39;superadmin&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="nv">$super</span> <span class="o">===</span> <span class="k">true</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">echo</span> <span class="s2">&#34;bypass&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">upload</span><span class="o">-&gt;</span><span class="na">do_upload</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">))</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">				<span class="nv">$error</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;error&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">upload</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">				<span class="nx">var_dump</span><span class="p">(</span><span class="nv">$error</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">				<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;upload_data&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">upload</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">	  
+</span></span><span class="line"><span class="cl">				<span class="nx">var_dump</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span><span class="k">else</span><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">echo</span> <span class="s2">&#34;You are not a super administrator！！！&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检查了这个地方</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">	<span class="nv">$super</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">(</span><span class="s1">&#39;superadmin&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="nv">$super</span> <span class="o">===</span> <span class="k">true</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是在登录成功后，设置的<code>superadmin</code>并非<code>true</code>而是<code>false</code><br>
+所以并无上传权限，但是登录成功之后，返回给我们了 <code>cookie</code>，而非<code>PHPSESSID</code>，验证信息存储在了客户端，而非服务端，就导致我们可以篡改。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042151096.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042151096.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042151096.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042151096.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042151096.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042151096.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+来看一下生成<code>cookie</code>的代码逻辑<br>
+在<code>application/config/autoload.php</code>中设置了自动加载<code>session</code>类<br>
+<code>$autoload['libraries'] = array('database','session','upload');</code><br>
+于是进入<code>system/libraries/Session.php</code>中进行查看，<br>
+首先会进入<code>__construct()</code>操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">())</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s2">&#34;Session Class Initialized&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Set the super object to a local variable for use throughout the class  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span> <span class="o">=&amp;</span> <span class="nx">get_instance</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Set all the session preferences, which can either be set  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// manually via the $params array above or via the config file  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">foreach</span> <span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;sess_encrypt_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_use_database&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_expiration&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_expire_on_close&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_match_ip&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_match_useragent&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_cookie_name&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie_path&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie_domain&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie_secure&#39;</span><span class="p">,</span> <span class="s1">&#39;sess_time_to_update&#39;</span><span class="p">,</span> <span class="s1">&#39;time_reference&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie_prefix&#39;</span><span class="p">,</span> <span class="s1">&#39;encryption_key&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="nv">$key</span> <span class="o">=</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$params</span><span class="p">[</span><span class="nv">$key</span><span class="p">]))</span> <span class="o">?</span> <span class="nv">$params</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">item</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption_key</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nx">show_error</span><span class="p">(</span><span class="s1">&#39;In order to use the Session class you are required to set an encryption key in your config file.&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Load the string helper so we can use the strip_slashes() function  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Do we need encryption? If so, load the encryption class  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_encrypt_cookie</span> <span class="o">==</span> <span class="k">TRUE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;encrypt&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Are we using a database?  If so, load it  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_use_database</span> <span class="o">===</span> <span class="k">TRUE</span> <span class="k">AND</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_table_name</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">database</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Set the &#34;now&#34; time.  Can either be GMT or server time, based on the  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// config prefs.  We use this to set the &#34;last activity&#34; time  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">now</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_get_time</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Set the session length. If the session expiration is  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// set to zero we&#39;ll set the expiration two years from now.  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_expiration</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_expiration</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">365</span><span class="o">*</span><span class="mi">2</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Set the cookie name  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_cookie_name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cookie_prefix</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_cookie_name</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Run the Session routine. If a session doesn&#39;t exist we&#39;ll  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// create a new one.  If it does, we&#39;ll update it.  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_read</span><span class="p">())</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_create</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_update</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Delete &#39;old&#39; flashdata (from last request)  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_flashdata_sweep</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Mark all new flashdata as old (data will be deleted before next request)  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_flashdata_mark</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Delete expired sessions if necessary  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_sess_gc</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s2">&#34;Session routines successfully run&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>首先会进行读取，如果没有接收到cookie，则会进入<code>$this-&gt;sess_create();</code>进行创建</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">	<span class="k">function</span> <span class="nf">sess_create</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$sessid</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="p">(</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$sessid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$sessid</span> <span class="o">.=</span> <span class="nx">mt_rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">mt_getrandmax</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// To make the session ID even more secure we&#39;ll combine it with the user&#39;s IP  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$sessid</span> <span class="o">.=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">ip_address</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">							<span class="s1">&#39;session_id&#39;</span>	<span class="o">=&gt;</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">uniqid</span><span class="p">(</span><span class="nv">$sessid</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">)),</span>  
+</span></span><span class="line"><span class="cl">							<span class="s1">&#39;ip_address&#39;</span>	<span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">ip_address</span><span class="p">(),</span>  
+</span></span><span class="line"><span class="cl">							<span class="s1">&#39;user_agent&#39;</span>	<span class="o">=&gt;</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">user_agent</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span>  
+</span></span><span class="line"><span class="cl">							<span class="s1">&#39;last_activity&#39;</span>	<span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">now</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">							<span class="s1">&#39;user_data&#39;</span>		<span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span>  
+</span></span><span class="line"><span class="cl">							<span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Save the data to the DB if needed  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_use_database</span> <span class="o">===</span> <span class="k">TRUE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert_string</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_table_name</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Write the cookie  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_set_cookie</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会初始化一些值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">					<span class="s1">&#39;session_id&#39;</span>	<span class="o">=&gt;</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">uniqid</span><span class="p">(</span><span class="nv">$sessid</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">)),</span>  
+</span></span><span class="line"><span class="cl">					<span class="s1">&#39;ip_address&#39;</span>	<span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">ip_address</span><span class="p">(),</span>  
+</span></span><span class="line"><span class="cl">					<span class="s1">&#39;user_agent&#39;</span>	<span class="o">=&gt;</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">user_agent</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span>  
+</span></span><span class="line"><span class="cl">					<span class="s1">&#39;last_activity&#39;</span>	<span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">now</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">					<span class="s1">&#39;user_data&#39;</span>		<span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span>  
+</span></span><span class="line"><span class="cl">					<span class="p">);</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接着调用了<code>$this-&gt;_set_cookie();</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">	<span class="k">function</span> <span class="nf">_set_cookie</span><span class="p">(</span><span class="nv">$cookie_data</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nx">is_null</span><span class="p">(</span><span class="nv">$cookie_data</span><span class="p">))</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$cookie_data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Serialize the userdata for the cookie  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$cookie_data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_serialize</span><span class="p">(</span><span class="nv">$cookie_data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_encrypt_cookie</span> <span class="o">==</span> <span class="k">TRUE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$cookie_data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="o">-&gt;</span><span class="na">encode</span><span class="p">(</span><span class="nv">$cookie_data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="nv">$cookie_data</span> <span class="o">.=</span> <span class="nx">hash_hmac</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">,</span> <span class="nv">$cookie_data</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption_key</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="nv">$expire</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_expire_on_close</span> <span class="o">===</span> <span class="k">TRUE</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_expiration</span> <span class="o">+</span> <span class="nx">time</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Set the cookie  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">setcookie</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_cookie_name</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$cookie_data</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$expire</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cookie_path</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cookie_domain</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cookie_secure</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">);</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>序列化传入的数组，接着序列化之后，拼接了一个需要密钥&quot;加密的字符串&quot;，然后利用<code>setcookie</code>函数，设置了我们的<code>cookie</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$cookie_data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_serialize</span><span class="p">(</span><span class="nv">$cookie_data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="o">......</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$cookie_data</span> <span class="o">.=</span> <span class="nx">hash_hmac</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">,</span> <span class="nv">$cookie_data</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption_key</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="o">......</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">setcookie</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">	<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_cookie_name</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="nv">$cookie_data</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="nv">$expire</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cookie_path</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cookie_domain</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cookie_secure</span>  
+</span></span><span class="line"><span class="cl"><span class="p">);</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也就是说，我们只需要将登录成功后设置的 cookie <code>'superadmin' =&gt; false</code>改为<code>'superadmin' =&gt; true</code>即可，上面说到没有 cookie 才会进行创建，有 cookie 则会执行<code>sess_read()</code>函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">sess_read</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Fetch the cookie  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_cookie_name</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="c1">// No cookie?  Goodbye cruel world!...  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nv">$session</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s1">&#39;A session cookie was not found.&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// HMAC authentication  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$len</span> <span class="o">=</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$session</span><span class="p">)</span> <span class="o">-</span> <span class="mi">40</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nv">$len</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;Session: The session cookie was not signed.&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Check cookie authentication  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$hmac</span> <span class="o">=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$session</span><span class="p">,</span> <span class="nv">$len</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$session</span> <span class="o">=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$session</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$len</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Time-attack-safe comparison  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$hmac_check</span> <span class="o">=</span> <span class="nx">hash_hmac</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">,</span> <span class="nv">$session</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption_key</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$diff</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$xor</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="nv">$hmac</span><span class="p">[</span><span class="nv">$i</span><span class="p">])</span> <span class="o">^</span> <span class="nx">ord</span><span class="p">(</span><span class="nv">$hmac_check</span><span class="p">[</span><span class="nv">$i</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$diff</span> <span class="o">|=</span> <span class="nv">$xor</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nx">log_message</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;Session: HMAC mismatch. The session cookie data did not match what was expected.&#39;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_destroy</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Decrypt the cookie data  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_encrypt_cookie</span> <span class="o">==</span> <span class="k">TRUE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="o">-&gt;</span><span class="na">decode</span><span class="p">(</span><span class="nv">$session</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Unserialize the session array  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_unserialize</span><span class="p">(</span><span class="nv">$session</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Is the session data we unserialized an array with the correct format?  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nx">is_array</span><span class="p">(</span><span class="nv">$session</span><span class="p">)</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">])</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;ip_address&#39;</span><span class="p">])</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;user_agent&#39;</span><span class="p">])</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;last_activity&#39;</span><span class="p">]))</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_destroy</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Is the session current?  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// if (($session[&#39;last_activity&#39;] + $this-&gt;sess_expiration) &lt; $this-&gt;now)  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// {  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// 	$this-&gt;sess_destroy();  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// 	return FALSE;  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// }  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">		<span class="c1">// // Does the IP Match?  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// if ($this-&gt;sess_match_ip == TRUE AND $session[&#39;ip_address&#39;] != $this-&gt;CI-&gt;input-&gt;ip_address())  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// {  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// 	$this-&gt;sess_destroy();  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// 	return FALSE;  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// }  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">		<span class="c1">// // Does the User Agent Match?  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// if ($this-&gt;sess_match_useragent == TRUE AND trim($session[&#39;user_agent&#39;]) != trim(substr($this-&gt;CI-&gt;input-&gt;user_agent(), 0, 120)))  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// {  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// 	$this-&gt;sess_destroy();  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// 	return FALSE;  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// }  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Is there a corresponding session in the DB?  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_use_database</span> <span class="o">===</span> <span class="k">TRUE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_match_ip</span> <span class="o">==</span> <span class="k">TRUE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">				<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;ip_address&#39;</span><span class="p">,</span> <span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;ip_address&#39;</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_match_useragent</span> <span class="o">==</span> <span class="k">TRUE</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">				<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;user_agent&#39;</span><span class="p">,</span> <span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;user_agent&#39;</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">			<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_table_name</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">			<span class="c1">// No result?  Kill it!  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">num_rows</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">				<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_destroy</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">			<span class="c1">// Is there custom data?  If so, add it to the main session array  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">row</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$row</span><span class="o">-&gt;</span><span class="na">user_data</span><span class="p">)</span> <span class="k">AND</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">user_data</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">				<span class="nv">$custom_data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_unserialize</span><span class="p">(</span><span class="nv">$row</span><span class="o">-&gt;</span><span class="na">user_data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="p">(</span><span class="nx">is_array</span><span class="p">(</span><span class="nv">$custom_data</span><span class="p">))</span>  
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">					<span class="k">foreach</span> <span class="p">(</span><span class="nv">$custom_data</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$val</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">					<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">						<span class="nv">$session</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$val</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">					<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Session is valid!  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span> <span class="o">=</span> <span class="nv">$session</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="nx">unset</span><span class="p">(</span><span class="nv">$session</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="k">TRUE</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会利用密钥<code>$this-&gt;encryption_key</code>进行一个&quot;加密字符串&quot;的认证，这里的密钥需要在配置文件中<code>$config['encryption_key'] = 'ksd92';</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">		<span class="c1">// Check cookie authentication  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$hmac</span> <span class="o">=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$session</span><span class="p">,</span> <span class="nv">$len</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$session</span> <span class="o">=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$session</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$len</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Time-attack-safe comparison  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$hmac_check</span> <span class="o">=</span> <span class="nx">hash_hmac</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">,</span> <span class="nv">$session</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption_key</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="nv">$diff</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$xor</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="nv">$hmac</span><span class="p">[</span><span class="nv">$i</span><span class="p">])</span> <span class="o">^</span> <span class="nx">ord</span><span class="p">(</span><span class="nv">$hmac_check</span><span class="p">[</span><span class="nv">$i</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$diff</span> <span class="o">|=</span> <span class="nv">$xor</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接着会反序列化字符串，验证是否有其中的值(session_id、ip_address、last_activity)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">		<span class="c1">// Unserialize the session array  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_unserialize</span><span class="p">(</span><span class="nv">$session</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="c1">// Is the session data we unserialized an array with the correct format?  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nx">is_array</span><span class="p">(</span><span class="nv">$session</span><span class="p">)</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">])</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;ip_address&#39;</span><span class="p">])</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;user_agent&#39;</span><span class="p">])</span> <span class="k">OR</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$session</span><span class="p">[</span><span class="s1">&#39;last_activity&#39;</span><span class="p">]))</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">			<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sess_destroy</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>验证完之后将会赋值给<code>$this-&gt;data</code>变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// Session is valid!  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span> <span class="o">=</span> <span class="nv">$session</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">unset</span><span class="p">(</span><span class="nv">$session</span><span class="p">);</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那赋值给<code>$this-&gt;userdata</code>变量有什么用呢？在返回来看验证权限的函数<br>
+<code>$this-&gt;session-&gt;userdata('superadmin');</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">	<span class="k">function</span> <span class="nf">userdata</span><span class="p">(</span><span class="nv">$item</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="p">(</span> <span class="o">!</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">[</span><span class="nv">$item</span><span class="p">]))</span> <span class="o">?</span> <span class="k">FALSE</span> <span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">[</span><span class="nv">$item</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正是返回了<code>$this-&gt;userdata</code>变量<br>
+于是乎构造<code>poc</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$sessid</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$sessid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="nv">$sessid</span> <span class="o">.=</span> <span class="nx">mt_rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">mt_getrandmax</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$encryption_key</span><span class="o">=</span><span class="s2">&#34;ksd92&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;huahua&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;huahua&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;is_logged_in&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;session_id&#39;</span>	<span class="o">=&gt;</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">uniqid</span><span class="p">(</span><span class="nv">$sessid</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">)),</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;ip_address&#39;</span>	<span class="o">=&gt;</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;user_agent&#39;</span>	<span class="o">=&gt;</span> <span class="s1">&#39;huahua&#39;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;last_activity&#39;</span>	<span class="o">=&gt;</span> <span class="nx">time</span><span class="p">(),</span>  
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;superadmin&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>  
+</span></span><span class="line"><span class="cl"><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="nv">$cookie_data</span> <span class="o">=</span> <span class="nx">serialize</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$cookie_data</span> <span class="o">.=</span> <span class="nx">hash_hmac</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">,</span><span class="nv">$cookie_data</span><span class="p">,</span><span class="nv">$encryption_key</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">urlencode</span><span class="p">(</span><span class="nv">$cookie_data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042215164.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042215164.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042215164.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042215164.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042215164.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042215164.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042223634.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042223634.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042223634.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042223634.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042223634.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042223634.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042225193.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042225193.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042225193.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042225193.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042225193.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202402042225193.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-03-30 21:27:00">Updated on 2024-03-30&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/" data-title="CTF-BabyCodeIgniter-Web出题记(1)"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf-web/" class="post-tag" title="Tags - CTF-Web">CTF-Web</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/nkctf-2024-web/" class="post-nav-item" rel="prev" title="NKCTF-2024-Web"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>NKCTF-2024-Web</a><a href="/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/" class="post-nav-item" rel="next" title="红明谷-2024-Web">红明谷-2024-Web<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.16"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00","version":"v0.3.16"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

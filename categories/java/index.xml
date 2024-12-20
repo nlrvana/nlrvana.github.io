@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java - Category - N1Rvana&#39;s Blog</title>
+    <link>http://localhost:1313/categories/java/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Fri, 20 Dec 2024 22:07:02 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Solonv2.5.11-RCE</title>
+      <link>http://localhost:1313/solonv2.5.11-rce/</link>
+      <pubDate>Tue, 17 Dec 2024 17:42:40 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/solonv2.5.11-rce/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Solonv2.5.11-RCE</description>
+    </item>
+    <item>
+      <title>Shiro权限绕过</title>
+      <link>http://localhost:1313/shiro%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</link>
+      <pubDate>Wed, 04 Dec 2024 00:58:53 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/shiro%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Shiro权限绕过</description>
+    </item>
+    <item>
+      <title>Java-CTF(2)</title>
+      <link>http://localhost:1313/java-ctf2/</link>
+      <pubDate>Sat, 30 Nov 2024 00:23:16 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java-ctf2/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java-CTF(2)</description>
+    </item>
+    <item>
+      <title>Java-CTF(1)</title>
+      <link>http://localhost:1313/java-ctf1/</link>
+      <pubDate>Sat, 30 Nov 2024 00:22:08 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java-ctf1/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java-CTF(1)</description>
+    </item>
+    <item>
+      <title>Java-Vaadin1</title>
+      <link>http://localhost:1313/java-vaadin1/</link>
+      <pubDate>Sun, 17 Nov 2024 01:52:30 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java-vaadin1/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java-Vaadin1</description>
+    </item>
+    <item>
+      <title>Java-ROME</title>
+      <link>http://localhost:1313/java-rome/</link>
+      <pubDate>Sun, 17 Nov 2024 01:50:28 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java-rome/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java-ROME</description>
+    </item>
+    <item>
+      <title>EL表达式注入</title>
+      <link>http://localhost:1313/el%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/</link>
+      <pubDate>Fri, 15 Nov 2024 13:51:07 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/el%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>EL表达式注入</description>
+    </item>
+    <item>
+      <title>SnakeYaml链</title>
+      <link>http://localhost:1313/snakeyaml%E9%93%BE/</link>
+      <pubDate>Fri, 15 Nov 2024 13:49:51 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/snakeyaml%E9%93%BE/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>SnakeYaml链</description>
+    </item>
+    <item>
+      <title>JavaStruts2 学习与环境搭建</title>
+      <link>http://localhost:1313/javastruts2-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Fri, 15 Nov 2024 13:47:35 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/javastruts2-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>JavaStruts2 学习与环境搭建</description>
+    </item>
+    <item>
+      <title>JavaStruts2系列-S2-001</title>
+      <link>http://localhost:1313/javastruts2%E7%B3%BB%E5%88%97-s2-001/</link>
+      <pubDate>Fri, 15 Nov 2024 13:47:01 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/javastruts2%E7%B3%BB%E5%88%97-s2-001/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>JavaStruts2系列-S2-001</description>
+    </item>
+    <item>
+      <title>Jackson反序列化（三）</title>
+      <link>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/</link>
+      <pubDate>Fri, 15 Nov 2024 13:44:55 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Jackson反序列化（三）</description>
+    </item>
+    <item>
+      <title>Jackson反序列化（二）</title>
+      <link>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/</link>
+      <pubDate>Fri, 15 Nov 2024 13:44:51 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Jackson反序列化（二）</description>
+    </item>
+    <item>
+      <title>Jackson反序列化（一）</title>
+      <link>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/</link>
+      <pubDate>Fri, 15 Nov 2024 13:44:42 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Jackson反序列化（一）</description>
+    </item>
+    <item>
+      <title>Java内存马 Java Agent内存马</title>
+      <link>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-java-agent%E5%86%85%E5%AD%98%E9%A9%AC/</link>
+      <pubDate>Fri, 15 Nov 2024 13:42:38 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-java-agent%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java内存马 Java Agent内存马</description>
+    </item>
+    <item>
+      <title>Java内存马 Tomcta之Filter型内存马</title>
+      <link>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-tomcta%E4%B9%8Bfilter%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</link>
+      <pubDate>Fri, 15 Nov 2024 13:41:22 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-tomcta%E4%B9%8Bfilter%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java内存马 Tomcta之Filter型内存马</description>
+    </item>
+    <item>
+      <title>Java内存马 介绍</title>
+      <link>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Fri, 15 Nov 2024 13:39:53 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-%E4%BB%8B%E7%BB%8D/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java内存马 介绍</description>
+    </item>
+    <item>
+      <title>Java内存马-基础内容学习</title>
+      <link>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 15 Nov 2024 13:36:54 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9%E5%AD%A6%E4%B9%A0/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java内存马-基础内容学习</description>
+    </item>
+    <item>
+      <title>C3P0反序列化漏洞</title>
+      <link>http://localhost:1313/c3p0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Thu, 26 Sep 2024 16:32:35 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/c3p0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>C3P0反序列化漏洞</description>
+    </item>
+    <item>
+      <title>Log4j2漏洞分析</title>
+      <link>http://localhost:1313/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 11 Sep 2024 16:34:24 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Log4j2漏洞分析</description>
+    </item>
+    <item>
+      <title>Fastjson 1.2.62-1.2.68版本反序列化漏洞</title>
+      <link>http://localhost:1313/fastjson-1.2.62-1.2.68%E7%89%88%E6%9C%AC%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Wed, 11 Sep 2024 16:33:05 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/fastjson-1.2.62-1.2.68%E7%89%88%E6%9C%AC%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Fastjson 1.2.62-1.2.68版本反序列化漏洞</description>
+    </item>
+    <item>
+      <title>FastJson 1.2.24版本漏洞分析</title>
+      <link>http://localhost:1313/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 11 Sep 2024 16:32:23 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>FastJson 1.2.24版本漏洞分析</description>
+    </item>
+    <item>
+      <title>FastJson-前置基础</title>
+      <link>http://localhost:1313/fastjson-%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Wed, 11 Sep 2024 16:31:31 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/fastjson-%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>&lt;p&gt;Fastjson&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>WebLogic 弱口令&amp;文件上传&amp;SSRF</title>
+      <link>http://localhost:1313/weblogic-%E5%BC%B1%E5%8F%A3%E4%BB%A4%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0ssrf/</link>
+      <pubDate>Wed, 11 Sep 2024 16:30:21 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/weblogic-%E5%BC%B1%E5%8F%A3%E4%BB%A4%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0ssrf/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>WebLogic 弱口令&amp;文件上传&amp;SSRF</description>
+    </item>
+    <item>
+      <title>CVE-2021-2109 WebLogic-JNDI注入</title>
+      <link>http://localhost:1313/cve-2021-2109-weblogic-jndi-%E6%B3%A8%E5%85%A5/</link>
+      <pubDate>Wed, 11 Sep 2024 16:29:17 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/cve-2021-2109-weblogic-jndi-%E6%B3%A8%E5%85%A5/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>CVE-2021-2109 WebLogic-JNDI注入</description>
+    </item>
+    <item>
+      <title>CVE-2017-10271 Weblogic-XMLDecoder</title>
+      <link>http://localhost:1313/cve-2017-10271-weblogic-xmldecoder/</link>
+      <pubDate>Wed, 11 Sep 2024 16:28:13 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/cve-2017-10271-weblogic-xmldecoder/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>CVE-2017-10271 Weblogic-XMLDecoder</description>
+    </item>
+    <item>
+      <title>CVE-2015-4852 WebLogic-T3反序列化分析</title>
+      <link>http://localhost:1313/cve-2015-4852-weblogic-t3-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 11 Sep 2024 16:26:11 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/cve-2015-4852-weblogic-t3-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%86%E6%9E%90/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>CVE-2015-4852 WebLogic-T3反序列化分析</description>
+    </item>
+    <item>
+      <title>CTFShow-Java反序列化篇(2)</title>
+      <link>http://localhost:1313/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%872/</link>
+      <pubDate>Mon, 22 Jan 2024 18:41:39 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%872/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>CTFShow-Java反序列化篇(2)</description>
+    </item>
+    <item>
+      <title>CTFShow-Java反序列化篇(1)</title>
+      <link>http://localhost:1313/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%871/</link>
+      <pubDate>Fri, 19 Jan 2024 16:27:48 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%871/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>CTFShow-Java反序列化篇(1)</description>
+    </item>
+    <item>
+      <title>CommonsCollections2 4 5链详解</title>
+      <link>http://localhost:1313/commonscollections2-4-5%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Wed, 17 Jan 2024 20:30:14 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/commonscollections2-4-5%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>CommonsCollections2 4 5链详解</description>
+    </item>
+    <item>
+      <title>CommonsCollections3链详解</title>
+      <link>http://localhost:1313/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Tue, 16 Jan 2024 19:42:15 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>CommonsCollections3链详解</description>
+    </item>
+    <item>
+      <title>Java 动态类加载</title>
+      <link>http://localhost:1313/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/</link>
+      <pubDate>Tue, 16 Jan 2024 16:40:46 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Java 动态类加载</description>
+    </item>
+    <item>
+      <title>CommonsCollections6链详解</title>
+      <link>http://localhost:1313/commonscollections6%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Mon, 15 Jan 2024 15:29:23 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/commonscollections6%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>&lt;p&gt;世界上最好用的 CC 链&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CommonsCollections1链详解</title>
+      <link>http://localhost:1313/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sun, 14 Jan 2024 23:37:48 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>&lt;p&gt;比较难一点的CC链&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>URLDNS链详解</title>
+      <link>http://localhost:1313/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sun, 14 Jan 2024 00:12:12 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>&lt;p&gt;世界上最简单的 java 链&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

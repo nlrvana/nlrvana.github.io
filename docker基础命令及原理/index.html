@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Docker基础命令及原理 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='Docker'>
+  <meta itemprop="name" content="Docker基础命令及原理">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2024-01-30T23:12:28+08:00">
+  <meta itemprop="dateModified" content="2024-01-30T23:12:28+08:00">
+  <meta itemprop="wordCount" content="755">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="Docker"><meta property="og:url" content="http://localhost:1313/docker%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%8E%9F%E7%90%86/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="Docker基础命令及原理">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-01-30T23:12:28+08:00">
+    <meta property="article:modified_time" content="2024-01-30T23:12:28+08:00">
+    <meta property="article:tag" content="Docker">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="Docker基础命令及原理">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/docker%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%8E%9F%E7%90%86/" title="Docker基础命令及原理 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="Git学习记录" /><link rel="next" type="text/html" href="http://localhost:1313/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-webshell%E6%9F%A5%E6%9D%80/" title="第一章-应急响应Webshell查杀" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/docker%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%8E%9F%E7%90%86/index.md" title="Docker基础命令及原理 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Docker基础命令及原理",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/docker%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%8E%9F%E7%90%86\/"
+    },"genre": "posts","keywords": "Docker","wordcount":  755 ,
+    "url": "http:\/\/localhost:1313\/docker%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%8E%9F%E7%90%86\/","datePublished": "2024-01-30T23:12:28+08:00","dateModified": "2024-01-30T23:12:28+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">Docker基础命令及原理</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Docker基础命令及原理</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category" title="Category - 运维"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维</a></span></div><div class="post-meta-line"><span title="published on 2024-01-30 23:12:28"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-30">2024-01-30</time></span>&nbsp;<span title="755 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 800 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="true">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#帮助命令">帮助命令</a></li>
+    <li><a href="#镜像命令">镜像命令</a></li>
+    <li><a href="#容器命令">容器命令</a></li>
+    <li><a href="#常用的其他命令">常用的其他命令</a></li>
+    <li><a href="#部署-nginx---docker练习">部署 nginx - Docker练习</a></li>
+    <li><a href="#部署-tomcat---docker练习">部署 tomcat - Docker练习</a></li>
+    <li><a href="#eskibana---docker练习">Es+Kibana - Docker练习</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#镜像加载原理">镜像加载原理</a></li>
+    <li><a href="#commit镜像">commit镜像</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="docker的常用命令" class="heading-element"><span>Docker的常用命令</span>
+  <a href="#docker%e7%9a%84%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h2 id="帮助命令" class="heading-element"><span>帮助命令</span>
+  <a href="#%e5%b8%ae%e5%8a%a9%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker version     <span class="c1">#显示 docker 的版本  </span>
+</span></span><span class="line"><span class="cl">docker info        <span class="c1">#显示 docker 的系统信息：包括镜像和容器的数量  </span>
+</span></span><span class="line"><span class="cl">docker 命令 --help  <span class="c1">#帮助命令  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="镜像命令" class="heading-element"><span>镜像命令</span>
+  <a href="#%e9%95%9c%e5%83%8f%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>docker images</code> 查看所有镜像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">f10wers13eicheng@MacBookPro <span class="o">[</span>12时12分59秒<span class="o">]</span> <span class="o">[</span>/Library/Java/JavaVirtualMachines<span class="o">]</span>   
+</span></span><span class="line"><span class="cl">-&gt; % docker images  
+</span></span><span class="line"><span class="cl">REPOSITORY    TAG       IMAGE ID       CREATED       SIZE  
+</span></span><span class="line"><span class="cl">hello-world   latest    feb5d9fea6a5   <span class="m">2</span> years ago   13.3kB  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># 解释  </span>
+</span></span><span class="line"><span class="cl">REPOSITORY 镜像的仓库源  
+</span></span><span class="line"><span class="cl">TAG        镜像的标签  
+</span></span><span class="line"><span class="cl">IMAGE ID   镜像的id  
+</span></span><span class="line"><span class="cl">CREATED    镜像的创建时间  
+</span></span><span class="line"><span class="cl">SIZE       镜像的大小  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">-a <span class="c1"># 列出所有镜像  </span>
+</span></span><span class="line"><span class="cl">-q <span class="c1"># 显示镜像id  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>docker search 镜像名</code> 搜索镜像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">f10wers13eicheng@MacBookPro <span class="o">[</span>12时25分22秒<span class="o">]</span> <span class="o">[</span>/Library/Java/JavaVirtualMachines<span class="o">]</span>   
+</span></span><span class="line"><span class="cl">-&gt; % docker search mysql  
+</span></span><span class="line"><span class="cl">NAME                            DESCRIPTION                                      STARS     OFFICIAL   AUTOMATED  
+</span></span><span class="line"><span class="cl">mysql                           MySQL is a widely used, open-source relation…   <span class="m">14805</span>     <span class="o">[</span>OK<span class="o">]</span>         
+</span></span><span class="line"><span class="cl">mariadb                         MariaDB Server is a high performing open sou…   <span class="m">5653</span>      <span class="o">[</span>OK<span class="o">]</span>         
+</span></span><span class="line"><span class="cl">percona                         Percona Server is a fork of the MySQL relati…   <span class="m">623</span>       <span class="o">[</span>OK<span class="o">]</span>         
+</span></span><span class="line"><span class="cl">phpmyadmin                      phpMyAdmin - A web interface <span class="k">for</span> MySQL and M…   <span class="m">934</span>       <span class="o">[</span>OK<span class="o">]</span>         
+</span></span><span class="line"><span class="cl">bitnami/mysql                   Bitnami MySQL Docker Image                       <span class="m">106</span>                  <span class="o">[</span>OK<span class="o">]</span>  
+</span></span><span class="line"><span class="cl">bitnami/mysqld-exporter                                                          <span class="m">6</span>                      
+</span></span><span class="line"><span class="cl">cimg/mysql                                                                       <span class="m">3</span>                      
+</span></span><span class="line"><span class="cl">ubuntu/mysql                    MySQL open <span class="nb">source</span> fast, stable, multi-thread…   <span class="m">58</span>                     
+</span></span><span class="line"><span class="cl">rapidfort/mysql                 RapidFort optimized, hardened image <span class="k">for</span> MySQL    <span class="m">25</span>                     
+</span></span><span class="line"><span class="cl">rapidfort/mysql8-ib             RapidFort optimized, hardened image <span class="k">for</span> MySQ…   <span class="m">9</span>                      
+</span></span><span class="line"><span class="cl">google/mysql                    MySQL server <span class="k">for</span> Google Compute Engine           <span class="m">25</span>                   <span class="o">[</span>OK<span class="o">]</span>  
+</span></span><span class="line"><span class="cl">rapidfort/mysql-official        RapidFort optimized, hardened image <span class="k">for</span> MySQ…   <span class="m">9</span>                      
+</span></span><span class="line"><span class="cl">elestio/mysql                   Mysql, verified and packaged by Elestio          <span class="m">0</span>                      
+</span></span><span class="line"><span class="cl">hashicorp/mysql-portworx-demo                                                    <span class="m">0</span>                      
+</span></span><span class="line"><span class="cl">bitnamicharts/mysql                                                              <span class="m">0</span>                      
+</span></span><span class="line"><span class="cl">databack/mysql-backup           Back up mysql databases to... anywhere!          <span class="m">105</span>                    
+</span></span><span class="line"><span class="cl">linuxserver/mysql               A Mysql container, brought to you by LinuxSe…   <span class="m">41</span>                     
+</span></span><span class="line"><span class="cl">mirantis/mysql                                                                   <span class="m">0</span>                      
+</span></span><span class="line"><span class="cl">docksal/mysql                   MySQL service images <span class="k">for</span> Docksal - https://d…   <span class="m">0</span>                      
+</span></span><span class="line"><span class="cl">linuxserver/mysql-workbench                                                      <span class="m">54</span>                     
+</span></span><span class="line"><span class="cl">vitess/mysqlctld                vitess/mysqlctld                                 <span class="m">1</span>                    <span class="o">[</span>OK<span class="o">]</span>  
+</span></span><span class="line"><span class="cl">eclipse/mysql                   Mysql 5.7, curl, rsync                           <span class="m">1</span>                    <span class="o">[</span>OK<span class="o">]</span>  
+</span></span><span class="line"><span class="cl">drupalci/mysql-5.5              https://www.drupal.org/project/drupalci          <span class="m">3</span>                    <span class="o">[</span>OK<span class="o">]</span>  
+</span></span><span class="line"><span class="cl">drupalci/mysql-5.7              https://www.drupal.org/project/drupalci          <span class="m">0</span>                      
+</span></span><span class="line"><span class="cl">datajoint/mysql                 MySQL image pre-configured to work smoothly …   <span class="m">2</span>                    <span class="o">[</span>OK<span class="o">]</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>docker pull 镜像名[:tag]</code> 下载镜像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">f10wers13eicheng@MacBookPro <span class="o">[</span>12时25分27秒<span class="o">]</span> <span class="o">[</span>/Library/Java/JavaVirtualMachines<span class="o">]</span>   
+</span></span><span class="line"><span class="cl">-&gt; % docker pull mysql  <span class="c1"># 不写 tag 默认就是 latest  </span>
+</span></span><span class="line"><span class="cl">Using default tag: latest  
+</span></span><span class="line"><span class="cl">latest: Pulling from library/mysql  
+</span></span><span class="line"><span class="cl">72a69066d2fe: Pull <span class="nb">complete</span> <span class="c1">#分层下载 docker images的核心  </span>
+</span></span><span class="line"><span class="cl">93619dbc5b36: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">99da31dd6142: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">626033c43d70: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">37d5d7efb64e: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">ac563158d721: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">d2ba16033dad: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">688ba7d5c01a: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">00e060b6d11d: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">1c04857f594f: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">4d7cfa90e6ea: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">e0431212d27d: Pull <span class="nb">complete</span>   
+</span></span><span class="line"><span class="cl">Digest: sha256:e9027fe4d91c0153429607251656806cc784e914937271037f7738bd5b8e7709 <span class="c1"># 签名信息  </span>
+</span></span><span class="line"><span class="cl">Status: Downloaded newer image <span class="k">for</span> mysql:latest  
+</span></span><span class="line"><span class="cl">docker.io/library/mysql:latest <span class="c1">#真实地址  </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># 等价于  </span>
+</span></span><span class="line"><span class="cl">docker pull mysql  
+</span></span><span class="line"><span class="cl">docker pull docker.io/library/mysql:latest  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>docker rmi 镜像id</code> 删除镜像</p>
+<h2 id="容器命令" class="heading-element"><span>容器命令</span>
+  <a href="#%e5%ae%b9%e5%99%a8%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>docker pull centos</code> 下载centos镜像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run <span class="o">[</span>可选参数<span class="o">]</span> image  
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数说明  </span>
+</span></span><span class="line"><span class="cl">--name<span class="o">=</span><span class="s2">&#34;Name&#34;</span> <span class="c1">#容器名字  </span>
+</span></span><span class="line"><span class="cl">-d            <span class="c1">#后台方式运行  </span>
+</span></span><span class="line"><span class="cl">-it           <span class="c1">#是用交互方式运行，进入容器查看内容  </span>
+</span></span><span class="line"><span class="cl">-p            <span class="c1">#指定容器的端口 -p 8080:8080  </span>
+</span></span><span class="line"><span class="cl">   -p ip:主机端口:容器端口  
+</span></span><span class="line"><span class="cl">   -p 主机端口:容器端口  
+</span></span><span class="line"><span class="cl">   -p 容器端口  
+</span></span><span class="line"><span class="cl">-P            <span class="c1">#随机指定端口  </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动并进入容器  </span>
+</span></span><span class="line"><span class="cl">f10wers13eicheng@MacBookPro <span class="o">[</span>12时35分17秒<span class="o">]</span> <span class="o">[</span>/Library/Java/JavaVirtualMachines<span class="o">]</span>   
+</span></span><span class="line"><span class="cl">-&gt; % docker run -it centos /bin/bash                           
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@a9def1b9102e /<span class="o">]</span><span class="c1"># ls # 查看容器内的目录  </span>
+</span></span><span class="line"><span class="cl">bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@a9def1b9102e /<span class="o">]</span><span class="c1"># whoami  </span>
+</span></span><span class="line"><span class="cl">root  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@a9def1b9102e /<span class="o">]</span><span class="c1"># exit #从容器中退回主机  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>列出所有运行的容器</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps 命令  
+</span></span><span class="line"><span class="cl">-a <span class="c1">#列出当前正在运行的容器 + 带历史运行过的容器  </span>
+</span></span><span class="line"><span class="cl">-n<span class="o">=</span>? <span class="c1">#显示最近创建的容器  </span>
+</span></span><span class="line"><span class="cl">-q <span class="c1">#显示容器id  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>exit</code> 直接容器停止并退出<br>
+<code>Ctrl + P + Q</code> 容器不停止但退出<br>
+<strong>删除容器</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker rm 容器id               <span class="c1">#删除指定容器  </span>
+</span></span><span class="line"><span class="cl">docker rm -f <span class="k">$(</span>docker ps -aq<span class="k">)</span> <span class="c1">#删除所有容器  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>启动和停止容器的操作</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker start 容器id      <span class="c1">#启动容器  </span>
+</span></span><span class="line"><span class="cl">docker restart 容器id    <span class="c1">#重启容器  </span>
+</span></span><span class="line"><span class="cl">docker stop  容器id      <span class="c1">#停止容器  </span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">kill</span>  容器id      <span class="c1">#停止当前运行的容器并删除  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用的其他命令" class="heading-element"><span>常用的其他命令</span>
+  <a href="#%e5%b8%b8%e7%94%a8%e7%9a%84%e5%85%b6%e4%bb%96%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><strong>后台启动容器</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># docker run -d 镜像名  </span>
+</span></span><span class="line"><span class="cl">f10wers13eicheng@MacBookPro <span class="o">[</span>12时46分50秒<span class="o">]</span> <span class="o">[</span>/Library/Java/JavaVirtualMachines<span class="o">]</span>   
+</span></span><span class="line"><span class="cl">-&gt; % docker run -d centos        
+</span></span><span class="line"><span class="cl">8587f88f16bbc5fdb9dfb6de01c5173d9c25c23ed1f99d11b1d52575167cbefa  
+</span></span><span class="line"><span class="cl">f10wers13eicheng@MacBookPro <span class="o">[</span>12时46分58秒<span class="o">]</span> <span class="o">[</span>/Library/Java/JavaVirtualMachines<span class="o">]</span>   
+</span></span><span class="line"><span class="cl">-&gt; % docker ps             
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># docker ps发现 centos停止了  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 常见的坑 docker容器使用后台运行，就必须要有一个前台进程 docker 发现没有应用，就会自动停止  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx，容器启动后，发现自己没有提供服务，就会立刻停止。  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查看日志</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker logs <span class="c1"># 查看日志信息  </span>
+</span></span><span class="line"><span class="cl">docker logs -tf 容器id  
+</span></span><span class="line"><span class="cl"><span class="c1"># 显示日志  </span>
+</span></span><span class="line"><span class="cl">-tf      <span class="c1"># 显示日志  </span>
+</span></span><span class="line"><span class="cl">--tail   <span class="c1"># 显示日志条数  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查看容器中进程信息</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker top 容器id  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查看容器的元数据</strong><br>
+<code>docker inspect 容器id</code><br>
+<strong>进入当前正在运行的容器</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 通常容器都是使用后台方式运行的，需要进入容器，修改一些配置  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令  </span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it 容器id /bin/bash <span class="c1">#进入容器后开启一个新的终端  </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">docker attach 容器id <span class="c1"># 进入容器正在执行的终端，不会启动一个新的进程  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>从容器内拷贝文件到主机上</strong><br>
+<code>docker cp 容器id:容器内路径 目的主机路径</code></p>
+<h2 id="部署-nginx---docker练习" class="heading-element"><span>部署 nginx - Docker练习</span>
+  <a href="#%e9%83%a8%e7%bd%b2-nginx---docker%e7%bb%83%e4%b9%a0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>docker search nginx</code> 搜索镜像<br>
+<code>docker pull nginx</code> 下载镜像<br>
+<code>docker run -d --name nginx01 -p 3344:80 nginx</code> 启动镜像</p>
+<h2 id="部署-tomcat---docker练习" class="heading-element"><span>部署 tomcat - Docker练习</span>
+  <a href="#%e9%83%a8%e7%bd%b2-tomcat---docker%e7%bb%83%e4%b9%a0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>docker pull tomcat</code><br>
+<code>docker run -d --name tomcat01 -p 3345:8080 tomcat</code><br>
+<code>docker exec -it tomcat01 /bin/bash</code> 进入容器</p>
+<h2 id="eskibana---docker练习" class="heading-element"><span>Es+Kibana - Docker练习</span>
+  <a href="#eskibana---docker%e7%bb%83%e4%b9%a0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># --net 网络配置   </span>
+</span></span><span class="line"><span class="cl">$ docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e <span class="s2">&#34;discovery.type=single-node&#34;</span> elasticsearch:7.6.2  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">docker stats <span class="c1"># 查看cpu状态  </span>
+</span></span><span class="line"><span class="cl">-e <span class="c1">#环境配置修改  </span>
+</span></span><span class="line"><span class="cl">   </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="docker-镜像" class="heading-element"><span>Docker 镜像</span>
+  <a href="#docker-%e9%95%9c%e5%83%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>如何得到镜像？</p>
+<ul>
+<li>从远程仓库下载</li>
+<li>自己制作一个 Dockerfile</li>
+</ul>
+<h2 id="镜像加载原理" class="heading-element"><span>镜像加载原理</span>
+  <a href="#%e9%95%9c%e5%83%8f%e5%8a%a0%e8%bd%bd%e5%8e%9f%e7%90%86" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>UnionFS(联合文件系统)</code></p>
+<h2 id="commit镜像" class="heading-element"><span>commit镜像</span>
+  <a href="#commit%e9%95%9c%e5%83%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker commit 提交容器称为一个新的副本  
+</span></span><span class="line"><span class="cl">docker commit -m<span class="o">=</span><span class="s2">&#34;提交的描述信息&#34;</span> -a<span class="o">=</span><span class="s2">&#34;作者&#34;</span> 容器id 目标镜像名:<span class="o">[</span>TAG<span class="o">]</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-01-30 23:12:28">Updated on 2024-01-30&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/docker%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%8E%9F%E7%90%86/" data-title="Docker基础命令及原理"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/docker/" class="post-tag" title="Tags - Docker">Docker</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-nav-item" rel="prev" title="Git学习记录"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Git学习记录</a><a href="/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-webshell%E6%9F%A5%E6%9D%80/" class="post-nav-item" rel="next" title="第一章-应急响应Webshell查杀">第一章-应急响应Webshell查杀<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.16"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00","version":"v0.3.16"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

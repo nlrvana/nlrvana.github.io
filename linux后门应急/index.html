@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Linux后门应急 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='Linux'>
+  <meta itemprop="name" content="Linux后门应急">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2024-11-29T23:43:03+08:00">
+  <meta itemprop="dateModified" content="2024-11-29T23:43:03+08:00">
+  <meta itemprop="wordCount" content="128">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="Linux"><meta property="og:url" content="http://localhost:1313/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="Linux后门应急">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-29T23:43:03+08:00">
+    <meta property="article:modified_time" content="2024-11-29T23:43:03+08:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="Linux后门应急">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5/" title="Linux后门应急 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/java-vaadin1/" title="Java-Vaadin1" /><link rel="next" type="text/html" href="http://localhost:1313/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="实战-行业攻防应急响应" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5/index.md" title="Linux后门应急 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux后门应急",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5\/"
+    },"genre": "posts","keywords": "Linux","wordcount":  128 ,
+    "url": "http:\/\/localhost:1313\/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5\/","datePublished": "2024-11-29T23:43:03+08:00","dateModified": "2024-11-29T23:43:03+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">Linux后门应急</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Linux后门应急</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-category" title="Category - 应急响应"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 应急响应</a></span></div><div class="post-meta-line"><span title="published on 2024-11-29 23:43:03"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-29">2024-11-29</time></span>&nbsp;<span title="128 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="true">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x00-环境">0x00 环境</a></li>
+    <li><a href="#0x01-解题记录">0x01 解题记录</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1主机后门用户名称提交格式如flagbackdoor">1、主机后门用户名称：提交格式如：flag{backdoor}</a></li>
+            <li><a href="#2主机排查项中可以发现到flag内以i开头的flag如flagixxxxxxx">2、主机排查项中可以发现到flag{}内以i开头的flag，如flag{ixxxxxxx}</a></li>
+            <li><a href="#3主机排查发现9999端口是通过哪个配置文件如何开机启动的如etccrontab则填写-etccrontab-的md5-提交方式示例flagmd5">3、主机排查发现9999端口是通过哪个配置文件如何开机启动的，如/etc/crontab则填写 /etc/crontab 的md5 ，提交方式示例：flag{md5}</a></li>
+            <li><a href="#4黑客3s做了记录所有用户的每次登陆的密码的手段flag为黑客记录的登陆密码日志路径md5提交方式示例flagmd5路径">4、黑客3s做了记录所有用户的每次登陆的密码的手段，flag为黑客记录的登陆密码日志路径md5,提交方式示例:flag{md5(路径)}</a></li>
+            <li><a href="#5给出使用了binbash-的rce后门进程名称端口号-如进程名称为sshd端口号为22则flagsshd22">5、给出使用了/bin/bash 的RCE后门进程名称+端口号 如进程名称为sshd，端口号为22，则flag{sshd22)</a></li>
+            <li><a href="#6找出开机启动的后门服务名称md5提交flagmd5服务名">6、找出开机启动的后门服务名称MD5，提交flag(md5(服务名)}</a></li>
+            <li><a href="#7渗透提权获得root目录下的flag">7、渗透提权获得root目录下的flag</a></li>
+            <li><a href="#8黑客3s埋了一个flag在权限维持过程中的地方可以发现flag括号内的首字母是c开头如flagcxxxxxxx"><strong>8、黑客3s埋了一个flag在权限维持过程中的地方，可以发现flag()括号内的首字母是c开头，如flag{cxxxxxxx)</strong></a></li>
+            <li><a href="#9黑客3s做了一个root用户执行cat命令就删除文件的操作请发现删除了什么文件将文件名作为flag提交">9、黑客3s做了一个root用户执行cat命令就删除文件的操作，请发现删除了什么文件将文件名作为flag提交</a></li>
+            <li><a href="#10黑客3s很执着清理痕迹并做了一个持续删痕迹的手段请发现手段并给出删除的完整黑客删除命令的md5如flagmd5rm-fvarlogsshlog-devstdout">10、黑客3s很执着清理痕迹，并做了一个持续删痕迹的手段，请发现手段并给出删除的完整黑客删除命令的md5,如flag{md5(rm-f/var/log/ssh.log &gt;/dev/stdout)}</a></li>
+            <li><a href="#11黑客3s设置了一个万能密码后门使得这一个万能密码可以以所有用户身份登陆也不影响原来密码使用请发现这个万能密码提交fag格式为flag万能密码">11、黑客3s设置了一个万能密码后门使得这一个万能密码可以以所有用户身份登陆，也不影响原来密码使用。请发现这个万能密码，提交fag格式为flag{万能密码)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="0x00-环境" class="heading-element"><span>0x00 环境</span>
+  <a href="#0x00-%e7%8e%af%e5%a2%83" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SSH连接：ssh user@ip -p <span class="m">222</span>  
+</span></span><span class="line"><span class="cl">账号密码：user/Atmbctfer!  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x01-解题记录" class="heading-element"><span>0x01 解题记录</span>
+  <a href="#0x01-%e8%a7%a3%e9%a2%98%e8%ae%b0%e5%bd%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h4 id="1主机后门用户名称提交格式如flagbackdoor" class="heading-element"><span>1、主机后门用户名称：提交格式如：flag{backdoor}</span>
+  <a href="#1%e4%b8%bb%e6%9c%ba%e5%90%8e%e9%97%a8%e7%94%a8%e6%88%b7%e5%90%8d%e7%a7%b0%e6%8f%90%e4%ba%a4%e6%a0%bc%e5%bc%8f%e5%a6%82flagbackdoor" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><code>cat /etc/passwd</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261659370.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261659370.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261659370.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261659370.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261659370.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261659370.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{backdoor}</code></p>
+<h4 id="2主机排查项中可以发现到flag内以i开头的flag如flagixxxxxxx" class="heading-element"><span>2、主机排查项中可以发现到flag{}内以i开头的flag，如flag{ixxxxxxx}</span>
+  <a href="#2%e4%b8%bb%e6%9c%ba%e6%8e%92%e6%9f%a5%e9%a1%b9%e4%b8%ad%e5%8f%af%e4%bb%a5%e5%8f%91%e7%8e%b0%e5%88%b0flag%e5%86%85%e4%bb%a5i%e5%bc%80%e5%a4%b4%e7%9a%84flag%e5%a6%82flagixxxxxxx" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><code>ps -aux</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261705058.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261705058.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261705058.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261705058.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261705058.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261705058.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{infoFl4g}</code></p>
+<h4 id="3主机排查发现9999端口是通过哪个配置文件如何开机启动的如etccrontab则填写-etccrontab-的md5-提交方式示例flagmd5" class="heading-element"><span>3、主机排查发现9999端口是通过哪个配置文件如何开机启动的，如/etc/crontab则填写 /etc/crontab 的md5 ，提交方式示例：flag{md5}</span>
+  <a href="#3%e4%b8%bb%e6%9c%ba%e6%8e%92%e6%9f%a5%e5%8f%91%e7%8e%b09999%e7%ab%af%e5%8f%a3%e6%98%af%e9%80%9a%e8%bf%87%e5%93%aa%e4%b8%aa%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%a6%82%e4%bd%95%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8%e7%9a%84%e5%a6%82etccrontab%e5%88%99%e5%a1%ab%e5%86%99-etccrontab-%e7%9a%84md5-%e6%8f%90%e4%ba%a4%e6%96%b9%e5%bc%8f%e7%a4%ba%e4%be%8bflagmd5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p><code>/etc/systemd/system</code>查看自启动服务的相关配置文件<br>
+打开<code>rc-local.service</code>，执行了<code>/etc/rc.d/rc.local</code>文件<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261722050.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261722050.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261722050.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261722050.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261722050.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261722050.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+解码得到<br>
+<code>while true;do nohup nc -lvp 9999 -c &quot;flag{infoFl4g}&quot; 2&gt;&amp;1 ;sleep 1;done;</code><br>
+<code>flag{cf8a978fe83579e2e20ec158524d8c06}</code></p>
+<h4 id="4黑客3s做了记录所有用户的每次登陆的密码的手段flag为黑客记录的登陆密码日志路径md5提交方式示例flagmd5路径" class="heading-element"><span>4、黑客3s做了记录所有用户的每次登陆的密码的手段，flag为黑客记录的登陆密码日志路径md5,提交方式示例:flag{md5(路径)}</span>
+  <a href="#4%e9%bb%91%e5%ae%a23s%e5%81%9a%e4%ba%86%e8%ae%b0%e5%bd%95%e6%89%80%e6%9c%89%e7%94%a8%e6%88%b7%e7%9a%84%e6%af%8f%e6%ac%a1%e7%99%bb%e9%99%86%e7%9a%84%e5%af%86%e7%a0%81%e7%9a%84%e6%89%8b%e6%ae%b5flag%e4%b8%ba%e9%bb%91%e5%ae%a2%e8%ae%b0%e5%bd%95%e7%9a%84%e7%99%bb%e9%99%86%e5%af%86%e7%a0%81%e6%97%a5%e5%bf%97%e8%b7%af%e5%be%84md5%e6%8f%90%e4%ba%a4%e6%96%b9%e5%bc%8f%e7%a4%ba%e4%be%8bflagmd5%e8%b7%af%e5%be%84" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在<code>/tmp</code>目录下发现<code>.sshlog</code>文件<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261727717.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261727717.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261727717.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261727717.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261727717.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261727717.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{8997d5a1b8dcca5a4be75962250959f7}</code></p>
+<h4 id="5给出使用了binbash-的rce后门进程名称端口号-如进程名称为sshd端口号为22则flagsshd22" class="heading-element"><span>5、给出使用了/bin/bash 的RCE后门进程名称+端口号 如进程名称为sshd，端口号为22，则flag{sshd22)</span>
+  <a href="#5%e7%bb%99%e5%87%ba%e4%bd%bf%e7%94%a8%e4%ba%86binbash-%e7%9a%84rce%e5%90%8e%e9%97%a8%e8%bf%9b%e7%a8%8b%e5%90%8d%e7%a7%b0%e7%ab%af%e5%8f%a3%e5%8f%b7-%e5%a6%82%e8%bf%9b%e7%a8%8b%e5%90%8d%e7%a7%b0%e4%b8%basshd%e7%ab%af%e5%8f%a3%e5%8f%b7%e4%b8%ba22%e5%88%99flagsshd22" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在<code>docker-compose-app.service</code>文件，还启动了一个<code>/usr/lib/python3.7/site-packages/docker/startup.sh</code>脚本<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261731066.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261731066.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261731066.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261731066.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261731066.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261731066.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261733832.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261733832.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261733832.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261733832.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261733832.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261733832.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+base64解密出来是一个Reverse Shell<br>
+<code>flag{python38080}</code></p>
+<h4 id="6找出开机启动的后门服务名称md5提交flagmd5服务名" class="heading-element"><span>6、找出开机启动的后门服务名称MD5，提交flag(md5(服务名)}</span>
+  <a href="#6%e6%89%be%e5%87%ba%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8%e7%9a%84%e5%90%8e%e9%97%a8%e6%9c%8d%e5%8a%a1%e5%90%8d%e7%a7%b0md5%e6%8f%90%e4%ba%a4flagmd5%e6%9c%8d%e5%8a%a1%e5%90%8d" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>看一下开机自启动服务<br>
+<code>systemctl list-unit-files --type=service --state=enabled</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261736415.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261736415.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261736415.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261736415.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261736415.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261736415.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{5213e47de16522f1dc3f9e9ecc0ab8b0}</code></p>
+<h4 id="7渗透提权获得root目录下的flag" class="heading-element"><span>7、渗透提权获得root目录下的flag</span>
+  <a href="#7%e6%b8%97%e9%80%8f%e6%8f%90%e6%9d%83%e8%8e%b7%e5%be%97root%e7%9b%ae%e5%bd%95%e4%b8%8b%e7%9a%84flag" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>利用<code>docker</code>进行提权<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261741004.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261741004.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261741004.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261741004.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261741004.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261741004.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>user</code>用户在<code>docker</code>组里面，而且<code>docker</code>有<code>root</code>权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -v /:/mnt -it alpine  
+</span></span><span class="line"><span class="cl">chroot /mnt bash  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>flag{ATMB_root}</code></p>
+<h4 id="8黑客3s埋了一个flag在权限维持过程中的地方可以发现flag括号内的首字母是c开头如flagcxxxxxxx" class="heading-element"><span><strong>8、黑客3s埋了一个flag在权限维持过程中的地方，可以发现flag()括号内的首字母是c开头，如flag{cxxxxxxx)</strong></span>
+  <a href="#8%e9%bb%91%e5%ae%a23s%e5%9f%8b%e4%ba%86%e4%b8%80%e4%b8%aaflag%e5%9c%a8%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81%e8%bf%87%e7%a8%8b%e4%b8%ad%e7%9a%84%e5%9c%b0%e6%96%b9%e5%8f%af%e4%bb%a5%e5%8f%91%e7%8e%b0flag%e6%8b%ac%e5%8f%b7%e5%86%85%e7%9a%84%e9%a6%96%e5%ad%97%e6%af%8d%e6%98%afc%e5%bc%80%e5%a4%b4%e5%a6%82flagcxxxxxxx" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>打开所有<code>crontab-jobs</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">cron</span><span class="o">*</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">at</span><span class="o">*</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">anacrontab</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">crontabs</span><span class="o">/</span><span class="n">root</span> <span class="mi">2</span><span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&#34;^#&#34;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>Orz但是并未发现 flag<br>
+这里需要查看<code>crontab -e</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411272327964.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411272327964.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411272327964.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411272327964.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411272327964.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411272327964.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{cr0nt4b_IRfind}</code></p>
+<h4 id="9黑客3s做了一个root用户执行cat命令就删除文件的操作请发现删除了什么文件将文件名作为flag提交" class="heading-element"><span>9、黑客3s做了一个root用户执行cat命令就删除文件的操作，请发现删除了什么文件将文件名作为flag提交</span>
+  <a href="#9%e9%bb%91%e5%ae%a23s%e5%81%9a%e4%ba%86%e4%b8%80%e4%b8%aaroot%e7%94%a8%e6%88%b7%e6%89%a7%e8%a1%8ccat%e5%91%bd%e4%bb%a4%e5%b0%b1%e5%88%a0%e9%99%a4%e6%96%87%e4%bb%b6%e7%9a%84%e6%93%8d%e4%bd%9c%e8%af%b7%e5%8f%91%e7%8e%b0%e5%88%a0%e9%99%a4%e4%ba%86%e4%bb%80%e4%b9%88%e6%96%87%e4%bb%b6%e5%b0%86%e6%96%87%e4%bb%b6%e5%90%8d%e4%bd%9c%e4%b8%baflag%e6%8f%90%e4%ba%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>检测是否存在<code>LD_PRELOAD</code>劫持<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261816367.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261816367.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261816367.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261816367.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261816367.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261816367.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+追踪一下<code>/bin/cat</code>命令<br>
+<code>strace -f -e trace=file /bin/cat</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817671.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817671.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817671.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817671.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817671.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817671.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+加载了恶意的<code>so</code>文件<br>
+<code>strings</code>一下<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817522.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817522.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817522.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817522.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817522.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261817522.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+删除了<code>.bash_history</code>文件<br>
+<code>flag{.bash_history}</code></p>
+<h4 id="10黑客3s很执着清理痕迹并做了一个持续删痕迹的手段请发现手段并给出删除的完整黑客删除命令的md5如flagmd5rm-fvarlogsshlog-devstdout" class="heading-element"><span>10、黑客3s很执着清理痕迹，并做了一个持续删痕迹的手段，请发现手段并给出删除的完整黑客删除命令的md5,如flag{md5(rm-f/var/log/ssh.log &gt;/dev/stdout)}</span>
+  <a href="#10%e9%bb%91%e5%ae%a23s%e5%be%88%e6%89%a7%e7%9d%80%e6%b8%85%e7%90%86%e7%97%95%e8%bf%b9%e5%b9%b6%e5%81%9a%e4%ba%86%e4%b8%80%e4%b8%aa%e6%8c%81%e7%bb%ad%e5%88%a0%e7%97%95%e8%bf%b9%e7%9a%84%e6%89%8b%e6%ae%b5%e8%af%b7%e5%8f%91%e7%8e%b0%e6%89%8b%e6%ae%b5%e5%b9%b6%e7%bb%99%e5%87%ba%e5%88%a0%e9%99%a4%e7%9a%84%e5%ae%8c%e6%95%b4%e9%bb%91%e5%ae%a2%e5%88%a0%e9%99%a4%e5%91%bd%e4%bb%a4%e7%9a%84md5%e5%a6%82flagmd5rm-fvarlogsshlog-devstdout" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>还是上面的答案<br>
+<code>flag{rm -rf ~/.bash_history &gt;/dev/null 2&gt;&amp;1}</code><br>
+<code>flag{b0f531b39d88d4f603fc89bd4dd2c0aa}</code></p>
+<h4 id="11黑客3s设置了一个万能密码后门使得这一个万能密码可以以所有用户身份登陆也不影响原来密码使用请发现这个万能密码提交fag格式为flag万能密码" class="heading-element"><span>11、黑客3s设置了一个万能密码后门使得这一个万能密码可以以所有用户身份登陆，也不影响原来密码使用。请发现这个万能密码，提交fag格式为flag{万能密码)</span>
+  <a href="#11%e9%bb%91%e5%ae%a23s%e8%ae%be%e7%bd%ae%e4%ba%86%e4%b8%80%e4%b8%aa%e4%b8%87%e8%83%bd%e5%af%86%e7%a0%81%e5%90%8e%e9%97%a8%e4%bd%bf%e5%be%97%e8%bf%99%e4%b8%80%e4%b8%aa%e4%b8%87%e8%83%bd%e5%af%86%e7%a0%81%e5%8f%af%e4%bb%a5%e4%bb%a5%e6%89%80%e6%9c%89%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e7%99%bb%e9%99%86%e4%b9%9f%e4%b8%8d%e5%bd%b1%e5%93%8d%e5%8e%9f%e6%9d%a5%e5%af%86%e7%a0%81%e4%bd%bf%e7%94%a8%e8%af%b7%e5%8f%91%e7%8e%b0%e8%bf%99%e4%b8%aa%e4%b8%87%e8%83%bd%e5%af%86%e7%a0%81%e6%8f%90%e4%ba%a4fag%e6%a0%bc%e5%bc%8f%e4%b8%baflag%e4%b8%87%e8%83%bd%e5%af%86%e7%a0%81" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>万能密码首先想到的是<code>openssh</code>替换或者<code>pam</code>替换<br>
+<code>pam_unix.so</code>负责与本地 Unix 系统认证进行交互，主要用于处理用户的身份验证，如密码验证</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl">find /lib /lib64 /usr/lib /usr/lib64 -name pam_unix.so  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>时间和其他文件不一样，很明显被修改过<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261823557.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261823557.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261823557.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261823557.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261823557.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411261823557.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+拖下来放入 IDA 中进行反编译<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411262018923.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411262018923.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411262018923.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411262018923.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411262018923.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202411262018923.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+看到密码是<code>ATMB6666</code><br>
+<code>flag{ATMB6666}</code></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-11-29 23:43:03">Updated on 2024-11-29&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5/" data-title="Linux后门应急"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="Tags - Linux">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/java-vaadin1/" class="post-nav-item" rel="prev" title="Java-Vaadin1"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Java-Vaadin1</a><a href="/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-nav-item" rel="next" title="实战-行业攻防应急响应">实战-行业攻防应急响应<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.16"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright order-5" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider">Web Security</span></div><div class="footer-line statistics"><span class="site-time" title='Website running ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">Website running ...</span></span></div><div class="footer-line visitor order-4">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"siteTime":"2024-01-14T23:31:00+08:00","version":"v0.3.16"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

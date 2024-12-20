@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Solon RCE - Tag - N1Rvana&#39;s Blog</title>
+    <link>http://localhost:1313/tags/solon-rce/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Tue, 17 Dec 2024 17:42:40 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/solon-rce/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Solonv2.5.11-RCE</title>
+      <link>http://localhost:1313/solonv2.5.11-rce/</link>
+      <pubDate>Tue, 17 Dec 2024 17:42:40 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/solonv2.5.11-rce/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <description>Solonv2.5.11-RCE</description>
+    </item>
+  </channel>
+</rss>
