@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>开发 - Category - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/categories/%E5%BC%80%E5%8F%91/</link>
+    <link>http://localhost:1313/categories/%E5%BC%80%E5%8F%91/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Tue, 06 Feb 2024 14:03:07 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/categories/%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NodeJs学习</title>
-      <link>https://nlrvana.github.io/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
+      <link>http://localhost:1313/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 06 Feb 2024 14:03:07 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
-      <category domain="https://nlrvana.github.io/categories/%E5%BC%80%E5%8F%91/">开发</category>
+      <guid>http://localhost:1313/nodejs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
+      <category domain="http://localhost:1313/categories/%E5%BC%80%E5%8F%91/">开发</category>
       <description>NodeJs学习</description>
     </item>
     <item>
       <title>Java基础</title>
-      <link>https://nlrvana.github.io/java%E5%9F%BA%E7%A1%80/</link>
+      <link>http://localhost:1313/java%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Sat, 03 Feb 2024 14:37:44 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/java%E5%9F%BA%E7%A1%80/</guid>
-      <category domain="https://nlrvana.github.io/categories/%E5%BC%80%E5%8F%91/">开发</category>
+      <guid>http://localhost:1313/java%E5%9F%BA%E7%A1%80/</guid>
+      <category domain="http://localhost:1313/categories/%E5%BC%80%E5%8F%91/">开发</category>
       <description>Java基础</description>
     </item>
   </channel>
