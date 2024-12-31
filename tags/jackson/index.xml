@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jackson - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/jackson/</link>
+    <link>https://nlrvana.github.io/tags/jackson/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Fri, 15 Nov 2024 13:44:55 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/jackson/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/jackson/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Jackson反序列化（三）</title>
-      <link>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/</link>
+      <link>https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/</link>
       <pubDate>Fri, 15 Nov 2024 13:44:55 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%89/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Jackson反序列化（三）</description>
     </item>
     <item>
       <title>Jackson反序列化（二）</title>
-      <link>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/</link>
+      <link>https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/</link>
       <pubDate>Fri, 15 Nov 2024 13:44:51 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Jackson反序列化（二）</description>
     </item>
     <item>
       <title>Jackson反序列化（一）</title>
-      <link>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/</link>
+      <link>https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/</link>
       <pubDate>Fri, 15 Nov 2024 13:44:42 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Jackson反序列化（一）</description>
     </item>
   </channel>

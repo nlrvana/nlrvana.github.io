@@ -331,5 +331,5 @@ Person.age=6, Person.name=huahua, defaultTyping.Hacker@2a5ca609, defaultTyping.o
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/  
+> URL: https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%80/  
 

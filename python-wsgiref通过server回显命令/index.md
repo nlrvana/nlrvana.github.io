@@ -80,5 +80,5 @@ https://docs.python.org/zh-cn/3/library/wsgiref.html#module-wsgiref.simple_serve
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/  
+> URL: https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/  
 
