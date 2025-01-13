@@ -38,5 +38,5 @@
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/  
+> URL: https://nlrvana.github.io/2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/  
 

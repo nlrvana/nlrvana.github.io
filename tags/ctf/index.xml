@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CTF - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/ctf/</link>
+    <link>https://nlrvana.github.io/tags/ctf/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Fri, 03 Jan 2025 00:17:40 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java-CTF(3)</title>
-      <link>http://localhost:1313/java-ctf3/</link>
+      <link>https://nlrvana.github.io/java-ctf3/</link>
       <pubDate>Fri, 03 Jan 2025 00:17:40 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java-ctf3/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/java-ctf3/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>Java-CTF(3)</description>
     </item>
     <item>
       <title>Java-CTF(2)</title>
-      <link>http://localhost:1313/java-ctf2/</link>
+      <link>https://nlrvana.github.io/java-ctf2/</link>
       <pubDate>Sat, 30 Nov 2024 00:23:16 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java-ctf2/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/java-ctf2/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Java-CTF(2)</description>
     </item>
   </channel>
