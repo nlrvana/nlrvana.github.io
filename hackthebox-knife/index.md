@@ -60,5 +60,5 @@ User james may run the following commands on knife:
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/hackthebox-knife/  
+> URL: http://localhost:1313/hackthebox-knife/  
 
