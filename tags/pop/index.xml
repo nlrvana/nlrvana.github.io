@@ -7,7 +7,15 @@
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2025 21:39:05 +0800</lastBuildDate>
     <atom:link href="https://nlrvana.github.io/tags/pop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SUCTF-Web</title>
+      <link>https://nlrvana.github.io/suctf-web/</link>
+      <pubDate>Mon, 13 Jan 2025 21:39:05 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/suctf-web/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <description>SUCTF-Web</description>
+    </item>
   </channel>
 </rss>
