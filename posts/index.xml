@@ -7,8 +7,16 @@
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
-    <lastBuildDate>Mon, 13 Jan 2025 21:39:05 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jan 2025 21:16:45 +0800</lastBuildDate>
     <atom:link href="https://nlrvana.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zabbix Java Gateway RCE</title>
+      <link>https://nlrvana.github.io/zabbix-java-gateway-rce/</link>
+      <pubDate>Thu, 16 Jan 2025 21:16:45 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/zabbix-java-gateway-rce/</guid>
+      <category domain="https://nlrvana.github.io/categories/draft/">Draft</category>
+      <description>Zabbix Java Gateway RCE</description>
+    </item>
     <item>
       <title>SUCTF-Web</title>
       <link>https://nlrvana.github.io/suctf-web/</link>

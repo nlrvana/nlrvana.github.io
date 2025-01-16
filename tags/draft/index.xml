@@ -2,12 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Draft - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/draft/</link>
+    <link>https://nlrvana.github.io/tags/draft/</link>
     <description>Web Security</description>
-    <generator>Hugo 0.140.0 &amp; FixIt v0.3.16</generator>
+    <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/draft/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jan 2025 21:16:45 +0800</lastBuildDate>
+    <atom:link href="https://nlrvana.github.io/tags/draft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zabbix Java Gateway RCE</title>
+      <link>https://nlrvana.github.io/zabbix-java-gateway-rce/</link>
+      <pubDate>Thu, 16 Jan 2025 21:16:45 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/zabbix-java-gateway-rce/</guid>
+      <category domain="https://nlrvana.github.io/categories/draft/">Draft</category>
+      <description>Zabbix Java Gateway RCE</description>
+    </item>
   </channel>
 </rss>
