@@ -7,8 +7,16 @@
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
-    <lastBuildDate>Thu, 16 Jan 2025 22:06:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jan 2025 23:42:50 +0800</lastBuildDate>
     <atom:link href="https://nlrvana.github.io/tags/jdbc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java JDBC Attack-PostgresQL</title>
+      <link>https://nlrvana.github.io/java-jdbc-attack-postgresql/</link>
+      <pubDate>Thu, 16 Jan 2025 23:42:50 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/java-jdbc-attack-postgresql/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <description>Java JDBC Attack-PostgresQL</description>
+    </item>
     <item>
       <title>Java JDBC Attack-MySQL</title>
       <link>https://nlrvana.github.io/java-jdbc-attack-mysql/</link>
