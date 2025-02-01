@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shiro - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/shiro/</link>
+    <link>http://localhost:1313/tags/shiro/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Wed, 04 Dec 2024 00:58:53 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/shiro/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/shiro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shiro权限绕过</title>
-      <link>https://nlrvana.github.io/shiro%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</link>
+      <link>http://localhost:1313/shiro%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</link>
       <pubDate>Wed, 04 Dec 2024 00:58:53 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/shiro%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/shiro%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>Shiro权限绕过</description>
     </item>
   </channel>

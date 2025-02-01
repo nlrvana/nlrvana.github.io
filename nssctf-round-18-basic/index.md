@@ -48,5 +48,5 @@ https://github.com/Rvn0xsy/CVE-2021-3156-plus?tab=readme-ov-file
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/nssctf-round-18-basic/  
+> URL: http://localhost:1313/nssctf-round-18-basic/  
 
