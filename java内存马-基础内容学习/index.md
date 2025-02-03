@@ -175,5 +175,5 @@ Tomcta自定义的类加载器WebAppClassloader为了确保隔离多个WebApp之
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/java%E5%86%85%E5%AD%98%E9%A9%AC-%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9%E5%AD%A6%E4%B9%A0/  
+> URL: https://nlrvana.github.io/java%E5%86%85%E5%AD%98%E9%A9%AC-%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9%E5%AD%A6%E4%B9%A0/  
 

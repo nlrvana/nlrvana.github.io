@@ -88,5 +88,5 @@ find /lib /lib64 /usr/lib /usr/lib64 -name pam_unix.so
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5/  
+> URL: https://nlrvana.github.io/linux%E5%90%8E%E9%97%A8%E5%BA%94%E6%80%A5/  
 

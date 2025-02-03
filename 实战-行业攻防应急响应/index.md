@@ -98,5 +98,5 @@ Linux 中还可以通过开机自启动，来做权限维持，通过`systemctl`
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/  
+> URL: https://nlrvana.github.io/%E5%AE%9E%E6%88%98-%E8%A1%8C%E4%B8%9A%E6%94%BB%E9%98%B2%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/  
 

@@ -601,5 +601,5 @@ curl &#39;http://fdff0a06-5233-4da3-94ab-f6b39075f072.challenge.ctf.show/&#39; -
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%872/  
+> URL: https://nlrvana.github.io/ctfshow-java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%AF%872/  
 

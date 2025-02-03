@@ -33,5 +33,5 @@ usleep(3000);
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5/  
+> URL: https://nlrvana.github.io/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5/  
 

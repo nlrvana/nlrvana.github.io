@@ -97,4 +97,4 @@ Disallow: /
 User-agent: ClaudeBot
 Disallow: /
 
-Sitemap: http://localhost:1313/sitemap.xml
+Sitemap: https://nlrvana.github.io/sitemap.xml
