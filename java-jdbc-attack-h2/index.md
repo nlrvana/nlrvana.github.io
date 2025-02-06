@@ -109,5 +109,5 @@ String url = &#34;jdbc:h2:mem:test;MODE=MSSQLServer;init=CREATE ALIAS T5 AS &#39
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/java-jdbc-attack-h2/  
+> URL: http://localhost:1313/java-jdbc-attack-h2/  
 
