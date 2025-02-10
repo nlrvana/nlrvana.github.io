@@ -43,5 +43,5 @@ c2.newInstance();
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/  
+> URL: https://nlrvana.github.io/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/  
 

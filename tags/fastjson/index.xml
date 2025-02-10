@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FastJson - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/fastjson/</link>
+    <link>https://nlrvana.github.io/tags/fastjson/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Wed, 11 Sep 2024 16:33:05 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/fastjson/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/fastjson/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fastjson 1.2.62-1.2.68版本反序列化漏洞</title>
-      <link>http://localhost:1313/fastjson-1.2.62-1.2.68%E7%89%88%E6%9C%AC%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link>
+      <link>https://nlrvana.github.io/fastjson-1.2.62-1.2.68%E7%89%88%E6%9C%AC%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link>
       <pubDate>Wed, 11 Sep 2024 16:33:05 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/fastjson-1.2.62-1.2.68%E7%89%88%E6%9C%AC%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/fastjson-1.2.62-1.2.68%E7%89%88%E6%9C%AC%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Fastjson 1.2.62-1.2.68版本反序列化漏洞</description>
     </item>
     <item>
       <title>FastJson 1.2.24版本漏洞分析</title>
-      <link>http://localhost:1313/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+      <link>https://nlrvana.github.io/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
       <pubDate>Wed, 11 Sep 2024 16:32:23 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>FastJson 1.2.24版本漏洞分析</description>
     </item>
     <item>
       <title>FastJson-前置基础</title>
-      <link>http://localhost:1313/fastjson-%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80/</link>
+      <link>https://nlrvana.github.io/fastjson-%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Wed, 11 Sep 2024 16:31:31 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/fastjson-%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/fastjson-%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>&lt;p&gt;Fastjson&lt;/p&gt;</description>
     </item>
   </channel>

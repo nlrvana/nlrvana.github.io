@@ -103,5 +103,5 @@ foreach ($files as $file) {
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E7%AC%AC%E4%B9%9D%E7%AB%A0-blueteam-%E7%9A%84%E5%B0%8F%E5%BF%83%E6%80%9D/  
+> URL: https://nlrvana.github.io/%E7%AC%AC%E4%B9%9D%E7%AB%A0-blueteam-%E7%9A%84%E5%B0%8F%E5%BF%83%E6%80%9D/  
 

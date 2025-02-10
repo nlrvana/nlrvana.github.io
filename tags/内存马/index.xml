@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>内存马 - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/%E5%86%85%E5%AD%98%E9%A9%AC/</link>
+    <link>https://nlrvana.github.io/tags/%E5%86%85%E5%AD%98%E9%A9%AC/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Thu, 06 Feb 2025 21:16:17 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%86%85%E5%AD%98%E9%A9%AC/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/%E5%86%85%E5%AD%98%E9%A9%AC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tomcat中间件型内存马</title>
-      <link>http://localhost:1313/tomcat%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</link>
+      <link>https://nlrvana.github.io/tomcat%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</link>
       <pubDate>Thu, 06 Feb 2025 21:16:17 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/tomcat%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/tomcat%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Tomcat中间件型内存马</description>
     </item>
     <item>
       <title>Spring MVC框架型内存马</title>
-      <link>http://localhost:1313/spring-mvc%E6%A1%86%E6%9E%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</link>
+      <link>https://nlrvana.github.io/spring-mvc%E6%A1%86%E6%9E%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</link>
       <pubDate>Thu, 06 Feb 2025 00:05:34 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/spring-mvc%E6%A1%86%E6%9E%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/spring-mvc%E6%A1%86%E6%9E%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Spring MVC框架型内存马</description>
     </item>
     <item>
       <title>Web传统内存马</title>
-      <link>http://localhost:1313/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</link>
+      <link>https://nlrvana.github.io/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</link>
       <pubDate>Sat, 01 Feb 2025 12:01:10 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Web传统内存马</description>
     </item>
   </channel>

@@ -2,91 +2,91 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/java/</link>
+    <link>https://nlrvana.github.io/tags/java/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Mon, 03 Feb 2025 22:15:40 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>系统安全防护赛-JDBCParty</title>
-      <link>http://localhost:1313/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E8%B5%9B-jdbcparty/</link>
+      <link>https://nlrvana.github.io/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E8%B5%9B-jdbcparty/</link>
       <pubDate>Mon, 03 Feb 2025 22:15:40 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E8%B5%9B-jdbcparty/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E8%B5%9B-jdbcparty/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>系统安全防护赛-JDBCParty</description>
     </item>
     <item>
       <title>Web传统内存马</title>
-      <link>http://localhost:1313/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</link>
+      <link>https://nlrvana.github.io/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</link>
       <pubDate>Sat, 01 Feb 2025 12:01:10 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/web%E4%BC%A0%E7%BB%9F%E5%86%85%E5%AD%98%E9%A9%AC/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Web传统内存马</description>
     </item>
     <item>
       <title>2025-SrdnlenCTF</title>
-      <link>http://localhost:1313/2025-srdnlenctf/</link>
+      <link>https://nlrvana.github.io/2025-srdnlenctf/</link>
       <pubDate>Sun, 26 Jan 2025 20:48:13 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/2025-srdnlenctf/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/2025-srdnlenctf/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>2025-SrdnlenCTF</description>
     </item>
     <item>
       <title>Java JDBC Attack-H2</title>
-      <link>http://localhost:1313/java-jdbc-attack-h2/</link>
+      <link>https://nlrvana.github.io/java-jdbc-attack-h2/</link>
       <pubDate>Fri, 17 Jan 2025 23:42:30 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java-jdbc-attack-h2/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/java-jdbc-attack-h2/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Java JDBC Attack-H2</description>
     </item>
     <item>
       <title>Java JDBC Attack-PostgresQL</title>
-      <link>http://localhost:1313/java-jdbc-attack-postgresql/</link>
+      <link>https://nlrvana.github.io/java-jdbc-attack-postgresql/</link>
       <pubDate>Thu, 16 Jan 2025 23:42:50 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java-jdbc-attack-postgresql/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/java-jdbc-attack-postgresql/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Java JDBC Attack-PostgresQL</description>
     </item>
     <item>
       <title>Java JDBC Attack-MySQL</title>
-      <link>http://localhost:1313/java-jdbc-attack-mysql/</link>
+      <link>https://nlrvana.github.io/java-jdbc-attack-mysql/</link>
       <pubDate>Thu, 16 Jan 2025 22:06:12 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java-jdbc-attack-mysql/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/java-jdbc-attack-mysql/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Java JDBC Attack-MySQL</description>
     </item>
     <item>
       <title>SUCTF-Web</title>
-      <link>http://localhost:1313/suctf-web/</link>
+      <link>https://nlrvana.github.io/suctf-web/</link>
       <pubDate>Mon, 13 Jan 2025 21:39:05 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/suctf-web/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/suctf-web/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>SUCTF-Web</description>
     </item>
     <item>
       <title>Java-CTF(3)</title>
-      <link>http://localhost:1313/java-ctf3/</link>
+      <link>https://nlrvana.github.io/java-ctf3/</link>
       <pubDate>Fri, 03 Jan 2025 00:17:40 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java-ctf3/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/java-ctf3/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>Java-CTF(3)</description>
     </item>
     <item>
       <title>Java-CTF(2)</title>
-      <link>http://localhost:1313/java-ctf2/</link>
+      <link>https://nlrvana.github.io/java-ctf2/</link>
       <pubDate>Sat, 30 Nov 2024 00:23:16 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java-ctf2/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/java-ctf2/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>Java-CTF(2)</description>
     </item>
     <item>
       <title>Java基础</title>
-      <link>http://localhost:1313/java%E5%9F%BA%E7%A1%80/</link>
+      <link>https://nlrvana.github.io/java%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Sat, 03 Feb 2024 14:37:44 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/java%E5%9F%BA%E7%A1%80/</guid>
-      <category domain="http://localhost:1313/categories/%E5%BC%80%E5%8F%91/">开发</category>
+      <guid>https://nlrvana.github.io/java%E5%9F%BA%E7%A1%80/</guid>
+      <category domain="https://nlrvana.github.io/categories/%E5%BC%80%E5%8F%91/">开发</category>
       <description>Java基础</description>
     </item>
   </channel>
