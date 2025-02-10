@@ -67,5 +67,5 @@ https://github.com/Mehdi0x90/Web_Hacking/blob/main/CSP%20Bypass.md
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/  
+> URL: https://nlrvana.github.io/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/  
 

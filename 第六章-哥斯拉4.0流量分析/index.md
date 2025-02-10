@@ -189,5 +189,5 @@ lsb_release -a
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/  
+> URL: https://nlrvana.github.io/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%93%A5%E6%96%AF%E6%8B%894.0%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/  
 
