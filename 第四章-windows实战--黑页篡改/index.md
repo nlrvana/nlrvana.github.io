@@ -59,5 +59,5 @@
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98--%E9%BB%91%E9%A1%B5%E7%AF%A1%E6%94%B9/  
+> URL: http://localhost:1313/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98--%E9%BB%91%E9%A1%B5%E7%AF%A1%E6%94%B9/  
 

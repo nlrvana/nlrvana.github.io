@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SnakeYaml - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/snakeyaml/</link>
+    <link>http://localhost:1313/tags/snakeyaml/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Fri, 15 Nov 2024 13:49:51 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/snakeyaml/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/snakeyaml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SnakeYaml链</title>
-      <link>https://nlrvana.github.io/snakeyaml%E9%93%BE/</link>
+      <link>http://localhost:1313/snakeyaml%E9%93%BE/</link>
       <pubDate>Fri, 15 Nov 2024 13:49:51 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/snakeyaml%E9%93%BE/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/snakeyaml%E9%93%BE/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>SnakeYaml链</description>
     </item>
   </channel>

