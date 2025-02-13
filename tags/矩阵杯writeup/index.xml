@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>矩阵杯WriteUp - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</link>
+    <link>http://localhost:1313/tags/%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Wed, 05 Jun 2024 19:03:02 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2024-矩阵杯WebWriteUp</title>
-      <link>https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</link>
+      <link>http://localhost:1313/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</link>
       <pubDate>Wed, 05 Jun 2024 19:03:02 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>2024-矩阵杯WebWriteUp</description>
     </item>
   </channel>

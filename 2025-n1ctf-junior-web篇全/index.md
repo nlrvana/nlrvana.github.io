@@ -5,5 +5,5 @@ _**This article has been encrypted, so its raw content is invisible!**_
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/2025-n1ctf-junior-web%E7%AF%87%E5%85%A8/  
+> URL: http://localhost:1313/2025-n1ctf-junior-web%E7%AF%87%E5%85%A8/  
 
