@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hessian - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/hessian/</link>
+    <link>https://nlrvana.github.io/tags/hessian/</link>
     <description>Web Security</description>
     <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Mon, 13 Jan 2025 21:39:05 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/hessian/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/hessian/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SUCTF-Web</title>
-      <link>http://localhost:1313/suctf-web/</link>
+      <link>https://nlrvana.github.io/suctf-web/</link>
       <pubDate>Mon, 13 Jan 2025 21:39:05 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/suctf-web/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/suctf-web/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>SUCTF-Web</description>
     </item>
   </channel>
