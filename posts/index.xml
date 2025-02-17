@@ -26,14 +26,6 @@
       <description>实战中内存马利用</description>
     </item>
     <item>
-      <title>从一道XSS题学习CSP绕过</title>
-      <link>https://nlrvana.github.io/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/</link>
-      <pubDate>Tue, 11 Feb 2025 00:06:40 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
-      <description>从一道XSS题学习CSP绕过</description>
-    </item>
-    <item>
       <title>Tomcat中间件型内存马</title>
       <link>https://nlrvana.github.io/tomcat%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC/</link>
       <pubDate>Thu, 06 Feb 2025 21:16:17 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>

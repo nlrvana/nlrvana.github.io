@@ -73,36 +73,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://nlrvana.github.io/tags/csp/</loc>
-    <lastmod>2025-02-11T00:06:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://nlrvana.github.io/categories/ctf/</loc>
-    <lastmod>2025-02-11T00:06:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://nlrvana.github.io/tags/unicode/</loc>
-    <lastmod>2025-02-11T00:06:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://nlrvana.github.io/tags/xss/</loc>
-    <lastmod>2025-02-11T00:06:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://nlrvana.github.io/%E4%BB%8E%E4%B8%80%E9%81%93xss%E9%A2%98%E5%AD%A6%E4%B9%A0csp%E7%BB%95%E8%BF%87/</loc>
-    <lastmod>2025-02-11T00:06:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://nlrvana.github.io/2025-n1ctf-junior-web%E7%AF%87%E5%85%A8/</loc>
     <lastmod>2025-02-10T17:26:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -110,6 +80,12 @@
   </url>
   <url>
     <loc>https://nlrvana.github.io/tags/ctf/</loc>
+    <lastmod>2025-02-10T17:26:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nlrvana.github.io/categories/ctf/</loc>
     <lastmod>2025-02-10T17:26:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
