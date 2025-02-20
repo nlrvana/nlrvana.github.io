@@ -2,7 +2,6 @@
 
 
 ## About Me
-No Pwn
 SU Team of member
 
 ## My CVEs
