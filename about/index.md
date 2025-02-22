@@ -10,6 +10,7 @@ SU Team of member
 | CVE-2022-2886| Laravel |
 | CVE-2022-2870| Laravel |
 | CVE-2022-33107 | ThinkPHP |
+| CVE-2025-1584 | Solon |
 
 
 
