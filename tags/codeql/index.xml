@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CodeQL - Tag - N1Rvana&#39;s Blog</title>
+    <link>https://nlrvana.github.io/tags/codeql/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Sun, 02 Mar 2025 00:07:08 +0800</lastBuildDate>
+    <atom:link href="https://nlrvana.github.io/tags/codeql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CodeQL学习之路(1)-基础知识</title>
+      <link>https://nlrvana.github.io/codeql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+      <pubDate>Sun, 02 Mar 2025 00:07:08 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/codeql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <description>CodeQL学习之路(1)-基础知识</description>
+    </item>
+  </channel>
+</rss>

