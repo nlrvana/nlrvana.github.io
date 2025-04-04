@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>内网渗透 Windows - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows/</link>
+    <link>https://nlrvana.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Tue, 25 Jun 2024 21:19:22 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HackTheBox-Love</title>
-      <link>http://localhost:1313/hackthebox-love/</link>
+      <link>https://nlrvana.github.io/hackthebox-love/</link>
       <pubDate>Sun, 14 Apr 2024 00:21:35 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/hackthebox-love/</guid>
-      <category domain="http://localhost:1313/categories/hackthebox/">HackTheBox</category>
+      <guid>https://nlrvana.github.io/hackthebox-love/</guid>
+      <category domain="https://nlrvana.github.io/categories/hackthebox/">HackTheBox</category>
       <description>HackTheBox-Love</description>
     </item>
   </channel>

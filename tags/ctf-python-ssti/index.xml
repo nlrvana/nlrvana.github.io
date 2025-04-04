@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CTF Python SSTI - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/ctf-python-ssti/</link>
+    <link>https://nlrvana.github.io/tags/ctf-python-ssti/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Thu, 12 Sep 2024 16:07:37 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ctf-python-ssti/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/ctf-python-ssti/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>京津冀 长城杯 CandyShop</title>
-      <link>http://localhost:1313/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/</link>
+      <link>https://nlrvana.github.io/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/</link>
       <pubDate>Thu, 12 Sep 2024 16:07:37 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/</guid>
-      <category domain="http://localhost:1313/categories/ssti/">SSTI</category>
+      <guid>https://nlrvana.github.io/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/</guid>
+      <category domain="https://nlrvana.github.io/categories/ssti/">SSTI</category>
       <description>京津冀 长城杯 CandyShop</description>
     </item>
   </channel>

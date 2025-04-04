@@ -166,5 +166,5 @@ for (FieldWrap f : clzWrap.fieldAllWraps()) {
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/solonv2.5.11-rce/  
+> URL: https://nlrvana.github.io/solonv2.5.11-rce/  
 

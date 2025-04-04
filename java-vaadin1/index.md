@@ -113,5 +113,5 @@ public class Poc {
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/java-vaadin1/  
+> URL: https://nlrvana.github.io/java-vaadin1/  
 

@@ -462,5 +462,5 @@ echo urlencode($cookie_data);
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/  
+> URL: https://nlrvana.github.io/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/  
 

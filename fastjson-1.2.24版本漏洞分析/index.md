@@ -261,5 +261,5 @@ public class HighJdkBypass {
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/  
+> URL: https://nlrvana.github.io/fastjson-1.2.24%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/  
 

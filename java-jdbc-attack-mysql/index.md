@@ -82,5 +82,5 @@ jdbc:mysql://127.0.0.1:3306/test?autoDeserialize=true&amp;user=yso_JRE8u20_calc
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/java-jdbc-attack-mysql/  
+> URL: https://nlrvana.github.io/java-jdbc-attack-mysql/  
 

@@ -260,5 +260,5 @@ flask-unsign --sign --cookie &#34;{&#39;identity&#39;: &#39;admin&#39;, &#39;use
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/  
+> URL: https://nlrvana.github.io/%E4%BA%AC%E6%B4%A5%E5%86%80-%E9%95%BF%E5%9F%8E%E6%9D%AF-candyshop/  
 

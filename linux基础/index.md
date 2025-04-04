@@ -153,5 +153,5 @@ ln -s file link #软连接
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/linux%E5%9F%BA%E7%A1%80/  
+> URL: https://nlrvana.github.io/linux%E5%9F%BA%E7%A1%80/  
 
