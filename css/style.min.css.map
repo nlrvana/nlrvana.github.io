@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "/Users/f10wers13eicheng/blog/origin/nlrvana-blog",
+	"sourceRoot": "/Users/nlrvana/Desktop/nlrvana-blog",
 	"sources": [
 		"themes/FixIt/assets/css/style.scss",
 		"themes/FixIt/assets/css/_variables.scss",

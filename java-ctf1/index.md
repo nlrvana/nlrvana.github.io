@@ -293,5 +293,5 @@ mysql://127.0.0.1:3306/test?user=fileread_file:///flag.txt&amp;ALLOWLOADLOCALINF
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/java-ctf1/  
+> URL: http://localhost:1313/java-ctf1/  
 

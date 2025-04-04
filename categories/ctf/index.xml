@@ -2,115 +2,115 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CTF - Category - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/categories/ctf/</link>
+    <link>http://localhost:1313/categories/ctf/</link>
     <description>Web Security</description>
-    <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Mon, 17 Feb 2025 23:45:53 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/categories/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/ctf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE-2024-22243&amp;CVE-2024-22259&amp;CVE-2024-22262分析</title>
-      <link>https://nlrvana.github.io/cve-2024-22243cve-2024-22259%E5%88%86%E6%9E%90/</link>
+      <link>http://localhost:1313/cve-2024-22243cve-2024-22259%E5%88%86%E6%9E%90/</link>
       <pubDate>Mon, 17 Feb 2025 23:45:53 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/cve-2024-22243cve-2024-22259%E5%88%86%E6%9E%90/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/cve-2024-22243cve-2024-22259%E5%88%86%E6%9E%90/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>CVE-2024-22243&amp;CVE-2024-22259&amp;CVE-2024-22262分析</description>
     </item>
     <item>
       <title>2025-SrdnlenCTF</title>
-      <link>https://nlrvana.github.io/2025-srdnlenctf/</link>
+      <link>http://localhost:1313/2025-srdnlenctf/</link>
       <pubDate>Sun, 26 Jan 2025 20:48:13 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/2025-srdnlenctf/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/2025-srdnlenctf/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>2025-SrdnlenCTF</description>
     </item>
     <item>
       <title>SUCTF-Web</title>
-      <link>https://nlrvana.github.io/suctf-web/</link>
+      <link>http://localhost:1313/suctf-web/</link>
       <pubDate>Mon, 13 Jan 2025 21:39:05 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/suctf-web/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/suctf-web/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>SUCTF-Web</description>
     </item>
     <item>
       <title>Java-CTF(3)</title>
-      <link>https://nlrvana.github.io/java-ctf3/</link>
+      <link>http://localhost:1313/java-ctf3/</link>
       <pubDate>Fri, 03 Jan 2025 00:17:40 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/java-ctf3/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/java-ctf3/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>Java-CTF(3)</description>
     </item>
     <item>
       <title>2024年度总结</title>
-      <link>https://nlrvana.github.io/2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</link>
+      <link>http://localhost:1313/2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</link>
       <pubDate>Tue, 31 Dec 2024 10:17:19 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>2024年度总结</description>
     </item>
     <item>
       <title>Python-Wsgiref通过Server回显命令</title>
-      <link>https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</link>
+      <link>http://localhost:1313/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Sun, 08 Dec 2024 13:50:09 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/python-wsgiref%E9%80%9A%E8%BF%87server%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>Python-Wsgiref通过Server回显命令</description>
     </item>
     <item>
       <title>2024强网杯-Thinkshop</title>
-      <link>https://nlrvana.github.io/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</link>
+      <link>http://localhost:1313/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</link>
       <pubDate>Fri, 06 Dec 2024 20:00:20 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>2024强网杯-Thinkshop</description>
     </item>
     <item>
       <title>CISCN西南赛区 WebWriteUp</title>
-      <link>https://nlrvana.github.io/ciscn%E8%A5%BF%E5%8D%97%E8%B5%9B%E5%8C%BA-webwriteup/</link>
+      <link>http://localhost:1313/ciscn%E8%A5%BF%E5%8D%97%E8%B5%9B%E5%8C%BA-webwriteup/</link>
       <pubDate>Mon, 17 Jun 2024 10:15:41 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/ciscn%E8%A5%BF%E5%8D%97%E8%B5%9B%E5%8C%BA-webwriteup/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/ciscn%E8%A5%BF%E5%8D%97%E8%B5%9B%E5%8C%BA-webwriteup/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>CISCN西南赛区 WebWriteUp</description>
     </item>
     <item>
       <title>2024-矩阵杯WebWriteUp</title>
-      <link>https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</link>
+      <link>http://localhost:1313/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</link>
       <pubDate>Wed, 05 Jun 2024 19:03:02 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>2024-矩阵杯WebWriteUp</description>
     </item>
     <item>
       <title>红明谷-2024-Web</title>
-      <link>https://nlrvana.github.io/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/</link>
+      <link>http://localhost:1313/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/</link>
       <pubDate>Wed, 03 Apr 2024 18:26:39 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/%E7%BA%A2%E6%98%8E%E8%B0%B7-2024-web/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>红明谷-2024-Web</description>
     </item>
     <item>
       <title>CTF-BabyCodeIgniter-Web出题记(1)</title>
-      <link>https://nlrvana.github.io/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</link>
+      <link>http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</link>
       <pubDate>Sat, 30 Mar 2024 21:27:00 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/ctf-babycodeigniter-web%E5%87%BA%E9%A2%98%E8%AE%B01/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>CTF-BabyCodeIgniter-Web出题记(1)</description>
     </item>
     <item>
       <title>NKCTF-2024-Web</title>
-      <link>https://nlrvana.github.io/nkctf-2024-web/</link>
+      <link>http://localhost:1313/nkctf-2024-web/</link>
       <pubDate>Mon, 25 Mar 2024 19:22:34 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/nkctf-2024-web/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/nkctf-2024-web/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>NKCTF-2024-Web</description>
     </item>
     <item>
       <title>VNCTF 2024 Web</title>
-      <link>https://nlrvana.github.io/vnctf-2024-web/</link>
+      <link>http://localhost:1313/vnctf-2024-web/</link>
       <pubDate>Fri, 15 Mar 2024 11:40:54 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/vnctf-2024-web/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/vnctf-2024-web/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>VNCTF 2024 Web</description>
     </item>
   </channel>

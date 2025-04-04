@@ -103,5 +103,5 @@ python2 -c &#39;print&#34;aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/hackthebox-armageddon/  
+> URL: http://localhost:1313/hackthebox-armageddon/  
 

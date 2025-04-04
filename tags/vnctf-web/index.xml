@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VNCTF Web - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/vnctf-web/</link>
+    <link>http://localhost:1313/tags/vnctf-web/</link>
     <description>Web Security</description>
-    <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Tue, 25 Jun 2024 21:19:22 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/vnctf-web/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/vnctf-web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VNCTF 2024 Web</title>
-      <link>https://nlrvana.github.io/vnctf-2024-web/</link>
+      <link>http://localhost:1313/vnctf-2024-web/</link>
       <pubDate>Fri, 15 Mar 2024 11:40:54 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/vnctf-2024-web/</guid>
-      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
+      <guid>http://localhost:1313/vnctf-2024-web/</guid>
+      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
       <description>VNCTF 2024 Web</description>
     </item>
   </channel>

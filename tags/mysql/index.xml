@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MySQL - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/mysql/</link>
+    <link>http://localhost:1313/tags/mysql/</link>
     <description>Web Security</description>
-    <generator>Hugo 0.140.0 &amp; FixIt v0.3.15</generator>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Thu, 16 Jan 2025 23:42:50 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java JDBC Attack-PostgresQL</title>
-      <link>https://nlrvana.github.io/java-jdbc-attack-postgresql/</link>
+      <link>http://localhost:1313/java-jdbc-attack-postgresql/</link>
       <pubDate>Thu, 16 Jan 2025 23:42:50 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/java-jdbc-attack-postgresql/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/java-jdbc-attack-postgresql/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>Java JDBC Attack-PostgresQL</description>
     </item>
     <item>
       <title>Java JDBC Attack-MySQL</title>
-      <link>https://nlrvana.github.io/java-jdbc-attack-mysql/</link>
+      <link>http://localhost:1313/java-jdbc-attack-mysql/</link>
       <pubDate>Thu, 16 Jan 2025 22:06:12 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/java-jdbc-attack-mysql/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/java-jdbc-attack-mysql/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>Java JDBC Attack-MySQL</description>
     </item>
   </channel>
