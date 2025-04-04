@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows系统账号密码 - Tag - N1Rvana&#39;s Blog</title>
+    <link>http://localhost:1313/tags/windows%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Fri, 04 Apr 2025 21:13:05 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/windows%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>内网渗透-Windows凭据收集之系统账号密码(9)</title>
+      <link>http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%819/</link>
+      <pubDate>Fri, 04 Apr 2025 21:13:05 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%819/</guid>
+      <category domain="http://localhost:1313/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
+      <description>内网渗透-Windows凭据收集之系统账号密码(9)</description>
+    </item>
+  </channel>
+</rss>

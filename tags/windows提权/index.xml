@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows提权 - Tag - N1Rvana&#39;s Blog</title>
+    <link>http://localhost:1313/tags/windows%E6%8F%90%E6%9D%83/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Fri, 04 Apr 2025 21:08:10 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/windows%E6%8F%90%E6%9D%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>内网渗透-Windows提权(4)</title>
+      <link>http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E6%8F%90%E6%9D%834/</link>
+      <pubDate>Fri, 04 Apr 2025 21:08:10 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E6%8F%90%E6%9D%834/</guid>
+      <category domain="http://localhost:1313/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
+      <description>内网渗透-Windows提权(4)</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>内网渗透-Windows基础信息收集(5) - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='Windows基础信息收集'>
+  <meta itemprop="name" content="内网渗透-Windows基础信息收集(5)">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-04-04T21:08:58+08:00">
+  <meta itemprop="dateModified" content="2025-04-04T21:08:58+08:00">
+  <meta itemprop="wordCount" content="1132">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="Windows基础信息收集"><meta property="og:url" content="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%865/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="内网渗透-Windows基础信息收集(5)">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-04T21:08:58+08:00">
+    <meta property="article:modified_time" content="2025-04-04T21:08:58+08:00">
+    <meta property="article:tag" content="Windows基础信息收集">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="内网渗透-Windows基础信息收集(5)">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%865/" title="内网渗透-Windows基础信息收集(5) - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E6%8F%90%E6%9D%834/" title="内网渗透-Windows提权(4)" /><link rel="next" type="text/html" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%866/" title="内网渗透-Windows基础信息收集(6)" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%865/index.md" title="内网渗透-Windows基础信息收集(5) - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "内网渗透-Windows基础信息收集(5)",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%865\/"
+    },"genre": "posts","keywords": "Windows基础信息收集","wordcount":  1132 ,
+    "url": "http:\/\/localhost:1313\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%865\/","datePublished": "2025-04-04T21:08:58+08:00","dateModified": "2025-04-04T21:08:58+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">内网渗透-Windows基础信息收集(5)</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>内网渗透-Windows基础信息收集(5)</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category" title="Category - 内网渗透"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 内网渗透</a></span></div><div class="post-meta-line"><span title="published on 2025-04-04 21:08:58"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-04">2025-04-04</time></span>&nbsp;<span title="1132 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#windows基础信息收集1">Windows基础信息收集(1)</a>
+      <ul>
+        <li><a href="#收集系统信息">收集系统信息</a></li>
+        <li><a href="#系统信息">系统信息</a></li>
+        <li><a href="#进程信息">进程信息</a></li>
+      </ul>
+    </li>
+    <li><a href="#工具">工具</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="windows基础信息收集1" class="heading-element"><span>Windows基础信息收集(1)</span>
+  <a href="#windows%e5%9f%ba%e7%a1%80%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%861" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="收集系统信息" class="heading-element"><span>收集系统信息</span>
+  <a href="#%e6%94%b6%e9%9b%86%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">ipconfig</span> <span class="p">/</span><span class="n">all</span>  <span class="p">//</span><span class="n">查询本机IP段</span><span class="err">，</span><span class="n">所在域等</span>  
+</span></span><span class="line"><span class="cl"><span class="n">netstat</span> <span class="n">-an</span>    <span class="p">//</span><span class="n">网络连接查询</span><span class="err">（</span><span class="n">-a显示所有连接和侦听端口</span><span class="p">,</span><span class="n">-n以数字形式显示地址和端口号</span><span class="err">）</span>  
+</span></span><span class="line"><span class="cl"><span class="n">route</span> <span class="n">print</span>    <span class="p">//</span><span class="n">路由打印</span>  
+</span></span><span class="line"><span class="cl"><span class="n">tracert</span>        <span class="p">//</span><span class="n">路由追踪</span>  
+</span></span><span class="line"><span class="cl"><span class="n">arp</span> <span class="n">-a</span>         <span class="p">//</span><span class="n">ARP表查看</span>  
+</span></span><span class="line"><span class="cl"><span class="n">tasklist</span>       <span class="p">//</span><span class="n">查看进程信息</span>  
+</span></span><span class="line"><span class="cl"><span class="n">nslookup</span>       <span class="p">//</span><span class="n">查询DNS的记录</span><span class="err">，</span><span class="n">查看域名解析</span>  
+</span></span><span class="line"><span class="cl"><span class="n">whoami</span>         <span class="p">//</span><span class="n">查询账号</span>  
+</span></span><span class="line"><span class="cl"><span class="n">whoami</span> <span class="p">/</span><span class="n">all</span>    <span class="p">//</span><span class="n">查看suid值</span><span class="err">，</span><span class="n">组信息</span><span class="err">，</span><span class="n">特权信息</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">user</span>       <span class="p">//</span><span class="n">查看本机用户列表</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">user</span> <span class="p">/</span><span class="n">domain</span> <span class="p">//</span><span class="n">查询域用户</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">view</span> <span class="p">/</span><span class="n">domain</span> <span class="p">//</span><span class="n">查询域列表</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">view</span>         <span class="p">//</span><span class="n">查询同一域内在线机器列表</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">localgroup</span> <span class="n">administartors</span> <span class="p">/</span><span class="n">domain</span> <span class="p">//</span><span class="n">登陆本机的域管理员</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">localgroup</span> <span class="n">administrators</span> <span class="p">//</span><span class="n">本机管理员</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">session</span>      <span class="p">//</span><span class="n">查看当前会话</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">share</span>        <span class="p">//</span><span class="n">查看SMB指向的路径</span><span class="p">(</span><span class="n">即共享</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">accounts</span>     <span class="p">//</span><span class="n">查看本地密码策略</span>  
+</span></span><span class="line"><span class="cl"><span class="n">net</span> <span class="n">accounts</span> <span class="p">/</span><span class="n">domain</span> <span class="p">//</span><span class="n">查看域密码策略</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="系统信息" class="heading-element"><span>系统信息</span>
+  <a href="#%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>查看系统信息，查看当前机器的版本号，机器名，补丁号，一般收集系统信息是为了查看当前机器为32/64位，机器是什么版本的机器</p>
+<h3 id="进程信息" class="heading-element"><span>进程信息</span>
+  <a href="#%e8%bf%9b%e7%a8%8b%e4%bf%a1%e6%81%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>分析进程信息，查看本机是否有域用户运行的程序，可以利用其身份进行伪造，获得域内用户权限，进行横向移动，同时查看本机其他进程(是否有杀软，正在运行何种程序。)<br>
+<strong>tasklist</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">tasklist</span> <span class="p">/</span><span class="n">svc</span> <span class="p">//</span><span class="n">显示每个进程中支持的服务有哪些</span>  
+</span></span><span class="line"><span class="cl"><span class="n">tasklist</span> <span class="p">/</span><span class="n">m</span>   <span class="p">//</span><span class="n">列出调用了某个dll的进程</span>  
+</span></span><span class="line"><span class="cl"><span class="n">taskkill</span> <span class="p">/</span><span class="n">PID</span> <span class="n">进程ID</span> <span class="p">//</span><span class="n">结束进程</span>  
+</span></span><span class="line"><span class="cl"><span class="n">taskkill</span> <span class="p">/</span><span class="n">im</span>  <span class="n">进程名</span> <span class="p">//</span><span class="n">结束进程</span>  
+</span></span><span class="line"><span class="cl"><span class="n">tasklist</span> <span class="p">/</span><span class="n">s</span> <span class="mf">192.168</span><span class="p">.</span><span class="py">0</span><span class="p">.</span><span class="py">250</span> <span class="p">/</span><span class="n">u</span> <span class="n">admin_username</span> <span class="p">/</span><span class="n">p</span> <span class="n">admin_password</span> <span class="p">//</span><span class="n">查看远程主机进程</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>netstat</strong><br>
+<code>netstat -ano</code><br>
+<strong>Hostname</strong><br>
+<code>Hostname 主机名</code><br>
+<strong>环境变量</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">命令:set  
+</span></span><span class="line"><span class="cl">Path:可执行文件  
+</span></span><span class="line"><span class="cl">windir:操作系统或目录  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>安装的软件</strong><br>
+<code>wmic product get name //查看电脑安装的软件</code><br>
+<strong>补丁</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">wmic</span> <span class="n">qfe</span> <span class="n">list</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Systeminfo</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Metasploit的post</span><span class="o">/</span><span class="n">enum_patches模块</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Windows</span> <span class="n">Exploit</span> <span class="n">Suggester</span> <span class="o">//</span><span class="n">github项目</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Sherlock</span> <span class="o">//</span><span class="n">github项目</span>  
+</span></span><span class="line"><span class="cl"><span class="err">使用工具查询比较少，一般用在线网站查询</span>  
+</span></span><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">bugs</span><span class="o">.</span><span class="n">hacking8</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tiquan</span><span class="o">/</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>服务信息</strong><br>
+<code>sc query</code><br>
+<strong>计划任务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">at或schtasks  
+</span></span><span class="line"><span class="cl">schtasks /query /tn test //查看计划任务、注意win7调整CMD编码936为437美国编码  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注册表信息</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">注册表是</span><span class="n">windows中最重的一个数据库</span><span class="err">，保存了系统和各个软件的配置</span>  
+</span></span><span class="line"><span class="cl"><span class="err">可将注册表全部导出</span> <span class="err">下载下来分析</span>  
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="k">export</span> <span class="n">HKLM</span> <span class="n">hklm</span><span class="o">.</span><span class="n">reg</span>  
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="k">export</span> <span class="n">HKCU</span> <span class="n">hkcu</span><span class="o">.</span><span class="n">reg</span>  
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="k">export</span> <span class="n">HKCR</span> <span class="n">hkcr</span><span class="o">.</span><span class="n">reg</span>  
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="k">export</span> <span class="n">HKU</span> <span class="n">hku</span><span class="o">.</span><span class="n">reg</span>  
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="k">export</span> <span class="n">HKCC</span> <span class="n">hkcc</span><span class="o">.</span><span class="n">reg</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>日志</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">copy C:\Windows\System32\winevt\Logs\System.evtx  
+</span></span><span class="line"><span class="cl">copy C:\Windows\System32\winevt\Logs\security.evtx  
+</span></span><span class="line"><span class="cl">copy C:\Windows\System32\winevt\Logs\application.evtx  
+</span></span><span class="line"><span class="cl">使用日志查看wevtutil  
+</span></span><span class="line"><span class="cl">wevtutil qe security /f:text /q:*[System[(EventID=4624)]] #查寻所有登陆相关的日志  
+</span></span><span class="line"><span class="cl">可用作判断管理员经常在什么时间段上线  
+</span></span><span class="line"><span class="cl">日志ID查询  
+</span></span><span class="line"><span class="cl">https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Host文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">存储主机名映射的ip  
+</span></span><span class="line"><span class="cl">Type C:\Windows\System32\drivers\etc\hosts //查看hosts文件  
+</span></span><span class="line"><span class="cl">可用于发现额外的系统主机  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>组策略</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">组策略提供了操作系统、应用程序和活动目录中用户设置的集中化管理和配置  
+</span></span><span class="line"><span class="cl">使用gpresult /h c:test.html 生成组策略报表为html格式  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>启动项</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">使用注册表查询  
+</span></span><span class="line"><span class="cl">reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>防护软件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">tasklist</span> <span class="c">#通过进程名称中的关键字判断 如360、anti-virus  </span>
+</span></span><span class="line"><span class="cl"><span class="n">wmic</span>     <span class="c">#或者使用powershell模块  </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">wmic</span> <span class="p">/</span><span class="n">namespace</span><span class="err">:</span><span class="p">\\</span><span class="n">root</span><span class="p">\</span><span class="n">securitycenter2</span> <span class="n">path</span> <span class="n">antivirusproduct</span> <span class="n">GET</span> <span class="n">displayname</span><span class="p">,</span><span class="n">productState</span><span class="p">,</span><span class="n">pathToSignedProdutExe</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">wmic</span> <span class="n">product</span> <span class="n">get</span> <span class="n">name</span> <span class="p">//</span><span class="n">查看电脑安装的软件</span>  
+</span></span><span class="line"><span class="cl"><span class="n">wmic</span> <span class="n">qfe</span> <span class="n">list</span>         <span class="p">//</span><span class="n">获取本机补丁详细信息</span>  
+</span></span><span class="line"><span class="cl"><span class="n">在线网络</span>  
+</span></span><span class="line"><span class="cl"><span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">ddoslinux</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">windows</span><span class="p">/</span><span class="n">index</span><span class="p">.</span><span class="py">php</span>  
+</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">maikefee</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">av_list</span>  
+</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">www</span><span class="p">.</span><span class="py">adminxe</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">CompareAV</span><span class="p">/</span><span class="n">index</span><span class="p">.</span><span class="py">php</span>  
+</span></span><span class="line"><span class="cl"><span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">payloads</span><span class="p">.</span><span class="n">net</span><span class="p">/</span><span class="n">kill_software</span><span class="p">/</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="工具" class="heading-element"><span>工具</span>
+  <a href="#%e5%b7%a5%e5%85%b7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><a href="https://github.com/AlessandroZ/LaZagne"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/AlessandroZ/LaZagne</a></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-04-04 21:08:58">Updated on 2025-04-04&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%865/" data-title="内网渗透-Windows基础信息收集(5)"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="post-tag" title="Tags - Windows基础信息收集">Windows基础信息收集</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E6%8F%90%E6%9D%834/" class="post-nav-item" rel="prev" title="内网渗透-Windows提权(4)"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>内网渗透-Windows提权(4)</a><a href="/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%866/" class="post-nav-item" rel="next" title="内网渗透-Windows基础信息收集(6)">内网渗透-Windows基础信息收集(6)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

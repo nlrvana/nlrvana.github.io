@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>内网渗透-Windows凭据收集之浏览器凭据(7) - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='Windows凭据, 浏览器凭据'>
+  <meta itemprop="name" content="内网渗透-Windows凭据收集之浏览器凭据(7)">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-04-04T21:11:10+08:00">
+  <meta itemprop="dateModified" content="2025-04-04T21:11:10+08:00">
+  <meta itemprop="wordCount" content="960">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="Windows凭据,浏览器凭据"><meta property="og:url" content="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="内网渗透-Windows凭据收集之浏览器凭据(7)">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-04T21:11:10+08:00">
+    <meta property="article:modified_time" content="2025-04-04T21:11:10+08:00">
+    <meta property="article:tag" content="Windows凭据">
+    <meta property="article:tag" content="浏览器凭据">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="内网渗透-Windows凭据收集之浏览器凭据(7)">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7/" title="内网渗透-Windows凭据收集之浏览器凭据(7) - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%866/" title="内网渗透-Windows基础信息收集(6)" /><link rel="next" type="text/html" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%87%AD%E6%8D%AE8/" title="内网渗透-Windows凭据收集之数据库凭据(8)" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7/index.md" title="内网渗透-Windows凭据收集之浏览器凭据(7) - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "内网渗透-Windows凭据收集之浏览器凭据(7)",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7\/"
+    },"genre": "posts","keywords": "Windows凭据, 浏览器凭据","wordcount":  960 ,
+    "url": "http:\/\/localhost:1313\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7\/","datePublished": "2025-04-04T21:11:10+08:00","dateModified": "2025-04-04T21:11:10+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">内网渗透-Windows凭据收集之浏览器凭据(7)</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>内网渗透-Windows凭据收集之浏览器凭据(7)</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category" title="Category - 内网渗透"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 内网渗透</a></span></div><div class="post-meta-line"><span title="published on 2025-04-04 21:11:10"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-04">2025-04-04</time></span>&nbsp;<span title="960 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#chrome">chrome</a></li>
+    <li><a href="#firefox">Firefox</a></li>
+    <li><a href="#360">360</a></li>
+    <li><a href="#edge">Edge</a></li>
+    <li><a href="#工具">工具</a></li>
+    <li><a href="#meterpreter对于iechromefirefox的不同收集模块">Meterpreter对于IE、Chrome、Firefox的不同收集模块</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="chrome" class="heading-element"><span>chrome</span>
+  <a href="#chrome" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>chrome</code>配置文件路径<br>
+<code>C:\Users\win10\AppData\Local\Google\Chrome\User Data/</code><br>
+<code>cookie</code>默认保存地址<br>
+<code>C:\Users\win10\AppData\Local\Google\Chrome\User Data\Default\Cookies</code><br>
+<code>History</code>默认保存地址<br>
+<code>C:\Users\win10\AppData\Local\Google\Chrome\User Data\Default\History</code><br>
+chrome的登录账号密码文件Login Data默认保存地址<br>
+<code>C:\Users\win10\AppData\Local\Google\Chrome\User Data\Default\Login Data</code><br>
+chrome中存储加密Key的默认保存地址<br>
+<code>C:\Users\win10\AppData\Local\Google\Chrome\User Data\Local State</code><br>
+查看版本及详细信息<br>
+<code>chrome://version/</code><br>
+chromium</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\win10\AppData\Local\Chromium\User Data\  
+</span></span><span class="line"><span class="cl">C:\Users\win10\AppData\Local\Chromium\User Data\Local State  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/AlisterAmo/ChromePassDumper"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/AlisterAmo/ChromePassDumper</a></p>
+<h2 id="firefox" class="heading-element"><span>Firefox</span>
+  <a href="#firefox" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>firefox</code>配置文件路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\win10\AppData\Roaming\Mozilla\Firefox\Profiles\*.default-release*\  
+</span></span><span class="line"><span class="cl">C:\Users\win10\AppData\Roaming\Mozilla\Firefox\Profiles\*.default-beta*\  
+</span></span><span class="line"><span class="cl">C:\Users\win10\AppData\Roaming\Mozilla\Firefox\Profiles\*.dev-edition-default*\  
+</span></span><span class="line"><span class="cl">C:\Users\win10\AppData\Roaming\Mozilla\Firefox\Profiles\*.default-nightly*\  
+</span></span><span class="line"><span class="cl">C:\Users\win10\AppData\Roaming\Mozilla\Firefox\Profiles\*.default-esr*\  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>不同版本Firefox保存记录的文件名称不同，如下所示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Version大于等于32.0，保存记录的文件为logins.json  
+</span></span><span class="line"><span class="cl">Version大于等于3.5，小于32.0，保存记录的文件为signons.sqlite  
+</span></span><span class="line"><span class="cl">#凭据存储地址  
+</span></span><span class="line"><span class="cl">AppData\Roaming\Mozilla\Firefox\Profiles\随机字符.default-release\logins.json  
+</span></span><span class="line"><span class="cl">#密钥地址  
+</span></span><span class="line"><span class="cl">AppData\Roaming\Mozilla\Firefox\Profiles\随机字符.default-release\key4.db  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：Master Passoword这个设置<br>
+<a href="https://github.com/mishmashclone/Flangvik-SharpCollection/commit/46aa6d803e256fe56927e42f6da9e1f0a496e2f7"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/mishmashclone/Flangvik-SharpCollection/commit/46aa6d803e256fe56927e42f6da9e1f0a496e2f7</a><br>
+ThunderFox.exe creds</p>
+<h2 id="360" class="heading-element"><span>360</span>
+  <a href="#360" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>360浏览器是基于Chromium 86内核开发的。<br>
+360浏览器密码默认存储路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">360chrome C:\Users\win10\AppData\Local\360Chrome\Chrome\User Data\Default  
+</span></span><span class="line"><span class="cl">360浏览器 C:\Users\win10\AppData\Roaming\360se6\User Data\Default  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>360安全浏览器离线解密<br>
+首先切到指定用户权限下，获取机器id，把assis2.db账密数据库文件拖回本地执行解密<br>
+<code>reg query &quot;HKLM\SOFTWARE\MICROSOFT\CRYPTOGRAPHY&quot;/v&quot;MachineGuid&quot;</code><br>
+<a href="https://github.com/hayasec/360SafeBrowsergetpass"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/hayasec/360SafeBrowsergetpass</a></p>
+<h2 id="edge" class="heading-element"><span>Edge</span>
+  <a href="#edge" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\win10\AppData/Local/Microsoft/Edge/User Data/  
+</span></span><span class="line"><span class="cl">C:\Users\win10\AppData/Local/Microsoft/Edge/User Data/Local State  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="工具" class="heading-element"><span>工具</span>
+  <a href="#%e5%b7%a5%e5%85%b7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><a href="https://github.com/moonD4rk/HackBrowserData"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/moonD4rk/HackBrowserData</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#指定edge浏览器进行脱取其数据  
+</span></span><span class="line"><span class="cl">HackBrowserData.exe -b edge -p &#39;C:\Users\User\AppData\Local\Microsoft\Edge\User Data\Default&#39;  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">#指定edge的key浏览器进行脱取其数据  
+</span></span><span class="line"><span class="cl">HackBrowserData.exe -b edge -p &#39;C:\Users\User\AppData\Local\Microsoft\Edge\User Data\Default&#39; -k &#39;C:\Users\User\AppData\Local\Microsoft\Edge\User Data\Local State&#39;  
+</span></span><span class="line"><span class="cl"># 指定chrome浏览器进行脱取其数据  
+</span></span><span class="line"><span class="cl">HackBrowserData.exe -b chrome -p &#39;C:\Users\win10\AppData\Local\Google\Chrome\User Data\Default\Login Data&#39;  
+</span></span><span class="line"><span class="cl">#指定chrome的key浏览器进行脱取其数据  
+</span></span><span class="line"><span class="cl">HackBrowserData.exe -b chrome -p &#39;C:\Users\User\AppData\Local\Microsoft\Edge\User Data\Default&#39; -k &#39;C:\Users\win10\AppData\Local\Google\Chrome\User Data\Local State&#39;  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">全局选项  
+</span></span><span class="line"><span class="cl">		--verbose --vv 详细(默认值:false)  
+</span></span><span class="line"><span class="cl">		--compress --cc 将结果压缩为zip(默认值:false)  
+</span></span><span class="line"><span class="cl">		--browser value,-b value 可用浏览器 all|opera|firefox|chrome|edge(默认值为:all)  
+</span></span><span class="line"><span class="cl">		--result-dir 值,--dir 值导出目录(默认值：&#34;结果&#34;)  
+</span></span><span class="line"><span class="cl">		--format 值，-f 值格式,csv|json|控制台  
+</span></span><span class="line"><span class="cl">		--profile-dir-path 值,-p 值自定义配置文件目录路径，使用chrome://version获取  
+</span></span><span class="line"><span class="cl">		--key-file-path 值,-k 值自定义密钥文件路径  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/QAX-A-Team/BrowserGhost"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/QAX-A-Team/BrowserGhost</a></p>
+<h2 id="meterpreter对于iechromefirefox的不同收集模块" class="heading-element"><span>Meterpreter对于IE、Chrome、Firefox的不同收集模块</span>
+  <a href="#meterpreter%e5%af%b9%e4%ba%8eiechromefirefox%e7%9a%84%e4%b8%8d%e5%90%8c%e6%94%b6%e9%9b%86%e6%a8%a1%e5%9d%97" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">run</span> <span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_chrome</span> <span class="c1">#获取Chrome缓存  </span>
+</span></span><span class="line"><span class="cl"><span class="n">run</span> <span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_firefox</span> <span class="c1">#获取Firefox缓存  </span>
+</span></span><span class="line"><span class="cl"><span class="n">run</span> <span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_ie</span> <span class="c1">#获取IE缓存  </span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-04-04 21:11:10">Updated on 2025-04-04&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7/" data-title="内网渗透-Windows凭据收集之浏览器凭据(7)"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/windows%E5%87%AD%E6%8D%AE/" class="post-tag" title="Tags - Windows凭据">Windows凭据</a><a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE/" class="post-tag" title="Tags - 浏览器凭据">浏览器凭据</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%866/" class="post-nav-item" rel="prev" title="内网渗透-Windows基础信息收集(6)"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>内网渗透-Windows基础信息收集(6)</a><a href="/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%87%AD%E6%8D%AE8/" class="post-nav-item" rel="next" title="内网渗透-Windows凭据收集之数据库凭据(8)">内网渗透-Windows凭据收集之数据库凭据(8)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

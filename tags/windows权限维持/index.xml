@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows权限维持 - Tag - N1Rvana&#39;s Blog</title>
+    <link>http://localhost:1313/tags/windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Fri, 04 Apr 2025 21:06:12 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>内网渗透-权限维持(3)</title>
+      <link>http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%813/</link>
+      <pubDate>Fri, 04 Apr 2025 21:06:12 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%813/</guid>
+      <category domain="http://localhost:1313/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
+      <description>内网渗透-权限维持(3)</description>
+    </item>
+  </channel>
+</rss>
