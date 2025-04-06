@@ -34,7 +34,8 @@ org.springframework.aop.aspectj.AbstractAspectJAdvice#invokeAdviceMethodWithGive
 - 通过反序列化触发`JdkDynamicAopProxy#invoke`方法，  
 - 在`JdkDynamicAopProxy#invoke`方法中，控制chain的生成，需要让List放入目标对象`AspectJAroundAdvice`。  
 - 通过`chain`创建出`ReflectiveMethodInvocation`对象，并调用`proceed`方法。  
-- 接下来就是`ReflectiveMethodInvocation#proceed` -&gt; `AspectJAroundAdvice#invoke`-&gt;`AbstractAspectJAdvice#invokeAdviceMethodWithGivenArgs`  
+- 接下来就是`ReflectiveMethodInvocation#proceed` -&gt; `AspectJAroundAdvice#invoke`-&gt;`AbstractAspectJAdvice#invokeAdviceMethodWithGivenArgs` 
+
 现在来研究一下`chain`是如何生成的？  
 `List&lt;Object&gt; chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);`  
 需要让其返回一个`List`，并且`List`里面要有一个元素，是我们的恶意对象。  
@@ -43,6 +44,7 @@ org.springframework.aop.aspectj.AbstractAspectJAdvice#invokeAdviceMethodWithGive
 这里有两个办法获取  
 - 从缓存`MethodCacheKey`中获取  
 - 通过`getInterceptorsAndDynamicInterceptionAdvice`方法  
+
 这里利用`getInterceptorsAndDynamicInterceptionAdvice`来控制，  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504061403560.png)
 通过`org.springframework.aop.framework.adapter.DefaultAdvisorAdapterRegistry#getInterceptors`来获取其返回值的。  
@@ -225,6 +227,7 @@ javax.swing.UIDefaults
 ```  
 - 第一个可以用`UTF8-Over`绕过  
 - 第二个需要用到没有出现在黑名单类进行绕过  
+
 通过上面的学习，我们已经知道`Spring AOP`存在原生链，并且他没有出现在黑名单中，这里只需要随便找一个方法，进行触发就可以，这里用CB链中的一部分。利用`compare`方法去触发动态代理的`invoke`方法  
 ```java  
 PriorityQueue PQ = new PriorityQueue(1);    

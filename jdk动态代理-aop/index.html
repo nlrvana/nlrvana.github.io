@@ -160,8 +160,9 @@
   </a>
 </h2><p>JDK动态代理需要了解两个类</p>
 <ul>
-<li><code>InvocationHandler</code>调用处理程序类和<code>Proxy</code>代理类<br>
-<code>InvocationHandler</code>调用处理程序<br>
+<li><code>InvocationHandler</code>调用处理程序类和<code>Proxy</code>代理类</li>
+</ul>
+<p><code>InvocationHandler</code>调用处理程序<br>
 <code>public interface InvocationHandler</code><br>
 <code>InvocationHandler</code>是由代理实例的调用处理程序实现的接口<br>
 每个代理实例都有一个关联的调用处理程序。<br>
@@ -170,8 +171,7 @@
 <code>Proxy</code>代理类<br>
 <code>public class Proxy extends Object implements Serializable</code><br>
 <code>Proxy</code>提供了创建动态代理类和实例的静态方法，它也是由这些方法创建的所有动态代理类的超类。<br>
-动态代理类，是一个实现在类创建时在运行时指定的接口列表的类，具有如下所述的行为。 代理接口是由代理类实现的接口。 代理实例是代理类的一个实例。</li>
-</ul>
+动态代理类，是一个实现在类创建时在运行时指定的接口列表的类，具有如下所述的行为。 代理接口是由代理类实现的接口。 代理实例是代理类的一个实例。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
