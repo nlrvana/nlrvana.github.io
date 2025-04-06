@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AOP链 - Tag - N1Rvana&#39;s Blog</title>
+    <link>https://nlrvana.github.io/tags/aop%E9%93%BE/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Sun, 06 Apr 2025 15:51:45 +0800</lastBuildDate>
+    <atom:link href="https://nlrvana.github.io/tags/aop%E9%93%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring-AOP链&amp;软件攻防赛半决赛Just-Deserialize</title>
+      <link>https://nlrvana.github.io/spring-aop%E9%93%BE%E8%BD%AF%E4%BB%B6%E6%94%BB%E9%98%B2%E8%B5%9B%E5%8D%8A%E5%86%B3%E8%B5%9Bjust-deserialize/</link>
+      <pubDate>Sun, 06 Apr 2025 15:51:45 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/spring-aop%E9%93%BE%E8%BD%AF%E4%BB%B6%E6%94%BB%E9%98%B2%E8%B5%9B%E5%8D%8A%E5%86%B3%E8%B5%9Bjust-deserialize/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <description>Spring-AOP链&amp;软件攻防赛半决赛Just-Deserialize</description>
+    </item>
+  </channel>
+</rss>
