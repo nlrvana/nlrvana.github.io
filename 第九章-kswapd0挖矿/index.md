@@ -35,5 +35,5 @@
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/%E7%AC%AC%E4%B9%9D%E7%AB%A0-kswapd0%E6%8C%96%E7%9F%BF/  
+> URL: http://localhost:1313/%E7%AC%AC%E4%B9%9D%E7%AB%A0-kswapd0%E6%8C%96%E7%9F%BF/  
 

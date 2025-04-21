@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Brute4Road - Tag - N1Rvana&#39;s Blog</title>
+    <link>http://localhost:1313/tags/brute4road/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Mon, 21 Apr 2025 15:48:44 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/brute4road/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>春秋云镜-Brute4Road</title>
+      <link>http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/</link>
+      <pubDate>Mon, 21 Apr 2025 15:48:44 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/</guid>
+      <category domain="http://localhost:1313/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
+      <description>春秋云镜-Brute4Road</description>
+    </item>
+  </channel>
+</rss>

