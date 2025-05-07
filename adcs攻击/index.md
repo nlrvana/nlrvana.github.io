@@ -14,17 +14,19 @@ ADCS中的CA有企业CA和独立CA。企业CA必须是域成员，并且通常�
 CA拥有公钥和私钥：  
   - 私钥只有CA知道，私钥用于对颁发的证书进行数字签名。  
   - 公钥任何人都可以知道，公钥用于验证证书是否由CA证书颁发。  
-  那么，如何让客户端信任CA呢？  
-  我们平时访问https类型的网站，如百度，通过查看其证书可以看到他的根CA，并且显示此证书有效。  
-  由于已经导入了我们系统信任的根CA，因此通过该根CA颁发的所有证书都是可信的。  
-  而在活动目录内自己搭建的ADCS，由于在安装企业根CA时，系统使用组策略将根CA添加到域内所有机器的&#34;受信任的根证书颁发机构&#34;中了，因此域内机器默认都信任此根CA颁发的证书。  
+  
+那么，如何让客户端信任CA呢？  
+我们平时访问https类型的网站，如百度，通过查看其证书可以看到他的根CA，并且显示此证书有效。  
+由于已经导入了我们系统信任的根CA，因此通过该根CA颁发的所有证书都是可信的。  
+而在活动目录内自己搭建的ADCS，由于在安装企业根CA时，系统使用组策略将根CA添加到域内所有机器的&#34;受信任的根证书颁发机构&#34;中了，因此域内机器默认都信任此根CA颁发的证书。  
   (2)CA层次结构  
-  常见的CA层次结构有两个级别：根和二级CA。二级CA也叫子从属CA。根CA位于顶级，子从属CA位于第二级。在这种层次结构下，根CA给子从属CA颁发证书认证，子从属CA给下面的应用颁发和管理证书，根CA不直接给应用颁发证书。  
-  CA的层次结构有如下优点：  
+常见的CA层次结构有两个级别：根和二级CA。二级CA也叫子从属CA。根CA位于顶级，子从属CA位于第二级。在这种层次结构下，根CA给子从属CA颁发证书认证，子从属CA给下面的应用颁发和管理证书，根CA不直接给应用颁发证书。  
+CA的层次结构有如下优点：  
   - 管理层次分明，便于集中管理、政策制定和实施。  
   - 提高CA中心的总体性能、减少瓶颈；  
   - 有充分的灵活性和可扩展性；  
   - 有利于保证CA中心的证书验证效率。  
+
 (3)CRL  
 CRL(Certificate Revocation List,证书作废列表)即&#34;证书黑名单&#34;，在证书的有效期间，由于某种原因(如人员调动、私钥泄漏等)导致相应的数字证书内容不再真实可信，此时需要进行证书撤销，说明该证书无效，CRL中列出了被撤销的证书序列号。  
 ### PKINIT Kerberos认证  
@@ -48,6 +50,7 @@ tgt::pac /subject:administrator /castore:current_user /domain:xie.com /user:admi
 - 复制和修改证书模版  
 - 控制哪些用户和计算机可以读取模版并注册证书；  
 - 执行与证书模版相关的其他管理任务。  
+
 上面提到了利用证书能进行`PKINIT Kerberos`认证，但是并不是所有的证书都能进行`PKINIT Kerberos`认证。那么，到底哪些模版的证书可用于`Kerberos`认证呢？  
 在`Certified_Pre-Owned.pdf`中提到，具有以下扩展权限的证书可以用于Kerberos认证：  
 - 客户端身份验证，对应的OID为`1.3.6.1.5.5.7.3.2`  
@@ -55,6 +58,7 @@ tgt::pac /subject:administrator /castore:current_user /domain:xie.com /user:admi
 - 智能卡登陆，对应的OID为`1.3.6.1.4.1.411.20.2.2`  
 - 任何目的，对应的`OID`为`2.5.29.37.0`  
 - 子CA  
+
 #### 用户模版  
 用户模版是默认的证书模版。其扩展属性中有客户端身份验证，因此用户模版申请的证书可以用于`Kerberos`身份认证。  
 利用`certipy`执行如下命令以普通用户hack的权限申请注册一个用户模版的证书  
@@ -71,6 +75,7 @@ tgt::pac /subject:administrator /castore:current_user /domain:xie.com /user:admi
 - CA收到请求后，从中取出公钥对CSR进行签名校验。校验通过后判断客户端请求的证书模版是否存在，如果存在，根据证书模版中的属性判断请求的主体是否有权限申请该证书。如果有权限，则还要根据其他属性，如发布要求、使用者名称、扩展等属性来生成证书。  
 - CA使用其私钥签名生成的证书并发送给客户端。  
 - 客户端存储该证书在系统中。  
+
 在安装ADCS时，可以选择网络设备注册服务、证书颁发机构Web注册、证书注册Web服务。  
 这里讲一下证书颁发机构Web注册接口。  
 在安装ADCS时勾选了&#34;证书颁发机构Web注册&#34;选项，那么可以通过Web方式来申请证书。  
@@ -109,7 +114,8 @@ crypto::certificates /systemstore:local_machine /store:my /export
 - 模版中不需要授权的签名(默认)  
 - 模版允许低权限用户注册  
 - 模版定义了启用认证的EKU  
-- 证书模版允许请求者在CSR中指定一个SAN  
+- 证书模版允许请求者在CSR中指定一个SAN 
+
 当满足上述条件时，攻击者在请求证书时可以通过  
 `CT_FLAG_ENROLLEE_SUPPLIES_SUBJECT`字段来声明自己的身份，从而获取到伪造身份的证书。  
 可以使用`certify.exe`来查看我们配置，发现`msPKI-Sertificate-Name-Flag`的属性值为`ENROLLEE_SUPPLIES_SUBJECT`，也就是可以指定使用者身份。  
@@ -122,6 +128,7 @@ certify.exe request /ca:CA-Server.com /template:ECSC1 /altname:administrator
 - crt/cer后缀，只包含公钥  
 - csr后缀，证书申请文件，不包含公私钥。  
 - pfx/pem/p12后缀，包含公私钥  
+
 ```  
 openssl pkcs12 -in ESC1.pem -keyex -CSP &#34;Microsoft Enhanced CryptoGraphic Provider v1.0&#34; --export -out ESC1.pfx  
 ```  
