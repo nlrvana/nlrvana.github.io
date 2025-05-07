@@ -47,5 +47,5 @@ FQDN(Fully Qualified Domain Name,全限定名)是同时带有主机名和域名�
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E5%9F%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
+> URL: https://nlrvana.github.io/%E5%9F%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
 

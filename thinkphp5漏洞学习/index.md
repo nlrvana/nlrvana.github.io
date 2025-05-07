@@ -44,5 +44,5 @@ Poc `) union select 1,2,updatexml(1,concat(1,user(),1),1)--&#43;`
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/thinkphp5%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/  
+> URL: https://nlrvana.github.io/thinkphp5%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/  
 

