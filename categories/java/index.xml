@@ -7,8 +7,16 @@
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
-    <lastBuildDate>Wed, 07 May 2025 19:23:39 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 May 2025 00:25:42 +0800</lastBuildDate>
     <atom:link href="https://nlrvana.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java中的命令执行</title>
+      <link>https://nlrvana.github.io/java%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+      <pubDate>Tue, 27 May 2025 00:25:42 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/java%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <description>Java中的命令执行</description>
+    </item>
     <item>
       <title>JNDI学习记录(2)</title>
       <link>https://nlrvana.github.io/jndi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/</link>

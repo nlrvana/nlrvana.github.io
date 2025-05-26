@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>命令执行 - Tag - N1Rvana&#39;s Blog</title>
+    <link>https://nlrvana.github.io/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+    <description>Web Security</description>
+    <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
+    <language>en</language>
+    <copyright>Web Security</copyright>
+    <lastBuildDate>Tue, 27 May 2025 00:25:42 +0800</lastBuildDate>
+    <atom:link href="https://nlrvana.github.io/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java中的命令执行</title>
+      <link>https://nlrvana.github.io/java%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+      <pubDate>Tue, 27 May 2025 00:25:42 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
+      <guid>https://nlrvana.github.io/java%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <description>Java中的命令执行</description>
+    </item>
+  </channel>
+</rss>
