@@ -754,5 +754,5 @@ https://paper.seebug.org/1091/
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/jndi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/  
+> URL: http://localhost:1313/jndi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/  
 

