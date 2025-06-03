@@ -67,15 +67,16 @@ huahua
 ```  
 在上述的Demo中，我们引入了一个`BinaryFormatter`类，这个类表示使用二进制的形式进行反序列化，而在`dotnet`中有很多其他的`formatter`类，每一个`formatter`都对应了一种序列化的格式，例如  
 ```c#  
-BinaryFormatter 二进制格式  
-SoapFormatter 序列化soap格式  
-LosFormatter 序列化Web窗体页的试图状态  
-ObjectStateFormatter 序列化状态对象图  
+BinaryFormatter //二进制格式  
+SoapFormatter //序列化soap格式  
+LosFormatter //序列化Web窗体页的试图状态  
+ObjectStateFormatter //序列化状态对象图  
 ```  
 这个`formatter`类都实现了名为`IFormatter`、`IRemotingFormatter`的接口。其中`IRemotingFormatter`是用来远程调用的`RPC`接口，它也实现了`IFormatter`，所以我们重点看一下`IFormatter`接口。  
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031457420.png)
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031458564.png)
 `IFormater`定义了序列化和反序列化的方法，和三个字段  
+
 - ISurrogateSelector SurrogateSelector 序列化代理选择器 接管formatter的序列化或反序列化处理。  
 - SerializationBinder Binder 用于控制在序列化和反序列化期间使用的实际类型  
 - StreamingContext Context 序列化流上下文 其中states字段包含了序列化的来源和目的地。  
@@ -84,12 +85,16 @@ BinaryFormatter序列化的生命周期和事件
 - 如果没有代理选择器，或者代理选择器不处理该对象类型，则检查对象是否有`[Serializable]`特性。如果不能序列化则抛出异常。  
 - 检查该对象是否实现`ISerializable`接口，如果实现就调用其`GetObjectData`方法。  
 - 如果没有实现`ISerializable`接口就使用默认的序列化策略，序列化所有没标记`[NonSerialized]`的字段。  
+
 在序列化和反序列化的过程中还有四个回调事件  
+
 - OnDeserializingAttribute 反序列化之前 初始化可选字段的默认值  
 - OnDeserializedAttribute 反序列化之后 根据其他字段的内容修改可选字段值  
 - OnSerializingAttribute 反序列化之前 准备系列化，例如，创建可选数据结构。  
 - OnserializedAttribute 序列化之后 记录序列化事件  
+
 一张图来表示序列化及反序列化的生命周期  
+
 ![](https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506031904308.png)
   
 
