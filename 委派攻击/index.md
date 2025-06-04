@@ -51,5 +51,5 @@ S4u2Proxy，S4u2Proxy可以用上一步获得的可转发ST以用户的名义请
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E5%A7%94%E6%B4%BE%E6%94%BB%E5%87%BB/  
+> URL: https://nlrvana.github.io/%E5%A7%94%E6%B4%BE%E6%94%BB%E5%87%BB/  
 

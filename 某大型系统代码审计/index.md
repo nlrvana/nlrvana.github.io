@@ -515,5 +515,5 @@ X-Forwarded-For: 127.0.0.1
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E6%9F%90%E5%A4%A7%E5%9E%8B%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/  
+> URL: https://nlrvana.github.io/%E6%9F%90%E5%A4%A7%E5%9E%8B%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/  
 

@@ -350,5 +350,5 @@ https://tttang.com/archive/1405/#toc_0x02-xxe-rce
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/jndi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/  
+> URL: https://nlrvana.github.io/jndi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/  
 

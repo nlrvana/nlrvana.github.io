@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Memcached CRLF - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/memcached-crlf/</link>
+    <link>https://nlrvana.github.io/tags/memcached-crlf/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Fri, 06 Dec 2024 20:00:20 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/memcached-crlf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/memcached-crlf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2024强网杯-Thinkshop</title>
-      <link>http://localhost:1313/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</link>
+      <link>https://nlrvana.github.io/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</link>
       <pubDate>Fri, 06 Dec 2024 20:00:20 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</guid>
-      <category domain="http://localhost:1313/categories/ctf/">CTF</category>
+      <guid>https://nlrvana.github.io/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/</guid>
+      <category domain="https://nlrvana.github.io/categories/ctf/">CTF</category>
       <description>2024强网杯-Thinkshop</description>
     </item>
   </channel>

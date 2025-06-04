@@ -278,5 +278,5 @@ https://paper.seebug.org/942/
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E8%B5%9B-jdbcparty/  
+> URL: https://nlrvana.github.io/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E8%B5%9B-jdbcparty/  
 
