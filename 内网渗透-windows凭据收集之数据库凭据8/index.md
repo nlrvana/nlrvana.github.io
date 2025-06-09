@@ -66,5 +66,5 @@ https://github.com/HyperSine/how-does-navicat-encrypt-password/tree/master/pytho
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%87%AD%E6%8D%AE8/  
+> URL: http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%87%AD%E6%8D%AE8/  
 

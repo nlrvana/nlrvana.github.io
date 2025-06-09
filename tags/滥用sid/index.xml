@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>滥用SID - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/%E6%BB%A5%E7%94%A8sid/</link>
+    <link>http://localhost:1313/tags/%E6%BB%A5%E7%94%A8sid/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Wed, 07 May 2025 19:17:46 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/%E6%BB%A5%E7%94%A8sid/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E6%BB%A5%E7%94%A8sid/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>春秋云镜-Time</title>
-      <link>https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/</link>
+      <link>http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/</link>
       <pubDate>Wed, 07 May 2025 19:17:46 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/</guid>
-      <category domain="https://nlrvana.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
+      <guid>http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-time/</guid>
+      <category domain="http://localhost:1313/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
       <description>春秋云镜-Time</description>
     </item>
   </channel>
