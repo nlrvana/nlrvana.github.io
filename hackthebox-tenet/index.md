@@ -142,5 +142,5 @@ done
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/hackthebox-tenet/  
+> URL: https://nlrvana.github.io/hackthebox-tenet/  
 

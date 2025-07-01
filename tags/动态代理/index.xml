@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>动态代理 - Tag - N1Rvana&#39;s Blog</title>
-    <link>http://localhost:1313/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
+    <link>https://nlrvana.github.io/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Sun, 06 Apr 2025 02:37:54 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nlrvana.github.io/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JDK动态代理-AOP</title>
-      <link>http://localhost:1313/jdk%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-aop/</link>
+      <link>https://nlrvana.github.io/jdk%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-aop/</link>
       <pubDate>Sun, 06 Apr 2025 02:37:54 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>http://localhost:1313/jdk%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-aop/</guid>
-      <category domain="http://localhost:1313/categories/java/">Java</category>
+      <guid>https://nlrvana.github.io/jdk%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-aop/</guid>
+      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
       <description>JDK动态代理-AOP</description>
     </item>
   </channel>

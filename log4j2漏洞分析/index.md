@@ -202,5 +202,5 @@ https://wjlshare.com/archives/1677
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/  
+> URL: https://nlrvana.github.io/log4j2%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/  
 
