@@ -74,5 +74,5 @@ sudo msfconsole
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/hackthebox-scriptkiddie/  
+> URL: https://nlrvana.github.io/hackthebox-scriptkiddie/  
 

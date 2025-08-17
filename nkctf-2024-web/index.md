@@ -238,5 +238,5 @@ https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/nkctf-2024-web/  
+> URL: https://nlrvana.github.io/nkctf-2024-web/  
 

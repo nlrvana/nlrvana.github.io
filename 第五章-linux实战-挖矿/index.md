@@ -83,5 +83,5 @@ HOME目录排查
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E6%8C%96%E7%9F%BF/  
+> URL: https://nlrvana.github.io/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E6%8C%96%E7%9F%BF/  
 

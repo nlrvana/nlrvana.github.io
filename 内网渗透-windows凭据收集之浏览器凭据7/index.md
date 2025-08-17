@@ -92,5 +92,5 @@ run post/windows/gather/enum_ie #获取IE缓存
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7/  
+> URL: https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%AD%E6%8D%AE7/  
 

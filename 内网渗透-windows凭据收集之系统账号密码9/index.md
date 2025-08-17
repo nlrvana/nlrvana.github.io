@@ -83,5 +83,5 @@ ACL(Access Control List)：Windows中所有资源都有ACL，这个列表决定�
 ---
 
 > Author: N1Rvana  
-> URL: http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%819/  
+> URL: https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E5%87%AD%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B9%8B%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%819/  
 
