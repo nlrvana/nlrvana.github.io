@@ -58,5 +58,5 @@ AS-REQ包中 cname 字段的值代表用户名，这个值存在和不存在，�
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/ntlm%E5%8D%8F%E8%AE%AEkerberos%E5%8D%8F%E8%AE%AEldap%E5%8D%8F%E8%AE%AE/  
+> URL: http://localhost:1313/ntlm%E5%8D%8F%E8%AE%AEkerberos%E5%8D%8F%E8%AE%AEldap%E5%8D%8F%E8%AE%AE/  
 

@@ -114,5 +114,5 @@ weblogic如果开启了web服务测试页，则分别会在`/ws_utc/begin.do`以
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/weblogic-%E5%BC%B1%E5%8F%A3%E4%BB%A4%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0ssrf/  
+> URL: http://localhost:1313/weblogic-%E5%BC%B1%E5%8F%A3%E4%BB%A4%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0ssrf/  
 

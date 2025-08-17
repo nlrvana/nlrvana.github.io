@@ -86,5 +86,5 @@ select c
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/codeql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
+> URL: http://localhost:1313/codeql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
 
