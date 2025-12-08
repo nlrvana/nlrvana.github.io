@@ -101,5 +101,5 @@ BinaryFormatter序列化的生命周期和事件
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/dot-net%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
+> URL: http://localhost:1313/dot-net%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
 

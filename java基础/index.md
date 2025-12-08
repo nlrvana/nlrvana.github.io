@@ -852,5 +852,5 @@ Object proxy = Proxy.newProxylnstance(null, interfaces, handler);
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/java%E5%9F%BA%E7%A1%80/  
+> URL: http://localhost:1313/java%E5%9F%BA%E7%A1%80/  
 

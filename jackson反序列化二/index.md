@@ -107,5 +107,5 @@ Properties=[uriresolver([simple type, class javax.xml.transform.URIResolver]), t
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/  
+> URL: http://localhost:1313/jackson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C/  
 

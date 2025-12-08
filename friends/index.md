@@ -20,5 +20,5 @@
 ---
 
 > Author:   
-> URL: https://nlrvana.github.io/friends/  
+> URL: http://localhost:1313/friends/  
 

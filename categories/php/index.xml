@@ -2,43 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PHP - Category - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/categories/php/</link>
+    <link>http://localhost:1313/categories/php/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Wed, 17 Jul 2024 12:43:46 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/categories/php/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/php/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PHP反序列化冷知识点总结</title>
-      <link>https://nlrvana.github.io/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%B7%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</link>
+      <link>http://localhost:1313/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%B7%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</link>
       <pubDate>Wed, 17 Jul 2024 12:43:46 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%B7%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</guid>
-      <category domain="https://nlrvana.github.io/categories/php/">PHP</category>
+      <guid>http://localhost:1313/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%B7%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</guid>
+      <category domain="http://localhost:1313/categories/php/">PHP</category>
       <description>PHP反序列化冷知识点总结</description>
     </item>
     <item>
       <title>ThinkPHP5.0学习-某盘审计</title>
-      <link>https://nlrvana.github.io/thinkphp5.0%E5%AD%A6%E4%B9%A0-%E6%9F%90%E7%9B%98%E5%AE%A1%E8%AE%A1/</link>
+      <link>http://localhost:1313/thinkphp5.0%E5%AD%A6%E4%B9%A0-%E6%9F%90%E7%9B%98%E5%AE%A1%E8%AE%A1/</link>
       <pubDate>Wed, 17 Jan 2024 00:25:41 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/thinkphp5.0%E5%AD%A6%E4%B9%A0-%E6%9F%90%E7%9B%98%E5%AE%A1%E8%AE%A1/</guid>
-      <category domain="https://nlrvana.github.io/categories/php/">PHP</category>
+      <guid>http://localhost:1313/thinkphp5.0%E5%AD%A6%E4%B9%A0-%E6%9F%90%E7%9B%98%E5%AE%A1%E8%AE%A1/</guid>
+      <category domain="http://localhost:1313/categories/php/">PHP</category>
       <description>ThinkPHP5.0学习-某盘审计</description>
     </item>
     <item>
       <title>ThinkPHP5漏洞学习</title>
-      <link>https://nlrvana.github.io/thinkphp5%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</link>
+      <link>http://localhost:1313/thinkphp5%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Mon, 15 Jan 2024 20:22:59 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/thinkphp5%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</guid>
-      <category domain="https://nlrvana.github.io/categories/php/">PHP</category>
+      <guid>http://localhost:1313/thinkphp5%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</guid>
+      <category domain="http://localhost:1313/categories/php/">PHP</category>
       <description>ThinkPHP5漏洞学习</description>
     </item>
     <item>
       <title>ThinkPHP3.2.3漏洞学习</title>
-      <link>https://nlrvana.github.io/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</link>
+      <link>http://localhost:1313/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Mon, 15 Jan 2024 00:17:31 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</guid>
-      <category domain="https://nlrvana.github.io/categories/php/">PHP</category>
+      <guid>http://localhost:1313/thinkphp3.2.3%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/</guid>
+      <category domain="http://localhost:1313/categories/php/">PHP</category>
       <description>&lt;p&gt;ThinkPHP 漏洞学习&lt;/p&gt;</description>
     </item>
   </channel>

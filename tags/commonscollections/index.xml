@@ -2,51 +2,51 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CommonsCollections - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/commonscollections/</link>
+    <link>http://localhost:1313/tags/commonscollections/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Wed, 17 Jan 2024 20:30:14 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/commonscollections/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/commonscollections/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CommonsCollections2 4 5链详解</title>
-      <link>https://nlrvana.github.io/commonscollections2-4-5%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://localhost:1313/commonscollections2-4-5%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Wed, 17 Jan 2024 20:30:14 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/commonscollections2-4-5%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/commonscollections2-4-5%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>CommonsCollections2 4 5链详解</description>
     </item>
     <item>
       <title>CommonsCollections3链详解</title>
-      <link>https://nlrvana.github.io/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://localhost:1313/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Tue, 16 Jan 2024 19:42:15 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>CommonsCollections3链详解</description>
     </item>
     <item>
       <title>Java 动态类加载</title>
-      <link>https://nlrvana.github.io/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/</link>
+      <link>http://localhost:1313/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/</link>
       <pubDate>Tue, 16 Jan 2024 16:40:46 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>Java 动态类加载</description>
     </item>
     <item>
       <title>CommonsCollections6链详解</title>
-      <link>https://nlrvana.github.io/commonscollections6%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://localhost:1313/commonscollections6%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Mon, 15 Jan 2024 15:29:23 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/commonscollections6%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/commonscollections6%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>&lt;p&gt;世界上最好用的 CC 链&lt;/p&gt;</description>
     </item>
     <item>
       <title>CommonsCollections1链详解</title>
-      <link>https://nlrvana.github.io/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://localhost:1313/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Sun, 14 Jan 2024 23:37:48 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/commonscollections1%E9%93%BE%E8%AF%A6%E8%A7%A3/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>&lt;p&gt;比较难一点的CC链&lt;/p&gt;</description>
     </item>
   </channel>

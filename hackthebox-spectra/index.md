@@ -153,5 +153,5 @@ end script
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/hackthebox-spectra/  
+> URL: http://localhost:1313/hackthebox-spectra/  
 

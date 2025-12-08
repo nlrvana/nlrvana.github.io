@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JMX - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/jmx/</link>
+    <link>http://localhost:1313/tags/jmx/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Sun, 16 Feb 2025 23:01:50 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/jmx/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/jmx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JMX-Attack</title>
-      <link>https://nlrvana.github.io/jmx-attack1/</link>
+      <link>http://localhost:1313/jmx-attack1/</link>
       <pubDate>Sun, 16 Feb 2025 23:01:50 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/jmx-attack1/</guid>
-      <category domain="https://nlrvana.github.io/categories/java/">Java</category>
+      <guid>http://localhost:1313/jmx-attack1/</guid>
+      <category domain="http://localhost:1313/categories/java/">Java</category>
       <description>JMX-Attack</description>
     </item>
   </channel>

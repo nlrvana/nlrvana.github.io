@@ -53,5 +53,5 @@ mimikatz也可以通过DCSync功能导出域用户的Hash，
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/%E6%BB%A5%E7%94%A8dcsync/  
+> URL: http://localhost:1313/%E6%BB%A5%E7%94%A8dcsync/  
 

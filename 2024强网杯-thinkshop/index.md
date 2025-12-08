@@ -198,5 +198,5 @@ https://mojun.me/2019/05/22/449524479f8320378fe4ed4f701405eb/
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/  
+> URL: http://localhost:1313/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-thinkshop/  
 

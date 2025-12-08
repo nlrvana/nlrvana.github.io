@@ -152,5 +152,5 @@ https://tttang.com/archive/1634/
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-initial/  
+> URL: http://localhost:1313/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-initial/  
 

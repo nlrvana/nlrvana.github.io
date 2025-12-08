@@ -371,5 +371,5 @@ namespace ZhiCms\base{
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/vnctf-2024-web/  
+> URL: http://localhost:1313/vnctf-2024-web/  
 

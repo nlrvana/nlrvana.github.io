@@ -194,5 +194,5 @@ Potato提权原理简单来说就是如下三条
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E6%8F%90%E6%9D%834/  
+> URL: http://localhost:1313/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-windows%E6%8F%90%E6%9D%834/  
 

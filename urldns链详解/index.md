@@ -173,5 +173,5 @@ public class URLDNS {
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/  
+> URL: http://localhost:1313/urldns%E9%93%BE%E8%AF%A6%E8%A7%A3/  
 

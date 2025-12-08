@@ -157,5 +157,5 @@ if __name__ == &#34;__main__&#34;:
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/2025-srdnlenctf/  
+> URL: http://localhost:1313/2025-srdnlenctf/  
 

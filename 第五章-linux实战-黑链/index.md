@@ -83,5 +83,5 @@ https://blog.mo60.cn/index.php/archives/Typecho-1-2-xss2rce.html
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/  
+> URL: http://localhost:1313/%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/  
 

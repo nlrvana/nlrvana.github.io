@@ -37,5 +37,5 @@ git branch -dr [remote/branch]
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/  
+> URL: http://localhost:1313/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/  
 

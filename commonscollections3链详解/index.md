@@ -251,5 +251,5 @@ public class CommonsCollections3 {
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/  
+> URL: http://localhost:1313/commonscollections3%E9%93%BE%E8%AF%A6%E8%A7%A3/  
 

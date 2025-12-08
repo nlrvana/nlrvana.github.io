@@ -117,5 +117,5 @@ fix ctf rce 绕过 Orz
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/ciscn%E8%A5%BF%E5%8D%97%E8%B5%9B%E5%8C%BA-webwriteup/  
+> URL: http://localhost:1313/ciscn%E8%A5%BF%E5%8D%97%E8%B5%9B%E5%8C%BA-webwriteup/  
 

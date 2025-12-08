@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows 实战 - Tag - N1Rvana&#39;s Blog</title>
-    <link>https://nlrvana.github.io/tags/windows-%E5%AE%9E%E6%88%98/</link>
+    <link>http://localhost:1313/tags/windows-%E5%AE%9E%E6%88%98/</link>
     <description>Web Security</description>
     <generator>Hugo 0.145.0 &amp; FixIt v0.3.15</generator>
     <language>en</language>
     <copyright>Web Security</copyright>
     <lastBuildDate>Tue, 11 Jun 2024 22:55:18 +0800</lastBuildDate>
-    <atom:link href="https://nlrvana.github.io/tags/windows-%E5%AE%9E%E6%88%98/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/windows-%E5%AE%9E%E6%88%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>第四章-Windows实战-黑页&amp;&amp;篡改</title>
-      <link>https://nlrvana.github.io/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98--%E9%BB%91%E9%A1%B5%E7%AF%A1%E6%94%B9/</link>
+      <link>http://localhost:1313/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98--%E9%BB%91%E9%A1%B5%E7%AF%A1%E6%94%B9/</link>
       <pubDate>Tue, 11 Jun 2024 22:55:18 +0800</pubDate><author>beichenghua@gmail.com (N1Rvana)</author>
-      <guid>https://nlrvana.github.io/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98--%E9%BB%91%E9%A1%B5%E7%AF%A1%E6%94%B9/</guid>
-      <category domain="https://nlrvana.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
+      <guid>http://localhost:1313/%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E5%AE%9E%E6%88%98--%E9%BB%91%E9%A1%B5%E7%AF%A1%E6%94%B9/</guid>
+      <category domain="http://localhost:1313/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
       <description>第四章-Windows实战-黑页&amp;&amp;篡改</description>
     </item>
   </channel>

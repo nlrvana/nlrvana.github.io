@@ -369,5 +369,5 @@ else:
 ---
 
 > Author: N1Rvana  
-> URL: https://nlrvana.github.io/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/  
+> URL: http://localhost:1313/2024-%E7%9F%A9%E9%98%B5%E6%9D%AFwriteup/  
 
